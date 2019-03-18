@@ -1,0 +1,46 @@
+
+.error {
+    -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
+}
+
+.list-cell:empty {
+    /* Empty cells will not have alternating colours */
+    -fx-background: #383838;
+}
+
+.tag-selector {
+    -fx-border-width: 1;
+    -fx-border-color: white;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+
+.tooltip-text {
+    -fx-text-fill: white;
+}
+
+#orderListViewForCard {
+    -fx-background-color: transparent;
+}
+
+#orderListViewForCard .list-cell {
+    -fx-background-color: transparent;
+}
+
+#orderListViewForCard .list-cell:filled:even {
+    -fx-background-color: #e5ffde;
+}
+
+#orderListViewForCard .list-cell:filled:odd {
+    -fx-background-color: derive(#e5ffde, 30%);
+}
+
+#orderListViewForCard .label {
+    -fx-text-fill: #363636;
+}
+
+#orderListViewForCard #address {
+    -fx-font-weight: bold;
+    -fx-font-size: 11;
+}
+

@@ -1,0 +1,51 @@
+= About Us
+:site-section: AboutUs
+:relfileprefix: team/
+:imagesDir: images
+:stylesDir: stylesheets
+
+FoodZoom was developed by Team https://github.com/CS2103-AY1819S1-T16-3[T16-3] team. +
+
+We are a team based in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore].
+
+== Project Team
+
+=== Rahul
+image::rrtheonlyone.png[width="150", align="left"]
+{empty}[https://github.com/rrtheonlyone[github]] [<<rrtheonlyone#, portfolio>>]
+
+Roles: Integration, code quality
+
+'''
+
+=== Julius Sander
+image::juxd.png[width="150", align="left"]
+{empty}[https://github.com/juxd[github]] [<<juxd#, portfolio>>]
+
+Roles: Code quality and testing +
+
+'''
+
+=== Monika Manuela Hengki
+image::monmanuela.png[width="150", align="left"]
+{empty}[http://github.com/monmanuela[github]] [<<monmanuela#, portfolio>>]
+
+Roles: Team lead, UI +
+
+'''
+
+=== Koh Chi Hao
+image::kohchihao.png[width="150", align="left"]
+{empty}[https://github.com/kohchihao[github]] [<<kohchihao#, portfolio>>]
+
+Roles: Scheduling and tracking deliverables and deadlines +
+
+'''
+
+=== Tan Jin Ying
+image::jinyingtan.png[width="150", align="left"]
+{empty}[https://github.com/jinyingtan[github]] [<<jinyingtan#, portfolio>>]
+
+Role: Documentation, UI +
+
+'''
