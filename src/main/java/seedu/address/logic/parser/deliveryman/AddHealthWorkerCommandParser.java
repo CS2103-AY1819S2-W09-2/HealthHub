@@ -18,7 +18,7 @@ import seedu.address.model.deliveryman.Deliveryman;
 /**
  * Parses input arguments and creates a new AddHealthWorkerCommand object
  */
-public class DeliverymanAddCommandParser implements Parser<AddHealthWorkerCommand> {
+public class AddHealthWorkerCommandParser implements Parser<AddHealthWorkerCommand> {
 
     /**
      * Parses a user command into a AddHealthWorkerCommand.

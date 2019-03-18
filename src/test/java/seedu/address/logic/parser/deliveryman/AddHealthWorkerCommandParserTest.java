@@ -17,7 +17,7 @@ import seedu.address.model.deliveryman.Deliveryman;
 import seedu.address.testutil.DeliverymanBuilder;
 
 public class AddHealthWorkerCommandParserTest {
-    private DeliverymanAddCommandParser parser = new DeliverymanAddCommandParser();
+    private AddHealthWorkerCommandParser parser = new AddHealthWorkerCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {

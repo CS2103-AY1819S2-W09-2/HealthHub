@@ -40,7 +40,7 @@ public class DeliverymanCommandParser {
         switch (commandWord) {
 
         case AddHealthWorkerCommand.COMMAND_WORD:
-            return new DeliverymanAddCommandParser().parse(arguments);
+            return new AddHealthWorkerCommandParser().parse(arguments);
 
         case HealthWorkerSelectCommand.COMMAND_WORD:
             return new DeliverymanSelectCommandParser().parse(arguments);
