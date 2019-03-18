@@ -13,7 +13,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.BackToHomeEvent;
 import seedu.address.commons.events.ui.HealthWorkerPanelSelectionChangedEvent;
-import seedu.address.commons.events.ui.JumpToOrderListRequestEvent;
+import seedu.address.commons.events.ui.JumpToRequestListRequestEvent;
 import seedu.address.commons.events.ui.OrderPanelSelectionChangedEvent;
 import seedu.address.model.order.Order;
 
@@ -42,12 +42,12 @@ public class OrderListPanel extends UiPart<Region> {
 
     private void setEventHandlerForSelectionChangeEvent() {
         orderListView.getSelectionModel().selectedItemProperty()
-                .addListener((observable, oldValue, newValue) -> {
-                    if (newValue != null) {
-                        logger.fine("Selection in order list panel changed to : '" + newValue + "'");
-                        raise(new OrderPanelSelectionChangedEvent(newValue));
-                    }
-                });
+            .addListener((observable, oldValue, newValue) -> {
+                if (newValue != null) {
+                    logger.fine("Selection in order list panel changed to : '" + newValue + "'");
+                    raise(new OrderPanelSelectionChangedEvent(newValue));
+                }
+            });
     }
 
     /**
@@ -61,7 +61,7 @@ public class OrderListPanel extends UiPart<Region> {
     }
 
     @Subscribe
-    private void handleJumpToOrderListRequestEvent(JumpToOrderListRequestEvent event) {
+    private void handleJumpToOrderListRequestEvent(JumpToRequestListRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         scrollTo(event.targetIndex);
     }

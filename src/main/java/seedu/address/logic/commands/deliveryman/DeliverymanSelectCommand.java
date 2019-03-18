@@ -7,7 +7,7 @@ import java.util.List;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.events.ui.JumpToDeliveryManListRequestEvent;
+import seedu.address.commons.events.ui.JumpToHealthWorkerListRequestEvent;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -43,7 +43,7 @@ public class DeliverymanSelectCommand extends DeliverymanCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_DELIVERYMAN_DISPLAYED_INDEX);
         }
 
-        EventsCenter.getInstance().post(new JumpToDeliveryManListRequestEvent(targetIndex));
+        EventsCenter.getInstance().post(new JumpToHealthWorkerListRequestEvent(targetIndex));
         return new CommandResult(String.format(MESSAGE_SELECT_ORDER_SUCCESS, targetIndex.getOneBased()));
 
     }

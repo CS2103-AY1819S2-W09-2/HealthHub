@@ -6,11 +6,11 @@ import seedu.address.commons.events.BaseEvent;
 /**
  * Indicates a request to jump to the list of order
  */
-public class JumpToDeliveryManListRequestEvent extends BaseEvent {
+public class JumpToHealthWorkerListRequestEvent extends BaseEvent {
 
     public final int targetIndex;
 
-    public JumpToDeliveryManListRequestEvent(Index targetIndex) {
+    public JumpToHealthWorkerListRequestEvent(Index targetIndex) {
         this.targetIndex = targetIndex.getZeroBased();
     }
 

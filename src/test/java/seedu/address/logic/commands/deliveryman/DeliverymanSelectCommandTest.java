@@ -18,7 +18,7 @@ import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.events.ui.JumpToDeliveryManListRequestEvent;
+import seedu.address.commons.events.ui.JumpToHealthWorkerListRequestEvent;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -104,8 +104,8 @@ public class DeliverymanSelectCommandTest {
 
         assertCommandSuccess(selectCommand, model, commandHistory, expectedMessage, expectedModel);
 
-        JumpToDeliveryManListRequestEvent lastEvent =
-            (JumpToDeliveryManListRequestEvent) eventsCollectorRule.eventsCollector.getMostRecent();
+        JumpToHealthWorkerListRequestEvent lastEvent =
+            (JumpToHealthWorkerListRequestEvent) eventsCollectorRule.eventsCollector.getMostRecent();
         assertEquals(index, Index.fromZeroBased(lastEvent.targetIndex));
     }
 

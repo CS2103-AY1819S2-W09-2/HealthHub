@@ -13,7 +13,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.BackToHomeEvent;
 import seedu.address.commons.events.ui.HealthWorkerPanelSelectionChangedEvent;
-import seedu.address.commons.events.ui.JumpToDeliveryManListRequestEvent;
+import seedu.address.commons.events.ui.JumpToHealthWorkerListRequestEvent;
 import seedu.address.commons.events.ui.OrderPanelSelectionChangedEvent;
 import seedu.address.model.deliveryman.Deliveryman;
 
@@ -61,7 +61,7 @@ public class DeliverymanListPanel extends UiPart<Region> {
     }
 
     @Subscribe
-    private void handleJumpToDeliveryManListRequestEvent(JumpToDeliveryManListRequestEvent event) {
+    private void handleJumpToDeliveryManListRequestEvent(JumpToHealthWorkerListRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         scrollTo(event.targetIndex);
     }

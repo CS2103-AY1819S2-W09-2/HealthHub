@@ -19,7 +19,7 @@ import guitests.guihandles.OrderCardHandle;
 import guitests.guihandles.OrderListPanelHandle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.events.ui.JumpToOrderListRequestEvent;
+import seedu.address.commons.events.ui.JumpToRequestListRequestEvent;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.XmlUtil;
 import seedu.address.model.order.Order;
@@ -27,10 +27,10 @@ import seedu.address.storage.XmlFoodZoom;
 
 public class OrderListPanelTest extends GuiUnitTest {
     private static final ObservableList<Order> TYPICAL_ORDERS =
-            FXCollections.observableList(getTypicalOrders());
+        FXCollections.observableList(getTypicalOrders());
 
-    private static final JumpToOrderListRequestEvent JUMP_TO_SECOND_EVENT =
-            new JumpToOrderListRequestEvent(INDEX_SECOND);
+    private static final JumpToRequestListRequestEvent JUMP_TO_SECOND_EVENT =
+        new JumpToRequestListRequestEvent(INDEX_SECOND);
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "sandbox");
 
@@ -84,7 +84,7 @@ public class OrderListPanelTest extends GuiUnitTest {
     private ObservableList<Order> createBackingList(int orderCount) throws Exception {
         Path xmlFile = createXmlFileWithOrders(orderCount);
         XmlFoodZoom xmlFoodZoom =
-                XmlUtil.getDataFromFile(xmlFile, XmlFoodZoom.class);
+            XmlUtil.getDataFromFile(xmlFile, XmlFoodZoom.class);
         return FXCollections.observableArrayList(xmlFoodZoom.getOrderBook().getOrderList());
     }
 
@@ -127,6 +127,6 @@ public class OrderListPanelTest extends GuiUnitTest {
         uiPartRule.setUiPart(orderListPanel);
 
         orderListPanelHandle = new OrderListPanelHandle(getChildNode(orderListPanel.getRoot(),
-                OrderListPanelHandle.ORDER_LIST_VIEW_ID));
+            OrderListPanelHandle.ORDER_LIST_VIEW_ID));
     }
 }

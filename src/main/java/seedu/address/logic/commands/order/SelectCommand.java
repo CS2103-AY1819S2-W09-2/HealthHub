@@ -7,7 +7,7 @@ import java.util.List;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.events.ui.JumpToOrderListRequestEvent;
+import seedu.address.commons.events.ui.JumpToRequestListRequestEvent;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -22,9 +22,9 @@ public class SelectCommand extends OrderCommand {
     public static final String COMMAND_WORD = "select";
 
     public static final String MESSAGE_USAGE = OrderCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Selects the order identified by the index number used in the displayed order list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + OrderCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
+        + ": Selects the order identified by the index number used in the displayed order list.\n"
+        + "Parameters: INDEX (must be a positive integer)\n"
+        + "Example: " + OrderCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SELECT_ORDER_SUCCESS = "Selected Order: %1$s";
 
@@ -44,7 +44,7 @@ public class SelectCommand extends OrderCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
-        EventsCenter.getInstance().post(new JumpToOrderListRequestEvent(targetIndex));
+        EventsCenter.getInstance().post(new JumpToRequestListRequestEvent(targetIndex));
         return new CommandResult(String.format(MESSAGE_SELECT_ORDER_SUCCESS, targetIndex.getOneBased()));
 
     }
@@ -52,7 +52,7 @@ public class SelectCommand extends OrderCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof SelectCommand // instanceof handles nulls
-                && targetIndex.equals(((SelectCommand) other).targetIndex)); // state check
+            || (other instanceof SelectCommand // instanceof handles nulls
+            && targetIndex.equals(((SelectCommand) other).targetIndex)); // state check
     }
 }
