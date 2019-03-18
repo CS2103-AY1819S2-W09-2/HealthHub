@@ -137,7 +137,7 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
         assertCommandFailure(editCommand + " " + invalidIndex + NAME_DESC_BOB,
                 Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
 
-        /* --------------------- Performing edit operation while a request card is selected -------------------------- */
+        /* ------------------ Performing edit operation while a request card is selected --------------------- */
 
         /* Case: selects first card in the request list, edit a request -> edited, card selection remains unchanged but
          * browser url changes
@@ -203,12 +203,13 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
                 + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_ORDER);
 
-        /* Case: edit a request with new values same as another request's values but with different food -> rejected */
+        /* Case: edit a request with new values same values but with different food -> rejected */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB
                 + ADDRESS_DESC_BOB + FOOD_DESC_BURGER;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_ORDER);
 
-        /* Case: edit a request with new values same as another request's values but with different address -> rejected */
+        /* Case: edit a request with new values same values but with different address ->
+        rejected */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB
                 + ADDRESS_DESC_AMY + FOOD_DESC_RICE;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_ORDER);

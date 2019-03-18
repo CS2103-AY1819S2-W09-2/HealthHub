@@ -94,7 +94,7 @@ public class AddCommandSystemTest extends OrderBookSystemTest {
         assertCommandSuccess(new OrderBuilder(HOON).build());
 
 
-        /* ------------------------ Perform add operation while an request card is selected --------------------------- */
+        /* ----------------- Perform add operation while an request card is selected ------------------ */
 
         /* Case: selects first card in the request list, add an request -> added, card selection remains unchanged */
         selectOrder(Index.fromOneBased(1));

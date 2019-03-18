@@ -17,7 +17,7 @@ import seedu.address.logic.commands.LogoutCommand;
 import seedu.address.logic.commands.SignUpCommand;
 import seedu.address.logic.commands.healthworker.HealthWorkerCommand;
 import seedu.address.logic.commands.request.RequestCommand;
-import seedu.address.logic.parser.deliveryman.HealthWorkerCommandParser;
+import seedu.address.logic.parser.healthworker.HealthWorkerCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.order.OrderCommandParser;
 

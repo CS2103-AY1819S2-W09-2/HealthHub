@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.deliveryman;
+package seedu.address.logic.parser.healthworker;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new HealthWorkerSelectCommand object.
  */
-public class DeliverymanSelectCommandParser implements Parser<HealthWorkerSelectCommand> {
+public class SelectHealthWorkerCommandParser implements Parser<HealthWorkerSelectCommand> {
     /**
      * Parses the fiven {@code string} of srgumants in the context of the HealthWorkerSelectCommand
      * and returns a HealthWorkerSelectCommand object for execution.

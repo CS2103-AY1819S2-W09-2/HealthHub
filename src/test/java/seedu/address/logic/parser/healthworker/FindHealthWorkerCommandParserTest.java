@@ -1,18 +1,18 @@
-package seedu.address.logic.parser.deliveryman;
+package seedu.address.logic.parser.healthworker;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.deliveryman.DeliverymanFindCommandParser.MESSAGE_EMPTY_NAME_FIELD;
+import static seedu.address.logic.parser.healthworker.FindHealthWorkerCommandParser.MESSAGE_EMPTY_NAME_FIELD;
 
 import org.junit.Test;
 
 import seedu.address.logic.commands.healthworker.HealthWorkerFindCommand;
 import seedu.address.model.deliveryman.DeliverymanNameContainsKeywordsPredicate;
 
-public class DeliverymanFindCommandParserTest {
+public class FindHealthWorkerCommandParserTest {
 
-    private DeliverymanFindCommandParser parser = new DeliverymanFindCommandParser();
+    private FindHealthWorkerCommandParser parser = new FindHealthWorkerCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {

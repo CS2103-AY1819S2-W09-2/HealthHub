@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.deliveryman;
+package seedu.address.logic.parser.healthworker;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -9,8 +9,8 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.healthworker.HealthWorkerSelectCommand;
 
-public class DeliverymanSelectCommandParserTest {
-    private DeliverymanSelectCommandParser parser = new DeliverymanSelectCommandParser();
+public class SelectHealthWorkerCommandParserTest {
+    private SelectHealthWorkerCommandParser parser = new SelectHealthWorkerCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeliverymanSelectCommand() {

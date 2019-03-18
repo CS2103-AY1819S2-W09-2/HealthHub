@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.deliveryman;
+package seedu.address.logic.parser.healthworker;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

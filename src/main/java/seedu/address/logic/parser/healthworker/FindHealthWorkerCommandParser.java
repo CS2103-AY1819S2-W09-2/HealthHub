@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.deliveryman;
+package seedu.address.logic.parser.healthworker;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -19,7 +19,7 @@ import seedu.address.model.deliveryman.DeliverymanNameContainsKeywordsPredicate;
  * and returns an HealthWorkerFindCommand object for execution.
  * @throws ParseException if the user input does not conform the expected format
  */
-public class DeliverymanFindCommandParser implements Parser<HealthWorkerCommand> {
+public class FindHealthWorkerCommandParser implements Parser<HealthWorkerCommand> {
     public static final String MESSAGE_EMPTY_NAME_FIELD = "n/ cannot be empty";
 
     /**

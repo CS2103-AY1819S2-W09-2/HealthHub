@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.deliveryman;
+package seedu.address.logic.parser.healthworker;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DELIVERYMAN_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -43,7 +43,7 @@ public class HealthWorkerCommandParser {
             return new AddHealthWorkerCommandParser().parse(arguments);
 
         case HealthWorkerSelectCommand.COMMAND_WORD:
-            return new DeliverymanSelectCommandParser().parse(arguments);
+            return new SelectHealthWorkerCommandParser().parse(arguments);
 
         case HealthWorkerDeleteCommand.COMMAND_WORD:
             return new DeleteHealthWorkerCommandParser().parse(arguments);
@@ -52,7 +52,7 @@ public class HealthWorkerCommandParser {
             return new HealthWorkerListCommand();
 
         case HealthWorkerFindCommand.COMMAND_WORD:
-            return new DeliverymanFindCommandParser().parse(arguments);
+            return new FindHealthWorkerCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
