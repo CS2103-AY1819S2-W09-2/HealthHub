@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Represents an Order's date in the order book.
+ * Represents an Order's date in the request book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)} (String)}
  */
 public class OrderDate {

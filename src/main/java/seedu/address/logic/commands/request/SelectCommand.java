@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.order;
+package seedu.address.logic.commands.request;
 
 import static java.util.Objects.requireNonNull;
 
@@ -15,14 +15,14 @@ import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 
 /**
- * Selects an order identified using it's displayed index from the order book.
+ * Selects an request identified using it's displayed index from the request book.
  */
 public class SelectCommand extends RequestCommand {
 
     public static final String COMMAND_WORD = "select";
 
     public static final String MESSAGE_USAGE = RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
-        + ": Selects the order identified by the index number used in the displayed order list.\n"
+        + ": Selects the request identified by the index number used in the displayed request list.\n"
         + "Parameters: INDEX (must be a positive integer)\n"
         + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
 

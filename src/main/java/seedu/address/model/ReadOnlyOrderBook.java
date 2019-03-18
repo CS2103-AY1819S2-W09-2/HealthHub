@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.order.Order;
 
 /**
- * Unmodifiable view of an order book
+ * Unmodifiable view of an request book
  */
 public interface ReadOnlyOrderBook {
 

@@ -7,7 +7,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.Test;
 
-import seedu.address.logic.commands.order.DoneCommand;
+import seedu.address.logic.commands.request.DoneCommand;
 
 public class DoneCommandParserTest {
 

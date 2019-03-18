@@ -19,7 +19,7 @@ public class OrderDatePredicateUtil {
     private static final SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
     /**
-     * Sorts the dates in ascending order
+     * Sorts the dates in ascending request
      * Returns a list of size 2 if more than 2 date fields are specified
      */
     public List<Date> parseDateKeywords(List<String> keywords) throws ParseException {

@@ -26,7 +26,7 @@ public class OrderCardTest extends GuiUnitTest {
         Order order = new OrderBuilder().build();
         OrderCard orderCard = new OrderCard(order, 0);
 
-        // same order, same index -> returns true
+        // same request, same index -> returns true
         OrderCard copy = new OrderCard(order, 0);
         assertTrue(orderCard.equals(copy));
 
@@ -39,11 +39,11 @@ public class OrderCardTest extends GuiUnitTest {
         // different types -> returns false
         assertFalse(orderCard.equals(0));
 
-        // different order, same index -> returns false
+        // different request, same index -> returns false
         Order differentOrder = new OrderBuilder().withName("differentName").build();
         assertFalse(orderCard.equals(new OrderCard(differentOrder, 0)));
 
-        // same order, different index -> returns false
+        // same request, different index -> returns false
         assertFalse(orderCard.equals(new OrderCard(order, 1)));
     }
 

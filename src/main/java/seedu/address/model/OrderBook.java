@@ -42,7 +42,7 @@ public class OrderBook implements ReadOnlyOrderBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the order list with {@code orders}.
+     * Replaces the contents of the request list with {@code orders}.
      * {@code orders} must not contain duplicate orders.
      */
     public void setOrders(List<Order> orders) {
@@ -61,7 +61,7 @@ public class OrderBook implements ReadOnlyOrderBook {
     //// common-level operations
 
     /**
-     * Returns true if an order with the same identity as {@code order} exists in the order book.
+     * Returns true if an request with the same identity as {@code request} exists in the request book.
      */
     public boolean hasOrder(Order person) {
         requireNonNull(person);
@@ -69,8 +69,8 @@ public class OrderBook implements ReadOnlyOrderBook {
     }
 
     /**
-     * Adds an order to the order book.
-     * The order must not already exist in the order book.
+     * Adds an request to the request book.
+     * The request must not already exist in the request book.
      */
     public void addOrder(Order o) {
         if (o.getTag() == null) {
@@ -80,9 +80,9 @@ public class OrderBook implements ReadOnlyOrderBook {
     }
 
     /**
-     * Replaces the given order {@code target} in the list with {@code editedOrder}.
-     * {@code target} must exist in the order book.
-     * The order identity of {@code editedOrder} must not be the same as another existing order in the order book.
+     * Replaces the given request {@code target} in the list with {@code editedOrder}.
+     * {@code target} must exist in the request book.
+     * The request identity of {@code editedOrder} must not be the same as another existing request in the request book.
      */
     public void updateOrder(Order target, Order editedOrder) {
         requireNonNull(editedOrder);

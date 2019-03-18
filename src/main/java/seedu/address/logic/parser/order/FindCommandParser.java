@@ -11,8 +11,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.order.FindCommand;
-import seedu.address.logic.commands.order.RequestCommand;
+import seedu.address.logic.commands.request.FindCommand;
+import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;

@@ -283,7 +283,7 @@ public class AddHealthWorkerCommandTest {
     }
 
     /**
-     * A Model stub that contains a single order.
+     * A Model stub that contains a single request.
      */
     private class ModelStubWithDeliveryman extends ModelStub {
         private final Deliveryman deliveryman;
@@ -301,7 +301,7 @@ public class AddHealthWorkerCommandTest {
     }
 
     /**
-     * A Model stub that always accept the order being added.
+     * A Model stub that always accept the request being added.
      */
     private class ModelStubAcceptingDeliverymanAdded extends ModelStub {
         final ArrayList<Deliveryman> deliverymenAdded = new ArrayList<>();

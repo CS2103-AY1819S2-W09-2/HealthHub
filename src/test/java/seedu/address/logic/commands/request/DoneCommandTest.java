@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.order;
+package seedu.address.logic.commands.request;
 
 import static org.junit.Assert.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;

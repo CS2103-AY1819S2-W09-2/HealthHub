@@ -26,7 +26,7 @@ public interface Model {
      */
     Predicate<Deliveryman> PREDICATE_SHOW_ALL_DELIVERYMEN = unused -> true;
 
-    // ==================== order book/order related methods =======================
+    // ==================== request book/request related methods =======================
 
     /**
      * Clears existing backing model and replaces with the provided new data.
@@ -39,63 +39,63 @@ public interface Model {
     ReadOnlyOrderBook getOrderBook();
 
     /**
-     * Returns true if a common with the same identity as {@code order} exists in the order book.
+     * Returns true if a common with the same identity as {@code request} exists in the request book.
      */
     boolean hasOrder(Order order);
 
     /**
-     * Deletes the given order.
-     * The order must exist in the address book.
+     * Deletes the given request.
+     * The request must exist in the address book.
      */
     void deleteOrder(Order target);
 
     /**
-     * Adds the given order.
-     * {@code order} must not already exist in the address book.
+     * Adds the given request.
+     * {@code request} must not already exist in the address book.
      */
     void addOrder(Order order);
 
     /**
-     * Replaces the given order {@code target} with {@code editedOrder}.
+     * Replaces the given request {@code target} with {@code editedOrder}.
      * {@code target} must exist in the address book.
-     * The order identity of {@code editedOrder} must not be the same as another existing order in the order book.
+     * The request identity of {@code editedOrder} must not be the same as another existing request in the request book.
      */
     void updateOrder(Order target, Order editedOrder);
 
     /**
-     * Returns an unmodifiable view of the filtered order list
+     * Returns an unmodifiable view of the filtered request list
      */
     ObservableList<Order> getFilteredOrderList();
 
     /**
-     * Updates the filter of the filtered order list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered request list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredOrderList(Predicate<Order> predicate);
 
     /**
-     * Returns true if the model has previous order book states to restore.
+     * Returns true if the model has previous request book states to restore.
      */
     boolean canUndoOrderBook();
 
     /**
-     * Returns true if the model has undone order book states to restore.
+     * Returns true if the model has undone request book states to restore.
      */
     boolean canRedoOrderBook();
 
     /**
-     * Restores the model's order book to its previous state.
+     * Restores the model's request book to its previous state.
      */
     void undoOrderBook();
 
     /**
-     * Restores the model's order book to its previously undone state.
+     * Restores the model's request book to its previously undone state.
      */
     void redoOrderBook();
 
     /**
-     * Saves the current order book state for undo/redo.
+     * Saves the current request book state for undo/redo.
      */
     void commitOrderBook();
 

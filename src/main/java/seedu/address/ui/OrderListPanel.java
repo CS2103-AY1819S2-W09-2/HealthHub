@@ -44,7 +44,7 @@ public class OrderListPanel extends UiPart<Region> {
         orderListView.getSelectionModel().selectedItemProperty()
             .addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
-                    logger.fine("Selection in order list panel changed to : '" + newValue + "'");
+                    logger.fine("Selection in request list panel changed to : '" + newValue + "'");
                     raise(new RequestPanelSelectionChangedEvent(newValue));
                 }
             });

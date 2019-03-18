@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.order;
+package seedu.address.logic.commands.request;
 
 import static java.util.Objects.requireNonNull;
 
@@ -15,14 +15,14 @@ import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderStatus;
 
 /**
- * Mark an order as COMPLETED.
+ * Mark an request as COMPLETED.
  */
 public class DoneCommand extends RequestCommand {
 
     public static final String COMMAND_WORD = "done";
 
     public static final String MESSAGE_USAGE = RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Marks an order as COMPLETED \n"
+            + ": Marks an request as COMPLETED \n"
             + "Parameters: INDEX (must be a positive integer) \n"
             + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1 ";
 
@@ -56,7 +56,7 @@ public class DoneCommand extends RequestCommand {
 
 
 
-        //fetch healthworker from index because order's healthworker not reliable.
+        //fetch healthworker from index because request's healthworker not reliable.
         Deliveryman deliverymanToRemoveOrder = orderToBeCompleted.getDeliveryman();
         Deliveryman correctDeliveryman = lastShowDeliverymanList.stream()
                 .filter(deliveryman -> deliveryman.equals(deliverymanToRemoveOrder))
@@ -78,7 +78,7 @@ public class DoneCommand extends RequestCommand {
     }
 
     /**
-     * Remove order from healthworker.
+     * Remove request from healthworker.
      */
     private static Deliveryman removeOrderFromDeliveryman(Deliveryman targetDeliveryman, Order targetOrder) {
         assert targetDeliveryman != null;

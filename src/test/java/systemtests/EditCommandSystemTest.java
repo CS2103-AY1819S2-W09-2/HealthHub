@@ -42,8 +42,8 @@ import org.junit.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.LoginCommand;
-import seedu.address.logic.commands.order.EditCommand;
-import seedu.address.logic.commands.order.RequestCommand;
+import seedu.address.logic.commands.request.EditCommand;
+import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.model.Model;
 import seedu.address.model.OrderBook;
 import seedu.address.model.common.Address;
@@ -78,12 +78,12 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
         Order editedOrder = new OrderBuilder(BOB).withFood(VALID_FOOD_BURGER).build();
         assertCommandSuccess(command, index, editedOrder);
 
-        /* Case: edit a order with new values same as existing values -> edited */
+        /* Case: edit a request with new values same as existing values -> edited */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB
                 + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
         assertCommandSuccess(command, index, BOB);
 
-        /* Case: edit a order with new values same as another order's values but with different name -> edited */
+        /* Case: edit a request with new values same as another request's values but with different name -> edited */
         assertTrue(getModel().getOrderBook().getOrderList().contains(BOB));
         index = INDEX_SECOND;
         assertNotEquals(getModel().getFilteredOrderList().get(index.getZeroBased()), BOB);
@@ -92,19 +92,19 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
         editedOrder = new OrderBuilder(BOB).withName(VALID_NAME_AMY).build();
         assertCommandSuccess(command, index, editedOrder);
 
-        /* Case: edit a order with new values same as another order's values but with different phone -> edited */
+        /* Case: edit a request with new values same as another request's values but with different phone -> edited */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + DATE_DESC_BOB
                 + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
         editedOrder = new OrderBuilder(BOB).withPhone(VALID_PHONE_AMY).build();
         assertCommandSuccess(command, index, editedOrder);
 
-        /* Case: edit a order with new values same as another order's values but with different date -> edited */
+        /* Case: edit a request with new values same as another request's values but with different date -> edited */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_AMY
                 + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
         editedOrder = new OrderBuilder(BOB).withDate(VALID_DATE_AMY).build();
         assertCommandSuccess(command, index, editedOrder);
 
-        /* Case: edit a order with new values same as another order's values but with different phone and date
+        /* Case: edit a request with new values same as another request's values but with different phone and date
          * -> edited
          */
         index = INDEX_SECOND;
@@ -120,7 +120,7 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
 
         /* ------------------ Performing edit operation while a filtered list is being shown ------------------------ */
 
-        /* Case: filtered order list, edit index within bounds of order book and order list -> edited */
+        /* Case: filtered request list, edit index within bounds of request book and request list -> edited */
         showOrdersWithName(KEYWORD_NAME_MATCHING_MEIER);
         index = INDEX_FIRST;
         assertTrue(index.getZeroBased() < getModel().getFilteredOrderList().size());
@@ -129,7 +129,7 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
         editedOrder = new OrderBuilder(orderToEdit).withName(VALID_NAME_BOB).build();
         assertCommandSuccess(command, index, editedOrder);
 
-        /* Case: filtered order list, edit index within bounds of order book but out of bounds of order list
+        /* Case: filtered request list, edit index within bounds of request book but out of bounds of request list
          * -> rejected
          */
         showOrdersWithName(KEYWORD_NAME_MATCHING_MEIER);
@@ -137,9 +137,9 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
         assertCommandFailure(editCommand + " " + invalidIndex + NAME_DESC_BOB,
                 Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
 
-        /* --------------------- Performing edit operation while a order card is selected -------------------------- */
+        /* --------------------- Performing edit operation while a request card is selected -------------------------- */
 
-        /* Case: selects first card in the order list, edit a order -> edited, card selection remains unchanged but
+        /* Case: selects first card in the request list, edit a request -> edited, card selection remains unchanged but
          * browser url changes
          */
         showAllOrders();
@@ -148,7 +148,7 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
         command = editCommand + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_AMY + DATE_DESC_AMY
                 + ADDRESS_DESC_AMY + FOOD_DESC_BURGER;
         // this can be misleading: card selection actually remains unchanged but the
-        // browser's url is updated to reflect the new order's name
+        // browser's url is updated to reflect the new request's name
         assertCommandSuccess(command, index, AMY, index);
 
         /* --------------------------------- Performing invalid edit operation -------------------------------------- */
@@ -194,7 +194,7 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
         assertCommandFailure(editCommand + " " + INDEX_FIRST.getOneBased() + INVALID_FOOD_DESC,
                 Food.MESSAGE_FOOD_CONSTRAINTS);
 
-        /* Case: edit a order with new values same as another order's values -> rejected */
+        /* Case: edit a request with new values same as another request's values -> rejected */
         executeCommand(RequestCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(BOB));
         assertTrue(getModel().getOrderBook().getOrderList().stream().anyMatch(x -> x.isSameOrder(BOB)));
         index = INDEX_FIRST;
@@ -203,12 +203,12 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
                 + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_ORDER);
 
-        /* Case: edit a order with new values same as another order's values but with different food -> rejected */
+        /* Case: edit a request with new values same as another request's values but with different food -> rejected */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB
                 + ADDRESS_DESC_BOB + FOOD_DESC_BURGER;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_ORDER);
 
-        /* Case: edit a order with new values same as another order's values but with different address -> rejected */
+        /* Case: edit a request with new values same as another request's values but with different address -> rejected */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB
                 + ADDRESS_DESC_AMY + FOOD_DESC_RICE;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_ORDER);
@@ -227,7 +227,7 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
     /**
      * Performs the same verification as {@code assertCommandSuccess(String, Model, String, Index)} and in addition,<br>
      * 1. Asserts that result display box displays the success message of executing {@code EditCommand}.<br>
-     * 2. Asserts that the model related components are updated to reflect the order at index {@code toEdit} being
+     * 2. Asserts that the model related components are updated to reflect the request at index {@code toEdit} being
      * updated to values specified {@code editedOrder}.<br>
      *
      * @param toEdit the index of the current model's filtered list.

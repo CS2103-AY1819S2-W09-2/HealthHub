@@ -86,9 +86,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s order book and {@code userPrefs}. <br>
-     * The data from the sample order book will be used instead if {@code storage}'s order book is not found,
-     * or an empty order book will be used instead if errors occur when reading {@code storage}'s order book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s request book and {@code userPrefs}. <br>
+     * The data from the sample request book will be used instead if {@code storage}'s request book is not found,
+     * or an empty request book will be used instead if errors occur when reading {@code storage}'s request book.
      */
     private Model initModelManager(Storage storage, UserPrefs userPrefs) {
         Optional<ReadOnlyOrderBook> orderBookOptional;

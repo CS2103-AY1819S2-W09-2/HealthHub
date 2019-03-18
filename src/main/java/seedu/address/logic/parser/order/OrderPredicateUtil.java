@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import seedu.address.logic.commands.order.FindCommand;
+import seedu.address.logic.commands.request.FindCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -22,7 +22,7 @@ import seedu.address.model.order.OrderStatus;
 import seedu.address.model.order.OrderStatusContainsKeywordPredicate;
 
 /**
- * Util to parse order's predicate
+ * Util to parse request's predicate
  */
 public class OrderPredicateUtil {
     public static final String MESSAGE_EMPTY_KEYWORD = "%1$s cannot be empty";

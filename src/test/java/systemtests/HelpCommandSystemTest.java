@@ -17,9 +17,9 @@ import guitests.GuiRobot;
 import guitests.guihandles.HelpWindowHandle;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LoginCommand;
-import seedu.address.logic.commands.order.DeleteCommand;
-import seedu.address.logic.commands.order.RequestCommand;
-import seedu.address.logic.commands.order.SelectCommand;
+import seedu.address.logic.commands.request.DeleteCommand;
+import seedu.address.logic.commands.request.RequestCommand;
+import seedu.address.logic.commands.request.SelectCommand;
 import seedu.address.ui.StatusBarFooter;
 
 /**

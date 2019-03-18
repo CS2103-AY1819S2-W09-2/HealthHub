@@ -59,7 +59,7 @@ public class Deliveryman extends TaggedObject {
     }
 
     /**
-     * Adds {@code order} to the set of orders for the healthworker.
+     * Adds {@code request} to the set of orders for the healthworker.
      * Throws {@code OrdersLimitExceededException} if the amount of orders assigned exceeds the limit for orders.
      */
     public void addOrder(Order order) throws OrdersLimitExceededException {

@@ -126,7 +126,7 @@ public class OrderBuilder {
     }
 
     /**
-     * Builds and returns an order.
+     * Builds and returns an request.
      */
     public Order build() {
         if (id != null) {

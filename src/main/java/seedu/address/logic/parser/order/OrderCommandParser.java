@@ -7,20 +7,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.order.AddCommand;
-import seedu.address.logic.commands.order.ClearCommand;
-import seedu.address.logic.commands.order.DeleteCommand;
-import seedu.address.logic.commands.order.DoneCommand;
-import seedu.address.logic.commands.order.EditCommand;
-import seedu.address.logic.commands.order.FindCommand;
-import seedu.address.logic.commands.order.ListCommand;
-import seedu.address.logic.commands.order.RequestCommand;
-import seedu.address.logic.commands.order.SelectCommand;
+import seedu.address.logic.commands.request.AddCommand;
+import seedu.address.logic.commands.request.ClearCommand;
+import seedu.address.logic.commands.request.DeleteCommand;
+import seedu.address.logic.commands.request.DoneCommand;
+import seedu.address.logic.commands.request.EditCommand;
+import seedu.address.logic.commands.request.FindCommand;
+import seedu.address.logic.commands.request.ListCommand;
+import seedu.address.logic.commands.request.RequestCommand;
+import seedu.address.logic.commands.request.SelectCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses order input.
+ * Parses request input.
  */
 public class OrderCommandParser implements Parser<RequestCommand> {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");

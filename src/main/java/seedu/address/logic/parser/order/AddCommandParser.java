@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.order.AddCommand;
+import seedu.address.logic.commands.request.AddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;

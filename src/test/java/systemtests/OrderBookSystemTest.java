@@ -28,11 +28,11 @@ import guitests.guihandles.StatusBarFooterHandle;
 import seedu.address.TestApp;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.order.ClearCommand;
-import seedu.address.logic.commands.order.FindCommand;
-import seedu.address.logic.commands.order.ListCommand;
-import seedu.address.logic.commands.order.RequestCommand;
-import seedu.address.logic.commands.order.SelectCommand;
+import seedu.address.logic.commands.request.ClearCommand;
+import seedu.address.logic.commands.request.FindCommand;
+import seedu.address.logic.commands.request.ListCommand;
+import seedu.address.logic.commands.request.RequestCommand;
+import seedu.address.logic.commands.request.SelectCommand;
 import seedu.address.model.Model;
 import seedu.address.model.OrderBook;
 import seedu.address.model.UsersList;
@@ -158,7 +158,7 @@ public abstract class OrderBookSystemTest {
     }
 
     /**
-     * Displays all order in the address book.
+     * Displays all request in the address book.
      */
     protected void showAllOrders() {
         executeCommand(RequestCommand.COMMAND_WORD + " " + ListCommand.COMMAND_WORD);
@@ -174,7 +174,7 @@ public abstract class OrderBookSystemTest {
     }
 
     /**
-     * Selects the order at {@code index} of the displayed list.
+     * Selects the request at {@code index} of the displayed list.
      */
     protected void selectOrder(Index index) {
         executeCommand(RequestCommand.COMMAND_WORD + " " + SelectCommand.COMMAND_WORD + " " + index.getOneBased());
@@ -182,7 +182,7 @@ public abstract class OrderBookSystemTest {
     }
 
     /**
-     * Deletes all orders in the order book.
+     * Deletes all orders in the request book.
      */
     protected void deleteAllOrders() {
         executeCommand(RequestCommand.COMMAND_WORD + " " + ClearCommand.COMMAND_WORD);
@@ -191,8 +191,8 @@ public abstract class OrderBookSystemTest {
 
     /**
      * Asserts that the {@code CommandBox} displays {@code expectedCommandInput}, the {@code ResultDisplay} displays
-     * {@code expectedResultMessage}, the storage contains the same order objects as {@code expectedModel}
-     * and the order list panel displays the orders in the model correctly.
+     * {@code expectedResultMessage}, the storage contains the same request objects as {@code expectedModel}
+     * and the request list panel displays the orders in the model correctly.
      */
     protected void assertApplicationDisplaysExpected(String expectedCommandInput, String expectedResultMessage,
                                                      Model expectedModel) {

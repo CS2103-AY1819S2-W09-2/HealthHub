@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.order;
+package seedu.address.logic.commands.request;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -14,14 +14,14 @@ import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 
 /**
- * Adds an order to the order book.
+ * Adds an request to the request book.
  */
 public class AddCommand extends RequestCommand {
 
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Adds an order to the order book. "
+            + ": Adds an request to the request book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -36,8 +36,8 @@ public class AddCommand extends RequestCommand {
             + PREFIX_FOOD + "Ice Milo "
             + PREFIX_DATE + "12-10-2018 00:00:00";
 
-    public static final String MESSAGE_SUCCESS = "New order added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the order book";
+    public static final String MESSAGE_SUCCESS = "New request added: %1$s";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This request already exists in the request book";
 
     private final Order toAdd;
 

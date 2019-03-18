@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 import seedu.address.model.order.Order;
 
 /**
- * Provides a handle to a order card in the order list panel.
+ * Provides a handle to a request card in the request list panel.
  */
 public class OrderCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";
@@ -45,7 +45,7 @@ public class OrderCardHandle extends NodeHandle<Node> {
     }
 
     /**
-     * Returns true if this handle contains {@code order}.
+     * Returns true if this handle contains {@code request}.
      */
     public boolean equals(Order order) {
         return getAddress().equals(order.getAddress().value)

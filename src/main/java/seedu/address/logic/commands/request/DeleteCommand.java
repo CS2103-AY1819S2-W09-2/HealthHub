@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.order;
+package seedu.address.logic.commands.request;
 
 import static java.util.Objects.requireNonNull;
 
@@ -13,14 +13,14 @@ import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 
 /**
- * Deletes an order identified using it's displayed index from the order book.
+ * Deletes an request identified using it's displayed index from the request book.
  */
 public class DeleteCommand extends RequestCommand {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Deletes the order identified by the index number used in the displayed order list.\n"
+            + ": Deletes the request identified by the index number used in the displayed request list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
 

@@ -82,7 +82,7 @@ public class LoginCommandSystemTest extends OrderBookSystemTest {
 
 
     /**
-     * Assert that login command succeed with order panel showing. Command box should be empty and default style.
+     * Assert that login command succeed with request panel showing. Command box should be empty and default style.
      */
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage) {
 

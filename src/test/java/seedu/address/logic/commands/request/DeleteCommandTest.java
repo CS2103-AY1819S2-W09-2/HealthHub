@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.order;
+package seedu.address.logic.commands.request;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -112,7 +112,7 @@ public class DeleteCommandTest {
      * 2. Undo the deletion.
      * 3. The unfiltered list should be shown now. Verify that the index of the previously deleted common in the
      * unfiltered list is different from the index at the filtered list.
-     * 4. Redo the deletion. This ensures {@code RedoCommand} deletes the order object regardless of indexing.
+     * 4. Redo the deletion. This ensures {@code RedoCommand} deletes the request object regardless of indexing.
      */
     @Test
     public void executeUndoRedo_validIndexFilteredList_sameOrderDeleted() throws Exception {

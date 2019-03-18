@@ -12,7 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
 import org.junit.Test;
 
-import seedu.address.logic.commands.order.EditCommand.EditOrderDescriptor;
+import seedu.address.logic.commands.request.EditCommand.EditOrderDescriptor;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
 
 public class EditOrderDescriptorTest {

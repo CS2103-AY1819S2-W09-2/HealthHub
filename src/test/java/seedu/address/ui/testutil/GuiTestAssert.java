@@ -34,7 +34,7 @@ public class GuiTestAssert {
 
     /**
      * Asserts that the list in {@code orderListPanelHandle} displays the details of {@code orders} correctly and
-     * in the correct order.
+     * in the correct request.
      */
     public static void assertListMatching(OrderListPanelHandle orderListPanelHandle, Order... orders) {
         for (int i = 0; i < orders.length; i++) {
@@ -45,7 +45,7 @@ public class GuiTestAssert {
 
     /**
      * Asserts that the list in {@code orderListPanelHandle} displays the details of {@code orders} correctly and
-     * in the correct order.
+     * in the correct request.
      */
     public static void assertListMatching(OrderListPanelHandle orderListPanelHandle, List<Order> orders) {
         assertListMatching(orderListPanelHandle, orders.toArray(new Order[0]));

@@ -59,7 +59,7 @@ public class XmlAdaptedOrder {
     }
 
     /**
-     * Constructs an {@code XmlAdaptedOrder} with the given order details.
+     * Constructs an {@code XmlAdaptedOrder} with the given request details.
      */
     public XmlAdaptedOrder(String tag, String name, String phone, String address, String date, String status,
                            List<XmlAdaptedFood> food, String deliveryman) {
@@ -79,7 +79,7 @@ public class XmlAdaptedOrder {
     }
 
     /**
-     * Constructs an {@code XmlAdaptedOrder} with the given order details.
+     * Constructs an {@code XmlAdaptedOrder} with the given request details.
      */
     public XmlAdaptedOrder(String name, String phone, String address, String date, String status,
                            List<XmlAdaptedFood> food, String deliveryman) {
@@ -107,9 +107,9 @@ public class XmlAdaptedOrder {
     }
 
     /**
-     * Converts this jaxb-friendly adapted order object into the model's Order object.
+     * Converts this jaxb-friendly adapted request object into the model's Order object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted order
+     * @throws IllegalValueException if there were any data constraints violated in the adapted request
      */
     public Order toModelType() throws IllegalValueException {
         final List<Food> foodStore = new ArrayList<>();

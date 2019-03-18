@@ -12,7 +12,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import seedu.address.logic.commands.order.FindCommand;
+import seedu.address.logic.commands.request.FindCommand;
 import seedu.address.model.order.OrderAddressContainsKeywordPredicate;
 import seedu.address.model.order.OrderDatePredicate;
 import seedu.address.model.order.OrderFoodContainsKeywordPredicate;

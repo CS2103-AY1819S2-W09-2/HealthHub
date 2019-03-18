@@ -13,9 +13,9 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.order.EditCommand;
-import seedu.address.logic.commands.order.EditCommand.EditOrderDescriptor;
-import seedu.address.logic.commands.order.RequestCommand;
+import seedu.address.logic.commands.request.EditCommand;
+import seedu.address.logic.commands.request.EditCommand.EditOrderDescriptor;
+import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;

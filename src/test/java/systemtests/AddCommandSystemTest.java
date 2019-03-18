@@ -33,8 +33,8 @@ import org.junit.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.LoginCommand;
-import seedu.address.logic.commands.order.AddCommand;
-import seedu.address.logic.commands.order.RequestCommand;
+import seedu.address.logic.commands.request.AddCommand;
+import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.model.Model;
 import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
@@ -59,7 +59,7 @@ public class AddCommandSystemTest extends OrderBookSystemTest {
 
         /* ------------------------ Perform add operations on the shown unfiltered list ----------------------------- */
 
-        /* Case: add an order to a non-empty address book, command with leading spaces and trailing spaces
+        /* Case: add an request to a non-empty address book, command with leading spaces and trailing spaces
          * -> added
          */
         Order toAdd = new OrderBuilder(AMY).build();
@@ -68,13 +68,13 @@ public class AddCommandSystemTest extends OrderBookSystemTest {
                 + "   " + ADDRESS_DESC_AMY + "   " + DATE_DESC_AMY + "  " + FOOD_DESC_BURGER + " ";
         assertCommandSuccess(command, toAdd);
 
-        /* Case: add an order with all fields same as another order in the order book except name -> added */
+        /* Case: add an request with all fields same as another request in the request book except name -> added */
         toAdd = new OrderBuilder(AMY).withName(VALID_NAME_BOB).build();
         command = addCommand + NAME_DESC_BOB + PHONE_DESC_AMY + ADDRESS_DESC_AMY + DATE_DESC_AMY
                 + FOOD_DESC_BURGER;
         assertCommandSuccess(command, toAdd);
 
-        /* Case: add an order with all fields same as another order in the address book except phone
+        /* Case: add an request with all fields same as another request in the address book except phone
          * -> added
          */
         toAdd = new OrderBuilder(AMY).withPhone(VALID_PHONE_BOB).build();
@@ -85,28 +85,28 @@ public class AddCommandSystemTest extends OrderBookSystemTest {
         deleteAllOrders();
         assertCommandSuccess(new OrderBuilder(ALICE).build());
 
-        /* Case: add an order, command with parameters in random order -> added */
+        /* Case: add an request, command with parameters in random request -> added */
         toAdd = new OrderBuilder(BOB).build();
         command = addCommand + DATE_DESC_BOB + FOOD_DESC_RICE + PHONE_DESC_BOB + ADDRESS_DESC_BOB + NAME_DESC_BOB;
         assertCommandSuccess(command, toAdd);
 
-        /* Case: add an order -> added */
+        /* Case: add an request -> added */
         assertCommandSuccess(new OrderBuilder(HOON).build());
 
 
-        /* ------------------------ Perform add operation while an order card is selected --------------------------- */
+        /* ------------------------ Perform add operation while an request card is selected --------------------------- */
 
-        /* Case: selects first card in the order list, add an order -> added, card selection remains unchanged */
+        /* Case: selects first card in the request list, add an request -> added, card selection remains unchanged */
         selectOrder(Index.fromOneBased(1));
         assertCommandSuccess(new OrderBuilder(CARL).build());
 
         /* ----------------------------------- Perform invalid add operations --------------------------------------- */
 
-        /* Case: add a duplicate order -> rejected */
+        /* Case: add a duplicate request -> rejected */
         command = RequestCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(HOON);
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_ORDER);
 
-        /* Case: add a duplicate order except with different address -> rejected */
+        /* Case: add a duplicate request except with different address -> rejected */
         toAdd = new OrderBuilder(HOON).withAddress(VALID_ADDRESS_BOB).build();
         command = RequestCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(toAdd);
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_ORDER);

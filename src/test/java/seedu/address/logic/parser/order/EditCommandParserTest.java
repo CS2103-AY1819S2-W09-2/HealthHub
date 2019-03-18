@@ -34,8 +34,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 import org.junit.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.order.EditCommand;
-import seedu.address.logic.commands.order.EditCommand.EditOrderDescriptor;
+import seedu.address.logic.commands.request.EditCommand;
+import seedu.address.logic.commands.request.EditCommand.EditOrderDescriptor;
 import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;

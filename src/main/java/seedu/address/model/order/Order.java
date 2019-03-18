@@ -15,7 +15,7 @@ import seedu.address.model.deliveryman.Deliveryman;
 import seedu.address.model.deliveryman.exceptions.OrdersLimitExceededException;
 
 /**
- * Represents an Order in the order book.
+ * Represents an Order in the request book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Order extends TaggedObject {
@@ -54,7 +54,7 @@ public class Order extends TaggedObject {
     }
 
     /**
-     * This constructor is used to create an {@code order} with a specified id.
+     * This constructor is used to create an {@code request} with a specified id.
      */
     public Order(UUID id, Name name, Phone phone, Address address, OrderDate orderDate, OrderStatus orderStatus,
                  Set<Food> food, Deliveryman deliveryman) {
@@ -70,7 +70,7 @@ public class Order extends TaggedObject {
     }
 
     /**
-     * This constructor is used to create a new copy of {@code order}.
+     * This constructor is used to create a new copy of {@code request}.
      */
     public Order(Order order) {
         this(null, order.name, order.phone, order.address, order.orderDate, order.orderStatus, order.food,

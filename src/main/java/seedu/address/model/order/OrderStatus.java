@@ -1,7 +1,7 @@
 package seedu.address.model.order;
 
 /**
- * Represents an Order's Status in the order book.
+ * Represents an Order's Status in the request book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)} (String)}
  */
 public class OrderStatus {

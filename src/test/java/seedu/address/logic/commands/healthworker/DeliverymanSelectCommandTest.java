@@ -65,7 +65,7 @@ public class DeliverymanSelectCommandTest {
         showDeliverymanAtIndex(expectedModel, INDEX_FIRST);
 
         Index outOfBoundsIndex = INDEX_SECOND;
-        // ensures that outOfBoundIndex is still in bounds of order book list
+        // ensures that outOfBoundIndex is still in bounds of request book list
         assertTrue(outOfBoundsIndex.getZeroBased() < model.getDeliverymenList().getDeliverymenList().size());
 
         assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_DELIVERYMAN_DISPLAYED_INDEX);

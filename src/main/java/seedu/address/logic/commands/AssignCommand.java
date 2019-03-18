@@ -26,7 +26,7 @@ public class AssignCommand extends Command {
 
     public static final String COMMAND_WORD = "/assign";
 
-    public static final String MESSAGE_SUCCESS = "Assigned order %1$s successfully to healthworker %2$s";
+    public static final String MESSAGE_SUCCESS = "Assigned request %1$s successfully to healthworker %2$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign orders to healthworker. "
             + "Parameters: "

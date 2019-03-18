@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.order;
+package seedu.address.logic.commands.request;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -68,7 +68,7 @@ public class SelectCommandTest {
         showOrderAtIndex(expectedModel, INDEX_FIRST);
 
         Index outOfBoundsIndex = INDEX_SECOND;
-        // ensures that outOfBoundIndex is still in bounds of order book list
+        // ensures that outOfBoundIndex is still in bounds of request book list
         assertTrue(outOfBoundsIndex.getZeroBased() < model.getOrderBook().getOrderList().size());
 
         assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);

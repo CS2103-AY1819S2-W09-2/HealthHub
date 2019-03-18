@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.order;
+package seedu.address.logic.commands.request;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -24,7 +24,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.order.EditCommand.EditOrderDescriptor;
+import seedu.address.logic.commands.request.EditCommand.EditOrderDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -125,7 +125,7 @@ public class EditCommandTest {
     public void execute_duplicateOrderFilteredList_failure() {
         showOrderAtIndex(model, INDEX_FIRST);
 
-        // edit order in filtered list into a duplicate in order book
+        // edit request in filtered list into a duplicate in request book
         Order orderInList = model.getOrderBook().getOrderList().get(INDEX_SECOND.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST,
                 new EditOrderDescriptorBuilder(orderInList).build());
@@ -151,7 +151,7 @@ public class EditCommandTest {
         showOrderAtIndex(model, INDEX_FIRST);
         Index outOfBoundIndex = INDEX_SECOND;
 
-        // ensures that outOfBoundIndex is still in bounds of order book list
+        // ensures that outOfBoundIndex is still in bounds of request book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getOrderBook().getOrderList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
@@ -171,7 +171,7 @@ public class EditCommandTest {
         expectedModel.updateOrder(orderToEdit, editedOrder);
         expectedModel.commitOrderBook();
 
-        // edit -> first order edited
+        // edit -> first request edited
         editCommand.execute(model, commandHistory);
     }
 
@@ -181,7 +181,7 @@ public class EditCommandTest {
         EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        // execution failed -> order book state not added into model
+        // execution failed -> request book state not added into model
         assertCommandFailure(editCommand, model, commandHistory, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
@@ -198,7 +198,7 @@ public class EditCommandTest {
         expectedModel.updateOrder(orderToEdit, editedOrder);
         expectedModel.commitOrderBook();
 
-        // edit -> edits second order in unfiltered order list / first order in filtered order list
+        // edit -> edits second request in unfiltered request list / first request in filtered request list
         editCommand.execute(model, commandHistory);
     }
 

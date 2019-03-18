@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.order;
+package seedu.address.logic.commands.request;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
@@ -8,7 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Lists all orders in the order book to the user.
+ * Lists all orders in the request book to the user.
  */
 public class ListCommand extends RequestCommand {
 

@@ -8,8 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.order.AddCommand;
-import seedu.address.logic.commands.order.EditCommand.EditOrderDescriptor;
+import seedu.address.logic.commands.request.AddCommand;
+import seedu.address.logic.commands.request.EditCommand.EditOrderDescriptor;
 import seedu.address.model.order.Food;
 import seedu.address.model.order.Order;
 
@@ -20,14 +20,14 @@ import seedu.address.model.order.Order;
 public class OrderUtil {
 
     /**
-     * Returns an add command string for adding the {@code order}.
+     * Returns an add command string for adding the {@code request}.
      */
     public static String getAddCommand(Order order) {
         return AddCommand.COMMAND_WORD + " " + getOrderDetails(order);
     }
 
     /**
-     * Returns the part of command string for the given {@code order}'s details.
+     * Returns the part of command string for the given {@code request}'s details.
      */
     public static String getOrderDetails(Order order) {
         StringBuilder sb = new StringBuilder();

@@ -13,10 +13,10 @@ import seedu.address.model.order.exceptions.OrderNotFoundException;
 
 /**
  * A list of orders that enforces uniqueness between its elements and does not allow nulls.
- * An order is considered unique by comparing using {@code Order#isSameOrder(Order)}. As such, adding and updating of
+ * An request is considered unique by comparing using {@code Order#isSameOrder(Order)}. As such, adding and updating of
  * orders uses Order#isSameOrder(Order) for equality so as to ensure that the Order being added or updated is
  * unique in terms of identity in the UniqueOrderList. However, the removal of an Order uses Order#equals(Object) so
- * as to ensure that the order with exactly the same fields will be removed.
+ * as to ensure that the request with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -27,7 +27,7 @@ public class UniqueOrderList implements Iterable<Order> {
     private final ObservableList<Order> internalList = FXCollections.observableArrayList();
 
     /**
-     * Returns true if the list contains an equivalent order as the given argument.
+     * Returns true if the list contains an equivalent request as the given argument.
      */
     public boolean contains(Order toCheck) {
         requireNonNull(toCheck);
@@ -36,7 +36,7 @@ public class UniqueOrderList implements Iterable<Order> {
 
     /**
      * Adds an Order to the list.
-     * The order must not already exist in the list.
+     * The request must not already exist in the list.
      */
     public void add(Order toAdd) {
         requireNonNull(toAdd);
@@ -47,9 +47,9 @@ public class UniqueOrderList implements Iterable<Order> {
     }
 
     /**
-     * Replaces the order {@code target} in the list with {@code editedOrder}.
+     * Replaces the request {@code target} in the list with {@code editedOrder}.
      * {@code target} must exist in the list.
-     * The order identity of {@code editedOrder} must not be the same as another existing order in the list.
+     * The request identity of {@code editedOrder} must not be the same as another existing request in the list.
      */
     public void setOrder(Order target, Order editedOrder) {
         requireAllNonNull(target, editedOrder);
@@ -85,8 +85,8 @@ public class UniqueOrderList implements Iterable<Order> {
     }
 
     /**
-     * Removes the equivalent order from the list.
-     * The order must exist in the list.
+     * Removes the equivalent request from the list.
+     * The request must exist in the list.
      */
     public void remove(Order toRemove) {
         requireNonNull(toRemove);

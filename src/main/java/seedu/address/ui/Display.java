@@ -53,7 +53,7 @@ public class Display extends UiPart<Region> {
 
 
     /**
-     * Constructor for this panel. Process information related to order and updates respective UI components
+     * Constructor for this panel. Process information related to request and updates respective UI components
      *
      * @param orderList the current list of orders in-memory
      */

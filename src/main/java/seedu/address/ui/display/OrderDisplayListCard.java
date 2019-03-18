@@ -10,7 +10,7 @@ import seedu.address.model.order.Order;
 import seedu.address.ui.UiPart;
 
 /**
- * UI Component representing the display of a single order in a list.
+ * UI Component representing the display of a single request in a list.
  */
 public class OrderDisplayListCard extends UiPart<Region> {
     private static final String FXML = "display/OrderDisplayListCard.fxml";

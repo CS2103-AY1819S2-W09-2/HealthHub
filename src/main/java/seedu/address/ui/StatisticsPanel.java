@@ -51,7 +51,7 @@ public class StatisticsPanel extends UiPart<Region> {
      * Updates the bar graph in the component with orders over the past 7 days. It does this by calling
      * the pollLastEntry method from a balanced binary search tree
      *
-     * @param historyDate TreeMap of order count arranged by their day/month
+     * @param historyDate TreeMap of request count arranged by their day/month
      */
     public void initialize(TreeMap<Date, Integer> historyDate) {
         xAxis.setLabel("Date");

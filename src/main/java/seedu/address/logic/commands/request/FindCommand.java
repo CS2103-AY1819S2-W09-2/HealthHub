@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.order;
+package seedu.address.logic.commands.request;
 
 import static java.util.Objects.requireNonNull;
 
@@ -20,7 +20,7 @@ public class FindCommand extends RequestCommand {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Finds the order whose keywords contain any of "
+            + ": Finds the request whose keywords contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: [n/NAME] [p/PHONE] [a/ADDRESS] [dt/DATETIME] [f/FOOD] [st/ORDER_STATUS]\n"
             + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " n/John f/Ice Milo\n"

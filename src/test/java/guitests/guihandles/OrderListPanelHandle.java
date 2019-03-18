@@ -64,7 +64,7 @@ public class OrderListPanelHandle extends NodeHandle<ListView<Order>> {
     }
 
     /**
-     * Navigates the listview to display {@code order}.
+     * Navigates the listview to display {@code request}.
      */
     public void navigateToCard(Order order) {
         if (!getRootNode().getItems().contains(order)) {
@@ -99,7 +99,7 @@ public class OrderListPanelHandle extends NodeHandle<ListView<Order>> {
     }
 
     /**
-     * Returns the order card handle of an order associated with the {@code index} in the list.
+     * Returns the request card handle of an request associated with the {@code index} in the list.
      *
      * @throws IllegalStateException if the selected card is currently not in the scene graph.
      */

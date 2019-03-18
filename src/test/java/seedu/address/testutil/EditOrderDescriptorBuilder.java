@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.order.EditCommand.EditOrderDescriptor;
+import seedu.address.logic.commands.request.EditCommand.EditOrderDescriptor;
 import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
@@ -27,7 +27,7 @@ public class EditOrderDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditOrderDescriptor} with fields containing {@code order}'s details
+     * Returns an {@code EditOrderDescriptor} with fields containing {@code request}'s details
      */
     public EditOrderDescriptorBuilder(Order order) {
         descriptor = new EditOrderDescriptor();

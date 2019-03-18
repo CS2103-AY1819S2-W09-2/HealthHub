@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.order;
+package seedu.address.logic.commands.request;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.Assert.assertEquals;
@@ -281,7 +281,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single order.
+     * A Model stub that contains a single request.
      */
     private class ModelStubWithOrder extends ModelStub {
         private final Order order;
@@ -299,7 +299,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that always accept the order being added.
+     * A Model stub that always accept the request being added.
      */
     private class ModelStubAcceptingOrderAdded extends ModelStub {
         final ArrayList<Order> ordersAdded = new ArrayList<>();

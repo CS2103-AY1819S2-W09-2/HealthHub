@@ -9,8 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;
 import org.junit.Test;
 
 import seedu.address.logic.commands.LoginCommand;
-import seedu.address.logic.commands.order.ClearCommand;
-import seedu.address.logic.commands.order.RequestCommand;
+import seedu.address.logic.commands.request.ClearCommand;
+import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 

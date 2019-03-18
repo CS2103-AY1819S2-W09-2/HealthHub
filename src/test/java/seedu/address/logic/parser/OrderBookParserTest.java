@@ -15,7 +15,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.healthworker.HealthWorkerCommand;
-import seedu.address.logic.commands.order.RequestCommand;
+import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class OrderBookParserTest {

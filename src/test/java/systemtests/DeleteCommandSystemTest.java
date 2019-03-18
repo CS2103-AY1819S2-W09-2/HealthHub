@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ORDER_DISPLAYE
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANAGER_PASSWORD_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANAGER_USERNAME_ALICE;
-import static seedu.address.logic.commands.order.DeleteCommand.MESSAGE_DELETE_ORDER_SUCCESS;
+import static seedu.address.logic.commands.request.DeleteCommand.MESSAGE_DELETE_ORDER_SUCCESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;
 import static seedu.address.testutil.TestUtil.getLastIndex;
@@ -17,8 +17,8 @@ import org.junit.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.LoginCommand;
-import seedu.address.logic.commands.order.DeleteCommand;
-import seedu.address.logic.commands.order.RequestCommand;
+import seedu.address.logic.commands.request.DeleteCommand;
+import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 

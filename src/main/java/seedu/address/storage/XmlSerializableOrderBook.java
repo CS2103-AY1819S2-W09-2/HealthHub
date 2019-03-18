@@ -16,7 +16,7 @@ import seedu.address.model.order.Order;
  */
 public class XmlSerializableOrderBook {
 
-    public static final String MESSAGE_DUPLICATE_ORDER = "Orders list contains duplicate order(s).";
+    public static final String MESSAGE_DUPLICATE_ORDER = "Orders list contains duplicate request(s).";
 
     @XmlElement
     private List<XmlAdaptedOrder> orders;

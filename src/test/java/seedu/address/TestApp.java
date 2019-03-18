@@ -92,7 +92,7 @@ public class TestApp extends MainApp {
     }
 
     /**
-     * Returns a defensive copy of the order book data stored inside the storage file.
+     * Returns a defensive copy of the request book data stored inside the storage file.
      */
     public OrderBook readStorageOrderBook() {
         try {

@@ -39,7 +39,7 @@ public class XmlAdaptedFood {
     /**
      * Converts this jaxb-friendly adapted food object into the model's Food object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted order
+     * @throws IllegalValueException if there were any data constraints violated in the adapted request
      */
     public Food toModelType() throws IllegalValueException {
         if (!Food.isValidFood(foodName)) {

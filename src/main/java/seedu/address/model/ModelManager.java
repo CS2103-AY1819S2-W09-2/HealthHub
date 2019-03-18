@@ -48,7 +48,7 @@ public class ModelManager extends ComponentManager implements Model {
         super();
         requireAllNonNull(orderBook, userPrefs, deliverymenList);
 
-        logger.fine("Initializing with order book: " + orderBook
+        logger.fine("Initializing with request book: " + orderBook
             + " and users list " + usersList
             + " and deliverymen list " + deliverymenList
             + " and user prefs " + userPrefs);
@@ -62,7 +62,7 @@ public class ModelManager extends ComponentManager implements Model {
 
         userSession = new UserSession();
 
-        logger.fine("Initializing with order book: " + orderBook
+        logger.fine("Initializing with request book: " + orderBook
             + " and users list "
             + usersList
             + " and deliverymen list"

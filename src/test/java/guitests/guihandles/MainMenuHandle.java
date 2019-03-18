@@ -31,7 +31,7 @@ public class MainMenuHandle extends NodeHandle<Node> {
     }
 
     /**
-     * Clicks on {@code menuItems} in order.
+     * Clicks on {@code menuItems} in request.
      */
     private void clickOnMenuItemsSequentially(String... menuItems) {
         Arrays.stream(menuItems).forEach(guiRobot::clickOn);

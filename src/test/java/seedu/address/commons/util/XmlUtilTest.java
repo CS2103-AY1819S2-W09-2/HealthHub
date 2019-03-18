@@ -178,7 +178,7 @@ public class XmlUtilTest {
      * Test class annotated with {@code XmlRootElement} to allow unmarshalling of .xml data to {@code XmlAdaptedOrder}
      * objects.
      */
-    @XmlRootElement(name = "order")
+    @XmlRootElement(name = "request")
     private static class XmlAdaptedOrderWithRootElement extends XmlAdaptedOrder {}
 
     /**

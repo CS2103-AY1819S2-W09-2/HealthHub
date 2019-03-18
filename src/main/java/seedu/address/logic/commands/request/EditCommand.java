@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.order;
+package seedu.address.logic.commands.request;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -32,15 +32,15 @@ import seedu.address.model.order.OrderStatus;
 
 
 /**
- * Edits an order to the order book
+ * Edits an request to the request book
  */
 public class EditCommand extends RequestCommand {
 
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Edits the details of the order identified "
-            + "by the index number used in the displayed order book. "
+            + ": Edits the details of the request identified "
+            + "by the index number used in the displayed request book. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -55,15 +55,15 @@ public class EditCommand extends RequestCommand {
 
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the order book.";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This request already exists in the request book.";
     public static final String MESSAGE_INVALID_ORDER_INDEX = "Invalid Order Index: %1$s";
 
     private final Index index;
     private final EditOrderDescriptor editOrderDescriptor;
 
     /**
-     * @param index               of the order in the filtered order list to edit
-     * @param editOrderDescriptor details to edit the order with
+     * @param index               of the request in the filtered request list to edit
+     * @param editOrderDescriptor details to edit the request with
      */
     public EditCommand(Index index, EditOrderDescriptor editOrderDescriptor) {
         requireNonNull(index);
@@ -143,8 +143,8 @@ public class EditCommand extends RequestCommand {
     }
 
     /**
-     * Stores the details to edit the order with. Each non-empty field value will replace the
-     * corresponding field value of the order.
+     * Stores the details to edit the request with. Each non-empty field value will replace the
+     * corresponding field value of the request.
      */
     public static class EditOrderDescriptor {
         private Name name;

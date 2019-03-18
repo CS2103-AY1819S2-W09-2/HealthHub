@@ -19,7 +19,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.order.EditCommand;
+import seedu.address.logic.commands.request.EditCommand;
 import seedu.address.model.Model;
 import seedu.address.model.OrderBook;
 import seedu.address.model.deliveryman.Deliveryman;
@@ -168,8 +168,8 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the order at the given {@code targetIndex} in the
-     * {@code model}'s order list.
+     * Updates {@code model}'s filtered list to show only the request at the given {@code targetIndex} in the
+     * {@code model}'s request list.
      */
     public static void showOrderAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredOrderList().size());

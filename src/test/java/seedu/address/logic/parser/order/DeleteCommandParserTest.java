@@ -7,7 +7,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.Test;
 
-import seedu.address.logic.commands.order.DeleteCommand;
+import seedu.address.logic.commands.request.DeleteCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

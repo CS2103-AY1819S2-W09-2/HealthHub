@@ -28,9 +28,9 @@ import org.junit.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.LoginCommand;
-import seedu.address.logic.commands.order.DeleteCommand;
-import seedu.address.logic.commands.order.FindCommand;
-import seedu.address.logic.commands.order.RequestCommand;
+import seedu.address.logic.commands.request.DeleteCommand;
+import seedu.address.logic.commands.request.FindCommand;
+import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.model.Model;
 import seedu.address.model.order.Food;
 
@@ -47,7 +47,7 @@ public class FindCommandSystemTest extends OrderBookSystemTest {
         executeCommand(command);
         setUpOrderListPanel();
 
-        /* Case: find multiple persons in order book by name, command with leading spaces and trailing spaces
+        /* Case: find multiple persons in request book by name, command with leading spaces and trailing spaces
          * -> 2 orders found
          */
         command = "   " + findCommand + " " + KEYWORD_NAME_MATCHING_MEIER + "   ";
@@ -56,71 +56,71 @@ public class FindCommandSystemTest extends OrderBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: repeat previous find command where order list is displaying the persons we are finding
-         * -> 2 order found
+        /* Case: repeat previous find command where request list is displaying the persons we are finding
+         * -> 2 request found
          */
         command = findCommand + " " + KEYWORD_NAME_MATCHING_MEIER;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find single common in order book by phone, command with leading spaces and trailing spaces */
+        /* Case: find single common in request book by phone, command with leading spaces and trailing spaces */
         command = "    " + findCommand + " " + KEYWORD_PHONE_MATCHING_BENSON + "   ";
         ModelHelper.setFilteredList(expectedModel, BENSON);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: repeat previous find command where order list is displaying the persons we are finding */
+        /* Case: repeat previous find command where request list is displaying the persons we are finding */
         command = findCommand + " " + KEYWORD_PHONE_MATCHING_BENSON;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find common name where order list is not displaying the order we are finding -> 1 order found */
+        /* Case: find common name where request list is not displaying the request we are finding -> 1 request found */
         command = findCommand + " " + PREFIX_NAME + "Carl";
         ModelHelper.setFilteredList(expectedModel, CARL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find common phone where order list is not displaying the order we are finding -> 1 order found */
+        /* Case: find common phone where request list is not displaying the request we are finding -> 1 request found */
         command = findCommand + " " + PREFIX_PHONE + "98765432";
         ModelHelper.setFilteredList(expectedModel, BENSON);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find order by exact name in order book -> 1 order found */
+        /* Case: find request by exact name in request book -> 1 request found */
         command = findCommand + " " + PREFIX_NAME + "Benson Meier";
         ModelHelper.setFilteredList(expectedModel, BENSON);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find order exact name name in order book, in reversed order -> 1 order found */
+        /* Case: find request exact name name in request book, in reversed request -> 1 request found */
         command = findCommand + " " + PREFIX_NAME + "Meier Benson";
         ModelHelper.setFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find single order by phone in order book, with leading and trailing whitespace
-         * -> 1 order found
+        /* Case: find single request by phone in request book, with leading and trailing whitespace
+         * -> 1 request found
          */
         command = findCommand + " " + PREFIX_PHONE + "  98765432  ";
         ModelHelper.setFilteredList(expectedModel, BENSON);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find single order by phone in order book, single space in between.
-         * -> 1 order found
+        /* Case: find single request by phone in request book, single space in between.
+         * -> 1 request found
          */
         command = findCommand + " " + PREFIX_PHONE + "9876 5432";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find single order by phone in order book, spaces in between.
-         * -> 1 order found
+        /* Case: find single request by phone in request book, spaces in between.
+         * -> 1 request found
          */
         command = findCommand + " " + PREFIX_PHONE + "9876    5432";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find same orders in order book after deleting 1 of them -> 1 order found */
+        /* Case: find same orders in request book after deleting 1 of them -> 1 request found */
         executeCommand(RequestCommand.COMMAND_WORD + " " + DeleteCommand.COMMAND_WORD + " 1");
         assertFalse(getModel().getOrderBook().getOrderList().contains(BENSON));
         command = findCommand + " " + KEYWORD_NAME_MATCHING_MEIER;
@@ -129,82 +129,82 @@ public class FindCommandSystemTest extends OrderBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find name in order book, keyword is same as name but of different case -> 1 order found */
+        /* Case: find name in request book, keyword is same as name but of different case -> 1 request found */
         command = findCommand + " " + PREFIX_NAME + "MeIeR";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find name in order book, keyword is substring of name -> 0 orders found */
+        /* Case: find name in request book, keyword is substring of name -> 0 orders found */
         command = findCommand + " " + PREFIX_NAME + "Mei";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find name in order book, name is substring of keyword -> 0 orders found */
+        /* Case: find name in request book, name is substring of keyword -> 0 orders found */
         command = findCommand + " " + PREFIX_NAME + "Meiers";
         ModelHelper.setFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find name not in order book -> 0 orders found */
+        /* Case: find name not in request book -> 0 orders found */
         command = findCommand + " " + PREFIX_NAME + "Mark";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find food of order in order book -> 1 orders found */
+        /* Case: find food of request in request book -> 1 orders found */
         List<Food> food = new ArrayList<>(DANIEL.getFood());
         command = findCommand + " " + PREFIX_FOOD + food.get(0).foodName;
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find address of order in order book -> 1 order found */
+        /* Case: find address of request in request book -> 1 request found */
         command = findCommand + " " + PREFIX_ADDRESS + DANIEL.getAddress().value;
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find status of order in order book -> 1 order found */
+        /* Case: find status of request in request book -> 1 request found */
         command = findCommand + " " + PREFIX_STATUS + "COMPLETED";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find single date of order in order book -> 1 order found */
+        /* Case: find single date of request in request book -> 1 request found */
         command = findCommand + " " + PREFIX_DATE + "04-10-2018 10:00:00";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find phone in order book, keyword is substring of phone -> 1 order found */
+        /* Case: find phone in request book, keyword is substring of phone -> 1 request found */
         command = findCommand + " " + PREFIX_PHONE + "8765";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find date range of orders in order book -> 3 orders found */
+        /* Case: find date range of orders in request book -> 3 orders found */
         command = findCommand + " " + PREFIX_DATE + "01-10-2018 10:00:00" + " " + PREFIX_DATE + "02-10-2018 10:00:00";
         ModelHelper.setFilteredList(expectedModel, ALICE, BENSON, FIONA);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
 
-        /* Case: find with phone and address in order book -> 1 order found */
+        /* Case: find with phone and address in request book -> 1 request found */
         command = findCommand + " " + PREFIX_PHONE + "8765" + " " + PREFIX_ADDRESS + "10th street";
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find 2 different statuses of order in order book -> 1 order found */
+        /* Case: find 2 different statuses of request in request book -> 1 request found */
         command = findCommand + " " + PREFIX_STATUS + "ONGOING COMPLETED";
         ModelHelper.setFilteredList(expectedModel, FIONA);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find phone not in order book -> 0 orders found */
+        /* Case: find phone not in request book -> 0 orders found */
         command = findCommand + " " + PREFIX_PHONE + "4243587470";
         ModelHelper.setFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
 
-        /* Case: find by name while an order is selected -> selected card deselected */
+        /* Case: find by name while an request is selected -> selected card deselected */
         showAllOrders();
         selectOrder(Index.fromOneBased(1));
         assertFalse(getOrderListPanel().getHandleToSelectedCard().getFood().equals(DANIEL.getFood()));
@@ -213,7 +213,7 @@ public class FindCommandSystemTest extends OrderBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardDeselected();
 
-        /* Case: find order by name in empty order book -> 0 orders found */
+        /* Case: find request by name in empty request book -> 0 orders found */
         deleteAllOrders();
         command = findCommand + " " + KEYWORD_NAME_MATCHING_MEIER;
         expectedModel = getModel();
@@ -222,7 +222,7 @@ public class FindCommandSystemTest extends OrderBookSystemTest {
         assertSelectedCardUnchanged();
 
         /* Case: mixed case command word -> rejected */
-        command = "/order FiNd " + PREFIX_NAME + "Meier";
+        command = "/request FiNd " + PREFIX_NAME + "Meier";
         assertCommandFailure(command, MESSAGE_UNKNOWN_COMMAND);
     }
 
