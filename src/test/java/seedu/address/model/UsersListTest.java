@@ -17,7 +17,7 @@ import org.junit.rules.ExpectedException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.common.exceptions.DuplicatePersonException;
+import seedu.address.model.common.exceptions.DuplicateHealthWorkerException;
 import seedu.address.model.user.User;
 import seedu.address.testutil.user.UserBuilder;
 
@@ -54,7 +54,7 @@ public class UsersListTest {
 
         UsersListStub newData = new UsersListStub(newUsers);
 
-        thrown.expect(DuplicatePersonException.class);
+        thrown.expect(DuplicateHealthWorkerException.class);
         usersList.resetData(newData);
     }
 

@@ -4,8 +4,8 @@ package seedu.address.model.common.exceptions;
  * Signals that the operation will result in duplicate Persons (Persons are considered duplicates if they have the same
  * identity).
  */
-public class DuplicatePersonException extends RuntimeException {
-    public DuplicatePersonException() {
+public class DuplicateHealthWorkerException extends RuntimeException {
+    public DuplicateHealthWorkerException() {
         super("Operation would result in duplicate persons");
     }
 }

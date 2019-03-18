@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.common.exceptions.DuplicatePersonException;
-import seedu.address.model.common.exceptions.PersonNotFoundException;
+import seedu.address.model.common.exceptions.DuplicateHealthWorkerException;
+import seedu.address.model.common.exceptions.HealthWorkerNotFoundException;
 
 /**
  * A list of unique deliverymen
@@ -33,7 +33,7 @@ public class UniqueDeliverymenList implements Iterable<Deliveryman> {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             //TODO: add appropriate exception for this
-            throw new DuplicatePersonException();
+            throw new DuplicateHealthWorkerException();
         }
         internalList.add(toAdd);
     }
@@ -45,7 +45,7 @@ public class UniqueDeliverymenList implements Iterable<Deliveryman> {
     public void remove(Deliveryman toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new HealthWorkerNotFoundException();
         }
     }
 
@@ -60,11 +60,11 @@ public class UniqueDeliverymenList implements Iterable<Deliveryman> {
         int index = internalList.indexOf(target);
         if (index == -1) {
             //TODO: add appropriate exception
-            throw new PersonNotFoundException();
+            throw new HealthWorkerNotFoundException();
         }
 
         if (!target.isSameDeliveryman(edited) && contains(edited)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateHealthWorkerException();
         }
 
         internalList.set(index, edited);
@@ -79,7 +79,7 @@ public class UniqueDeliverymenList implements Iterable<Deliveryman> {
         requireAllNonNull(deliverymen);
 
         if (!deliverymenAreUnique(deliverymen)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateHealthWorkerException();
         }
 
         internalList.setAll(deliverymen);

@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.common.exceptions.DuplicatePersonException;
-import seedu.address.model.common.exceptions.PersonNotFoundException;
+import seedu.address.model.common.exceptions.DuplicateHealthWorkerException;
+import seedu.address.model.common.exceptions.HealthWorkerNotFoundException;
 
 /**
  * A list of unique users
@@ -41,7 +41,7 @@ public class UniqueUserList implements Iterable<User> {
     public void add(User toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateHealthWorkerException();
         }
         internalList.add(toAdd);
     }
@@ -56,11 +56,11 @@ public class UniqueUserList implements Iterable<User> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new HealthWorkerNotFoundException();
         }
 
         if (!target.isSameUser(editedPerson) && contains(editedPerson)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateHealthWorkerException();
         }
 
         internalList.set(index, editedPerson);
@@ -73,7 +73,7 @@ public class UniqueUserList implements Iterable<User> {
     public void remove(User toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new HealthWorkerNotFoundException();
         }
     }
 
@@ -89,7 +89,7 @@ public class UniqueUserList implements Iterable<User> {
     public void setUsers(List<User> users) {
         requireAllNonNull(users);
         if (!usersAreUnique(users)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateHealthWorkerException();
         }
 
         internalList.setAll(users);

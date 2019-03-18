@@ -14,8 +14,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.address.model.common.exceptions.DuplicatePersonException;
-import seedu.address.model.common.exceptions.PersonNotFoundException;
+import seedu.address.model.common.exceptions.DuplicateHealthWorkerException;
+import seedu.address.model.common.exceptions.HealthWorkerNotFoundException;
 
 public class UniqueDeliverymenListTest {
     @Rule
@@ -49,7 +49,7 @@ public class UniqueDeliverymenListTest {
     @Test
     public void add_duplicateDeliveryman_throwsDuplicateDeliverymanException() {
         uniqueDeliverymenList.add(RAJUL);
-        thrown.expect(DuplicatePersonException.class);
+        thrown.expect(DuplicateHealthWorkerException.class);
         uniqueDeliverymenList.add(RAJUL);
     }
 
@@ -67,7 +67,7 @@ public class UniqueDeliverymenListTest {
 
     @Test
     public void setDeliveryman_targetDeliverymanNotInList_throwsDeliverymanNotFoundException() {
-        thrown.expect(PersonNotFoundException.class);
+        thrown.expect(HealthWorkerNotFoundException.class);
         uniqueDeliverymenList.setDeliveryman(RAJUL, RAJUL);
     }
 
@@ -93,7 +93,7 @@ public class UniqueDeliverymenListTest {
     public void setDeliveryman_editedDeliverymanHasNonUniqueIdentity_throwsDuplicateDeliverymanException() {
         uniqueDeliverymenList.add(RAJUL);
         uniqueDeliverymenList.add(YINJING);
-        thrown.expect(DuplicatePersonException.class);
+        thrown.expect(DuplicateHealthWorkerException.class);
         uniqueDeliverymenList.setDeliveryman(RAJUL, YINJING);
     }
 
@@ -105,7 +105,7 @@ public class UniqueDeliverymenListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsDeliverymanNotFoundException() {
-        thrown.expect(PersonNotFoundException.class);
+        thrown.expect(HealthWorkerNotFoundException.class);
         uniqueDeliverymenList.remove(RAJUL);
     }
 
@@ -151,7 +151,7 @@ public class UniqueDeliverymenListTest {
     @Test
     public void setDeliverymen_listWithDuplicateDeliverymen_throwsDuplicateDeliverymanException() {
         List<Deliveryman> listWithDuplicateDeliverymen = Arrays.asList(RAJUL, RAJUL);
-        thrown.expect(DuplicatePersonException.class);
+        thrown.expect(DuplicateHealthWorkerException.class);
         uniqueDeliverymenList.setDeliverymen(listWithDuplicateDeliverymen);
     }
 

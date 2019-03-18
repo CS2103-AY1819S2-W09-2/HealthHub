@@ -14,8 +14,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.address.model.common.exceptions.DuplicatePersonException;
-import seedu.address.model.common.exceptions.PersonNotFoundException;
+import seedu.address.model.common.exceptions.DuplicateHealthWorkerException;
+import seedu.address.model.common.exceptions.HealthWorkerNotFoundException;
 import seedu.address.testutil.user.UserBuilder;
 
 public class UniqueUserListTest {
@@ -58,7 +58,7 @@ public class UniqueUserListTest {
     @Test
     public void add_duplicateUser_throwsDuplicatePersonException() {
         uniqueUserList.add(ALICE_MANAGER);
-        thrown.expect(DuplicatePersonException.class);
+        thrown.expect(DuplicateHealthWorkerException.class);
         uniqueUserList.add(ALICE_MANAGER);
     }
 
@@ -76,7 +76,7 @@ public class UniqueUserListTest {
 
     @Test
     public void setUser_targetUserNotInList_throwsPersonNotFoundException() {
-        thrown.expect(PersonNotFoundException.class);
+        thrown.expect(HealthWorkerNotFoundException.class);
         uniqueUserList.setUser(ALICE_MANAGER, ALICE_MANAGER);
     }
 
@@ -107,7 +107,7 @@ public class UniqueUserListTest {
 
     @Test
     public void remove_userDoesNotExist_throwsPersonNotFoundException() {
-        thrown.expect(PersonNotFoundException.class);
+        thrown.expect(HealthWorkerNotFoundException.class);
         uniqueUserList.remove(ALICE_MANAGER);
     }
 
@@ -153,7 +153,7 @@ public class UniqueUserListTest {
     @Test
     public void setUsers_listWithDuplicateUsers_throwsDuplicatePersonException() {
         List<User> listWithDuplicateUsers = Arrays.asList(ALICE_MANAGER, ALICE_MANAGER);
-        thrown.expect(DuplicatePersonException.class);
+        thrown.expect(DuplicateHealthWorkerException.class);
         uniqueUserList.setUsers(listWithDuplicateUsers);
     }
 
