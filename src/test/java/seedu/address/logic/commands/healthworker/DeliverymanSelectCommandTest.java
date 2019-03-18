@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.deliveryman;
+package seedu.address.logic.commands.healthworker;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -73,14 +73,14 @@ public class DeliverymanSelectCommandTest {
 
     @Test
     public void equals() {
-        DeliverymanSelectCommand selectFirstCommand = new DeliverymanSelectCommand(INDEX_FIRST);
-        DeliverymanSelectCommand selectSecondCommand = new DeliverymanSelectCommand(INDEX_SECOND);
+        HealthWorkerSelectCommand selectFirstCommand = new HealthWorkerSelectCommand(INDEX_FIRST);
+        HealthWorkerSelectCommand selectSecondCommand = new HealthWorkerSelectCommand(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(selectFirstCommand.equals(selectFirstCommand));
 
         // same values -> returns true
-        DeliverymanSelectCommand selectFirstCommandCopy = new DeliverymanSelectCommand(INDEX_FIRST);
+        HealthWorkerSelectCommand selectFirstCommandCopy = new HealthWorkerSelectCommand(INDEX_FIRST);
         assertTrue(selectFirstCommand.equals(selectFirstCommandCopy));
 
         // different types -> returns false
@@ -98,8 +98,8 @@ public class DeliverymanSelectCommandTest {
      * is raised with the correct index.
      */
     private void assertExecutionSuccess(Index index) {
-        DeliverymanSelectCommand selectCommand = new DeliverymanSelectCommand(index);
-        String expectedMessage = String.format(DeliverymanSelectCommand.MESSAGE_SELECT_ORDER_SUCCESS,
+        HealthWorkerSelectCommand selectCommand = new HealthWorkerSelectCommand(index);
+        String expectedMessage = String.format(HealthWorkerSelectCommand.MESSAGE_SELECT_ORDER_SUCCESS,
             index.getOneBased());
 
         assertCommandSuccess(selectCommand, model, commandHistory, expectedMessage, expectedModel);
@@ -114,7 +114,7 @@ public class DeliverymanSelectCommandTest {
      * is thrown with the {@code expectedMessage}.
      */
     private void assertExecutionFailure(Index index, String expectedMessage) {
-        DeliverymanSelectCommand selectCommand = new DeliverymanSelectCommand(index);
+        HealthWorkerSelectCommand selectCommand = new HealthWorkerSelectCommand(index);
         assertCommandFailure(selectCommand, model, commandHistory, expectedMessage);
     }
 }

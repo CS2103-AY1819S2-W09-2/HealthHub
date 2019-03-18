@@ -61,7 +61,7 @@ public class XmlAdaptedDeliveryman {
     }
 
     /**
-     * Converts a given deliveryman into this class for JAXB use.
+     * Converts a given healthworker into this class for JAXB use.
      *
      * @param source
      */
@@ -74,7 +74,7 @@ public class XmlAdaptedDeliveryman {
     }
 
     /**
-     * Converts this jaxb-friendly adapted deliveryman object into the model's Deliveryman object.
+     * Converts this jaxb-friendly adapted healthworker object into the model's Deliveryman object.
      *
      * @throws IllegalValueException If there were any data constraints violated.
      */

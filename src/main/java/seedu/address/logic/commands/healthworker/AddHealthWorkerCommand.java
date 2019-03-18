@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.deliveryman;
+package seedu.address.logic.commands.healthworker;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -10,28 +10,28 @@ import seedu.address.model.Model;
 import seedu.address.model.deliveryman.Deliveryman;
 
 /**
- * Represents the command to add a deliveryman.
+ * Represents the command to add a healthworker.
  */
-public class DeliverymanAddCommand extends DeliverymanCommand {
+public class AddHealthWorkerCommand extends HealthWorkerCommand {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = DeliverymanCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Adds deliveryman to the list. \n"
+    public static final String MESSAGE_USAGE = HealthWorkerCommand.COMMAND_WORD + " " + COMMAND_WORD
+            + ": Adds healthworker to the list. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME \n"
-            + "Example: " + DeliverymanCommand.COMMAND_WORD + " " + COMMAND_WORD + " "
+            + "Example: " + HealthWorkerCommand.COMMAND_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "Lorem Ipsum";
 
-    public static final String MESSAGE_SUCCESS = "New deliveryman added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DELIVERYMAN = "This deliveryman already exists in the list.";
+    public static final String MESSAGE_SUCCESS = "New healthworker added: %1$s";
+    public static final String MESSAGE_DUPLICATE_DELIVERYMAN = "This healthworker already exists in the list.";
 
     private final Deliveryman toAdd;
 
     /**
-     * Creates an DeliverymanAddCommand to add the specified {@code Deliverman}
+     * Creates an AddHealthWorkerCommand to add the specified {@code Deliverman}
      */
-    public DeliverymanAddCommand(Deliveryman dman) {
+    public AddHealthWorkerCommand(Deliveryman dman) {
         requireNonNull(dman);
         toAdd = dman;
     }
@@ -52,7 +52,7 @@ public class DeliverymanAddCommand extends DeliverymanCommand {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof DeliverymanAddCommand
-                && toAdd.isSameDeliveryman(((DeliverymanAddCommand) other).toAdd));
+                || (other instanceof AddHealthWorkerCommand
+                && toAdd.isSameDeliveryman(((AddHealthWorkerCommand) other).toAdd));
     }
 }

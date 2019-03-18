@@ -1,7 +1,7 @@
 package seedu.address.model.deliveryman.exceptions;
 
 /**
- * Indicated that the operation exceeds the order limit in deliveryman.
+ * Indicated that the operation exceeds the order limit in healthworker.
  */
 public class OrdersLimitExceededException extends Exception {
     public OrdersLimitExceededException() {

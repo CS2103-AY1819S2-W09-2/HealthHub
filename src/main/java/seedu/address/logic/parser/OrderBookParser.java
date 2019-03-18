@@ -15,7 +15,7 @@ import seedu.address.logic.commands.HomeCommand;
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.LogoutCommand;
 import seedu.address.logic.commands.SignUpCommand;
-import seedu.address.logic.commands.deliveryman.DeliverymanCommand;
+import seedu.address.logic.commands.healthworker.HealthWorkerCommand;
 import seedu.address.logic.commands.order.OrderCommand;
 import seedu.address.logic.parser.deliveryman.DeliverymanCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -51,7 +51,7 @@ public class OrderBookParser {
         case OrderCommand.COMMAND_WORD:
             return new OrderCommandParser().parse(arguments);
 
-        case DeliverymanCommand.COMMAND_WORD:
+        case HealthWorkerCommand.COMMAND_WORD:
             return new DeliverymanCommandParser().parse(arguments);
 
         case HistoryCommand.COMMAND_WORD:

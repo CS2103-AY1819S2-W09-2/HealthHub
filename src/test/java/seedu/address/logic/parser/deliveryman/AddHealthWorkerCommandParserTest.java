@@ -11,12 +11,12 @@ import static seedu.address.testutil.TypicalDeliverymen.RAJUL;
 
 import org.junit.Test;
 
-import seedu.address.logic.commands.deliveryman.DeliverymanAddCommand;
+import seedu.address.logic.commands.healthworker.AddHealthWorkerCommand;
 import seedu.address.model.common.Name;
 import seedu.address.model.deliveryman.Deliveryman;
 import seedu.address.testutil.DeliverymanBuilder;
 
-public class DeliverymanAddCommandParserTest {
+public class AddHealthWorkerCommandParserTest {
     private DeliverymanAddCommandParser parser = new DeliverymanAddCommandParser();
 
     @Test
@@ -24,15 +24,15 @@ public class DeliverymanAddCommandParserTest {
         Deliveryman expectedDeliveryman = new DeliverymanBuilder(RAJUL).build();
 
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_RAJUL,
-                new DeliverymanAddCommand(expectedDeliveryman));
+                new AddHealthWorkerCommand(expectedDeliveryman));
 
         assertParseSuccess(parser, NAME_DESC_RAJUL,
-                new DeliverymanAddCommand(expectedDeliveryman));
+                new AddHealthWorkerCommand(expectedDeliveryman));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeliverymanAddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddHealthWorkerCommand.MESSAGE_USAGE);
 
         //missing name prefic
         assertParseFailure(parser, VALID_NAME_RAJUL, expectedMessage);

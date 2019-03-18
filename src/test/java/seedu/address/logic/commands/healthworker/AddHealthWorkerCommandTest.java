@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.deliveryman;
+package seedu.address.logic.commands.healthworker;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.Assert.assertEquals;
@@ -27,9 +27,9 @@ import seedu.address.model.user.User;
 import seedu.address.testutil.DeliverymanBuilder;
 
 /**
- * Contains tests related to the DeliverymanAddCommand class.
+ * Contains tests related to the AddHealthWorkerCommand class.
  */
-public class DeliverymanAddCommandTest {
+public class AddHealthWorkerCommandTest {
 
     private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
 
@@ -41,7 +41,7 @@ public class DeliverymanAddCommandTest {
     @Test
     public void constructor_nullDeliveryman_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        new DeliverymanAddCommand(null);
+        new AddHealthWorkerCommand(null);
     }
 
     @Test
@@ -49,9 +49,9 @@ public class DeliverymanAddCommandTest {
         ModelStubAcceptingDeliverymanAdded modelStub = new ModelStubAcceptingDeliverymanAdded();
         Deliveryman validDeliveryman = new DeliverymanBuilder().withName("Linus").build();
 
-        CommandResult commandResults = new DeliverymanAddCommand(validDeliveryman).execute(modelStub, commandHistory);
+        CommandResult commandResults = new AddHealthWorkerCommand(validDeliveryman).execute(modelStub, commandHistory);
 
-        assertEquals(String.format(DeliverymanAddCommand.MESSAGE_SUCCESS, validDeliveryman),
+        assertEquals(String.format(AddHealthWorkerCommand.MESSAGE_SUCCESS, validDeliveryman),
             commandResults.feedbackToUser);
         assertEquals(Arrays.asList(validDeliveryman), modelStub.deliverymenAdded);
         assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
@@ -60,26 +60,26 @@ public class DeliverymanAddCommandTest {
     @Test
     public void execute_duplicateOrder_throwsCommandException() throws Exception {
         Deliveryman validDeliveryman = new DeliverymanBuilder().withName("Matthew").build();
-        DeliverymanAddCommand deliverymanAddCommand = new DeliverymanAddCommand(validDeliveryman);
+        AddHealthWorkerCommand addHealthWorkerCommand = new AddHealthWorkerCommand(validDeliveryman);
         ModelStub modelStub = new ModelStubWithDeliveryman(validDeliveryman);
 
         thrown.expect(CommandException.class);
-        thrown.expectMessage(DeliverymanAddCommand.MESSAGE_DUPLICATE_DELIVERYMAN);
-        deliverymanAddCommand.execute(modelStub, commandHistory);
+        thrown.expectMessage(AddHealthWorkerCommand.MESSAGE_DUPLICATE_DELIVERYMAN);
+        addHealthWorkerCommand.execute(modelStub, commandHistory);
     }
 
     @Test
     public void equals() {
         Deliveryman matthew = new DeliverymanBuilder().withName("Matthew").build();
         Deliveryman linus = new DeliverymanBuilder().withName("Linus").build();
-        DeliverymanAddCommand addMatthewCommand = new DeliverymanAddCommand(matthew);
-        DeliverymanAddCommand addLinusCommand = new DeliverymanAddCommand(linus);
+        AddHealthWorkerCommand addMatthewCommand = new AddHealthWorkerCommand(matthew);
+        AddHealthWorkerCommand addLinusCommand = new AddHealthWorkerCommand(linus);
 
         // same object -> returns true
         assertTrue(addMatthewCommand.equals(addMatthewCommand));
 
         // same values -> returns true
-        DeliverymanAddCommand addMatthewCommandCopy = new DeliverymanAddCommand(matthew);
+        AddHealthWorkerCommand addMatthewCommandCopy = new AddHealthWorkerCommand(matthew);
         assertTrue(addMatthewCommand.equals(addMatthewCommandCopy));
 
         // different types -> returns false

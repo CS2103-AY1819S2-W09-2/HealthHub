@@ -11,10 +11,10 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.deliveryman.DeliverymanAddCommand;
-import seedu.address.logic.commands.deliveryman.DeliverymanDeleteCommand;
-import seedu.address.logic.commands.deliveryman.DeliverymanFindCommand;
-import seedu.address.logic.commands.deliveryman.DeliverymanListCommand;
+import seedu.address.logic.commands.healthworker.AddHealthWorkerCommand;
+import seedu.address.logic.commands.healthworker.HealthWorkerDeleteCommand;
+import seedu.address.logic.commands.healthworker.HealthWorkerFindCommand;
+import seedu.address.logic.commands.healthworker.HealthWorkerListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.deliveryman.Deliveryman;
 import seedu.address.model.deliveryman.DeliverymanNameContainsKeywordsPredicate;
@@ -22,7 +22,7 @@ import seedu.address.testutil.DeliverymanBuilder;
 import seedu.address.testutil.DeliverymanUtil;
 
 
-public class DeliverymanCommandParserTest {
+public class HealthWorkerCommandParserTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
@@ -31,30 +31,30 @@ public class DeliverymanCommandParserTest {
     @Test
     public void parse_add() throws Exception {
         Deliveryman deliveryman = new DeliverymanBuilder().build();
-        DeliverymanAddCommand command = (DeliverymanAddCommand)
+        AddHealthWorkerCommand command = (AddHealthWorkerCommand)
             parser.parse(DeliverymanUtil.getDeliverymanAddCommand(deliveryman));
-        assertEquals(new DeliverymanAddCommand(deliveryman), command);
+        assertEquals(new AddHealthWorkerCommand(deliveryman), command);
     }
 
     @Test
     public void parse_delete() throws Exception {
-        DeliverymanDeleteCommand command = (DeliverymanDeleteCommand) parser.parse(
-                DeliverymanDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
-        assertEquals(new DeliverymanDeleteCommand(INDEX_FIRST), command);
+        HealthWorkerDeleteCommand command = (HealthWorkerDeleteCommand) parser.parse(
+                HealthWorkerDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new HealthWorkerDeleteCommand(INDEX_FIRST), command);
     }
 
     @Test
     public void parse_list() throws Exception {
-        assertTrue(parser.parse(DeliverymanListCommand.COMMAND_WORD) instanceof DeliverymanListCommand);
-        assertTrue(parser.parse(DeliverymanListCommand.COMMAND_WORD + " 3") instanceof DeliverymanListCommand);
+        assertTrue(parser.parse(HealthWorkerListCommand.COMMAND_WORD) instanceof HealthWorkerListCommand);
+        assertTrue(parser.parse(HealthWorkerListCommand.COMMAND_WORD + " 3") instanceof HealthWorkerListCommand);
     }
 
     @Test
     public void parse_find() throws Exception {
         String keyword = "foo";
-        DeliverymanFindCommand command = (DeliverymanFindCommand) parser.parse(
-                DeliverymanFindCommand.COMMAND_WORD + " n/" + keyword);
-        assertEquals(new DeliverymanFindCommand(
+        HealthWorkerFindCommand command = (HealthWorkerFindCommand) parser.parse(
+                HealthWorkerFindCommand.COMMAND_WORD + " n/" + keyword);
+        assertEquals(new HealthWorkerFindCommand(
                 new DeliverymanNameContainsKeywordsPredicate(keyword)), command);
     }
 

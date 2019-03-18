@@ -45,10 +45,10 @@ public class DeliverymenList {
         setDeliverymen(newData.getDeliverymenList());
     }
 
-    /// deliveryman-level operations
+    /// healthworker-level operations
 
     /**
-     * Returns true if the {@code DeliverymenList} contains a {@code deliveryman}
+     * Returns true if the {@code DeliverymenList} contains a {@code healthworker}
      * @param deliveryman
      */
     public boolean hasDeliveryman(Deliveryman deliveryman) {
@@ -57,7 +57,7 @@ public class DeliverymenList {
     }
 
     /**
-     * Adds a deliveryman to the {@code deliverymenList}
+     * Adds a healthworker to the {@code deliverymenList}
      * @param d
      */
     public void addDeliveryman(Deliveryman d) {
@@ -68,7 +68,7 @@ public class DeliverymenList {
     }
 
     /**
-     * Replaces the {@code target} deliveryman with an {@code edited} deliveryman.
+     * Replaces the {@code target} healthworker with an {@code edited} healthworker.
      */
     public void updateDeliveryman(Deliveryman target, Deliveryman editedD) {
         requireNonNull(editedD);

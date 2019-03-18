@@ -46,7 +46,7 @@ public class Order extends TaggedObject {
     }
 
     /**
-     * Every field must be present and not null besides deliveryman.
+     * Every field must be present and not null besides healthworker.
      */
     public Order(Name name, Phone phone, Address address, OrderDate orderDate, OrderStatus orderStatus, Set<Food> food,
                  Deliveryman deliveryman) {

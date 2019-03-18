@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.deliveryman;
+package seedu.address.logic.commands.healthworker;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -25,7 +25,7 @@ import seedu.address.model.deliveryman.DeliverymanNameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code DeliverymanFindCommandTest}.
  */
 public class DeliverymanFindCommandTest {
-    // TODO: Add deliveryman into Model Manager after merge
+    // TODO: Add healthworker into Model Manager after merge
     private Model model = new ModelManager(getTypicalOrderBook(),
             getTypicalUsersList(), getTypicalDeliverymenList(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalOrderBook(),
@@ -39,14 +39,14 @@ public class DeliverymanFindCommandTest {
         DeliverymanNameContainsKeywordsPredicate secondPredicate =
                 new DeliverymanNameContainsKeywordsPredicate("second");
 
-        DeliverymanFindCommand findFirstOrderCommand = new DeliverymanFindCommand(firstPredicate);
-        DeliverymanFindCommand findSecondOrderCommand = new DeliverymanFindCommand(secondPredicate);
+        HealthWorkerFindCommand findFirstOrderCommand = new HealthWorkerFindCommand(firstPredicate);
+        HealthWorkerFindCommand findSecondOrderCommand = new HealthWorkerFindCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstOrderCommand.equals(findFirstOrderCommand));
 
         // same values -> returns true
-        DeliverymanFindCommand findFirstOrderCommandCopy = new DeliverymanFindCommand(firstPredicate);
+        HealthWorkerFindCommand findFirstOrderCommandCopy = new HealthWorkerFindCommand(firstPredicate);
         assertTrue(findFirstOrderCommand.equals(findFirstOrderCommandCopy));
 
         // different types -> returns false
@@ -64,7 +64,7 @@ public class DeliverymanFindCommandTest {
         String expectedMessage = String.format(MESSAGE_DELIVERYMEN_LISTED_OVERVIEW, 0);
 
         DeliverymanNameContainsKeywordsPredicate predicate = new DeliverymanNameContainsKeywordsPredicate("invalid");
-        DeliverymanFindCommand commandName = new DeliverymanFindCommand(predicate);
+        HealthWorkerFindCommand commandName = new HealthWorkerFindCommand(predicate);
         expectedModel.updateFilteredDeliverymenList(predicate);
         assertCommandSuccess(commandName, model, commandHistory, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredDeliverymenList());
@@ -74,7 +74,7 @@ public class DeliverymanFindCommandTest {
     public void execute_exactKeyword_oneDeliverymanFound() {
         String expectedMessage = String.format(MESSAGE_DELIVERYMEN_LISTED_OVERVIEW, 1);
         DeliverymanNameContainsKeywordsPredicate predicate = new DeliverymanNameContainsKeywordsPredicate("Chi Kao");
-        DeliverymanFindCommand command = new DeliverymanFindCommand(predicate);
+        HealthWorkerFindCommand command = new HealthWorkerFindCommand(predicate);
         expectedModel.updateFilteredDeliverymenList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CHIKAO), model.getFilteredDeliverymenList());
@@ -84,7 +84,7 @@ public class DeliverymanFindCommandTest {
     public void execute_partialKeyword_oneDeliverymanFound() {
         String expectedMessage = String.format(MESSAGE_DELIVERYMEN_LISTED_OVERVIEW, 1);
         DeliverymanNameContainsKeywordsPredicate predicate = new DeliverymanNameContainsKeywordsPredicate("Chi");
-        DeliverymanFindCommand command = new DeliverymanFindCommand(predicate);
+        HealthWorkerFindCommand command = new HealthWorkerFindCommand(predicate);
         expectedModel.updateFilteredDeliverymenList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CHIKAO), model.getFilteredDeliverymenList());

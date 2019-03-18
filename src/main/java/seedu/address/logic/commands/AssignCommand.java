@@ -20,15 +20,15 @@ import seedu.address.model.deliveryman.exceptions.OrdersLimitExceededException;
 import seedu.address.model.order.Order;
 
 /**
- * Assigns multiple orders to a deliveryman with two way association.
+ * Assigns multiple orders to a healthworker with two way association.
  */
 public class AssignCommand extends Command {
 
     public static final String COMMAND_WORD = "/assign";
 
-    public static final String MESSAGE_SUCCESS = "Assigned order %1$s successfully to deliveryman %2$s";
+    public static final String MESSAGE_SUCCESS = "Assigned order %1$s successfully to healthworker %2$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign orders to deliveryman. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign orders to healthworker. "
             + "Parameters: "
             + PREFIX_DELIVERYMAN + "DELIVERYMAN_ID "
             + PREFIX_ORDER + "ORDER_ID \n"

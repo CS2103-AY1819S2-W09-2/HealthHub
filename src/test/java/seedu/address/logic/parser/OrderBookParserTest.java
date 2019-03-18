@@ -14,7 +14,7 @@ import org.junit.rules.ExpectedException;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
-import seedu.address.logic.commands.deliveryman.DeliverymanCommand;
+import seedu.address.logic.commands.healthworker.HealthWorkerCommand;
 import seedu.address.logic.commands.order.OrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -61,7 +61,7 @@ public class OrderBookParserTest {
     public void parseCommand_deliveryman() throws Exception {
         thrown.expect(ParseException.class);
         thrown.expectMessage(String.format(MESSAGE_INVALID_DELIVERYMAN_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        parser.parseCommand(DeliverymanCommand.COMMAND_WORD);
+        parser.parseCommand(HealthWorkerCommand.COMMAND_WORD);
     }
 
     @Test

@@ -19,7 +19,7 @@ import seedu.address.model.order.Order;
  */
 public class Deliveryman extends TaggedObject {
 
-    /** Limit for amount of orders a deliveryman can have at one point of time */
+    /** Limit for amount of orders a healthworker can have at one point of time */
     public static final int ORDERS_LIMIT = 5;
 
     private final Name name;
@@ -44,7 +44,7 @@ public class Deliveryman extends TaggedObject {
     }
 
     /**
-     * This constructor is used to create a new copy of {@code deliveryman}.
+     * This constructor is used to create a new copy of {@code healthworker}.
      */
     public Deliveryman(Deliveryman deliveryman) {
         this(null, deliveryman.name, deliveryman.orders);
@@ -59,7 +59,7 @@ public class Deliveryman extends TaggedObject {
     }
 
     /**
-     * Adds {@code order} to the set of orders for the deliveryman.
+     * Adds {@code order} to the set of orders for the healthworker.
      * Throws {@code OrdersLimitExceededException} if the amount of orders assigned exceeds the limit for orders.
      */
     public void addOrder(Order order) throws OrdersLimitExceededException {

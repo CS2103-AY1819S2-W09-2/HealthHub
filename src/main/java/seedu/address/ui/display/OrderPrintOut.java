@@ -8,7 +8,7 @@ import seedu.address.model.order.Order;
 import seedu.address.ui.UiPart;
 
 /**
- * UI Component representing the display of a single order in the deliveryman's list of orders.
+ * UI Component representing the display of a single order in the healthworker's list of orders.
  */
 public class OrderPrintOut extends UiPart<Region> {
 

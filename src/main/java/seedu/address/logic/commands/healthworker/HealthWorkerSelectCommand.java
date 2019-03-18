@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.deliveryman;
+package seedu.address.logic.commands.healthworker;
 
 import static java.util.Objects.requireNonNull;
 
@@ -15,21 +15,21 @@ import seedu.address.model.Model;
 import seedu.address.model.deliveryman.Deliveryman;
 
 /**
- * The Command that selects a deliveryman identified using its displayed index
+ * The Command that selects a healthworker identified using its displayed index
  */
-public class DeliverymanSelectCommand extends DeliverymanCommand {
+public class HealthWorkerSelectCommand extends HealthWorkerCommand {
     public static final String COMMAND_WORD = "select";
 
-    public static final String MESSAGE_USAGE = DeliverymanCommand.COMMAND_WORD + " " + COMMAND_WORD
-        + ": Selects the deliveryman identified by the index number used in the displayed deliveryman list.\n"
+    public static final String MESSAGE_USAGE = HealthWorkerCommand.COMMAND_WORD + " " + COMMAND_WORD
+        + ": Selects the healthworker identified by the index number used in the displayed healthworker list.\n"
         + "Parameters: INDEX (must be a positive integer)\n"
-        + "Example: " + DeliverymanCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
+        + "Example: " + HealthWorkerCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SELECT_ORDER_SUCCESS = "Selected Deliveryman: %1$s";
 
     private final Index targetIndex;
 
-    public DeliverymanSelectCommand(Index targetIndex) {
+    public HealthWorkerSelectCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -51,7 +51,7 @@ public class DeliverymanSelectCommand extends DeliverymanCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof DeliverymanSelectCommand // instanceof handles nulls
-            && targetIndex.equals(((DeliverymanSelectCommand) other).targetIndex)); // state check
+            || (other instanceof HealthWorkerSelectCommand // instanceof handles nulls
+            && targetIndex.equals(((HealthWorkerSelectCommand) other).targetIndex)); // state check
     }
 }

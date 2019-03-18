@@ -32,7 +32,7 @@ public class DeliverymanNameContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different deliveryman -> returns false
+        // different healthworker -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 

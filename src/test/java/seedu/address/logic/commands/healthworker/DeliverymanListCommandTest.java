@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.deliveryman;
+package seedu.address.logic.commands.healthworker;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showDeliverymanAtIndex;
@@ -31,14 +31,14 @@ public class DeliverymanListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new DeliverymanListCommand(), model, commandHistory,
-            DeliverymanListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new HealthWorkerListCommand(), model, commandHistory,
+            HealthWorkerListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showDeliverymanAtIndex(model, INDEX_FIRST);
-        assertCommandSuccess(new DeliverymanListCommand(), model, commandHistory,
-            DeliverymanListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new HealthWorkerListCommand(), model, commandHistory,
+            HealthWorkerListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

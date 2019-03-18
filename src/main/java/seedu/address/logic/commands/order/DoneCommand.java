@@ -29,7 +29,7 @@ public class DoneCommand extends OrderCommand {
 
     public static final String MESSAGE_COMPLETED_ORDER_SUCCESS = "Order %1$s have been completed.";
     public static final String MESSAGE_ONGOING_ORDER = "Only ONGOING status can be marked as completed.";
-    public static final String MESSAGE_DELIVERYMAN_NOT_EXIST = "Deliveryman does not exist inside deliveryman list.";
+    public static final String MESSAGE_DELIVERYMAN_NOT_EXIST = "Deliveryman does not exist inside healthworker list.";
 
     private final Index targetIndex;
 
@@ -56,7 +56,7 @@ public class DoneCommand extends OrderCommand {
 
 
 
-        //fetch deliveryman from index because order's deliveryman not reliable.
+        //fetch healthworker from index because order's healthworker not reliable.
         Deliveryman deliverymanToRemoveOrder = orderToBeCompleted.getDeliveryman();
         Deliveryman correctDeliveryman = lastShowDeliverymanList.stream()
                 .filter(deliveryman -> deliveryman.equals(deliverymanToRemoveOrder))
@@ -78,7 +78,7 @@ public class DoneCommand extends OrderCommand {
     }
 
     /**
-     * Remove order from deliveryman.
+     * Remove order from healthworker.
      */
     private static Deliveryman removeOrderFromDeliveryman(Deliveryman targetDeliveryman, Order targetOrder) {
         assert targetDeliveryman != null;

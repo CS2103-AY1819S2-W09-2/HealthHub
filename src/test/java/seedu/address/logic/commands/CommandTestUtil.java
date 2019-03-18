@@ -182,7 +182,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the deliveryman at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the healthworker at the given {@code targetIndex} in the
      * {@code model}'s deliverymen list.
      */
     public static void showDeliverymanAtIndex(Model model, Index targetIndex) {

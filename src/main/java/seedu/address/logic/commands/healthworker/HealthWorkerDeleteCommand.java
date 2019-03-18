@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.deliveryman;
+package seedu.address.logic.commands.healthworker;
 
 import static java.util.Objects.requireNonNull;
 
@@ -13,22 +13,22 @@ import seedu.address.model.Model;
 import seedu.address.model.deliveryman.Deliveryman;
 
 /**
- * Deletes a deliveryman identified using it's displayed index from the address book.
+ * Deletes a healthworker identified using it's displayed index from the address book.
  */
-public class DeliverymanDeleteCommand extends DeliverymanCommand {
+public class HealthWorkerDeleteCommand extends HealthWorkerCommand {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = DeliverymanCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Deletes the deliveryman identified by the index number used in the displayed deliveryman list.\n"
+    public static final String MESSAGE_USAGE = HealthWorkerCommand.COMMAND_WORD + " " + COMMAND_WORD
+            + ": Deletes the healthworker identified by the index number used in the displayed healthworker list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + DeliverymanCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
+            + "Example: " + HealthWorkerCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_DELIVERYMAN_SUCCESS = "Deleted Deliveryman: %1$s";
 
     private final Index targetIndex;
 
-    public DeliverymanDeleteCommand(Index targetIndex) {
+    public HealthWorkerDeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -55,8 +55,8 @@ public class DeliverymanDeleteCommand extends DeliverymanCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeliverymanDeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeliverymanDeleteCommand) other).targetIndex)); // state check
+                || (other instanceof HealthWorkerDeleteCommand // instanceof handles nulls
+                && targetIndex.equals(((HealthWorkerDeleteCommand) other).targetIndex)); // state check
     }
 }
 

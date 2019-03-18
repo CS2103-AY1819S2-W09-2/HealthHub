@@ -5,8 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.deliveryman.DeliverymanCommand;
-import seedu.address.logic.commands.deliveryman.DeliverymanFindCommand;
+import seedu.address.logic.commands.healthworker.HealthWorkerCommand;
+import seedu.address.logic.commands.healthworker.HealthWorkerFindCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -15,27 +15,27 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.deliveryman.DeliverymanNameContainsKeywordsPredicate;
 
 /**
- * Parses the given {@code String} of arguments in the context of the DeliverymanFindCommand
- * and returns an DeliverymanFindCommand object for execution.
+ * Parses the given {@code String} of arguments in the context of the HealthWorkerFindCommand
+ * and returns an HealthWorkerFindCommand object for execution.
  * @throws ParseException if the user input does not conform the expected format
  */
-public class DeliverymanFindCommandParser implements Parser<DeliverymanCommand> {
+public class DeliverymanFindCommandParser implements Parser<HealthWorkerCommand> {
     public static final String MESSAGE_EMPTY_NAME_FIELD = "n/ cannot be empty";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeliverymanFindCommand
-     * and returns an DeliverymanFindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the HealthWorkerFindCommand
+     * and returns an HealthWorkerFindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
-    public DeliverymanCommand parse(String args) throws ParseException {
+    public HealthWorkerCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeliverymanFindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, HealthWorkerFindCommand.MESSAGE_USAGE));
         }
 
         String name = argMultimap.getValue(PREFIX_NAME).get().trim();
@@ -44,7 +44,7 @@ public class DeliverymanFindCommandParser implements Parser<DeliverymanCommand> 
             throw new ParseException(MESSAGE_EMPTY_NAME_FIELD);
         }
 
-        return new DeliverymanFindCommand(new DeliverymanNameContainsKeywordsPredicate(name));
+        return new HealthWorkerFindCommand(new DeliverymanNameContainsKeywordsPredicate(name));
     }
 
     /**

@@ -7,19 +7,19 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.Test;
 
-import seedu.address.logic.commands.deliveryman.DeliverymanDeleteCommand;
+import seedu.address.logic.commands.healthworker.HealthWorkerDeleteCommand;
 
 public class DeliverymanDeleteCommandParserTest {
     private DeliverymanDeleteCommandParser parser = new DeliverymanDeleteCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeliverymanDeleteCommand(INDEX_FIRST));
+        assertParseSuccess(parser, "1", new HealthWorkerDeleteCommand(INDEX_FIRST));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeliverymanDeleteCommand.MESSAGE_USAGE));
+                HealthWorkerDeleteCommand.MESSAGE_USAGE));
     }
 }

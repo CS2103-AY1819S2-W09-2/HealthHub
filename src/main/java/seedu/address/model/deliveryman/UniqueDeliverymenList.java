@@ -26,8 +26,8 @@ public class UniqueDeliverymenList implements Iterable<Deliveryman> {
     }
 
     /**
-     * Adds deliveryman to the list.
-     * The deliveryman must not already exist in the list.
+     * Adds healthworker to the list.
+     * The healthworker must not already exist in the list.
      */
     public void add(Deliveryman toAdd) {
         requireNonNull(toAdd);
@@ -39,8 +39,8 @@ public class UniqueDeliverymenList implements Iterable<Deliveryman> {
     }
 
     /**
-     * Remove the equivalent deliveryman from the list.
-     * deliveryman must exist in the list.
+     * Remove the equivalent healthworker from the list.
+     * healthworker must exist in the list.
      */
     public void remove(Deliveryman toRemove) {
         requireNonNull(toRemove);
@@ -50,9 +50,9 @@ public class UniqueDeliverymenList implements Iterable<Deliveryman> {
     }
 
     /**
-     * Replaces the deliveryman {@code target} in the list with {@code edited}.
+     * Replaces the healthworker {@code target} in the list with {@code edited}.
      * {@code target} must exist in the list.
-     * The deliveryman identity of {@code edited} must not be the same as another deliveryman in the list.
+     * The healthworker identity of {@code edited} must not be the same as another healthworker in the list.
      */
     public void setDeliveryman(Deliveryman target, Deliveryman edited) {
         requireAllNonNull(target, edited);

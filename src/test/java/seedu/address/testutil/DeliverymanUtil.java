@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
-import seedu.address.logic.commands.deliveryman.DeliverymanAddCommand;
+import seedu.address.logic.commands.healthworker.AddHealthWorkerCommand;
 import seedu.address.model.deliveryman.Deliveryman;
 
 /**
@@ -11,14 +11,14 @@ import seedu.address.model.deliveryman.Deliveryman;
 public class DeliverymanUtil {
 
     /**
-     * Returns an add command string for adding the {@code deliveryman}.
+     * Returns an add command string for adding the {@code healthworker}.
      */
     public static String getDeliverymanAddCommand(Deliveryman deliveryman) {
-        return DeliverymanAddCommand.COMMAND_WORD + " " + getDeliverymanDetails(deliveryman);
+        return AddHealthWorkerCommand.COMMAND_WORD + " " + getDeliverymanDetails(deliveryman);
     }
 
     /**
-     * Returns the part of the command string for the given {@code deliveryman}'s details.
+     * Returns the part of the command string for the given {@code healthworker}'s details.
      */
     public static String getDeliverymanDetails(Deliveryman deliveryman) {
         StringBuilder sb = new StringBuilder();

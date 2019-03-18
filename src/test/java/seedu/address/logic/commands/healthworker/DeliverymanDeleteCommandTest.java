@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.deliveryman;
+package seedu.address.logic.commands.healthworker;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -29,9 +29,9 @@ public class DeliverymanDeleteCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Deliveryman deliverymanToDelete = model.getFilteredDeliverymenList().get(INDEX_FIRST.getZeroBased());
-        DeliverymanDeleteCommand deleteCommand = new DeliverymanDeleteCommand(INDEX_FIRST);
+        HealthWorkerDeleteCommand deleteCommand = new HealthWorkerDeleteCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeliverymanDeleteCommand.MESSAGE_DELETE_DELIVERYMAN_SUCCESS,
+        String expectedMessage = String.format(HealthWorkerDeleteCommand.MESSAGE_DELETE_DELIVERYMAN_SUCCESS,
                 deliverymanToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
@@ -45,7 +45,7 @@ public class DeliverymanDeleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredDeliverymenList().size() + 1);
-        DeliverymanDeleteCommand deleteCommand = new DeliverymanDeleteCommand(outOfBoundIndex);
+        HealthWorkerDeleteCommand deleteCommand = new HealthWorkerDeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, commandHistory,
                 Messages.MESSAGE_INVALID_DELIVERYMAN_DISPLAYED_INDEX);
@@ -56,9 +56,9 @@ public class DeliverymanDeleteCommandTest {
         showDeliverymanAtIndex(model, INDEX_FIRST);
 
         Deliveryman deliverymanToDelete = model.getFilteredDeliverymenList().get(INDEX_FIRST.getZeroBased());
-        DeliverymanDeleteCommand deleteCommand = new DeliverymanDeleteCommand(INDEX_FIRST);
+        HealthWorkerDeleteCommand deleteCommand = new HealthWorkerDeleteCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeliverymanDeleteCommand.MESSAGE_DELETE_DELIVERYMAN_SUCCESS,
+        String expectedMessage = String.format(HealthWorkerDeleteCommand.MESSAGE_DELETE_DELIVERYMAN_SUCCESS,
                 deliverymanToDelete);
 
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
@@ -78,7 +78,7 @@ public class DeliverymanDeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getDeliverymenList().getDeliverymenList().size());
 
-        DeliverymanDeleteCommand deleteCommand = new DeliverymanDeleteCommand(outOfBoundIndex);
+        HealthWorkerDeleteCommand deleteCommand = new HealthWorkerDeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, commandHistory,
                 Messages.MESSAGE_INVALID_DELIVERYMAN_DISPLAYED_INDEX);
@@ -86,14 +86,14 @@ public class DeliverymanDeleteCommandTest {
 
     @Test
     public void equals() {
-        DeliverymanDeleteCommand deleteFirstCommand = new DeliverymanDeleteCommand(INDEX_FIRST);
-        DeliverymanDeleteCommand deleteSecondCommand = new DeliverymanDeleteCommand(INDEX_SECOND);
+        HealthWorkerDeleteCommand deleteFirstCommand = new HealthWorkerDeleteCommand(INDEX_FIRST);
+        HealthWorkerDeleteCommand deleteSecondCommand = new HealthWorkerDeleteCommand(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeliverymanDeleteCommand deleteFirstCommandCopy = new DeliverymanDeleteCommand(INDEX_FIRST);
+        HealthWorkerDeleteCommand deleteFirstCommandCopy = new HealthWorkerDeleteCommand(INDEX_FIRST);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

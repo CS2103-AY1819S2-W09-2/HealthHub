@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.deliveryman.DeliverymanFindCommandParse
 
 import org.junit.Test;
 
-import seedu.address.logic.commands.deliveryman.DeliverymanFindCommand;
+import seedu.address.logic.commands.healthworker.HealthWorkerFindCommand;
 import seedu.address.model.deliveryman.DeliverymanNameContainsKeywordsPredicate;
 
 public class DeliverymanFindCommandParserTest {
@@ -17,9 +17,9 @@ public class DeliverymanFindCommandParserTest {
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeliverymanFindCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HealthWorkerFindCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "find ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeliverymanFindCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HealthWorkerFindCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -31,8 +31,8 @@ public class DeliverymanFindCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        DeliverymanFindCommand expectedFindCommand =
-                new DeliverymanFindCommand(new DeliverymanNameContainsKeywordsPredicate("Alex"));
+        HealthWorkerFindCommand expectedFindCommand =
+                new HealthWorkerFindCommand(new DeliverymanNameContainsKeywordsPredicate("Alex"));
         assertParseSuccess(parser, " n/Alex", expectedFindCommand);
     }
 }

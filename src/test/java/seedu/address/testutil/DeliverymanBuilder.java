@@ -9,7 +9,7 @@ import seedu.address.model.deliveryman.Deliveryman;
 import seedu.address.model.order.Order;
 
 /**
- * A utility class to help build a deliveryman
+ * A utility class to help build a healthworker
  */
 public class DeliverymanBuilder {
     public static final String DEFAULT_NAME = "Deliver E";

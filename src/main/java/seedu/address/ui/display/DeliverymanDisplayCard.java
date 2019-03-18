@@ -11,7 +11,7 @@ import seedu.address.model.order.Order;
 import seedu.address.ui.UiPart;
 
 /**
- * UI Component that displays relevant information of a deliveryman.
+ * UI Component that displays relevant information of a healthworker.
  */
 public class DeliverymanDisplayCard extends UiPart<Region> {
     private static final String FXML = "display/DeliverymanDisplayCard.fxml";

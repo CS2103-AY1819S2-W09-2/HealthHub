@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.deliveryman;
+package seedu.address.logic.commands.healthworker;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DELIVERYMEN;
@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 /**
  * Lists all deliverymen in the list to the user.
  */
-public class DeliverymanListCommand extends DeliverymanCommand {
+public class HealthWorkerListCommand extends HealthWorkerCommand {
 
     public static final String COMMAND_WORD = "list";
 

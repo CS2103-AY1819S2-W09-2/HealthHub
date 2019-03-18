@@ -28,7 +28,7 @@ public class DeliverymanTest {
         Deliveryman differentChikao = new DeliverymanBuilder(CHIKAO).withName(VALID_NAME_BOB).build();
         assertFalse(CHIKAO.isSameDeliveryman(differentChikao));
 
-        // completely different deliveryman -> returns false
+        // completely different healthworker -> returns false
         assertFalse(CHIKAO.isSameDeliveryman(YINJING));
     }
 
@@ -38,7 +38,7 @@ public class DeliverymanTest {
         Deliveryman chikaoCopy = new DeliverymanBuilder(CHIKAO).build();
         assertTrue(CHIKAO.equals(chikaoCopy));
 
-        // same deliveryman -> returns true
+        // same healthworker -> returns true
         assertTrue(CHIKAO.equals(CHIKAO));
 
         // null returns false
@@ -47,7 +47,7 @@ public class DeliverymanTest {
         // different type -> returns false
         assertFalse(CHIKAO.equals(5));
 
-        // different deliveryman -> returns false
+        // different healthworker -> returns false
         assertFalse(CHIKAO.equals(YINJING));
     }
 }

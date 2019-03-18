@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.deliveryman;
+package seedu.address.logic.commands.healthworker;
 
 import static java.util.Objects.requireNonNull;
 
@@ -10,21 +10,21 @@ import seedu.address.model.Model;
 import seedu.address.model.deliveryman.DeliverymanNameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all deliveryman in deliveryman list whose name contains in the argument keywords.
+ * Finds and lists all healthworker in healthworker list whose name contains in the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class DeliverymanFindCommand extends DeliverymanCommand {
+public class HealthWorkerFindCommand extends HealthWorkerCommand {
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = DeliverymanCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Finds the deliveryman whose name contains any of "
+    public static final String MESSAGE_USAGE = HealthWorkerCommand.COMMAND_WORD + " " + COMMAND_WORD
+            + ": Finds the healthworker whose name contains any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: n/KEYWORD \n"
-            + "Example: " + DeliverymanCommand.COMMAND_WORD + " " + COMMAND_WORD + " n/Alex";
+            + "Example: " + HealthWorkerCommand.COMMAND_WORD + " " + COMMAND_WORD + " n/Alex";
 
     private final DeliverymanNameContainsKeywordsPredicate predicate;
 
-    public DeliverymanFindCommand(DeliverymanNameContainsKeywordsPredicate predicate) {
+    public HealthWorkerFindCommand(DeliverymanNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -40,7 +40,7 @@ public class DeliverymanFindCommand extends DeliverymanCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeliverymanFindCommand // instanceof handles nulls
-                && predicate.equals(((DeliverymanFindCommand) other).predicate)); // state check
+                || (other instanceof HealthWorkerFindCommand // instanceof handles nulls
+                && predicate.equals(((HealthWorkerFindCommand) other).predicate)); // state check
     }
 }

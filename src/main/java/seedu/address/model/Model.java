@@ -173,37 +173,37 @@ public interface Model {
     DeliverymenList getDeliverymenList();
 
     /**
-     * Returns true if a deliveryman with the same identity as {@code deliveryman} exists in the address book.
+     * Returns true if a healthworker with the same identity as {@code healthworker} exists in the address book.
      */
     boolean hasDeliveryman(Deliveryman deliveryman);
 
     /**
-     * Deletes the given deliveryman.
-     * The deliveryman must exist in the address book.
+     * Deletes the given healthworker.
+     * The healthworker must exist in the address book.
      */
     void deleteDeliveryman(Deliveryman target);
 
     /**
-     * Adds the given deliveryman.
-     * {@code deliveryman} must not already exist in the address book.
+     * Adds the given healthworker.
+     * {@code healthworker} must not already exist in the address book.
      */
     void addDeliveryman(Deliveryman deliveryman);
 
     /**
-     * Replaces the given deliveryman {@code target} with {@code editedDeliveryman}.
+     * Replaces the given healthworker {@code target} with {@code editedDeliveryman}.
      * {@code target} must exist in the address book.
-     * The deliveryman identity of {@code editedDeliveryman} must not be the same as another
-     * existing deliveryman in the deliverymen list.
+     * The healthworker identity of {@code editedDeliveryman} must not be the same as another
+     * existing healthworker in the deliverymen list.
      */
     void updateDeliveryman(Deliveryman target, Deliveryman editedDeliveryman);
 
     /**
-     * Returns an unmodifiable view of the filtered deliveryman list
+     * Returns an unmodifiable view of the filtered healthworker list
      */
     ObservableList<Deliveryman> getFilteredDeliverymenList();
 
     /**
-     * Updates the filter of the filtered deliveryman list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered healthworker list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
