@@ -16,11 +16,11 @@ import seedu.address.model.order.Order;
 /**
  * Adds an order to the order book.
  */
-public class AddCommand extends OrderCommand {
+public class AddCommand extends RequestCommand {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = OrderCommand.COMMAND_WORD + " " + COMMAND_WORD
+    public static final String MESSAGE_USAGE = RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
             + ": Adds an order to the order book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -28,7 +28,7 @@ public class AddCommand extends OrderCommand {
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_DATE + "DATETIME "
             + PREFIX_FOOD + "FOOD...\n"
-            + "Example: " + OrderCommand.COMMAND_WORD + " " + COMMAND_WORD + " "
+            + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25, 612344 "

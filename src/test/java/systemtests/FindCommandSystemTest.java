@@ -30,7 +30,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.order.DeleteCommand;
 import seedu.address.logic.commands.order.FindCommand;
-import seedu.address.logic.commands.order.OrderCommand;
+import seedu.address.logic.commands.order.RequestCommand;
 import seedu.address.model.Model;
 import seedu.address.model.order.Food;
 
@@ -38,7 +38,7 @@ public class FindCommandSystemTest extends OrderBookSystemTest {
 
     @Test
     public void find() {
-        String findCommand = OrderCommand.COMMAND_WORD + " " + FindCommand.COMMAND_WORD;
+        String findCommand = RequestCommand.COMMAND_WORD + " " + FindCommand.COMMAND_WORD;
 
         /* Login */
         String loginCommand = LoginCommand.COMMAND_WORD + " ";
@@ -121,7 +121,7 @@ public class FindCommandSystemTest extends OrderBookSystemTest {
         assertSelectedCardUnchanged();
 
         /* Case: find same orders in order book after deleting 1 of them -> 1 order found */
-        executeCommand(OrderCommand.COMMAND_WORD + " " + DeleteCommand.COMMAND_WORD + " 1");
+        executeCommand(RequestCommand.COMMAND_WORD + " " + DeleteCommand.COMMAND_WORD + " 1");
         assertFalse(getModel().getOrderBook().getOrderList().contains(BENSON));
         command = findCommand + " " + KEYWORD_NAME_MATCHING_MEIER;
         expectedModel = getModel();

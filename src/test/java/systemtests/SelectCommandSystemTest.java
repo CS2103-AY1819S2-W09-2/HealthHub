@@ -17,7 +17,7 @@ import org.junit.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.LoginCommand;
-import seedu.address.logic.commands.order.OrderCommand;
+import seedu.address.logic.commands.order.RequestCommand;
 import seedu.address.logic.commands.order.SelectCommand;
 import seedu.address.model.Model;
 
@@ -32,7 +32,7 @@ public class SelectCommandSystemTest extends OrderBookSystemTest {
         executeCommand(command);
         setUpOrderListPanel();
 
-        String selectCommand = OrderCommand.COMMAND_WORD + " " + SelectCommand.COMMAND_WORD;
+        String selectCommand = RequestCommand.COMMAND_WORD + " " + SelectCommand.COMMAND_WORD;
         /* ------------------------ Perform select operations on the shown unfiltered list -------------------------- */
 
         /* Case: select the first card in the common list, command with leading spaces and trailing spaces

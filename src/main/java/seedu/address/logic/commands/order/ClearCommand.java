@@ -13,7 +13,7 @@ import seedu.address.model.order.Order;
 /**
  * Clears the address book.
  */
-public class ClearCommand extends OrderCommand {
+public class ClearCommand extends RequestCommand {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Order book has been cleared!";

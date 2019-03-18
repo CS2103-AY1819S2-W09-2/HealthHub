@@ -18,7 +18,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.order.DeleteCommand;
-import seedu.address.logic.commands.order.OrderCommand;
+import seedu.address.logic.commands.order.RequestCommand;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 
@@ -27,7 +27,7 @@ public class DeleteCommandSystemTest extends OrderBookSystemTest {
     private static final String MESSAGE_INVALID_DELETE_COMMAND_FORMAT =
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
 
-    private static final String DELETE_COMMAND = OrderCommand.COMMAND_WORD + " " + DeleteCommand.COMMAND_WORD;
+    private static final String DELETE_COMMAND = RequestCommand.COMMAND_WORD + " " + DeleteCommand.COMMAND_WORD;
 
     @Test
     public void delete() {

@@ -31,7 +31,7 @@ import seedu.address.testutil.OrderBuilder;
 import seedu.address.testutil.OrderUtil;
 
 
-public class OrderCommandParserTest {
+public class RequestCommandParserTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 

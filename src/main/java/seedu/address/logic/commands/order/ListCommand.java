@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 /**
  * Lists all orders in the order book to the user.
  */
-public class ListCommand extends OrderCommand {
+public class ListCommand extends RequestCommand {
 
     public static final String COMMAND_WORD = "list";
 

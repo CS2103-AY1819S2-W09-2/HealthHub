@@ -17,14 +17,14 @@ import seedu.address.model.order.Order;
 /**
  * Selects an order identified using it's displayed index from the order book.
  */
-public class SelectCommand extends OrderCommand {
+public class SelectCommand extends RequestCommand {
 
     public static final String COMMAND_WORD = "select";
 
-    public static final String MESSAGE_USAGE = OrderCommand.COMMAND_WORD + " " + COMMAND_WORD
+    public static final String MESSAGE_USAGE = RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
         + ": Selects the order identified by the index number used in the displayed order list.\n"
         + "Parameters: INDEX (must be a positive integer)\n"
-        + "Example: " + OrderCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
+        + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SELECT_ORDER_SUCCESS = "Selected Order: %1$s";
 

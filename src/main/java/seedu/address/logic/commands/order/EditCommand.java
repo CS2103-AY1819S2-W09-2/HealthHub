@@ -34,11 +34,11 @@ import seedu.address.model.order.OrderStatus;
 /**
  * Edits an order to the order book
  */
-public class EditCommand extends OrderCommand {
+public class EditCommand extends RequestCommand {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = OrderCommand.COMMAND_WORD + " " + COMMAND_WORD
+    public static final String MESSAGE_USAGE = RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
             + ": Edits the details of the order identified "
             + "by the index number used in the displayed order book. "
             + "Existing values will be overwritten by the input values.\n"
@@ -48,7 +48,7 @@ public class EditCommand extends OrderCommand {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_FOOD + "FOOD]...\n"
-            + "Example: " + OrderCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1 "
+            + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_FOOD + "Roti Prata "
             + PREFIX_FOOD + "Ice Milo";

@@ -34,7 +34,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.order.AddCommand;
-import seedu.address.logic.commands.order.OrderCommand;
+import seedu.address.logic.commands.order.RequestCommand;
 import seedu.address.model.Model;
 import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
@@ -63,7 +63,7 @@ public class AddCommandSystemTest extends OrderBookSystemTest {
          * -> added
          */
         Order toAdd = new OrderBuilder(AMY).build();
-        String addCommand = OrderCommand.COMMAND_WORD + " " + AddCommand.COMMAND_WORD;
+        String addCommand = RequestCommand.COMMAND_WORD + " " + AddCommand.COMMAND_WORD;
         command = "   " + addCommand + "  " + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " "
                 + "   " + ADDRESS_DESC_AMY + "   " + DATE_DESC_AMY + "  " + FOOD_DESC_BURGER + " ";
         assertCommandSuccess(command, toAdd);
@@ -78,7 +78,7 @@ public class AddCommandSystemTest extends OrderBookSystemTest {
          * -> added
          */
         toAdd = new OrderBuilder(AMY).withPhone(VALID_PHONE_BOB).build();
-        command = OrderCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(toAdd);
+        command = RequestCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(toAdd);
         assertCommandSuccess(command, toAdd);
 
         /* Case: add to empty address book -> added */
@@ -103,12 +103,12 @@ public class AddCommandSystemTest extends OrderBookSystemTest {
         /* ----------------------------------- Perform invalid add operations --------------------------------------- */
 
         /* Case: add a duplicate order -> rejected */
-        command = OrderCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(HOON);
+        command = RequestCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(HOON);
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_ORDER);
 
         /* Case: add a duplicate order except with different address -> rejected */
         toAdd = new OrderBuilder(HOON).withAddress(VALID_ADDRESS_BOB).build();
-        command = OrderCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(toAdd);
+        command = RequestCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(toAdd);
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_ORDER);
 
         /* Case: missing name -> rejected */
@@ -169,7 +169,7 @@ public class AddCommandSystemTest extends OrderBookSystemTest {
      * @see OrderBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandSuccess(Order toAdd) {
-        assertCommandSuccess(OrderCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(toAdd), toAdd);
+        assertCommandSuccess(RequestCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(toAdd), toAdd);
     }
 
     /**

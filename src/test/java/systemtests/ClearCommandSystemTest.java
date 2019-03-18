@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.order.ClearCommand;
-import seedu.address.logic.commands.order.OrderCommand;
+import seedu.address.logic.commands.order.RequestCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
@@ -27,7 +27,7 @@ public class ClearCommandSystemTest extends OrderBookSystemTest {
         executeCommand(command);
         setUpOrderListPanel();
 
-        String clearCommand = OrderCommand.COMMAND_WORD + " " + ClearCommand.COMMAND_WORD;
+        String clearCommand = RequestCommand.COMMAND_WORD + " " + ClearCommand.COMMAND_WORD;
 
         /* Case: clear non-empty address book, command with leading spaces and trailing alphanumeric characters and
          * spaces -> cleared

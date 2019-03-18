@@ -15,7 +15,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.healthworker.HealthWorkerCommand;
-import seedu.address.logic.commands.order.OrderCommand;
+import seedu.address.logic.commands.order.RequestCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class OrderBookParserTest {
@@ -54,7 +54,7 @@ public class OrderBookParserTest {
     public void parseCommand_order() throws Exception {
         thrown.expect(ParseException.class);
         thrown.expectMessage(String.format(MESSAGE_INVALID_ORDER_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        parser.parseCommand(OrderCommand.COMMAND_WORD);
+        parser.parseCommand(RequestCommand.COMMAND_WORD);
     }
 
     @Test

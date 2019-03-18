@@ -22,7 +22,7 @@ import seedu.address.logic.commands.LogoutCommand;
 import seedu.address.logic.commands.SignUpCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.order.ListCommand;
-import seedu.address.logic.commands.order.OrderCommand;
+import seedu.address.logic.commands.order.RequestCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -56,14 +56,14 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "/order delete 9";
+        String deleteCommand = "/request delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         assertHistoryCorrect(deleteCommand, signUpCommand);
     }
 
     @Test
     public void execute_validCommand_success() {
-        String listCommand = OrderCommand.COMMAND_WORD + " " + ListCommand.COMMAND_WORD;
+        String listCommand = RequestCommand.COMMAND_WORD + " " + ListCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
         assertHistoryCorrect(listCommand, signUpCommand);
     }
@@ -79,7 +79,7 @@ public class LogicManagerTest {
         String logoutCommand = LogoutCommand.COMMAND_WORD;
         assertCommandSuccess(logoutCommand, LogoutCommand.MESSAGE_SUCCESS, model);
 
-        String listCommand = OrderCommand.COMMAND_WORD + " " + ListCommand.COMMAND_WORD;
+        String listCommand = RequestCommand.COMMAND_WORD + " " + ListCommand.COMMAND_WORD;
         assertCommandException(listCommand, MESSAGE_REQUIRE_LOGIN);
     }
 

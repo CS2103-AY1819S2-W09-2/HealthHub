@@ -15,14 +15,14 @@ import seedu.address.model.order.Order;
 /**
  * Deletes an order identified using it's displayed index from the order book.
  */
-public class DeleteCommand extends OrderCommand {
+public class DeleteCommand extends RequestCommand {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = OrderCommand.COMMAND_WORD + " " + COMMAND_WORD
+    public static final String MESSAGE_USAGE = RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
             + ": Deletes the order identified by the index number used in the displayed order list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + OrderCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
+            + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted Order: %1$s";
 

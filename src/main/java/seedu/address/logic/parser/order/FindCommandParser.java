@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.order.FindCommand;
-import seedu.address.logic.commands.order.OrderCommand;
+import seedu.address.logic.commands.order.RequestCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -25,7 +25,7 @@ import seedu.address.model.order.Order;
  * and returns an OrderFindCommand object for execution.
  * @throws ParseException if the user input does not conform the expected format
  */
-public class FindCommandParser implements Parser<OrderCommand> {
+public class FindCommandParser implements Parser<RequestCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the OrderFindCommand
@@ -33,7 +33,7 @@ public class FindCommandParser implements Parser<OrderCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
-    public OrderCommand parse(String args) throws ParseException {
+    public RequestCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_FOOD, PREFIX_STATUS);

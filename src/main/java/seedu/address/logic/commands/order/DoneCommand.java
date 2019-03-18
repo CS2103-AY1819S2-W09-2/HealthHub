@@ -17,14 +17,14 @@ import seedu.address.model.order.OrderStatus;
 /**
  * Mark an order as COMPLETED.
  */
-public class DoneCommand extends OrderCommand {
+public class DoneCommand extends RequestCommand {
 
     public static final String COMMAND_WORD = "done";
 
-    public static final String MESSAGE_USAGE = OrderCommand.COMMAND_WORD + " " + COMMAND_WORD
+    public static final String MESSAGE_USAGE = RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
             + ": Marks an order as COMPLETED \n"
             + "Parameters: INDEX (must be a positive integer) \n"
-            + "Example: " + OrderCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1 ";
+            + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1 ";
 
 
     public static final String MESSAGE_COMPLETED_ORDER_SUCCESS = "Order %1$s have been completed.";

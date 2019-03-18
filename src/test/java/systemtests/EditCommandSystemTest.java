@@ -43,7 +43,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.order.EditCommand;
-import seedu.address.logic.commands.order.OrderCommand;
+import seedu.address.logic.commands.order.RequestCommand;
 import seedu.address.model.Model;
 import seedu.address.model.OrderBook;
 import seedu.address.model.common.Address;
@@ -59,7 +59,7 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
     @Test
     public void edit() {
         Model model = getModel();
-        String editCommand = OrderCommand.COMMAND_WORD + " " + EditCommand.COMMAND_WORD;
+        String editCommand = RequestCommand.COMMAND_WORD + " " + EditCommand.COMMAND_WORD;
 
         /* Login */
         String loginCommand = LoginCommand.COMMAND_WORD + " ";
@@ -195,7 +195,7 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
                 Food.MESSAGE_FOOD_CONSTRAINTS);
 
         /* Case: edit a order with new values same as another order's values -> rejected */
-        executeCommand(OrderCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(BOB));
+        executeCommand(RequestCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(BOB));
         assertTrue(getModel().getOrderBook().getOrderList().stream().anyMatch(x -> x.isSameOrder(BOB)));
         index = INDEX_FIRST;
         assertFalse(getModel().getFilteredOrderList().get(index.getZeroBased()).equals(BOB));

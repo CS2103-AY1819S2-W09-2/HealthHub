@@ -14,7 +14,7 @@ import seedu.address.logic.commands.order.DoneCommand;
 import seedu.address.logic.commands.order.EditCommand;
 import seedu.address.logic.commands.order.FindCommand;
 import seedu.address.logic.commands.order.ListCommand;
-import seedu.address.logic.commands.order.OrderCommand;
+import seedu.address.logic.commands.order.RequestCommand;
 import seedu.address.logic.commands.order.SelectCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -22,16 +22,16 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses order input.
  */
-public class OrderCommandParser implements Parser<OrderCommand> {
+public class OrderCommandParser implements Parser<RequestCommand> {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
-     * Parses the given {@code String} of arguments in the context of the OrderCommand
-     * and returns an OrderCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the RequestCommand
+     * and returns an RequestCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public OrderCommand parse(String args) throws ParseException {
+    public RequestCommand parse(String args) throws ParseException {
 
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {

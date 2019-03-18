@@ -16,15 +16,15 @@ import seedu.address.model.order.Order;
  * Finds and lists all orders in orders list whose name or phone contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends OrderCommand {
+public class FindCommand extends RequestCommand {
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = OrderCommand.COMMAND_WORD + " " + COMMAND_WORD
+    public static final String MESSAGE_USAGE = RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
             + ": Finds the order whose keywords contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: [n/NAME] [p/PHONE] [a/ADDRESS] [dt/DATETIME] [f/FOOD] [st/ORDER_STATUS]\n"
-            + "Example: " + OrderCommand.COMMAND_WORD + " " + COMMAND_WORD + " n/John f/Ice Milo\n"
-            + "Example: " + OrderCommand.COMMAND_WORD + " " + COMMAND_WORD
+            + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " n/John f/Ice Milo\n"
+            + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
             + " dt/01-10-2018 10:00:00 dt/03-10-2018 10:00:00";
 
     private final Predicate<Order> predicate;
