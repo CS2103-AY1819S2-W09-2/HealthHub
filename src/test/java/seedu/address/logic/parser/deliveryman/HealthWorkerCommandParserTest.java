@@ -26,7 +26,7 @@ public class HealthWorkerCommandParserTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private final DeliverymanCommandParser parser = new DeliverymanCommandParser();
+    private final HealthWorkerCommandParser parser = new HealthWorkerCommandParser();
 
     @Test
     public void parse_add() throws Exception {
