@@ -24,7 +24,7 @@ import seedu.address.logic.parser.request.RequestCommandParser;
 /**
  * Parses user input.
  */
-public class OrderBookParser {
+public class RequestBookParser {
 
     /**
      * Used for initial separation of command word and args.

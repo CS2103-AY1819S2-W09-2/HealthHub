@@ -18,12 +18,12 @@ import seedu.address.logic.commands.healthworker.HealthWorkerCommand;
 import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class OrderBookParserTest {
+public class RequestBookParserTest {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private final OrderBookParser parser = new OrderBookParser();
+    private final RequestBookParser parser = new RequestBookParser();
 
     @Test
     public void parseCommand_exit() throws Exception {
