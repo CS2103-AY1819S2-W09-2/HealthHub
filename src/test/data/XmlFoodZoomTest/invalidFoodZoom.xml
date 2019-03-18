@@ -59,7 +59,7 @@
             <food>Ice cream</food>
         </orders>
     </orderBook>
-    <deliverymenList>
+    <healthworkerList>
         <deliverymen tag="0a52f570-4f41-4460-b303-e0567910e9b3">
             <name>Hoh Chi Kao</name>
         </deliverymen>
@@ -72,5 +72,5 @@
         <deliverymen tag="71cac1b0-33ea-4d0e-b1bd-c9e72cd3351f">
             <name>Tan Yin Jing</name>
         </deliverymen>
-    </deliverymenList>
+    </healthworkerList>
 </foodzoom>

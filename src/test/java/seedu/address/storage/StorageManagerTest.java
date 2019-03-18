@@ -21,7 +21,7 @@ import seedu.address.model.OrderBook;
 import seedu.address.model.ReadOnlyOrderBook;
 import seedu.address.model.ReadOnlyUsersList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.storage.user.XmlUsersListStorage;
 import seedu.address.ui.testutil.EventsCollectorRule;
 
@@ -68,12 +68,12 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link XmlFoodZoomStorageTest} class.
          */
         OrderBook original = getTypicalOrderBook();
-        DeliverymenList deliverymenList = getTypicalDeliverymenList();
-        storageManager.saveFoodZoom(original, deliverymenList);
+        HealthworkerList healthworkerList = getTypicalDeliverymenList();
+        storageManager.saveFoodZoom(original, healthworkerList);
         ReadOnlyOrderBook ordersRetrieved = storageManager.readOrderBook().get();
         assertEquals(original, new OrderBook(ordersRetrieved));
-        DeliverymenList dmenRetrieved = storageManager.readDeliverymenList().get();
-        assertEquals(deliverymenList, new DeliverymenList(dmenRetrieved));
+        HealthworkerList dmenRetrieved = storageManager.readDeliverymenList().get();
+        assertEquals(healthworkerList, new HealthworkerList(dmenRetrieved));
     }
 
     @Test
@@ -87,7 +87,7 @@ public class StorageManagerTest {
         Storage storage = new StorageManager(new XmlUsersListStorageExceptionThrowingStub(Paths.get("dummy")),
             new XmlFoodZoomStorageExceptionThrowingStub(Paths.get("dummy2")),
             new JsonUserPrefsStorage(Paths.get("dummy")));
-        storage.handleFoodZoomChangedEvent(new HealthHubChangedEvent(new OrderBook(), new DeliverymenList()));
+        storage.handleFoodZoomChangedEvent(new HealthHubChangedEvent(new OrderBook(), new HealthworkerList()));
         assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof DataSavingExceptionEvent);
     }
 
@@ -101,7 +101,7 @@ public class StorageManagerTest {
         }
 
         @Override
-        public void saveFoodZoom(ReadOnlyOrderBook orderBook, DeliverymenList deliverymenList, Path filePath) throws
+        public void saveFoodZoom(ReadOnlyOrderBook orderBook, HealthworkerList healthworkerList, Path filePath) throws
             IOException {
             throw new IOException("dummy exception");
         }

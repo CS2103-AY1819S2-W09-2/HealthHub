@@ -21,8 +21,8 @@ import seedu.address.model.Model;
 import seedu.address.model.OrderBook;
 import seedu.address.model.ReadOnlyOrderBook;
 import seedu.address.model.ReadOnlyUsersList;
-import seedu.address.model.deliveryman.Deliveryman;
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.Healthworker;
+import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.model.order.Order;
 import seedu.address.model.user.User;
 import seedu.address.testutil.OrderBuilder;
@@ -99,7 +99,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addDeliveryman(Deliveryman deliveryman) {
+        public void addDeliveryman(Healthworker healthworker) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void resetDeliverymenData(DeliverymenList newData) {
+        public void resetDeliverymenData(HealthworkerList newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -119,7 +119,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public DeliverymenList getDeliverymenList() {
+        public HealthworkerList getDeliverymenList() {
             throw new AssertionError(" This message should not be called");
         }
 
@@ -229,27 +229,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasDeliveryman(Deliveryman person) {
+        public boolean hasDeliveryman(Healthworker person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteDeliveryman(Deliveryman target) {
+        public void deleteDeliveryman(Healthworker target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateDeliveryman(Deliveryman target, Deliveryman editedDeliveryman) {
+        public void updateDeliveryman(Healthworker target, Healthworker editedHealthworker) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Deliveryman> getFilteredDeliverymenList() {
+        public ObservableList<Healthworker> getFilteredDeliverymenList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredDeliverymenList(Predicate<Deliveryman> predicate) {
+        public void updateFilteredDeliverymenList(Predicate<Healthworker> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

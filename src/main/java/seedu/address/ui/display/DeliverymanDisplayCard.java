@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Order;
 import seedu.address.ui.UiPart;
 
@@ -18,7 +18,7 @@ public class DeliverymanDisplayCard extends UiPart<Region> {
     private static final String BUSY_LABEL_CLASS = "busy";
     private static final String AVAILABLE_LABEL_CLASS = "available";
 
-    public final Deliveryman deliveryman;
+    public final Healthworker healthworker;
 
     @FXML
     private Label namePrintOut;
@@ -28,17 +28,17 @@ public class DeliverymanDisplayCard extends UiPart<Region> {
     private VBox orderListDisplay;
 
 
-    public DeliverymanDisplayCard(Deliveryman deliveryman) {
+    public DeliverymanDisplayCard(Healthworker healthworker) {
         super(FXML);
-        this.deliveryman = deliveryman;
-        namePrintOut.setText(deliveryman.getName().fullName);
+        this.healthworker = healthworker;
+        namePrintOut.setText(healthworker.getName().fullName);
 
         setDeliverymanStatus();
-        setOrders(deliveryman.getOrders());
+        setOrders(healthworker.getOrders());
     }
 
     private void setDeliverymanStatus() {
-        if (deliveryman.getOrders().size() > 0) {
+        if (healthworker.getOrders().size() > 0) {
             deliverymanStatusPrintOut.setText("Delivering");
             deliverymanStatusPrintOut.getStyleClass().clear();
             deliverymanStatusPrintOut.getStyleClass().add(BUSY_LABEL_CLASS);
@@ -71,6 +71,6 @@ public class DeliverymanDisplayCard extends UiPart<Region> {
 
         // state check
         DeliverymanDisplayCard card = (DeliverymanDisplayCard) other;
-        return deliveryman.equals(card.deliveryman);
+        return healthworker.equals(card.healthworker);
     }
 }

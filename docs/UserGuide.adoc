@@ -76,7 +76,7 @@ the format to be used for all the commands and the syntax that is to be followed
 |PASSWORD | Can be alphanumeric, should be at least *6* characters long and spaces are *NOT* allowed. Not encrypted
 in current releases.
 
-|INDEX | Refers to the index number shown by the order / deliveryman list command & it must be a positive integer 1, 2, 3, ... and no larger than 2147483647.
+|INDEX | Refers to the index number shown by the order / healthworker list command & it must be a positive integer 1, 2, 3, ... and no larger than 2147483647.
 
 |=======================================================================
 ====
@@ -116,15 +116,15 @@ in current releases.
 
 `/order done`
 
-`/deliveryman add`
+`/healthworker add`
 
-`/deliveryman list`
+`/healthworker list`
 
-`/deliveryman find`
+`/healthworker find`
 
-`/deliveryman select`
+`/healthworker select`
 
-`/deliveryman delete`
+`/healthworker delete`
 
 `/assign`
 
@@ -331,31 +331,31 @@ Clears all entries from the list of orders. +
 Format: `/order clear`
 
 ****
-* If there is an order already assigned to a deliveryman, order list cannot be cleared.
+* If there is an order already assigned to a healthworker, order list cannot be cleared.
 ****
 
 // tag::deliverymanadd[]
-=== Adding a delivery man : `/deliveryman add` `[Since v1.2]`
+=== Adding a delivery man : `/healthworker add` `[Since v1.2]`
 
 Adds a delivery man to the list of delivery men +
-Format: `/deliveryman add n/NAME`
+Format: `/healthworker add n/NAME`
 
 Examples:
 
-* `/deliveryman add n/John Smith`
+* `/healthworker add n/John Smith`
 // end::deliverymanadd[]
 
 // tag::deliverymanlist[]
-=== Listing all delivery men : `/deliveryman list` `[Since v1.2]`
+=== Listing all delivery men : `/healthworker list` `[Since v1.2]`
 
 Shows a list of all delivery men in chronological order +
-Format: `/deliveryman list`
+Format: `/healthworker list`
 // end::deliverymanlist[]
 
-=== Editing a delivery man : `/deliveryman edit` `[Coming in v2.0]`
+=== Editing a delivery man : `/healthworker edit` `[Coming in v2.0]`
 
 Edits an existing delivery man in the list of delivery men. +
-Format: `/deliveryman edit INDEX n/NAME`
+Format: `/healthworker edit INDEX n/NAME`
 
 ****
 * Edits the delivery man at the specified `INDEX`.
@@ -366,15 +366,15 @@ Format: `/deliveryman edit INDEX n/NAME`
 
 Examples:
 
-* `/deliveryman list` +
-`/deliveryman edit 1 n/John Doe` +
+* `/healthworker list` +
+`/healthworker edit 1 n/John Doe` +
 Edits the name of the 1st delivery man to be `John Doe`.
 
 // tag::deliverymanfind[]
-=== Finding delivery man by name : `/deliveryman find` `[Since v1.2]`
+=== Finding delivery man by name : `/healthworker find` `[Since v1.2]`
 
 Find delivery men whose name contain in the given parameter. +
-Format: `/deliveryman find n/NAME` +
+Format: `/healthworker find n/NAME` +
 
 ****
 * The search is case insensitive. e.g `tom` will match `Tom`
@@ -384,15 +384,15 @@ Format: `/deliveryman find n/NAME` +
 
 Examples:
 
-* `/deliveryman find n/John Smith` +
+* `/healthworker find n/John Smith` +
 Returns all delivery men with the names `John` e.g. `John Smith` and `John Doe`
 // end::deliverymanfind[]
 
 // tag::deliverymandelete[]
-=== Deleting a delivery man : `/deliveryman delete` `[Since v1.2]`
+=== Deleting a delivery man : `/healthworker delete` `[Since v1.2]`
 
 Deletes the specified delivery man from the list of delivery men +
-Format: `/deliveryman delete INDEX`
+Format: `/healthworker delete INDEX`
 
 ****
 * Deletes a delivery man at the specified `INDEX`.
@@ -401,39 +401,39 @@ Format: `/deliveryman delete INDEX`
 
 Examples:
 
-* `/deliveryman list` +
-`/deliveryman delete 2` +
+* `/healthworker list` +
+`/healthworker delete 2` +
 Deletes the 2nd delivery man in the list of delivery men.
-* `/deliveryman find n/tom` +
-`/deliveryman delete 1` +
+* `/healthworker find n/tom` +
+`/healthworker delete 1` +
 Deletes the 1st delivery man in the results of the `find` command.
 // end::deliverymandelete[]
 
 // tag::deliverymanselect[]
-=== Selecting a deliveryman : `/deliveryman select` `[Since v1.4]`
+=== Selecting a healthworker : `/healthworker select` `[Since v1.4]`
 
-Selects the specified deliveryman from the list of deliverymen. +
-Format: `/deliveryman select INDEX`
+Selects the specified healthworker from the list of deliverymen. +
+Format: `/healthworker select INDEX`
 
 ****
-* Select an deliveryman at the specified `INDEX`.
-* Renders a new view for the selected deliveryman - use /home to return the original view
+* Select an healthworker at the specified `INDEX`.
+* Renders a new view for the selected healthworker - use /home to return the original view
 ****
 
 Examples:
 
-* `/deliveryman list` +
-`/deliveryman select 2` +
-Selects the 2nd deliveryman in the list of deliverymen.
-* `/deliveryman find n/david` +
-`/deliveryman select 1` +
-Selects the 1st deliveryman in the results of the `find` command.
+* `/healthworker list` +
+`/healthworker select 2` +
+Selects the 2nd healthworker in the list of deliverymen.
+* `/healthworker find n/david` +
+`/healthworker select 1` +
+Selects the 1st healthworker in the results of the `find` command.
 // end::deliverymanselect[]
 
-=== Clearing all delivery men entries : `/deliveryman clear` `[Coming in v2.0]`
+=== Clearing all delivery men entries : `/healthworker clear` `[Coming in v2.0]`
 
 Clears all entries from the list of delivery men. +
-Format: `/deliveryman clear`
+Format: `/healthworker clear`
 
 // tag::assignfeature[]
 === Assign orders to a delivery man : `/assign` `[Since v1.3]`
@@ -446,13 +446,13 @@ Format: `/assign d/DELIVERYMAN_INDEX o/ORDER_INDEX`
 * There must be at least 1 order and 1 delivery man.
 * Add more than 1 orders by specifying more tags. e.g. `o/1 o/2 o/3`.
 * Orders that are `Ongoing` or `Completed` cannot be reassigned.
-* No more than 5 can be assigned to a deliveryman at one time.
+* No more than 5 can be assigned to a healthworker at one time.
 ****
 
 Examples:
 
 * `/order list` +
-`/deliveryman list` +
+`/healthworker list` +
 `/assign d/2 o/1 o/2` +
 Assigns order number 1 and 2 to delivery man number 2.
 
@@ -485,7 +485,7 @@ Format: `/order done ORDER_INDEX`
 Examples:
 
 * `/order list` +
-`/deliveryman list` +
+`/healthworker list` +
 `/assign d/2 o/1` +
 `/order done 1`
 Mark order number 1 as completed.
@@ -543,7 +543,7 @@ Format: `/login u/USERNAME pw/PASSWORD`
 
 Examples:
 
-* `/login u/deliveryman pw/password`
+* `/login u/healthworker pw/password`
 
 === Logout from system : `/logout` `(Deliveryman Command)` `[Coming in v2.0]`
 
@@ -584,18 +584,18 @@ e.g. `/order delete 3`
 * *Select order* : `/order select INDEX` +
 e.g. `/order select 3`
 * *Clear order* : `/order clear`
-* *Add delivery man* : `/deliveryman add n/NAME` +
-e.g. `/deliveryman add n/James Ho`
-* *Listing delivery men* : `/deliveryman list`
-* *Edit delivery man* (Coming in v2.0) : `/deliveryman edit INDEX n/NAME` +
-e.g. `/deliveryman edit 2 n/James Lee`
-* *Find delivery man* : `/deliveryman find n/NAME` +
-e.g. `/deliveryman find n/James Jake`
-* *Delete delivery man* : `/deliveryman delete INDEX` +
-e.g. `/deliveryman delete 3`
-* *Select delivery man* : `/deliveryman select INDEX` +
-e.g. `/deliveryman select 1`
-* *Clear delivery men* (Coming in v2.0) : `/deliveryman clear`
+* *Add delivery man* : `/healthworker add n/NAME` +
+e.g. `/healthworker add n/James Ho`
+* *Listing delivery men* : `/healthworker list`
+* *Edit delivery man* (Coming in v2.0) : `/healthworker edit INDEX n/NAME` +
+e.g. `/healthworker edit 2 n/James Lee`
+* *Find delivery man* : `/healthworker find n/NAME` +
+e.g. `/healthworker find n/James Jake`
+* *Delete delivery man* : `/healthworker delete INDEX` +
+e.g. `/healthworker delete 3`
+* *Select delivery man* : `/healthworker select INDEX` +
+e.g. `/healthworker select 1`
+* *Clear delivery men* (Coming in v2.0) : `/healthworker clear`
 * *Assign orders to a delivery man* : `/assign d/DELIVERYMAN_INDEX o/ORDER_INDEX` +
 e.g. `/assign d/1 o/1 o/3`
 * *Mark an order as completed* : `/order done ORDER_INDEX` +
@@ -607,7 +607,7 @@ e.g. `/order done 1`
 e.g. `/route create o/1 o/3`
 
 * *Login (Deliveryman)* (Coming in v2.0) : `/login u/USERNAME pw/PASSWORD` +
-e.g. `/login u/deliveryman pw/password`
+e.g. `/login u/healthworker pw/password`
 * *Logout (Deliveryman)* (Coming in v2.0) : `/logout`
 * *View delivery route (Deliveryman)* (Coming in v2.0) : `/route list`
 * *View assigned orders (Deliveryman)* (Coming in v2.0) : `/order list`

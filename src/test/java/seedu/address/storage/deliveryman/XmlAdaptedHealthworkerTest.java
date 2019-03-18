@@ -11,7 +11,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.common.Name;
 import seedu.address.testutil.Assert;
 
-public class XmlAdaptedDeliverymanTest {
+public class XmlAdaptedHealthworkerTest {
     private static final String INVALID_NAME = "D@mi+h";
 
     @Test

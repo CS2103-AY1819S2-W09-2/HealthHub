@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Order;
 
 /**
@@ -29,7 +29,7 @@ public interface Logic {
     /**
      * Returns an unmodifiable view of the filtered list of delivery men
      */
-    ObservableList<Deliveryman> getFilteredDeliverymanList();
+    ObservableList<Healthworker> getFilteredDeliverymanList();
 
     /**
      * Returns the list of input entered by the user, encapsulated in a {@code ListElementPointer} object

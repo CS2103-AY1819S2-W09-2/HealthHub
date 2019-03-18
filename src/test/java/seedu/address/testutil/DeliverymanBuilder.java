@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import seedu.address.model.common.Name;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Order;
 
 /**
@@ -23,15 +23,15 @@ public class DeliverymanBuilder {
     }
 
     /**
-     * Initializes the DeliverymanBuilder with the data of {@code deliverymanToCopy}.
+     * Initializes the DeliverymanBuilder with the data of {@code healthworkerToCopy}.
      */
-    public DeliverymanBuilder(Deliveryman deliverymanToCopy) {
-        id = deliverymanToCopy.getTag();
-        name = deliverymanToCopy.getName();
+    public DeliverymanBuilder(Healthworker healthworkerToCopy) {
+        id = healthworkerToCopy.getTag();
+        name = healthworkerToCopy.getName();
     }
 
     /**
-     * Sets the {@code Name} of the {@code Deliveryman} that we are building.
+     * Sets the {@code Name} of the {@code Healthworker} that we are building.
      */
     public DeliverymanBuilder withName(String name) {
         this.name = new Name(name);
@@ -39,7 +39,7 @@ public class DeliverymanBuilder {
     }
 
     /**
-     * Sets the {@code id} of the {@code Deliveryman} that we are building
+     * Sets the {@code id} of the {@code Healthworker} that we are building
      *
      * @param idString
      */
@@ -49,7 +49,7 @@ public class DeliverymanBuilder {
     }
 
     /**
-     * Add the {@code Order} of the {@code Deliveryman} that we are building.
+     * Add the {@code Order} of the {@code Healthworker} that we are building.
      */
     public DeliverymanBuilder withOrder(Order order) {
         this.orders.add(order);
@@ -57,13 +57,13 @@ public class DeliverymanBuilder {
     }
 
     /**
-     * Builds the {@code Deliveryman}
+     * Builds the {@code Healthworker}
      */
-    public Deliveryman build() {
+    public Healthworker build() {
         if (id != null) {
-            return new Deliveryman(id, name, orders);
+            return new Healthworker(id, name, orders);
         } else {
-            return new Deliveryman(name);
+            return new Healthworker(name);
         }
     }
 }

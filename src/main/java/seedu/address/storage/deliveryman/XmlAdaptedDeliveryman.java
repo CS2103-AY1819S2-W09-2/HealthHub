@@ -17,15 +17,15 @@ import javax.xml.bind.annotation.XmlIDREF;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.common.Name;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Order;
 import seedu.address.storage.XmlAdaptedOrder;
 
 /**
- * Represents the XML for storage of Deliveryman
+ * Represents the XML for storage of Healthworker
  */
 public class XmlAdaptedDeliveryman {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Deliveryman's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Healthworker's %s field is missing!";
 
     @XmlAttribute
     @XmlID
@@ -65,7 +65,7 @@ public class XmlAdaptedDeliveryman {
      *
      * @param source
      */
-    public XmlAdaptedDeliveryman(Deliveryman source) {
+    public XmlAdaptedDeliveryman(Healthworker source) {
         tag = source.getTag().toString();
         name = source.getName().fullName;
         orders = source.getOrders().stream()
@@ -74,11 +74,11 @@ public class XmlAdaptedDeliveryman {
     }
 
     /**
-     * Converts this jaxb-friendly adapted healthworker object into the model's Deliveryman object.
+     * Converts this jaxb-friendly adapted healthworker object into the model's Healthworker object.
      *
      * @throws IllegalValueException If there were any data constraints violated.
      */
-    public Deliveryman toModelType() throws IllegalValueException {
+    public Healthworker toModelType() throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -106,7 +106,7 @@ public class XmlAdaptedDeliveryman {
         }
         final Set<Order> modelOrder = new HashSet<>(orderStore);
 
-        return new Deliveryman(modelTag, modelName, modelOrder);
+        return new Healthworker(modelTag, modelName, modelOrder);
     }
 
     @Override

@@ -38,7 +38,7 @@ to the deliverymen with this feature. Managers can also see and monitor
 the activity of the deliverymen from the main screen.
 
 ** _Justification_: This feature provides managers the ability to manage
-deliveryman independently from orders, giving them added control over
+healthworker independently from orders, giving them added control over
 their order deliveries.
 
 ** _Highlights_: This enhancement adds new commands into the

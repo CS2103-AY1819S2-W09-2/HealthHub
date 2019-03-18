@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 
 /**
  * An UI component that displays information of a {@code Order}.
@@ -23,7 +23,7 @@ public class DeliverymanCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on OrderBook level 4</a>
      */
 
-    public final Deliveryman deliveryman;
+    public final Healthworker healthworker;
 
     @FXML
     private VBox cardPane;
@@ -32,18 +32,18 @@ public class DeliverymanCard extends UiPart<Region> {
     @FXML
     private Label deliverymanIndicator;
 
-    public DeliverymanCard(Deliveryman deliveryman, int displayedIndex) {
+    public DeliverymanCard(Healthworker healthworker, int displayedIndex) {
         super(FXML);
-        this.deliveryman = deliveryman;
-        name.setText(deliveryman.getName().fullName);
+        this.healthworker = healthworker;
+        name.setText(healthworker.getName().fullName);
         setDeliverymanStatus();
     }
 
     private void setDeliverymanStatus() {
-        if (deliveryman.getOrders().size() > 0) {
+        if (healthworker.getOrders().size() > 0) {
             deliverymanIndicator.getStyleClass().clear();
             deliverymanIndicator.getStyleClass().add(BUSY_LABEL_CLASS);
-            deliverymanIndicator.setText("Assigned: " + deliveryman.getOrders().size());
+            deliverymanIndicator.setText("Assigned: " + healthworker.getOrders().size());
         } else {
             deliverymanIndicator.getStyleClass().clear();
             deliverymanIndicator.getStyleClass().add(AVAILABLE_LABEL_CLASS);
@@ -65,6 +65,6 @@ public class DeliverymanCard extends UiPart<Region> {
 
         // state check
         DeliverymanCard card = (DeliverymanCard) other;
-        return deliveryman.equals(card.deliveryman);
+        return healthworker.equals(card.healthworker);
     }
 }

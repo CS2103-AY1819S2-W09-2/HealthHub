@@ -15,7 +15,7 @@ import seedu.address.commons.events.ui.BackToHomeEvent;
 import seedu.address.commons.events.ui.HealthWorkerPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.JumpToHealthWorkerListRequestEvent;
 import seedu.address.commons.events.ui.RequestPanelSelectionChangedEvent;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 
 /**
  * Panel containing the list of orders.
@@ -25,16 +25,16 @@ public class DeliverymanListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(DeliverymanListPanel.class);
 
     @FXML
-    private ListView<Deliveryman> deliverymanListView;
+    private ListView<Healthworker> deliverymanListView;
 
-    public DeliverymanListPanel(ObservableList<Deliveryman> deliveryManList) {
+    public DeliverymanListPanel(ObservableList<Healthworker> deliveryManList) {
         super(FXML);
 
         setConnections(deliveryManList);
         registerAsAnEventHandler(this);
     }
 
-    private void setConnections(ObservableList<Deliveryman> orderList) {
+    private void setConnections(ObservableList<Healthworker> orderList) {
         deliverymanListView.setItems(orderList);
         deliverymanListView.setCellFactory(listView -> new DeliveryManListViewCell());
         setEventHandlerForSelectionChangeEvent();
@@ -79,16 +79,16 @@ public class DeliverymanListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Order} using a {@code OrderCard}.
      */
-    class DeliveryManListViewCell extends ListCell<Deliveryman> {
+    class DeliveryManListViewCell extends ListCell<Healthworker> {
         @Override
-        protected void updateItem(Deliveryman deliveryman, boolean empty) {
-            super.updateItem(deliveryman, empty);
+        protected void updateItem(Healthworker healthworker, boolean empty) {
+            super.updateItem(healthworker, empty);
 
-            if (empty || deliveryman == null) {
+            if (empty || healthworker == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new DeliverymanCard(deliveryman, getIndex() + 1).getRoot());
+                setGraphic(new DeliverymanCard(healthworker, getIndex() + 1).getRoot());
             }
         }
     }

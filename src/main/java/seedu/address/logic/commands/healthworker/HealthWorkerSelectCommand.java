@@ -12,7 +12,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 
 /**
  * The Command that selects a healthworker identified using its displayed index
@@ -25,7 +25,7 @@ public class HealthWorkerSelectCommand extends HealthWorkerCommand {
         + "Parameters: INDEX (must be a positive integer)\n"
         + "Example: " + HealthWorkerCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SELECT_ORDER_SUCCESS = "Selected Deliveryman: %1$s";
+    public static final String MESSAGE_SELECT_ORDER_SUCCESS = "Selected Healthworker: %1$s";
 
     private final Index targetIndex;
 
@@ -37,9 +37,9 @@ public class HealthWorkerSelectCommand extends HealthWorkerCommand {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        List<Deliveryman> filteredDeliverymanList = model.getFilteredDeliverymenList();
+        List<Healthworker> filteredHealthworkerList = model.getFilteredDeliverymenList();
 
-        if (targetIndex.getZeroBased() >= filteredDeliverymanList.size()) {
+        if (targetIndex.getZeroBased() >= filteredHealthworkerList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_DELIVERYMAN_DISPLAYED_INDEX);
         }
 

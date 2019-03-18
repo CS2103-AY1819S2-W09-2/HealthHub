@@ -19,7 +19,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.model.order.NameContainsKeywordsPredicate;
 import seedu.address.model.user.User;
 import seedu.address.testutil.DeliverymenListBuilder;
@@ -85,16 +85,16 @@ public class ModelManagerTest {
     public void equals() {
         OrderBook orderBook = new OrderBookBuilder().withOrder(ALICE).withOrder(BENSON).build();
         OrderBook differentOrderBook = new OrderBook();
-        DeliverymenList deliverymenList = new DeliverymenListBuilder().withDeliveryman(RAJUL).withDeliveryman(CHIKAO)
+        HealthworkerList healthworkerList = new DeliverymenListBuilder().withDeliveryman(RAJUL).withDeliveryman(CHIKAO)
                 .build();
-        DeliverymenList differentDeliverymenList = new DeliverymenList();
+        HealthworkerList differentHealthworkerList = new HealthworkerList();
         UsersList usersList = new UsersListBuilder().withUser(ALICE_MANAGER).withUser(CARL_MANAGER).build();
         UsersList differentUsersList = new UsersList();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(orderBook, usersList, deliverymenList, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(orderBook, usersList, deliverymenList, userPrefs);
+        modelManager = new ModelManager(orderBook, usersList, healthworkerList, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(orderBook, usersList, healthworkerList, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -108,14 +108,14 @@ public class ModelManagerTest {
 
         // different OrderBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentOrderBook, differentUsersList,
-                differentDeliverymenList, userPrefs)));
+            differentHealthworkerList, userPrefs)));
         assertFalse(modelManager.equals(new ModelManager(differentOrderBook, usersList,
-                deliverymenList, userPrefs)));
+            healthworkerList, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredOrderList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(orderBook, usersList, deliverymenList, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(orderBook, usersList, healthworkerList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
@@ -124,6 +124,6 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setFoodZoomFilePath(Paths.get("differentFilePath"));
         assertTrue(modelManager.equals(new ModelManager(orderBook, usersList,
-                deliverymenList, differentUserPrefs)));
+            healthworkerList, differentUserPrefs)));
     }
 }

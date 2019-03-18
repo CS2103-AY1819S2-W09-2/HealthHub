@@ -36,7 +36,7 @@ import seedu.address.logic.commands.request.SelectCommand;
 import seedu.address.model.Model;
 import seedu.address.model.OrderBook;
 import seedu.address.model.UsersList;
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.testutil.TypicalDeliverymen;
 import seedu.address.testutil.TypicalOrders;
 import seedu.address.testutil.user.TypicalUsers;
@@ -51,7 +51,7 @@ public abstract class OrderBookSystemTest {
     public static ClockRule clockRule = new ClockRule();
     private static final List<String> COMMAND_BOX_DEFAULT_STYLE = Arrays.asList("text-input", "text-field");
     private static final List<String> COMMAND_BOX_ERROR_STYLE =
-            Arrays.asList("text-input", "text-field", CommandBox.ERROR_STYLE_CLASS);
+        Arrays.asList("text-input", "text-field", CommandBox.ERROR_STYLE_CLASS);
 
     protected TestApp testApp;
 
@@ -89,7 +89,7 @@ public abstract class OrderBookSystemTest {
     /**
      * Returns the deliverymen data to be loaded into the file in {@link #getDataFileLocation()}.
      */
-    protected DeliverymenList getInitialDeliverymenData() {
+    protected HealthworkerList getInitialDeliverymenData() {
         return TypicalDeliverymen.getTypicalDeliverymenList();
     }
 
@@ -274,7 +274,7 @@ public abstract class OrderBookSystemTest {
         assertEquals("", getCommandBox().getInput());
         assertEquals("", getResultDisplay().getText());
         assertEquals(Paths.get(".").resolve(testApp.getStorageSaveLocation()).toString(),
-                getStatusBarFooter().getSaveLocation());
+            getStatusBarFooter().getSaveLocation());
         assertEquals(SYNC_STATUS_INITIAL, getStatusBarFooter().getSyncStatus());
     }
 

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.deliveryman.Deliveryman;
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.Healthworker;
+import seedu.address.model.deliveryman.HealthworkerList;
 
 /**
  * A utility class containing a list of {@code Deliverymen} objects to be used in tests.
@@ -17,27 +17,27 @@ public class TypicalDeliverymen {
     public static final String RAJUL_ID = "778909e5-f134-472a-bfd8-d34b35cf0b62";
     public static final String YINJING_ID = "71cac1b0-33ea-4d0e-b1bd-c9e72cd3351f";
 
-    public static final Deliveryman CHIKAO = new DeliverymanBuilder().withName("Hoh Chi Kao")
+    public static final Healthworker CHIKAO = new DeliverymanBuilder().withName("Hoh Chi Kao")
             .withId(CHIKAO_ID).build();
-    public static final Deliveryman MANIKA = new DeliverymanBuilder().withName("Manika Monuela")
+    public static final Healthworker MANIKA = new DeliverymanBuilder().withName("Manika Monuela")
             .withId(MANIKA_ID).build();
-    public static final Deliveryman RAJUL = new DeliverymanBuilder().withName("Rajul Rahesh")
+    public static final Healthworker RAJUL = new DeliverymanBuilder().withName("Rajul Rahesh")
             .withId(RAJUL_ID).build();
-    public static final Deliveryman YINJING = new DeliverymanBuilder().withName("Tan Yin Jing")
+    public static final Healthworker YINJING = new DeliverymanBuilder().withName("Tan Yin Jing")
             .withId(YINJING_ID).build();
 
     /**
-     * Returns a {@code DeliverymenList} with all the typical Deliverymen.
+     * Returns a {@code HealthworkerList} with all the typical Deliverymen.
      */
-    public static DeliverymenList getTypicalDeliverymenList() {
-        DeliverymenList dl = new DeliverymenList();
-        for (Deliveryman dman : getTypicalDeliverymen()) {
+    public static HealthworkerList getTypicalDeliverymenList() {
+        HealthworkerList dl = new HealthworkerList();
+        for (Healthworker dman : getTypicalDeliverymen()) {
             dl.addDeliveryman(dman);
         }
         return dl;
     }
 
-    public static List<Deliveryman> getTypicalDeliverymen() {
+    public static List<Healthworker> getTypicalDeliverymen() {
         return new ArrayList<>(Arrays.asList(CHIKAO, MANIKA, RAJUL, YINJING));
     }
 }

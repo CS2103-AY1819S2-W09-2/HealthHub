@@ -16,66 +16,66 @@ import org.junit.rules.ExpectedException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class DeliverymenListTest {
+public class HealthworkerListTest {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private final DeliverymenList deliverymenList = new DeliverymenList();
+    private final HealthworkerList healthworkerList = new HealthworkerList();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), deliverymenList.getDeliverymenList());
+        assertEquals(Collections.emptyList(), healthworkerList.getDeliverymenList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        deliverymenList.resetData(null);
+        healthworkerList.resetData(null);
     }
 
     @Test
     public void resetData_withValidReadyOnlyDeliverymenList_replacesData() {
-        DeliverymenList newData = getTypicalDeliverymenList();
-        deliverymenList.resetData(newData);
-        assertEquals(newData, deliverymenList);
+        HealthworkerList newData = getTypicalDeliverymenList();
+        healthworkerList.resetData(newData);
+        assertEquals(newData, healthworkerList);
     }
 
     @Test
     public void hasDeliveryman_nullPerson_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        deliverymenList.hasDeliveryman(null);
+        healthworkerList.hasDeliveryman(null);
     }
 
     @Test
     public void hasDeliveryman_personNotInAddressBook_returnsFalse() {
-        assertFalse(deliverymenList.hasDeliveryman(MANIKA));
+        assertFalse(healthworkerList.hasDeliveryman(MANIKA));
     }
 
     @Test
     public void hasDeliveryman_deliverymanInDeliverymenList_returnsTrue() {
-        deliverymenList.addDeliveryman(MANIKA);
-        assertTrue(deliverymenList.hasDeliveryman(MANIKA));
+        healthworkerList.addDeliveryman(MANIKA);
+        assertTrue(healthworkerList.hasDeliveryman(MANIKA));
     }
 
     @Test
     public void getDeliverymenList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        deliverymenList.getDeliverymenList().remove(0);
+        healthworkerList.getDeliverymenList().remove(0);
     }
 
     /**
-     * A stub DeliverymenList whose deliverymen list can violate interface constraints.
+     * A stub HealthworkerList whose deliverymen list can violate interface constraints.
      */
-    private static class DeliverymenListStub extends DeliverymenList {
-        private final ObservableList<Deliveryman> deliverymen = FXCollections.observableArrayList();
+    private static class HealthworkerListStub extends HealthworkerList {
+        private final ObservableList<Healthworker> deliverymen = FXCollections.observableArrayList();
 
-        DeliverymenListStub(Collection<Deliveryman> deliverymen) {
+        HealthworkerListStub(Collection<Healthworker> deliverymen) {
             this.deliverymen.setAll(deliverymen);
         }
 
         @Override
-        public ObservableList<Deliveryman> getDeliverymenList() {
+        public ObservableList<Healthworker> getDeliverymenList() {
             return deliverymen;
         }
     }

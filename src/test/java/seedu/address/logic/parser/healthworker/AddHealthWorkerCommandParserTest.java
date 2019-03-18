@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.healthworker.AddHealthWorkerCommand;
 import seedu.address.model.common.Name;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.testutil.DeliverymanBuilder;
 
 public class AddHealthWorkerCommandParserTest {
@@ -21,13 +21,13 @@ public class AddHealthWorkerCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Deliveryman expectedDeliveryman = new DeliverymanBuilder(RAJUL).build();
+        Healthworker expectedHealthworker = new DeliverymanBuilder(RAJUL).build();
 
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_RAJUL,
-                new AddHealthWorkerCommand(expectedDeliveryman));
+                new AddHealthWorkerCommand(expectedHealthworker));
 
         assertParseSuccess(parser, NAME_DESC_RAJUL,
-                new AddHealthWorkerCommand(expectedDeliveryman));
+                new AddHealthWorkerCommand(expectedHealthworker));
     }
 
     @Test

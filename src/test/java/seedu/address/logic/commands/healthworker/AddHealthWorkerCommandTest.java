@@ -20,8 +20,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyOrderBook;
 import seedu.address.model.ReadOnlyUsersList;
-import seedu.address.model.deliveryman.Deliveryman;
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.Healthworker;
+import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.model.order.Order;
 import seedu.address.model.user.User;
 import seedu.address.testutil.DeliverymanBuilder;
@@ -47,21 +47,21 @@ public class AddHealthWorkerCommandTest {
     @Test
     public void execute_deliverymanAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingDeliverymanAdded modelStub = new ModelStubAcceptingDeliverymanAdded();
-        Deliveryman validDeliveryman = new DeliverymanBuilder().withName("Linus").build();
+        Healthworker validHealthworker = new DeliverymanBuilder().withName("Linus").build();
 
-        CommandResult commandResults = new AddHealthWorkerCommand(validDeliveryman).execute(modelStub, commandHistory);
+        CommandResult commandResults = new AddHealthWorkerCommand(validHealthworker).execute(modelStub, commandHistory);
 
-        assertEquals(String.format(AddHealthWorkerCommand.MESSAGE_SUCCESS, validDeliveryman),
+        assertEquals(String.format(AddHealthWorkerCommand.MESSAGE_SUCCESS, validHealthworker),
             commandResults.feedbackToUser);
-        assertEquals(Arrays.asList(validDeliveryman), modelStub.deliverymenAdded);
+        assertEquals(Arrays.asList(validHealthworker), modelStub.deliverymenAdded);
         assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
     }
 
     @Test
     public void execute_duplicateOrder_throwsCommandException() throws Exception {
-        Deliveryman validDeliveryman = new DeliverymanBuilder().withName("Matthew").build();
-        AddHealthWorkerCommand addHealthWorkerCommand = new AddHealthWorkerCommand(validDeliveryman);
-        ModelStub modelStub = new ModelStubWithDeliveryman(validDeliveryman);
+        Healthworker validHealthworker = new DeliverymanBuilder().withName("Matthew").build();
+        AddHealthWorkerCommand addHealthWorkerCommand = new AddHealthWorkerCommand(validHealthworker);
+        ModelStub modelStub = new ModelStubWithDeliveryman(validHealthworker);
 
         thrown.expect(CommandException.class);
         thrown.expectMessage(AddHealthWorkerCommand.MESSAGE_DUPLICATE_DELIVERYMAN);
@@ -70,8 +70,8 @@ public class AddHealthWorkerCommandTest {
 
     @Test
     public void equals() {
-        Deliveryman matthew = new DeliverymanBuilder().withName("Matthew").build();
-        Deliveryman linus = new DeliverymanBuilder().withName("Linus").build();
+        Healthworker matthew = new DeliverymanBuilder().withName("Matthew").build();
+        Healthworker linus = new DeliverymanBuilder().withName("Linus").build();
         AddHealthWorkerCommand addMatthewCommand = new AddHealthWorkerCommand(matthew);
         AddHealthWorkerCommand addLinusCommand = new AddHealthWorkerCommand(linus);
 
@@ -102,7 +102,7 @@ public class AddHealthWorkerCommandTest {
         }
 
         @Override
-        public void addDeliveryman(Deliveryman deliveryman) {
+        public void addDeliveryman(Healthworker healthworker) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -112,7 +112,7 @@ public class AddHealthWorkerCommandTest {
         }
 
         @Override
-        public void resetDeliverymenData(DeliverymenList newData) {
+        public void resetDeliverymenData(HealthworkerList newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -122,7 +122,7 @@ public class AddHealthWorkerCommandTest {
         }
 
         @Override
-        public DeliverymenList getDeliverymenList() {
+        public HealthworkerList getDeliverymenList() {
             throw new AssertionError(" This message should not be called");
         }
 
@@ -232,27 +232,27 @@ public class AddHealthWorkerCommandTest {
         }
 
         @Override
-        public boolean hasDeliveryman(Deliveryman person) {
+        public boolean hasDeliveryman(Healthworker person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteDeliveryman(Deliveryman target) {
+        public void deleteDeliveryman(Healthworker target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateDeliveryman(Deliveryman target, Deliveryman editedDeliveryman) {
+        public void updateDeliveryman(Healthworker target, Healthworker editedHealthworker) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Deliveryman> getFilteredDeliverymenList() {
+        public ObservableList<Healthworker> getFilteredDeliverymenList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredDeliverymenList(Predicate<Deliveryman> predicate) {
+        public void updateFilteredDeliverymenList(Predicate<Healthworker> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -286,17 +286,17 @@ public class AddHealthWorkerCommandTest {
      * A Model stub that contains a single request.
      */
     private class ModelStubWithDeliveryman extends ModelStub {
-        private final Deliveryman deliveryman;
+        private final Healthworker healthworker;
 
-        ModelStubWithDeliveryman(Deliveryman deliveryman) {
-            requireNonNull(deliveryman);
-            this.deliveryman = deliveryman;
+        ModelStubWithDeliveryman(Healthworker healthworker) {
+            requireNonNull(healthworker);
+            this.healthworker = healthworker;
         }
 
         @Override
-        public boolean hasDeliveryman(Deliveryman deliveryman) {
-            requireNonNull(deliveryman);
-            return this.deliveryman.isSameDeliveryman(deliveryman);
+        public boolean hasDeliveryman(Healthworker healthworker) {
+            requireNonNull(healthworker);
+            return this.healthworker.isSameDeliveryman(healthworker);
         }
     }
 
@@ -304,18 +304,18 @@ public class AddHealthWorkerCommandTest {
      * A Model stub that always accept the request being added.
      */
     private class ModelStubAcceptingDeliverymanAdded extends ModelStub {
-        final ArrayList<Deliveryman> deliverymenAdded = new ArrayList<>();
+        final ArrayList<Healthworker> deliverymenAdded = new ArrayList<>();
 
         @Override
-        public boolean hasDeliveryman(Deliveryman deliveryman) {
-            requireNonNull(deliveryman);
-            return deliverymenAdded.stream().anyMatch(deliveryman::isSameDeliveryman);
+        public boolean hasDeliveryman(Healthworker healthworker) {
+            requireNonNull(healthworker);
+            return deliverymenAdded.stream().anyMatch(healthworker::isSameDeliveryman);
         }
 
         @Override
-        public void addDeliveryman(Deliveryman deliveryman) {
-            requireNonNull(deliveryman);
-            deliverymenAdded.add(deliveryman);
+        public void addDeliveryman(Healthworker healthworker) {
+            requireNonNull(healthworker);
+            deliverymenAdded.add(healthworker);
         }
 
         @Override
@@ -324,8 +324,8 @@ public class AddHealthWorkerCommandTest {
         }
 
         @Override
-        public DeliverymenList getDeliverymenList() {
-            return new DeliverymenList();
+        public HealthworkerList getDeliverymenList() {
+            return new HealthworkerList();
         }
     }
 }

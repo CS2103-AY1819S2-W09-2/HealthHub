@@ -27,7 +27,7 @@ import seedu.address.model.ReadOnlyOrderBook;
 import seedu.address.model.ReadOnlyUsersList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.UsersList;
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.FoodZoomStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -95,8 +95,8 @@ public class MainApp extends Application {
         ReadOnlyOrderBook initialData;
         Optional<ReadOnlyUsersList> usersListOptional;
         ReadOnlyUsersList initialUser;
-        Optional<DeliverymenList> deliverymenListOptional;
-        DeliverymenList initialDeliverymenData;
+        Optional<HealthworkerList> deliverymenListOptional;
+        HealthworkerList initialDeliverymenData;
 
         try {
             orderBookOptional = storage.readOrderBook();
@@ -129,15 +129,15 @@ public class MainApp extends Application {
         try {
             deliverymenListOptional = storage.readDeliverymenList();
             if (!deliverymenListOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample DeliverymenList");
+                logger.info("Data file not found. Will be starting with a sample HealthworkerList");
             }
             initialDeliverymenData = deliverymenListOptional.orElseGet(SampleDataUtil::getSampleDeliverymenList);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty DeliverymenList");
-            initialDeliverymenData = new DeliverymenList();
+            logger.warning("Data file not in the correct format. Will be starting with an empty HealthworkerList");
+            initialDeliverymenData = new HealthworkerList();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty DeliverymenList");
-            initialDeliverymenData = new DeliverymenList();
+            logger.warning("Problem while reading from the file. Will be starting with an empty HealthworkerList");
+            initialDeliverymenData = new HealthworkerList();
         }
 
         return new ModelManager(initialData, initialUser, initialDeliverymenData, userPrefs);

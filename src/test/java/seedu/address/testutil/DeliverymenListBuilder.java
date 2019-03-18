@@ -1,32 +1,32 @@
 package seedu.address.testutil;
 
-import seedu.address.model.deliveryman.Deliveryman;
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.Healthworker;
+import seedu.address.model.deliveryman.HealthworkerList;
 
 /**
- * A utility class to help with building DeliverymenList objects.
+ * A utility class to help with building HealthworkerList objects.
  */
 public class DeliverymenListBuilder {
 
-    private DeliverymenList deliverymenList;
+    private HealthworkerList healthworkerList;
 
     public DeliverymenListBuilder() {
-        deliverymenList = new DeliverymenList();
+        healthworkerList = new HealthworkerList();
     }
 
-    public DeliverymenListBuilder(DeliverymenList deliverymenList) {
-        this.deliverymenList = deliverymenList;
+    public DeliverymenListBuilder(HealthworkerList healthworkerList) {
+        this.healthworkerList = healthworkerList;
     }
 
     /**
-     * Adds a new {@code Deliveryman} to the {@code DeliverymenList} that we are building.
+     * Adds a new {@code Healthworker} to the {@code HealthworkerList} that we are building.
      */
-    public DeliverymenListBuilder withDeliveryman(Deliveryman deliveryman) {
-        deliverymenList.addDeliveryman(deliveryman);
+    public DeliverymenListBuilder withDeliveryman(Healthworker healthworker) {
+        healthworkerList.addDeliveryman(healthworker);
         return this;
     }
 
-    public DeliverymenList build() {
-        return deliverymenList;
+    public HealthworkerList build() {
+        return healthworkerList;
     }
 }

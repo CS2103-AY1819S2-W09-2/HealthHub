@@ -107,8 +107,8 @@ public class OrderListPanelTest extends GuiUnitTest {
             builder.append("</orders>\n");
         }
         builder.append("</orderbook>\n");
-        builder.append("<deliverymenList>\n");
-        builder.append("</deliverymenList>\n");
+        builder.append("<healthworkerList>\n");
+        builder.append("</healthworkerList>\n");
         builder.append("</foodzoom>\n");
 
         Path manyOrdersFile = Paths.get(TEST_DATA_FOLDER + "manyOrders.xml");

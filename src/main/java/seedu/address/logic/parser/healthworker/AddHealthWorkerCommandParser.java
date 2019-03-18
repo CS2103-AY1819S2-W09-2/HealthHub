@@ -13,7 +13,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.common.Name;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 
 /**
  * Parses input arguments and creates a new AddHealthWorkerCommand object
@@ -36,9 +36,9 @@ public class AddHealthWorkerCommandParser implements Parser<AddHealthWorkerComma
 
         Name name = ParserUtil.parseName(argumentMultimap.getValue(PREFIX_NAME).get());
 
-        Deliveryman deliveryman = new Deliveryman(name);
+        Healthworker healthworker = new Healthworker(name);
 
-        return new AddHealthWorkerCommand(deliveryman);
+        return new AddHealthWorkerCommand(healthworker);
     }
 
     /**

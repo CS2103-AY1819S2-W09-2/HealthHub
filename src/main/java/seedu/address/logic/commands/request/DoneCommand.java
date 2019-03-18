@@ -10,7 +10,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderStatus;
 
@@ -29,7 +29,7 @@ public class DoneCommand extends RequestCommand {
 
     public static final String MESSAGE_COMPLETED_ORDER_SUCCESS = "Order %1$s have been completed.";
     public static final String MESSAGE_ONGOING_ORDER = "Only ONGOING status can be marked as completed.";
-    public static final String MESSAGE_DELIVERYMAN_NOT_EXIST = "Deliveryman does not exist inside healthworker list.";
+    public static final String MESSAGE_DELIVERYMAN_NOT_EXIST = "Healthworker does not exist inside healthworker list.";
 
     private final Index targetIndex;
 
@@ -42,7 +42,7 @@ public class DoneCommand extends RequestCommand {
         requireNonNull(model);
 
         List<Order> lastShownList = model.getFilteredOrderList();
-        List<Deliveryman> lastShowDeliverymanList = model.getFilteredDeliverymenList();
+        List<Healthworker> lastShowHealthworkerList = model.getFilteredDeliverymenList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
@@ -57,12 +57,12 @@ public class DoneCommand extends RequestCommand {
 
 
         //fetch healthworker from index because request's healthworker not reliable.
-        Deliveryman deliverymanToRemoveOrder = orderToBeCompleted.getDeliveryman();
-        Deliveryman correctDeliveryman = lastShowDeliverymanList.stream()
-                .filter(deliveryman -> deliveryman.equals(deliverymanToRemoveOrder))
+        Healthworker healthworkerToRemoveOrder = orderToBeCompleted.getHealthworker();
+        Healthworker correctHealthworker = lastShowHealthworkerList.stream()
+                .filter(deliveryman -> deliveryman.equals(healthworkerToRemoveOrder))
                 .findFirst()
                 .orElseThrow(() -> new CommandException(MESSAGE_DELIVERYMAN_NOT_EXIST));
-        Deliveryman updatedDeliveryman = removeOrderFromDeliveryman(correctDeliveryman, orderToBeCompleted);
+        Healthworker updatedHealthworker = removeOrderFromDeliveryman(correctHealthworker, orderToBeCompleted);
 
         orderToBeCompleted.setStatusCompleted();
 
@@ -70,7 +70,7 @@ public class DoneCommand extends RequestCommand {
         model.updateFilteredOrderList(Model.PREDICATE_SHOW_ALL_ORDERS);
         model.commitOrderBook();
 
-        model.updateDeliveryman(correctDeliveryman, updatedDeliveryman);
+        model.updateDeliveryman(correctHealthworker, updatedHealthworker);
         model.updateFilteredDeliverymenList(Model.PREDICATE_SHOW_ALL_DELIVERYMEN);
         model.commitDeliverymenList();
 
@@ -80,14 +80,14 @@ public class DoneCommand extends RequestCommand {
     /**
      * Remove request from healthworker.
      */
-    private static Deliveryman removeOrderFromDeliveryman(Deliveryman targetDeliveryman, Order targetOrder) {
-        assert targetDeliveryman != null;
+    private static Healthworker removeOrderFromDeliveryman(Healthworker targetHealthworker, Order targetOrder) {
+        assert targetHealthworker != null;
         assert targetOrder != null;
 
-        Deliveryman removedOrderDeliveryman = new Deliveryman(targetDeliveryman);
-        removedOrderDeliveryman.removeOrder(targetOrder);
+        Healthworker removedOrderHealthworker = new Healthworker(targetHealthworker);
+        removedOrderHealthworker.removeOrder(targetOrder);
 
-        return removedOrderDeliveryman;
+        return removedOrderHealthworker;
     }
 
     @Override

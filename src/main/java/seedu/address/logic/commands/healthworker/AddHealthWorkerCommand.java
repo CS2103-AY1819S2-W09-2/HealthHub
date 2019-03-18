@@ -7,7 +7,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 
 /**
  * Represents the command to add a healthworker.
@@ -26,12 +26,12 @@ public class AddHealthWorkerCommand extends HealthWorkerCommand {
     public static final String MESSAGE_SUCCESS = "New healthworker added: %1$s";
     public static final String MESSAGE_DUPLICATE_DELIVERYMAN = "This healthworker already exists in the list.";
 
-    private final Deliveryman toAdd;
+    private final Healthworker toAdd;
 
     /**
      * Creates an AddHealthWorkerCommand to add the specified {@code Deliverman}
      */
-    public AddHealthWorkerCommand(Deliveryman dman) {
+    public AddHealthWorkerCommand(Healthworker dman) {
         requireNonNull(dman);
         toAdd = dman;
     }

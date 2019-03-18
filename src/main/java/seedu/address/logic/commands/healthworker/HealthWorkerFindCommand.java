@@ -7,7 +7,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.deliveryman.DeliverymanNameContainsKeywordsPredicate;
+import seedu.address.model.deliveryman.HealthworkerNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all healthworker in healthworker list whose name contains in the argument keywords.
@@ -22,9 +22,9 @@ public class HealthWorkerFindCommand extends HealthWorkerCommand {
             + "Parameters: n/KEYWORD \n"
             + "Example: " + HealthWorkerCommand.COMMAND_WORD + " " + COMMAND_WORD + " n/Alex";
 
-    private final DeliverymanNameContainsKeywordsPredicate predicate;
+    private final HealthworkerNameContainsKeywordsPredicate predicate;
 
-    public HealthWorkerFindCommand(DeliverymanNameContainsKeywordsPredicate predicate) {
+    public HealthWorkerFindCommand(HealthworkerNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

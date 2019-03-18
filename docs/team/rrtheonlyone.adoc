@@ -38,7 +38,7 @@ https://github.com/CS2103-AY1819S1-T16-3/main/pull/121[#121])
 orders at a region. The dashboard shows statistics like the most popular food item and the order history
 
 ** Justification: Users of this application can track where their pending orders are in one glance. Orders in the
-same region can now be dispatched to the same deliveryman. Users can also use the generated statistics to improve their
+same region can now be dispatched to the same healthworker. Users can also use the generated statistics to improve their
 profits and improve the overall experience they can provide to their customers
 
 * *Major enhancement:* Completely *revamped* and *redesigned* the User Interface (UI) for the application

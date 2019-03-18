@@ -1,7 +1,7 @@
 package seedu.address.commons.events.ui;
 
 import seedu.address.commons.events.BaseEvent;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 
 /**
  * Represents a selection change in the Person List Panel
@@ -9,9 +9,9 @@ import seedu.address.model.deliveryman.Deliveryman;
 public class HealthWorkerPanelSelectionChangedEvent extends BaseEvent {
 
 
-    private final Deliveryman newSelection;
+    private final Healthworker newSelection;
 
-    public HealthWorkerPanelSelectionChangedEvent(Deliveryman newSelection) {
+    public HealthWorkerPanelSelectionChangedEvent(Healthworker newSelection) {
         this.newSelection = newSelection;
     }
 
@@ -20,7 +20,7 @@ public class HealthWorkerPanelSelectionChangedEvent extends BaseEvent {
         return getClass().getSimpleName();
     }
 
-    public Deliveryman getNewSelection() {
+    public Healthworker getNewSelection() {
         return newSelection;
     }
 }

@@ -28,16 +28,16 @@ image::Ui.png[width="800"]
 |Given below are contributions that I made to this application.
 |===
 
-* *Major enhancement*: added the ability to assign orders to a deliveryman.
+* *Major enhancement*: added the ability to assign orders to a healthworker.
 
-** What it does: It allows the manager to assign multiple orders to a deliveryman. Subsequently, the
+** What it does: It allows the manager to assign multiple orders to a healthworker. Subsequently, the
 order status changes from `PENDING` to `ONGOING`, which means that it can no longer be edited or
-reassigned to another deliveryman.
+reassigned to another healthworker.
 
 ** Justification: This feature streamlines the food delivery process as the manager can assign orders
 to be delivered by their deliverymen conveniently.
 
-** Highlights: The implementation was challenging as it required two-way association between the order and the deliveryman.
+** Highlights: The implementation was challenging as it required two-way association between the order and the healthworker.
 
 * *Minor enhancements*:
 

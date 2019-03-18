@@ -11,7 +11,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyOrderBook;
 import seedu.address.model.ReadOnlyUsersList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.storage.user.UsersListStorage;
 
 /**
@@ -48,16 +48,16 @@ public interface Storage extends FoodZoomStorage, UserPrefsStorage, UsersListSto
     Optional<ReadOnlyOrderBook> readOrderBook(Path filePath) throws DataConversionException, IOException;
 
     @Override
-    Optional<DeliverymenList> readDeliverymenList() throws DataConversionException, IOException;
+    Optional<HealthworkerList> readDeliverymenList() throws DataConversionException, IOException;
 
     @Override
-    Optional<DeliverymenList> readDeliverymenList(Path filePath) throws DataConversionException, IOException;
+    Optional<HealthworkerList> readDeliverymenList(Path filePath) throws DataConversionException, IOException;
 
     @Override
-    void saveFoodZoom(ReadOnlyOrderBook orderBook, DeliverymenList deliverymenList) throws IOException;
+    void saveFoodZoom(ReadOnlyOrderBook orderBook, HealthworkerList healthworkerList) throws IOException;
 
     @Override
-    void saveFoodZoom(ReadOnlyOrderBook orderBook, DeliverymenList deliverymenList, Path filePath) throws IOException;
+    void saveFoodZoom(ReadOnlyOrderBook orderBook, HealthworkerList healthworkerList, Path filePath) throws IOException;
 
     void handleFoodZoomChangedEvent(HealthHubChangedEvent fzce);
 }

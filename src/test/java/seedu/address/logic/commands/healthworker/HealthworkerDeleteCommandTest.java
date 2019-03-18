@@ -19,24 +19,24 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 
-public class DeliverymanDeleteCommandTest {
+public class HealthworkerDeleteCommandTest {
     private Model model = new ModelManager(getTypicalOrderBook(), getTypicalUsersList(), getTypicalDeliverymenList(),
             new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Deliveryman deliverymanToDelete = model.getFilteredDeliverymenList().get(INDEX_FIRST.getZeroBased());
+        Healthworker healthworkerToDelete = model.getFilteredDeliverymenList().get(INDEX_FIRST.getZeroBased());
         HealthWorkerDeleteCommand deleteCommand = new HealthWorkerDeleteCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(HealthWorkerDeleteCommand.MESSAGE_DELETE_DELIVERYMAN_SUCCESS,
-                deliverymanToDelete);
+            healthworkerToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
                 model.getDeliverymenList(), new UserPrefs());
-        expectedModel.deleteDeliveryman(deliverymanToDelete);
+        expectedModel.deleteDeliveryman(healthworkerToDelete);
         expectedModel.commitDeliverymenList();
 
         assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
@@ -55,15 +55,15 @@ public class DeliverymanDeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showDeliverymanAtIndex(model, INDEX_FIRST);
 
-        Deliveryman deliverymanToDelete = model.getFilteredDeliverymenList().get(INDEX_FIRST.getZeroBased());
+        Healthworker healthworkerToDelete = model.getFilteredDeliverymenList().get(INDEX_FIRST.getZeroBased());
         HealthWorkerDeleteCommand deleteCommand = new HealthWorkerDeleteCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(HealthWorkerDeleteCommand.MESSAGE_DELETE_DELIVERYMAN_SUCCESS,
-                deliverymanToDelete);
+            healthworkerToDelete);
 
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
                 model.getDeliverymenList(), new UserPrefs());
-        expectedModel.deleteDeliveryman(deliverymanToDelete);
+        expectedModel.deleteDeliveryman(healthworkerToDelete);
         expectedModel.commitDeliverymenList();
         showNoDeliveryman(expectedModel);
 

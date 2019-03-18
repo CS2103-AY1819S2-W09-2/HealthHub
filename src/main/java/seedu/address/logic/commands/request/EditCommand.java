@@ -24,7 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Food;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderDate;
@@ -96,7 +96,7 @@ public class EditCommand extends RequestCommand {
 
         if (editedOrder.isAlreadyAssignedDeliveryman()) {
             throw new CommandException(String.format(Messages.MESSAGE_ORDER_ALREADY_ASSIGNED_TO_DELIVERYMAN,
-                    index.getOneBased(), editedOrder.getDeliveryman()));
+                    index.getOneBased(), editedOrder.getHealthworker()));
         }
 
         model.updateOrder(orderToEdit, editedOrder);
@@ -119,9 +119,10 @@ public class EditCommand extends RequestCommand {
         OrderDate updatedDate = editOrderDescriptor.getDate().orElse(orderToEdit.getDate());
         Set<Food> updatedFood = editOrderDescriptor.getFood().orElse(orderToEdit.getFood());
         OrderStatus orderStatus = orderToEdit.getOrderStatus();
-        Deliveryman deliveryman = orderToEdit.getDeliveryman();
+        Healthworker healthworker = orderToEdit.getHealthworker();
 
-        return new Order(updatedName, updatedPhone, updatedAddress, updatedDate, orderStatus, updatedFood, deliveryman);
+        return new Order(updatedName, updatedPhone, updatedAddress, updatedDate, orderStatus, updatedFood,
+            healthworker);
     }
 
     @Override

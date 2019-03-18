@@ -14,13 +14,13 @@ import seedu.address.model.common.exceptions.HealthWorkerNotFoundException;
 /**
  * A list of unique deliverymen
  */
-public class UniqueDeliverymenList implements Iterable<Deliveryman> {
-    private final ObservableList<Deliveryman> internalList = FXCollections.observableArrayList();
+public class UniqueHealthworkerList implements Iterable<Healthworker> {
+    private final ObservableList<Healthworker> internalList = FXCollections.observableArrayList();
 
     /**
      * Returns true if the list contains an equivalent common as the given argument.
      */
-    public boolean contains(Deliveryman toCheck) {
+    public boolean contains(Healthworker toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameDeliveryman);
     }
@@ -29,7 +29,7 @@ public class UniqueDeliverymenList implements Iterable<Deliveryman> {
      * Adds healthworker to the list.
      * The healthworker must not already exist in the list.
      */
-    public void add(Deliveryman toAdd) {
+    public void add(Healthworker toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             //TODO: add appropriate exception for this
@@ -42,7 +42,7 @@ public class UniqueDeliverymenList implements Iterable<Deliveryman> {
      * Remove the equivalent healthworker from the list.
      * healthworker must exist in the list.
      */
-    public void remove(Deliveryman toRemove) {
+    public void remove(Healthworker toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new HealthWorkerNotFoundException();
@@ -54,7 +54,7 @@ public class UniqueDeliverymenList implements Iterable<Deliveryman> {
      * {@code target} must exist in the list.
      * The healthworker identity of {@code edited} must not be the same as another healthworker in the list.
      */
-    public void setDeliveryman(Deliveryman target, Deliveryman edited) {
+    public void setDeliveryman(Healthworker target, Healthworker edited) {
         requireAllNonNull(target, edited);
 
         int index = internalList.indexOf(target);
@@ -70,12 +70,12 @@ public class UniqueDeliverymenList implements Iterable<Deliveryman> {
         internalList.set(index, edited);
     }
 
-    public void setDeliverymen(UniqueDeliverymenList replacement) {
+    public void setDeliverymen(UniqueHealthworkerList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
-    public void setDeliverymen(List<Deliveryman> deliverymen) {
+    public void setDeliverymen(List<Healthworker> deliverymen) {
         requireAllNonNull(deliverymen);
 
         if (!deliverymenAreUnique(deliverymen)) {
@@ -85,20 +85,20 @@ public class UniqueDeliverymenList implements Iterable<Deliveryman> {
         internalList.setAll(deliverymen);
     }
 
-    public ObservableList<Deliveryman> asUnmodifiableObservableList() {
+    public ObservableList<Healthworker> asUnmodifiableObservableList() {
         return FXCollections.unmodifiableObservableList(internalList);
     }
 
     @Override
-    public Iterator<Deliveryman> iterator() {
+    public Iterator<Healthworker> iterator() {
         return internalList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof UniqueDeliverymenList
-                    && internalList.equals(((UniqueDeliverymenList) other).internalList));
+                || (other instanceof UniqueHealthworkerList
+                    && internalList.equals(((UniqueHealthworkerList) other).internalList));
     }
 
     @Override
@@ -109,7 +109,7 @@ public class UniqueDeliverymenList implements Iterable<Deliveryman> {
     /**
      * Returns true if all the deliverymen in the list are unique.
      */
-    private boolean deliverymenAreUnique(List<Deliveryman> deliverymen) {
+    private boolean deliverymenAreUnique(List<Healthworker> deliverymen) {
         for (int i = 0; i < deliverymen.size() - 1; i++) {
             for (int j = i + 1; j < deliverymen.size(); j++) {
                 if (deliverymen.get(i).isSameDeliveryman(deliverymen.get(j))) {

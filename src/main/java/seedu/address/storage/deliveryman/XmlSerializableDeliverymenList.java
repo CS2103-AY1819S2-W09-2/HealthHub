@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.deliveryman.Deliveryman;
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.Healthworker;
+import seedu.address.model.deliveryman.HealthworkerList;
 
 /**
- * An Immutable DeliverymenList that is serializable to XML format
+ * An Immutable HealthworkerList that is serializable to XML format
  */
 public class XmlSerializableDeliverymenList {
 
@@ -29,29 +29,29 @@ public class XmlSerializableDeliverymenList {
     }
 
     /**
-     * Converts DeliverymenList to Serializable
+     * Converts HealthworkerList to Serializable
      */
-    public XmlSerializableDeliverymenList(DeliverymenList src) {
+    public XmlSerializableDeliverymenList(HealthworkerList src) {
         this();
         deliverymen.addAll(src.getDeliverymenList().stream().map(XmlAdaptedDeliveryman::new)
             .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this deliverymen list into the model's {@code DeliverymenList} object.
+     * Converts this deliverymen list into the model's {@code HealthworkerList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated or dupicates
      */
-    public DeliverymenList toModelType() throws IllegalValueException {
-        DeliverymenList deliverymenList = new DeliverymenList();
+    public HealthworkerList toModelType() throws IllegalValueException {
+        HealthworkerList healthworkerList = new HealthworkerList();
         for (XmlAdaptedDeliveryman d : deliverymen) {
-            Deliveryman dMan = d.toModelType();
-            if (deliverymenList.hasDeliveryman(dMan)) {
+            Healthworker dMan = d.toModelType();
+            if (healthworkerList.hasDeliveryman(dMan)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_DELIVERYMAN);
             }
-            deliverymenList.addDeliveryman(dMan);
+            healthworkerList.addDeliveryman(dMan);
         }
-        return deliverymenList;
+        return healthworkerList;
     }
 
     @Override

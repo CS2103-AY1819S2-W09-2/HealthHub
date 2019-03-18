@@ -17,7 +17,7 @@ import seedu.address.model.OrderBook;
 import seedu.address.model.ReadOnlyOrderBook;
 import seedu.address.model.ReadOnlyUsersList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.XmlFoodZoom;
 import seedu.address.storage.user.XmlSerializableUsersList;
@@ -37,7 +37,7 @@ public class TestApp extends MainApp {
     protected static final Path DEFAULT_PREF_FILE_LOCATION_FOR_TESTING =
             TestUtil.getFilePathInSandboxFolder("pref_testing.json");
     protected Supplier<ReadOnlyOrderBook> initialOrdersDataSupplier = () -> null;
-    protected Supplier<DeliverymenList> initialDeliverymenDataSupplier = () -> null;
+    protected Supplier<HealthworkerList> initialDeliverymenDataSupplier = () -> null;
     protected Supplier<ReadOnlyUsersList> initialUsersListSupplier = () -> null;
     protected Path saveFileLocation = SAVE_LOCATION_FOR_TESTING;
     protected Path usersSaveFileLocation = USERS_SAVE_LOCATION_FOR_TESTING;
@@ -46,7 +46,7 @@ public class TestApp extends MainApp {
     }
 
     public TestApp(Supplier<ReadOnlyOrderBook> initialOrdersDataSupplier,
-                   Supplier<DeliverymenList> initialDeliverymenDataSupplier,
+                   Supplier<HealthworkerList> initialDeliverymenDataSupplier,
                    Supplier<ReadOnlyUsersList> initialUsersListSupplier,
                    Path saveFileLocation, Path usersSaveFileLocation) {
         super();

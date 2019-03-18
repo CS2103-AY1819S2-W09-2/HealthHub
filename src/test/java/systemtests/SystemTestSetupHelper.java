@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import seedu.address.TestApp;
 import seedu.address.model.ReadOnlyOrderBook;
 import seedu.address.model.ReadOnlyUsersList;
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.HealthworkerList;
 
 /**
  * Contains helper methods that system tests require.
@@ -35,7 +35,7 @@ public class SystemTestSetupHelper {
     /**
      * Sets up a new {@code TestApp} and returns it.
      */
-    public TestApp setupApplication(Supplier<ReadOnlyOrderBook> orderBook, Supplier<DeliverymenList> deliverymenList,
+    public TestApp setupApplication(Supplier<ReadOnlyOrderBook> orderBook, Supplier<HealthworkerList> deliverymenList,
                                     Supplier<ReadOnlyUsersList> usersList, Path saveFileLocation,
                                     Path usersFileLocation) {
         try {

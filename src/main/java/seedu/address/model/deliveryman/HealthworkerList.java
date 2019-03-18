@@ -10,17 +10,17 @@ import javafx.collections.ObservableList;
  * Wraps all data into a deliverymen list.
  * Duplicates are not allowed.
  */
-public class DeliverymenList {
-    private final UniqueDeliverymenList deliverymenList;
+public class HealthworkerList {
+    private final UniqueHealthworkerList deliverymenList;
 
     {
-        deliverymenList = new UniqueDeliverymenList();
+        deliverymenList = new UniqueHealthworkerList();
     }
 
-    public DeliverymenList() {
+    public HealthworkerList() {
     }
 
-    public DeliverymenList(DeliverymenList toBeCopied) {
+    public HealthworkerList(HealthworkerList toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -31,15 +31,15 @@ public class DeliverymenList {
      * Replaces the contents of the deliverymen list with {@code deliverymen}.
      * {@code deliverymen} must not contain duplicate persons.
      */
-    public void setDeliverymen(List<Deliveryman> deliverymen) {
+    public void setDeliverymen(List<Healthworker> deliverymen) {
         this.deliverymenList.setDeliverymen(deliverymen);
     }
 
     /**
      * Resets the contents of the deliverymen list with the contents of {@code newData}.
-     * @param newData The DeliverymenList to get the contents from
+     * @param newData The HealthworkerList to get the contents from
      */
-    public void resetData(DeliverymenList newData) {
+    public void resetData(HealthworkerList newData) {
         requireNonNull(newData);
 
         setDeliverymen(newData.getDeliverymenList());
@@ -48,19 +48,19 @@ public class DeliverymenList {
     /// healthworker-level operations
 
     /**
-     * Returns true if the {@code DeliverymenList} contains a {@code healthworker}
-     * @param deliveryman
+     * Returns true if the {@code HealthworkerList} contains a {@code healthworker}
+     * @param healthworker
      */
-    public boolean hasDeliveryman(Deliveryman deliveryman) {
-        requireNonNull(deliveryman);
-        return deliverymenList.contains(deliveryman);
+    public boolean hasDeliveryman(Healthworker healthworker) {
+        requireNonNull(healthworker);
+        return deliverymenList.contains(healthworker);
     }
 
     /**
-     * Adds a healthworker to the {@code deliverymenList}
+     * Adds a healthworker to the {@code healthworkerList}
      * @param d
      */
-    public void addDeliveryman(Deliveryman d) {
+    public void addDeliveryman(Healthworker d) {
         if (d.getTag() == null) {
             d.assignTag();
         }
@@ -70,7 +70,7 @@ public class DeliverymenList {
     /**
      * Replaces the {@code target} healthworker with an {@code edited} healthworker.
      */
-    public void updateDeliveryman(Deliveryman target, Deliveryman editedD) {
+    public void updateDeliveryman(Healthworker target, Healthworker editedD) {
         requireNonNull(editedD);
 
         if (editedD.getTag() == null) {
@@ -79,7 +79,7 @@ public class DeliverymenList {
         deliverymenList.setDeliveryman(target, editedD);
     }
 
-    public void removeDeliveryman(Deliveryman key) {
+    public void removeDeliveryman(Healthworker key) {
         deliverymenList.remove(key);
     }
 
@@ -88,15 +88,15 @@ public class DeliverymenList {
         return deliverymenList.asUnmodifiableObservableList().size() + " deliverymen";
     }
 
-    public ObservableList<Deliveryman> getDeliverymenList() {
+    public ObservableList<Healthworker> getDeliverymenList() {
         return deliverymenList.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof DeliverymenList
-                    && deliverymenList.equals(((DeliverymenList) other).deliverymenList));
+                || (other instanceof HealthworkerList
+                    && deliverymenList.equals(((HealthworkerList) other).deliverymenList));
     }
 
     @Override

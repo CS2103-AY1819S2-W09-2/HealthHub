@@ -14,10 +14,10 @@ import seedu.address.model.deliveryman.exceptions.OrdersLimitExceededException;
 import seedu.address.model.order.Order;
 
 /**
- * Represents a Deliveryman in FoodZoom.
+ * Represents a Healthworker in FoodZoom.
  * Guarantees: has a name that is unique.
  */
-public class Deliveryman extends TaggedObject {
+public class Healthworker extends TaggedObject {
 
     /** Limit for amount of orders a healthworker can have at one point of time */
     public static final int ORDERS_LIMIT = 5;
@@ -25,16 +25,16 @@ public class Deliveryman extends TaggedObject {
     private final Name name;
     private final Set<Order> orders = new HashSet<>();
 
-    public Deliveryman(Name name) {
+    public Healthworker(Name name) {
         this(null, name, null);
     }
 
-    public Deliveryman(Name name, Set<Order> orders) {
+    public Healthworker(Name name, Set<Order> orders) {
         this(null, name, orders);
     }
 
     /** This constructor is used when the {@code id} is specified. */
-    public Deliveryman(UUID id, Name name, Set<Order> orders) {
+    public Healthworker(UUID id, Name name, Set<Order> orders) {
         super(id);
         requireAllNonNull(name);
         this.name = name;
@@ -46,8 +46,8 @@ public class Deliveryman extends TaggedObject {
     /**
      * This constructor is used to create a new copy of {@code healthworker}.
      */
-    public Deliveryman(Deliveryman deliveryman) {
-        this(null, deliveryman.name, deliveryman.orders);
+    public Healthworker(Healthworker healthworker) {
+        this(null, healthworker.name, healthworker.orders);
     }
 
     public Name getName() {
@@ -84,7 +84,7 @@ public class Deliveryman extends TaggedObject {
     /**
      * Returns if this is the same common as {@code other}
      */
-    public boolean isSameDeliveryman(Deliveryman other) {
+    public boolean isSameDeliveryman(Healthworker other) {
         if (other == this) {
             return true;
         }
@@ -102,11 +102,11 @@ public class Deliveryman extends TaggedObject {
             return true;
         }
 
-        if (!(other instanceof Deliveryman)) {
+        if (!(other instanceof Healthworker)) {
             return false;
         }
 
-        Deliveryman otherPerson = (Deliveryman) other;
+        Healthworker otherPerson = (Healthworker) other;
         return otherPerson.getName().equals(getName());
     }
 

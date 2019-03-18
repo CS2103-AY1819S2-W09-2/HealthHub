@@ -7,23 +7,23 @@ import org.junit.Test;
 
 import seedu.address.testutil.DeliverymanBuilder;
 
-public class DeliverymanNameContainsKeywordsPredicateTest {
+public class HealthworkerNameContainsKeywordsPredicateTest {
     @Test
     public void equals() {
         String firstPredicateKeyword = "first";
         String secondPredicateKeyword = "second";
 
-        DeliverymanNameContainsKeywordsPredicate firstPredicate =
-                new DeliverymanNameContainsKeywordsPredicate(firstPredicateKeyword);
-        DeliverymanNameContainsKeywordsPredicate secondPredicate =
-                new DeliverymanNameContainsKeywordsPredicate(secondPredicateKeyword);
+        HealthworkerNameContainsKeywordsPredicate firstPredicate =
+                new HealthworkerNameContainsKeywordsPredicate(firstPredicateKeyword);
+        HealthworkerNameContainsKeywordsPredicate secondPredicate =
+                new HealthworkerNameContainsKeywordsPredicate(secondPredicateKeyword);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        DeliverymanNameContainsKeywordsPredicate firstPredicateCopy =
-                new DeliverymanNameContainsKeywordsPredicate(firstPredicateKeyword);
+        HealthworkerNameContainsKeywordsPredicate firstPredicateCopy =
+                new HealthworkerNameContainsKeywordsPredicate(firstPredicateKeyword);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -39,27 +39,27 @@ public class DeliverymanNameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        DeliverymanNameContainsKeywordsPredicate predicate =
-                new DeliverymanNameContainsKeywordsPredicate("Alice");
+        HealthworkerNameContainsKeywordsPredicate predicate =
+                new HealthworkerNameContainsKeywordsPredicate("Alice");
         assertTrue(predicate.test(new DeliverymanBuilder().withName("Alice Bob").build()));
 
         // Keyword match 2 word
-        predicate = new DeliverymanNameContainsKeywordsPredicate("Bob");
+        predicate = new HealthworkerNameContainsKeywordsPredicate("Bob");
         assertTrue(predicate.test(new DeliverymanBuilder().withName("Alice Bob").build()));
 
         // Partial Match
-        predicate = new DeliverymanNameContainsKeywordsPredicate("Ali");
+        predicate = new HealthworkerNameContainsKeywordsPredicate("Ali");
         assertTrue(predicate.test(new DeliverymanBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
-        predicate = new DeliverymanNameContainsKeywordsPredicate("aLIce bOB");
+        predicate = new HealthworkerNameContainsKeywordsPredicate("aLIce bOB");
         assertTrue(predicate.test(new DeliverymanBuilder().withName("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
-        DeliverymanNameContainsKeywordsPredicate predicate = new DeliverymanNameContainsKeywordsPredicate("Carol");
+        HealthworkerNameContainsKeywordsPredicate predicate = new HealthworkerNameContainsKeywordsPredicate("Carol");
         assertFalse(predicate.test(new DeliverymanBuilder().withName("Alice Bob").build()));
     }
 }

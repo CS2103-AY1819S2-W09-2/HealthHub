@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.model.OrderBook;
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.model.order.Order;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.TestUtil;
@@ -32,7 +32,7 @@ public class SampleDataTest extends OrderBookSystemTest {
      * Returns null to force test app to load data of the file in {@code getDataFileLocation()}.
      */
     @Override
-    protected DeliverymenList getInitialDeliverymenData() {
+    protected HealthworkerList getInitialDeliverymenData() {
         return null;
     }
     /**

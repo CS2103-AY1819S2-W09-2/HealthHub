@@ -12,7 +12,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.deliveryman.DeliverymanNameContainsKeywordsPredicate;
+import seedu.address.model.deliveryman.HealthworkerNameContainsKeywordsPredicate;
 
 /**
  * Parses the given {@code String} of arguments in the context of the HealthWorkerFindCommand
@@ -44,7 +44,7 @@ public class FindHealthWorkerCommandParser implements Parser<HealthWorkerCommand
             throw new ParseException(MESSAGE_EMPTY_NAME_FIELD);
         }
 
-        return new HealthWorkerFindCommand(new DeliverymanNameContainsKeywordsPredicate(name));
+        return new HealthWorkerFindCommand(new HealthworkerNameContainsKeywordsPredicate(name));
     }
 
     /**

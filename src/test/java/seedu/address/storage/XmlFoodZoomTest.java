@@ -15,7 +15,7 @@ import com.google.common.collect.Streams;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.XmlUtil;
 import seedu.address.model.OrderBook;
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.testutil.TypicalDeliverymen;
 import seedu.address.testutil.TypicalOrders;
 
@@ -33,14 +33,14 @@ public class XmlFoodZoomTest {
             XmlFoodZoom.class);
         OrderBook orderBookFromFile = dataFromFile.getOrderBook();
         OrderBook typicalOrdersOrderBook = TypicalOrders.getTypicalOrderBook();
-        DeliverymenList deliverymenListFromFile = dataFromFile.getDeliverymenList();
-        DeliverymenList typicalDeliverymenDeliverymenList = TypicalDeliverymen.getTypicalDeliverymenList();
+        HealthworkerList healthworkerListFromFile = dataFromFile.getDeliverymenList();
+        HealthworkerList typicalDeliverymenHealthworkerList = TypicalDeliverymen.getTypicalDeliverymenList();
         assertEquals(orderBookFromFile, typicalOrdersOrderBook);
         assertTrue(Streams.zip(orderBookFromFile.getOrderList().stream(),
             typicalOrdersOrderBook.getOrderList().stream(), (a, b) -> a.hasSameTag(b)).allMatch(x -> x));
-        assertEquals(deliverymenListFromFile, typicalDeliverymenDeliverymenList);
-        assertTrue(Streams.zip(deliverymenListFromFile.getDeliverymenList().stream(),
-            typicalDeliverymenDeliverymenList.getDeliverymenList().stream(), (a, b) -> a.hasSameTag(b))
+        assertEquals(healthworkerListFromFile, typicalDeliverymenHealthworkerList);
+        assertTrue(Streams.zip(healthworkerListFromFile.getDeliverymenList().stream(),
+            typicalDeliverymenHealthworkerList.getDeliverymenList().stream(), (a, b) -> a.hasSameTag(b))
             .allMatch(x -> x));
     }
 

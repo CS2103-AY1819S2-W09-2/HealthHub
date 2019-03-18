@@ -3,8 +3,8 @@ package seedu.address.model;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.deliveryman.Deliveryman;
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.Healthworker;
+import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.model.order.Order;
 import seedu.address.model.user.User;
 
@@ -24,7 +24,7 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluates to true
      */
-    Predicate<Deliveryman> PREDICATE_SHOW_ALL_DELIVERYMEN = unused -> true;
+    Predicate<Healthworker> PREDICATE_SHOW_ALL_DELIVERYMEN = unused -> true;
 
     // ==================== request book/request related methods =======================
 
@@ -160,54 +160,54 @@ public interface Model {
      */
     void clearUserInSession();
 
-    // ======================== Deliveryman related methods =========================
+    // ======================== Healthworker related methods =========================
 
     /**
      * Clears existing backing model and replaces with the provided new data.
      */
-    void resetDeliverymenData(DeliverymenList newData);
+    void resetDeliverymenData(HealthworkerList newData);
 
     /**
-     * Returns the DeliverymenList
+     * Returns the HealthworkerList
      */
-    DeliverymenList getDeliverymenList();
+    HealthworkerList getDeliverymenList();
 
     /**
      * Returns true if a healthworker with the same identity as {@code healthworker} exists in the address book.
      */
-    boolean hasDeliveryman(Deliveryman deliveryman);
+    boolean hasDeliveryman(Healthworker healthworker);
 
     /**
      * Deletes the given healthworker.
      * The healthworker must exist in the address book.
      */
-    void deleteDeliveryman(Deliveryman target);
+    void deleteDeliveryman(Healthworker target);
 
     /**
      * Adds the given healthworker.
      * {@code healthworker} must not already exist in the address book.
      */
-    void addDeliveryman(Deliveryman deliveryman);
+    void addDeliveryman(Healthworker healthworker);
 
     /**
-     * Replaces the given healthworker {@code target} with {@code editedDeliveryman}.
+     * Replaces the given healthworker {@code target} with {@code editedHealthworker}.
      * {@code target} must exist in the address book.
-     * The healthworker identity of {@code editedDeliveryman} must not be the same as another
+     * The healthworker identity of {@code editedHealthworker} must not be the same as another
      * existing healthworker in the deliverymen list.
      */
-    void updateDeliveryman(Deliveryman target, Deliveryman editedDeliveryman);
+    void updateDeliveryman(Healthworker target, Healthworker editedHealthworker);
 
     /**
      * Returns an unmodifiable view of the filtered healthworker list
      */
-    ObservableList<Deliveryman> getFilteredDeliverymenList();
+    ObservableList<Healthworker> getFilteredDeliverymenList();
 
     /**
      * Updates the filter of the filtered healthworker list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredDeliverymenList(Predicate<Deliveryman> predicate);
+    void updateFilteredDeliverymenList(Predicate<Healthworker> predicate);
 
     /**
      * Returns true if the model has previous address book states to restore.

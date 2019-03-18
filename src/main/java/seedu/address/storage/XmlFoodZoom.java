@@ -6,11 +6,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.OrderBook;
 import seedu.address.model.ReadOnlyOrderBook;
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.storage.deliveryman.XmlSerializableDeliverymenList;
 
 /**
- * JAXB storage of FoodZoom information - namely an orderBook and a deliverymenList.
+ * JAXB storage of FoodZoom information - namely an orderBook and a healthworkerList.
  */
 @XmlRootElement(name = "foodzoom")
 public class XmlFoodZoom {
@@ -25,7 +25,7 @@ public class XmlFoodZoom {
         deliverymenList = new XmlSerializableDeliverymenList();
     }
 
-    public XmlFoodZoom(ReadOnlyOrderBook ordersSrc, DeliverymenList deliverymenSrc) {
+    public XmlFoodZoom(ReadOnlyOrderBook ordersSrc, HealthworkerList deliverymenSrc) {
         orderBook = new XmlSerializableOrderBook(ordersSrc);
         deliverymenList = new XmlSerializableDeliverymenList(deliverymenSrc);
     }
@@ -34,7 +34,7 @@ public class XmlFoodZoom {
         return orderBook.toModelType();
     }
 
-    public DeliverymenList getDeliverymenList() throws IllegalValueException {
+    public HealthworkerList getDeliverymenList() throws IllegalValueException {
         return deliverymenList.toModelType();
     }
 }

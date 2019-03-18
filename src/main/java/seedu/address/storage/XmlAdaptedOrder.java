@@ -19,7 +19,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Food;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderDate;
@@ -101,8 +101,8 @@ public class XmlAdaptedOrder {
         food = source.getFood().stream()
                 .map(XmlAdaptedFood::new)
                 .collect(Collectors.toList());
-        if (source.getDeliveryman() != null) {
-            deliveryman = source.getDeliveryman().getName().fullName;
+        if (source.getHealthworker() != null) {
+            deliveryman = source.getHealthworker().getName().fullName;
         }
     }
 
@@ -177,15 +177,15 @@ public class XmlAdaptedOrder {
         }
         final OrderStatus orderStatus = new OrderStatus(status);
 
-        final Deliveryman modelDeliveryman;
+        final Healthworker modelHealthworker;
         if (deliveryman == null) {
-            modelDeliveryman = null;
+            modelHealthworker = null;
         } else {
-            modelDeliveryman = new Deliveryman(new Name(deliveryman));
+            modelHealthworker = new Healthworker(new Name(deliveryman));
         }
 
         return new Order(modelTag, modelName, modelPhone, modelAddress, modelDate, orderStatus,
-                modelFood, modelDeliveryman);
+                modelFood, modelHealthworker);
     }
 
     @Override

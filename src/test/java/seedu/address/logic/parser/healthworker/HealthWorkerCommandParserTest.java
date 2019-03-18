@@ -16,8 +16,8 @@ import seedu.address.logic.commands.healthworker.HealthWorkerDeleteCommand;
 import seedu.address.logic.commands.healthworker.HealthWorkerFindCommand;
 import seedu.address.logic.commands.healthworker.HealthWorkerListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.deliveryman.Deliveryman;
-import seedu.address.model.deliveryman.DeliverymanNameContainsKeywordsPredicate;
+import seedu.address.model.deliveryman.Healthworker;
+import seedu.address.model.deliveryman.HealthworkerNameContainsKeywordsPredicate;
 import seedu.address.testutil.DeliverymanBuilder;
 import seedu.address.testutil.DeliverymanUtil;
 
@@ -30,10 +30,10 @@ public class HealthWorkerCommandParserTest {
 
     @Test
     public void parse_add() throws Exception {
-        Deliveryman deliveryman = new DeliverymanBuilder().build();
+        Healthworker healthworker = new DeliverymanBuilder().build();
         AddHealthWorkerCommand command = (AddHealthWorkerCommand)
-            parser.parse(DeliverymanUtil.getDeliverymanAddCommand(deliveryman));
-        assertEquals(new AddHealthWorkerCommand(deliveryman), command);
+            parser.parse(DeliverymanUtil.getDeliverymanAddCommand(healthworker));
+        assertEquals(new AddHealthWorkerCommand(healthworker), command);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class HealthWorkerCommandParserTest {
         HealthWorkerFindCommand command = (HealthWorkerFindCommand) parser.parse(
                 HealthWorkerFindCommand.COMMAND_WORD + " n/" + keyword);
         assertEquals(new HealthWorkerFindCommand(
-                new DeliverymanNameContainsKeywordsPredicate(keyword)), command);
+                new HealthworkerNameContainsKeywordsPredicate(keyword)), command);
     }
 
     @Test

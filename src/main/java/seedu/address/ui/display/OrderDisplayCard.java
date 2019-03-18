@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Order;
 import seedu.address.ui.UiPart;
 
@@ -38,14 +38,14 @@ public class OrderDisplayCard extends UiPart<Region> {
         foodL.setText("Food: " + order.getFood().toString());
         phoneL.setText("Phone: " + order.getPhone().toString());
         addressL.setText("Address: " + order.getAddress().toString());
-        deliverymanL.setText("Deliveryman: " + getFullNameOrNull(order.getDeliveryman()));
+        deliverymanL.setText("Healthworker: " + getFullNameOrNull(order.getHealthworker()));
     }
 
-    private String getFullNameOrNull(Deliveryman deliveryman) {
-        if (deliveryman == null) {
+    private String getFullNameOrNull(Healthworker healthworker) {
+        if (healthworker == null) {
             return "Not assigned.";
         }
-        return deliveryman.getName().fullName;
+        return healthworker.getName().fullName;
     }
 
     @Override

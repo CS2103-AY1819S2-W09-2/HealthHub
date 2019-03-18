@@ -12,7 +12,7 @@ import org.junit.rules.ExpectedException;
 
 import seedu.address.testutil.DeliverymanBuilder;
 
-public class DeliverymanTest {
+public class HealthworkerTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
@@ -25,7 +25,7 @@ public class DeliverymanTest {
         assertFalse(CHIKAO.isSameDeliveryman(null));
 
         // different name -> returns false
-        Deliveryman differentChikao = new DeliverymanBuilder(CHIKAO).withName(VALID_NAME_BOB).build();
+        Healthworker differentChikao = new DeliverymanBuilder(CHIKAO).withName(VALID_NAME_BOB).build();
         assertFalse(CHIKAO.isSameDeliveryman(differentChikao));
 
         // completely different healthworker -> returns false
@@ -35,7 +35,7 @@ public class DeliverymanTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Deliveryman chikaoCopy = new DeliverymanBuilder(CHIKAO).build();
+        Healthworker chikaoCopy = new DeliverymanBuilder(CHIKAO).build();
         assertTrue(CHIKAO.equals(chikaoCopy));
 
         // same healthworker -> returns true

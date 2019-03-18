@@ -6,31 +6,31 @@ import java.util.List;
 /**
  * Represents a versioned version of the deliverymen list.
  */
-public class VersionedDeliverymenList extends DeliverymenList {
+public class VersionedHealthworkerList extends HealthworkerList {
 
-    private final List<DeliverymenList> deliverymenListStateList;
+    private final List<HealthworkerList> healthworkerListStateList;
     private int currentStatePointer;
 
-    public VersionedDeliverymenList(DeliverymenList initialState) {
+    public VersionedHealthworkerList(HealthworkerList initialState) {
         super(initialState);
 
-        deliverymenListStateList = new ArrayList<>();
-        deliverymenListStateList.add(new DeliverymenList(initialState));
+        healthworkerListStateList = new ArrayList<>();
+        healthworkerListStateList.add(new HealthworkerList(initialState));
         currentStatePointer = 0;
     }
 
     /**
-     * Saves a copy of the current {@code DeliverymenList} state at the end of the state list.
+     * Saves a copy of the current {@code HealthworkerList} state at the end of the state list.
      * Undone states are removed from the state list.
      */
     public void commit() {
         removeStatesAfterCurrentPointer();
-        deliverymenListStateList.add(new DeliverymenList(this));
+        healthworkerListStateList.add(new HealthworkerList(this));
         currentStatePointer++;
     }
 
     private void removeStatesAfterCurrentPointer() {
-        deliverymenListStateList.subList(currentStatePointer + 1, deliverymenListStateList.size()).clear();
+        healthworkerListStateList.subList(currentStatePointer + 1, healthworkerListStateList.size()).clear();
     }
 
     /**
@@ -41,7 +41,7 @@ public class VersionedDeliverymenList extends DeliverymenList {
             throw new NoUndoableStateException();
         }
         currentStatePointer--;
-        resetData(deliverymenListStateList.get(currentStatePointer));
+        resetData(healthworkerListStateList.get(currentStatePointer));
     }
 
     /**
@@ -52,7 +52,7 @@ public class VersionedDeliverymenList extends DeliverymenList {
             throw new NoRedoableStateException();
         }
         currentStatePointer++;
-        resetData(deliverymenListStateList.get(currentStatePointer));
+        resetData(healthworkerListStateList.get(currentStatePointer));
     }
 
     public boolean canUndo() {
@@ -60,7 +60,7 @@ public class VersionedDeliverymenList extends DeliverymenList {
     }
 
     public boolean canRedo() {
-        return currentStatePointer < deliverymenListStateList.size() - 1;
+        return currentStatePointer < healthworkerListStateList.size() - 1;
     }
 
     @Override
@@ -69,14 +69,14 @@ public class VersionedDeliverymenList extends DeliverymenList {
             return true;
         }
 
-        if (!(other instanceof VersionedDeliverymenList)) {
+        if (!(other instanceof VersionedHealthworkerList)) {
             return false;
         }
 
-        VersionedDeliverymenList otherList = (VersionedDeliverymenList) other;
+        VersionedHealthworkerList otherList = (VersionedHealthworkerList) other;
 
         return super.equals(otherList)
-                && deliverymenListStateList.equals(otherList.deliverymenListStateList)
+                && healthworkerListStateList.equals(otherList.healthworkerListStateList)
                 && currentStatePointer == otherList.currentStatePointer;
     }
 

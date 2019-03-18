@@ -19,12 +19,12 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.deliveryman.DeliverymanNameContainsKeywordsPredicate;
+import seedu.address.model.deliveryman.HealthworkerNameContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code DeliverymanFindCommandTest}.
+ * Contains integration tests (interaction with the Model) for {@code HealthworkerFindCommandTest}.
  */
-public class DeliverymanFindCommandTest {
+public class HealthworkerFindCommandTest {
     // TODO: Add healthworker into Model Manager after merge
     private Model model = new ModelManager(getTypicalOrderBook(),
             getTypicalUsersList(), getTypicalDeliverymenList(), new UserPrefs());
@@ -34,10 +34,10 @@ public class DeliverymanFindCommandTest {
 
     @Test
     public void equals() {
-        DeliverymanNameContainsKeywordsPredicate firstPredicate =
-                new DeliverymanNameContainsKeywordsPredicate("first");
-        DeliverymanNameContainsKeywordsPredicate secondPredicate =
-                new DeliverymanNameContainsKeywordsPredicate("second");
+        HealthworkerNameContainsKeywordsPredicate firstPredicate =
+                new HealthworkerNameContainsKeywordsPredicate("first");
+        HealthworkerNameContainsKeywordsPredicate secondPredicate =
+                new HealthworkerNameContainsKeywordsPredicate("second");
 
         HealthWorkerFindCommand findFirstOrderCommand = new HealthWorkerFindCommand(firstPredicate);
         HealthWorkerFindCommand findSecondOrderCommand = new HealthWorkerFindCommand(secondPredicate);
@@ -63,7 +63,7 @@ public class DeliverymanFindCommandTest {
     public void execute_invalidKeyword_noDeliverymanFound() {
         String expectedMessage = String.format(MESSAGE_DELIVERYMEN_LISTED_OVERVIEW, 0);
 
-        DeliverymanNameContainsKeywordsPredicate predicate = new DeliverymanNameContainsKeywordsPredicate("invalid");
+        HealthworkerNameContainsKeywordsPredicate predicate = new HealthworkerNameContainsKeywordsPredicate("invalid");
         HealthWorkerFindCommand commandName = new HealthWorkerFindCommand(predicate);
         expectedModel.updateFilteredDeliverymenList(predicate);
         assertCommandSuccess(commandName, model, commandHistory, expectedMessage, expectedModel);
@@ -73,7 +73,7 @@ public class DeliverymanFindCommandTest {
     @Test
     public void execute_exactKeyword_oneDeliverymanFound() {
         String expectedMessage = String.format(MESSAGE_DELIVERYMEN_LISTED_OVERVIEW, 1);
-        DeliverymanNameContainsKeywordsPredicate predicate = new DeliverymanNameContainsKeywordsPredicate("Chi Kao");
+        HealthworkerNameContainsKeywordsPredicate predicate = new HealthworkerNameContainsKeywordsPredicate("Chi Kao");
         HealthWorkerFindCommand command = new HealthWorkerFindCommand(predicate);
         expectedModel.updateFilteredDeliverymenList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
@@ -83,7 +83,7 @@ public class DeliverymanFindCommandTest {
     @Test
     public void execute_partialKeyword_oneDeliverymanFound() {
         String expectedMessage = String.format(MESSAGE_DELIVERYMEN_LISTED_OVERVIEW, 1);
-        DeliverymanNameContainsKeywordsPredicate predicate = new DeliverymanNameContainsKeywordsPredicate("Chi");
+        HealthworkerNameContainsKeywordsPredicate predicate = new HealthworkerNameContainsKeywordsPredicate("Chi");
         HealthWorkerFindCommand command = new HealthWorkerFindCommand(predicate);
         expectedModel.updateFilteredDeliverymenList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);

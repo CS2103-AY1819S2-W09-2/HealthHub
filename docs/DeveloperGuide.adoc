@@ -187,7 +187,7 @@ image::LogicClassDiagram.png[width="800"]
 link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `OrderBookParser` class to parse the user command.
-.  `OrderBookParser` further creates either a `OrderCommandParser` or `DeliverymanCommandParser` to parse order or deliveryman command respectively. Other commands that is neither order or deliveryman skip this creation of the extra Parser.
+.  `OrderBookParser` further creates either a `OrderCommandParser` or `DeliverymanCommandParser` to parse order or healthworker command respectively. Other commands that is neither order or healthworker skip this creation of the extra Parser.
 .  This results in a `Command` object which is executed by the `LogicManager`.
 .  The command execution can affect the `Model` (e.g. adding an order) and/or raise events.
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -231,7 +231,7 @@ The `Storage` component,
 * can save the FoodZoom data in xml format and read it back.
 * can save the Users' data in xml format and read it back.
 
-.Interactions inside the Storage component for whenever `ModelManager.saveFoodZoom(orderBook, deliverymenList)` is called.
+.Interactions inside the Storage component for whenever `ModelManager.saveFoodZoom(orderBook, healthworkerList)` is called.
 image::StorageSequenceDiagram.png[width="800"]
 
 === Common classes
@@ -247,7 +247,7 @@ This section describes some noteworthy details on how certain features are imple
 ==== Current Implementation
 
 The `/login` command allows the `Manager` to login into the FoodZoom application and use authenticated commands like
-`/order add`, `/order edit`, `/order list`, ... .Basically all the `/order` commands and `/deliveryman` commands. The
+`/order add`, `/order edit`, `/order list`, ... .Basically all the `/order` commands and `/healthworker` commands. The
 only commands that can be used without logging in are `/signup`, `/login`, `/help` and `/history`. The format of this
  command is `/login u/[USERNAME] pw/[PASSWORD]`.
 
@@ -653,37 +653,37 @@ Figure 3.4.1.2 Sequence Diagram for `datetime` search
 // end::orderfindfeature[]
 
 // tag::deliverymanaddfeature[]
-=== Add deliveryman feature
+=== Add healthworker feature
 
 ==== Current Implementation
 
-The `add` deliveryman command allows the Manager to add deliveryman into FoodZoom. It ensures that the newly-added deliveryman
-is not a duplicate of an existing deliveryman.
+The `add` healthworker command allows the Manager to add healthworker into FoodZoom. It ensures that the newly-added healthworker
+is not a duplicate of an existing healthworker.
 
-The following diagram shows the sequence flow from the `LogicManager` to the `ModelManager` when a user enters a `/deliveryman add`
+The following diagram shows the sequence flow from the `LogicManager` to the `ModelManager` when a user enters a `/healthworker add`
 command:
 
 image::DeliverymanAddCommandSequenceDiagram.png[width="650"]
-Figure 3.5.1.1 Sequence Diagram for deliveryman `add` command
+Figure 3.5.1.1 Sequence Diagram for healthworker `add` command
 
 From Figure 3.5.1.1:
 
 1. When `LogicManager` receives the `execute` command from the App, it calls the `parseCommand` method in `OrderBookParser`.
 
-2. `OrderBookParser` will receive `/deliveryman` as the command and instantiate `DeliverymanCommandParser` to parse the rest of the command.
+2. `OrderBookParser` will receive `/healthworker` as the command and instantiate `DeliverymanCommandParser` to parse the rest of the command.
 
 3. If the arguments specified in the `add` command are valid, a `DeliverymanAddCommand` would be created and returned back
 to the `LogicManager`.
 
 4. `LogicManager` would proceed to call `execute` of the `DeliverymanAddCommand`.
 
-5. A new deliveryman would be added and a successful `CommandResult` would be returned and displayed.
+5. A new healthworker would be added and a successful `CommandResult` would be returned and displayed.
 
-FoodZoom's deliveryman is only stored with names currently, and can be search and listed
+FoodZoom's healthworker is only stored with names currently, and can be search and listed
 only with names.
 
 These names are checked against validations with the `Name` model, and this is a compulsory
-field for a deliveryman to be added. If the provided command either does not have a name, or is an invalid `Name`,
+field for a healthworker to be added. If the provided command either does not have a name, or is an invalid `Name`,
 a `ParseException` would be thrown.
 
 ==== Design Considerations
@@ -768,7 +768,7 @@ From the sequence diagram:
 .  `LogicManager` will proceed to call the `execute` command of `AssignCommand`
 .  `AssignCommand` will proceed to call the `getFilteredOrderList` and `getFilteredDeliverymanList` method of `Model`
 .  Iterate through the `orderIds`, if valid, add the `order` corresponding to that `index` to the set of `Order`.
-.  Create a new `Deliveryman` to be assigned from the `deliveryman` corresponding to the deliveryman index.
+.  Create a new `Deliveryman` to be assigned from the `healthworker` corresponding to the healthworker index.
 .  Iterate through the orders, call `setDeliveryman`.
 .  A new route would be added and create a new `CommandResult` to be returned.
 
@@ -780,7 +780,7 @@ From the sequence diagram:
 delivery man are more effective as they are aware of one another.
 ** Cons: More complicated to implement the assigning of order, and subsequently other features regarding this relationship such as removing of order.
 * **Alternative 2:** Only the `Deliveryman` is aware of the `Order`
-** Pros: Easier to implement the feature and manage the order and deliveryman states.
+** Pros: Easier to implement the feature and manage the order and healthworker states.
 ** Cons: Performing the update operations mentioned above will be ineffective, and it will be more difficult to display information on which delivery man an order is assigned to.
 
 // end::assign[]
@@ -1309,7 +1309,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* * *` |manager |add a new customer order | can track the current orders I
 have
 
-|`* * *` |manager |add or remove a deliveryman | can manage the deliverymen available to dispatch orders
+|`* * *` |manager |add or remove a healthworker | can manage the deliverymen available to dispatch orders
 
 |`* * *` |manager |assign orders to available deliverymen | can send out orders and fulfil customer requests
 
@@ -1327,14 +1327,14 @@ have
 
 |`* *` |manager |have a dashboard to view succesful and failed orders  | can have insights on how my outlet is doing
 
-|`* *` |manager |have a dynamic indication of which deliveryman is available  | can send out multiple orders to many deliverymen and have improved service
+|`* *` |manager |have a dynamic indication of which healthworker is available  | can send out multiple orders to many deliverymen and have improved service
 
 |`* *` |manager |view individual customer order history  | gain insights on
 what specific customers are ordering
 
-|`* *` |manager |find my deliverman by name     | find details about the deliveryman,
+|`* *` |manager |find my deliverman by name     | find details about the healthworker,
 
-|`* *` |manager |see a thumbnail of deliveryman  | can easily tell who is who in one glance
+|`* *` |manager |see a thumbnail of healthworker  | can easily tell who is who in one glance
 
 |`* *` |manager |edit my order  | make changes to the order
 
@@ -1342,19 +1342,19 @@ what specific customers are ordering
 
 |`*` |manager |view a map with placeholders showing orders/deliverymen routes  | have immediate view on delivery status and gain insights on my service
 
-|`* * *` |new deliveryman |see usage instructions |refer to instructions when I forget how to use the App
+|`* * *` |new healthworker |see usage instructions |refer to instructions when I forget how to use the App
 
-|`* * *` |deliveryman |login/logout of application |able to protect my data and access it when I need do
+|`* * *` |healthworker |login/logout of application |able to protect my data and access it when I need do
 
-|`* * *` |deliveryman |list assigned orders |can tell what are the jobs I need to complete
+|`* * *` |healthworker |list assigned orders |can tell what are the jobs I need to complete
 
-|`* * *` |deliveryman |get customer contact for orders |can contact customer if there is a need (delivery delay/incorrect address/queries etc.)
+|`* * *` |healthworker |get customer contact for orders |can contact customer if there is a need (delivery delay/incorrect address/queries etc.)
 
-|`* *` |deliveryman |view delivery route for orders |dont have to consult external service to know how to reach the destination
+|`* *` |healthworker |view delivery route for orders |dont have to consult external service to know how to reach the destination
 
-|`* *` |deliveryman |confirm succesful order in system |the manager can track the completion of orders
+|`* *` |healthworker |confirm succesful order in system |the manager can track the completion of orders
 
-|`*` |deliveryman |send feedback on delivery process |the manager can relate and improve the dispatch service
+|`*` |healthworker |send feedback on delivery process |the manager can relate and improve the dispatch service
 
 |=======================================================================
 
@@ -1410,7 +1410,7 @@ Use case ends.
 5. Manager requests to add route to available deliverymen
 6. FoodZoom adds route to delivery man and displays on same screen
 7. Manager requests to show routing information
-8. Manager shown a screen showing what each deliveryman is assigned
+8. Manager shown a screen showing what each healthworker is assigned
 +
 Use case ends.
 
@@ -1473,7 +1473,7 @@ Use case ends.
 +
 Use case ends
 
-* 4a. Location info is unclear to deliveryman
+* 4a. Location info is unclear to healthworker
 ** 4b. Delivery man searches for order to get customer's contact
 ** 4c. Delivery man contacts customer to clarify location
 +
@@ -1754,7 +1754,7 @@ Milo dt/30-10-2018 00:00:01` +
 .. Prerequisites: Logged into the application. Have orders that are `Ongoing` or `Completed`
 ... Test case: Edit an order with status `Ongoing` or `Completed` +
     Command: `/order edit <ongoing_or_completed_order_index> f/tea` +
-    Expected: Cannot edit as the order is already assign to a deliveryman.
+    Expected: Cannot edit as the order is already assign to a healthworker.
 
 === Deleting an order
 
@@ -1772,7 +1772,7 @@ _{give more}_ +
    Expected: Similar to previous.
 .. Test case: Logged into the application. Deleting an `Ongoing` order +
    Command: `/order delete o/<ongoing_order_index>`
-   Expected: Unable to delete the order because it is already assigned to a deliveryman.
+   Expected: Unable to delete the order because it is already assigned to a healthworker.
 
 _{ more test cases ... }_
 
@@ -1786,7 +1786,7 @@ Expected: No order is marked as completed. Index have to a positive integer.
 
 ... Test case: Mark an valid index `Ongoing` order as completed +
 Command: `/order done <order_index_of_ongoing_status>` +
-Expected: Order on order list panel is marked as `Completed` and deliveryman is updated (Deliveryman total assigned
+Expected: Order on order list panel is marked as `Completed` and healthworker is updated (Deliveryman total assigned
 orders will decrease by `1` or become `available`).
 
 .. Prerequisites: Logged into the application. Have some `Pending` orders.
@@ -1799,73 +1799,73 @@ Expected: Fail to mark the order as `Completed` because only `ongoing` status ca
 Command: `/order done <order_index_of_completed_status>` +
 Expected: Fail to mark the order as `Completed` because it is already `completed`.
 
-=== Assigning orders to a deliveryman
+=== Assigning orders to a healthworker
 
-. Assigning multiple pending orders to a deliveryman
+. Assigning multiple pending orders to a healthworker
 
-.. Prerequisite: Logged into the application. Have orders that are `Pending`, and a deliveryman +
-   Test case: Assigning two `Pending` orders to a deliveryman +
+.. Prerequisite: Logged into the application. Have orders that are `Pending`, and a healthworker +
+   Test case: Assigning two `Pending` orders to a healthworker +
    Command: `/assign o/<first_pending_order_index> o/<second_pending_order_index> d/1` +
-   Expected: First deliveryman's assigned order count increases by 2, the two orders change status to become `Ongoing`.
+   Expected: First healthworker's assigned order count increases by 2, the two orders change status to become `Ongoing`.
 
-.. Prerequisite: Logged into the application. Have a deliveryman +
-   Test case: Invalid order or deliveryman index +
+.. Prerequisite: Logged into the application. Have a healthworker +
+   Test case: Invalid order or healthworker index +
    Command: `/assign o/0 d/1`, `/assign o/1 d/0` +
    Expected: Cannot assign because the order index is not a non-zero unsigned integer.
 
 .. Prerequisite: Logged into the application. Have an `Ongoing` or `Completed` order +
-   Test case: Assigning an `Ongoing` or `Completed` order to a deliveryman +
+   Test case: Assigning an `Ongoing` or `Completed` order to a healthworker +
    Command: `/assign o/<ongoing_or_completed_order_index> d/1` +
-   Expected: Cannot assign because that order was already assigned to a deliveryman previously.
+   Expected: Cannot assign because that order was already assigned to a healthworker previously.
 
-=== Adding deliveryman
+=== Adding healthworker
 
 .. Prerequisites: Logged into the application. Name "John" has not been used for any existing deliverymen. To check,
-type `/deliveryman list` to see
+type `/healthworker list` to see
 all existing deliverymen.
 
-... Test case: `/deliveryman add n/John` +
-    Expected: A new deliveryman named 'John' is added to the list. The command box should reflect this accordingly
-    with the message "New deliveryman added: John". Timestamp in the status bar is updated.
+... Test case: `/healthworker add n/John` +
+    Expected: A new healthworker named 'John' is added to the list. The command box should reflect this accordingly
+    with the message "New healthworker added: John". Timestamp in the status bar is updated.
 
-... Test case: `/deliveryman add n/John-Paul` +
-    Expected: No deliveryman is added. Error details shown in the status message - non-alphanumeric characters are not allowed.
+... Test case: `/healthworker add n/John-Paul` +
+    Expected: No healthworker is added. Error details shown in the status message - non-alphanumeric characters are not allowed.
     Status bar remains the same.
 
-.. Prerequisites: Logged into the application. A deliveryman named "John" exists in the system.
+.. Prerequisites: Logged into the application. A healthworker named "John" exists in the system.
 
-... Test case: `/deliveryman add n/John` +
-    Expected: No deliveryman is added. Error details shown in the status message.
+... Test case: `/healthworker add n/John` +
+    Expected: No healthworker is added. Error details shown in the status message.
     Status bar remains the same.
 
-=== Deleting deliveryman
+=== Deleting healthworker
 
-.. Prerequisites: Logged into the application. There is 1 deliveryman being displayed in the list. This deliveryman
+.. Prerequisites: Logged into the application. There is 1 healthworker being displayed in the list. This healthworker
 must not have any orders assigned to him too.
-To achieve this, you can filter deliverymen by name, for example, using the default deliverymen, you can try `/deliveryman find n/Chi Kao`
+To achieve this, you can filter deliverymen by name, for example, using the default deliverymen, you can try `/healthworker find n/Chi Kao`
 
-... Test case: `/deliveryman delete 0` +
-    Expected: No deliveryman would be deleted as the index is invalid.
+... Test case: `/healthworker delete 0` +
+    Expected: No healthworker would be deleted as the index is invalid.
 
-... Test case: `/deliveryman delete 2` +
-    Expected: No deliveryman would be deleted as the index is invalid.
+... Test case: `/healthworker delete 2` +
+    Expected: No healthworker would be deleted as the index is invalid.
 
-... Test case: `/deliveryman delete 1` +
-    Expected: The deliveryman displayed will be deleted.
+... Test case: `/healthworker delete 1` +
+    Expected: The healthworker displayed will be deleted.
 
-.. Prerequisites: Logged into the application. There is 1 deliveryman being displayed in the list. This deliveryman
+.. Prerequisites: Logged into the application. There is 1 healthworker being displayed in the list. This healthworker
 has an order assigned to him.
-To achieve this, you can filter deliveryman by name, then assign him a `Pending` order, for example `/assign o/1 d/1`.
+To achieve this, you can filter healthworker by name, then assign him a `Pending` order, for example `/assign o/1 d/1`.
 
-... Test case: `/deliveryman delete 1` +
-    Expected: Deliveryman would not be deleted as you are not allowed to delete deliveryman with orders assigned.
+... Test case: `/healthworker delete 1` +
+    Expected: Deliveryman would not be deleted as you are not allowed to delete healthworker with orders assigned.
 
-=== Selecting deliveryman
-.. Prerequisites: Logged into the application. There is at least 1 deliveryman being displayed in the list.
+=== Selecting healthworker
+.. Prerequisites: Logged into the application. There is at least 1 healthworker being displayed in the list.
 
-... Test case: `/deliveryman select 1` +
-    Expected: The selected deliveryman would be displayed on the display panel.
+... Test case: `/healthworker select 1` +
+    Expected: The selected healthworker would be displayed on the display panel.
 
-... Test case: `/deliveryman select 0` +
-    Expected: No deliveryman would be selected and displayed as this is an invalid index.
+... Test case: `/healthworker select 0` +
+    Expected: No healthworker would be selected and displayed as this is an invalid index.
 

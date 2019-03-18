@@ -17,9 +17,9 @@ import seedu.address.commons.events.model.UserLoggedInEvent;
 import seedu.address.commons.events.model.UserLoggedOutEvent;
 import seedu.address.commons.events.model.UsersListChangedEvent;
 import seedu.address.commons.events.ui.BackToHomeEvent;
-import seedu.address.model.deliveryman.Deliveryman;
-import seedu.address.model.deliveryman.DeliverymenList;
-import seedu.address.model.deliveryman.VersionedDeliverymenList;
+import seedu.address.model.deliveryman.Healthworker;
+import seedu.address.model.deliveryman.HealthworkerList;
+import seedu.address.model.deliveryman.VersionedHealthworkerList;
 import seedu.address.model.order.Order;
 import seedu.address.model.user.User;
 import seedu.address.model.user.UserSession;
@@ -35,8 +35,8 @@ public class ModelManager extends ComponentManager implements Model {
     private final FilteredList<Order> filteredOrders;
     private final FilteredList<User> filteredUsers;
 
-    private final VersionedDeliverymenList versionedDeliverymenList;
-    private final FilteredList<Deliveryman> filteredDeliverymen;
+    private final VersionedHealthworkerList versionedHealthworkerList;
+    private final FilteredList<Healthworker> filteredDeliverymen;
 
     private final UserSession userSession;
 
@@ -44,21 +44,21 @@ public class ModelManager extends ComponentManager implements Model {
      * Initializes a ModelManager with the given addressBook, usersList and userPrefs.
      */
     public ModelManager(ReadOnlyOrderBook orderBook, ReadOnlyUsersList usersList,
-                        DeliverymenList deliverymenList, UserPrefs userPrefs) {
+                        HealthworkerList healthworkerList, UserPrefs userPrefs) {
         super();
-        requireAllNonNull(orderBook, userPrefs, deliverymenList);
+        requireAllNonNull(orderBook, userPrefs, healthworkerList);
 
         logger.fine("Initializing with request book: " + orderBook
             + " and users list " + usersList
-            + " and deliverymen list " + deliverymenList
+            + " and deliverymen list " + healthworkerList
             + " and user prefs " + userPrefs);
 
         versionedOrderBook = new VersionedOrderBook(orderBook);
         versionedUsersList = new VersionedUsersList(usersList);
-        versionedDeliverymenList = new VersionedDeliverymenList(deliverymenList);
+        versionedHealthworkerList = new VersionedHealthworkerList(healthworkerList);
         filteredOrders = new FilteredList<>(versionedOrderBook.getOrderList());
         filteredUsers = new FilteredList<>(versionedUsersList.getUserList());
-        filteredDeliverymen = new FilteredList<>(versionedDeliverymenList.getDeliverymenList());
+        filteredDeliverymen = new FilteredList<>(versionedHealthworkerList.getDeliverymenList());
 
         userSession = new UserSession();
 
@@ -66,13 +66,13 @@ public class ModelManager extends ComponentManager implements Model {
             + " and users list "
             + usersList
             + " and deliverymen list"
-            + deliverymenList
+            + healthworkerList
             + " and user prefs "
             + userPrefs);
     }
 
     public ModelManager() {
-        this(new OrderBook(), new UsersList(), new DeliverymenList(), new UserPrefs());
+        this(new OrderBook(), new UsersList(), new HealthworkerList(), new UserPrefs());
     }
 
     @Override
@@ -82,8 +82,8 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void resetDeliverymenData(DeliverymenList newData) {
-        versionedDeliverymenList.resetData(newData);
+    public void resetDeliverymenData(HealthworkerList newData) {
+        versionedHealthworkerList.resetData(newData);
         indicateAppChanged();
     }
 
@@ -93,15 +93,15 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public DeliverymenList getDeliverymenList() {
-        return versionedDeliverymenList;
+    public HealthworkerList getDeliverymenList() {
+        return versionedHealthworkerList;
     }
 
     /**
      * Raises an event to indicate that there is an app change.
      */
     private void indicateAppChanged() {
-        raise(new HealthHubChangedEvent(versionedOrderBook, versionedDeliverymenList));
+        raise(new HealthHubChangedEvent(versionedOrderBook, versionedHealthworkerList));
     }
 
     /**
@@ -152,31 +152,31 @@ public class ModelManager extends ComponentManager implements Model {
         indicateAppChanged();
     }
 
-    // =========== Deliveryman methods ====================================
+    // =========== Healthworker methods ====================================
 
     @Override
-    public boolean hasDeliveryman(Deliveryman deliveryman) {
-        requireNonNull(deliveryman);
-        return versionedDeliverymenList.hasDeliveryman(deliveryman);
+    public boolean hasDeliveryman(Healthworker healthworker) {
+        requireNonNull(healthworker);
+        return versionedHealthworkerList.hasDeliveryman(healthworker);
     }
 
     @Override
-    public void deleteDeliveryman(Deliveryman target) {
-        versionedDeliverymenList.removeDeliveryman(target);
+    public void deleteDeliveryman(Healthworker target) {
+        versionedHealthworkerList.removeDeliveryman(target);
         indicateAppChanged();
     }
 
     @Override
-    public void addDeliveryman(Deliveryman deliveryman) {
-        versionedDeliverymenList.addDeliveryman(deliveryman);
+    public void addDeliveryman(Healthworker healthworker) {
+        versionedHealthworkerList.addDeliveryman(healthworker);
         indicateAppChanged();
     }
 
     @Override
-    public void updateDeliveryman(Deliveryman target, Deliveryman editedDeliveryman) {
-        requireAllNonNull(target, editedDeliveryman);
+    public void updateDeliveryman(Healthworker target, Healthworker editedHealthworker) {
+        requireAllNonNull(target, editedHealthworker);
 
-        versionedDeliverymenList.updateDeliveryman(target, editedDeliveryman);
+        versionedHealthworkerList.updateDeliveryman(target, editedHealthworker);
         indicateAppChanged();
     }
 
@@ -198,19 +198,19 @@ public class ModelManager extends ComponentManager implements Model {
         EventsCenter.getInstance().post(new BackToHomeEvent());
     }
 
-    //=========== Filtered Deliveryman List Accessors =======================================================
+    //=========== Filtered Healthworker List Accessors =======================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Deliveryman} backed by the internal list
-     * of {@code versionedDeliverymenList}
+     * Returns an unmodifiable view of the list of {@code Healthworker} backed by the internal list
+     * of {@code versionedHealthworkerList}
      */
     @Override
-    public ObservableList<Deliveryman> getFilteredDeliverymenList() {
+    public ObservableList<Healthworker> getFilteredDeliverymenList() {
         return FXCollections.unmodifiableObservableList(filteredDeliverymen);
     }
 
     @Override
-    public void updateFilteredDeliverymenList(Predicate<Deliveryman> predicate) {
+    public void updateFilteredDeliverymenList(Predicate<Healthworker> predicate) {
         requireNonNull(predicate);
         filteredDeliverymen.setPredicate(predicate);
         EventsCenter.getInstance().post(new BackToHomeEvent());
@@ -311,29 +311,29 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public boolean canUndoDeliverymenList() {
-        return versionedDeliverymenList.canUndo();
+        return versionedHealthworkerList.canUndo();
     }
 
     @Override
     public boolean canRedoDeliverymenList() {
-        return versionedDeliverymenList.canRedo();
+        return versionedHealthworkerList.canRedo();
     }
 
     @Override
     public void undoDeliverymenList() {
-        versionedDeliverymenList.undo();
+        versionedHealthworkerList.undo();
         indicateAppChanged();
     }
 
     @Override
     public void redoDeliverymenList() {
-        versionedDeliverymenList.redo();
+        versionedHealthworkerList.redo();
         indicateAppChanged();
     }
 
     @Override
     public void commitDeliverymenList() {
-        versionedDeliverymenList.commit();
+        versionedHealthworkerList.commit();
     }
 
     @Override
@@ -354,7 +354,7 @@ public class ModelManager extends ComponentManager implements Model {
             && filteredOrders.equals(other.filteredOrders)
             && versionedUsersList.equals(other.versionedUsersList)
             && filteredUsers.equals(other.filteredUsers)
-            && versionedDeliverymenList.equals(other.versionedDeliverymenList)
+            && versionedHealthworkerList.equals(other.versionedHealthworkerList)
             && filteredDeliverymen.equals(other.filteredDeliverymen);
     }
 

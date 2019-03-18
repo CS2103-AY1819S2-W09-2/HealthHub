@@ -1,6 +1,6 @@
 package seedu.address.commons.core;
 
-import static seedu.address.model.deliveryman.Deliveryman.ORDERS_LIMIT;
+import static seedu.address.model.deliveryman.Healthworker.ORDERS_LIMIT;
 
 /**
  * Container for user visible messages.

@@ -24,7 +24,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Order;
 
 public class AssignCommandTest {
@@ -59,24 +59,25 @@ public class AssignCommandTest {
         Set<Order> ordersToAdd = new HashSet<>();
         Order toAssign = new Order(validOrder);
         ordersToAdd.add(toAssign);
-        Deliveryman deliverymanToAssign = model.getFilteredDeliverymenList().get(validDeliverymanIndex.getZeroBased());
-        Deliveryman assignedDeliveryman = new Deliveryman(deliverymanToAssign);
-        toAssign.setDeliveryman(assignedDeliveryman);
+        Healthworker healthworkerToAssign = model.getFilteredDeliverymenList().get(validDeliverymanIndex
+            .getZeroBased());
+        Healthworker assignedHealthworker = new Healthworker(healthworkerToAssign);
+        toAssign.setHealthworker(assignedHealthworker);
 
         Set<Index> orderIds = new HashSet<>();
         orderIds.add(INDEX_FIRST);
         AssignCommand assignCommand = new AssignCommand(validDeliverymanIndex, orderIds);
-        String expectedMessage = String.format(MESSAGE_SUCCESS, INDEX_FIRST.getOneBased(), assignedDeliveryman);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, INDEX_FIRST.getOneBased(), assignedHealthworker);
 
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
                 model.getDeliverymenList(), new UserPrefs());
-        expectedModel.updateDeliveryman(deliverymanToAssign, assignedDeliveryman);
+        expectedModel.updateDeliveryman(healthworkerToAssign, assignedHealthworker);
         expectedModel.commitDeliverymenList();
         expectedModel.updateOrder(validOrder, toAssign);
         expectedModel.commitOrderBook();
 
-        assertTrue(toAssign.getDeliveryman().equals(assignedDeliveryman));
-        assertTrue(assignedDeliveryman.getOrders().contains(toAssign));
+        assertTrue(toAssign.getHealthworker().equals(assignedHealthworker));
+        assertTrue(assignedHealthworker.getOrders().contains(toAssign));
         assertCommandSuccess(assignCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 

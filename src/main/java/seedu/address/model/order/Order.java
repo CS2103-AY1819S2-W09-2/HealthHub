@@ -11,7 +11,7 @@ import seedu.address.model.TaggedObject;
 import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.deliveryman.exceptions.OrdersLimitExceededException;
 
 /**
@@ -27,7 +27,7 @@ public class Order extends TaggedObject {
     private final OrderDate orderDate;
     private final Set<Food> food = new HashSet<>();
     private OrderStatus orderStatus;
-    private Deliveryman deliveryman;
+    private Healthworker healthworker;
 
     /**
      * Every field must be present and not null.
@@ -49,15 +49,15 @@ public class Order extends TaggedObject {
      * Every field must be present and not null besides healthworker.
      */
     public Order(Name name, Phone phone, Address address, OrderDate orderDate, OrderStatus orderStatus, Set<Food> food,
-                 Deliveryman deliveryman) {
-        this(null, name, phone, address, orderDate, orderStatus, food, deliveryman);
+                 Healthworker healthworker) {
+        this(null, name, phone, address, orderDate, orderStatus, food, healthworker);
     }
 
     /**
      * This constructor is used to create an {@code request} with a specified id.
      */
     public Order(UUID id, Name name, Phone phone, Address address, OrderDate orderDate, OrderStatus orderStatus,
-                 Set<Food> food, Deliveryman deliveryman) {
+                 Set<Food> food, Healthworker healthworker) {
         super(id);
         requireAllNonNull(name, phone, address, orderDate, food);
         this.name = name;
@@ -66,7 +66,7 @@ public class Order extends TaggedObject {
         this.food.addAll(food);
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
-        this.deliveryman = deliveryman;
+        this.healthworker = healthworker;
     }
 
     /**
@@ -74,7 +74,7 @@ public class Order extends TaggedObject {
      */
     public Order(Order order) {
         this(null, order.name, order.phone, order.address, order.orderDate, order.orderStatus, order.food,
-                order.deliveryman);
+                order.healthworker);
     }
 
     public Name getName() {
@@ -97,8 +97,8 @@ public class Order extends TaggedObject {
         return orderStatus;
     }
 
-    public Deliveryman getDeliveryman() {
-        return deliveryman;
+    public Healthworker getHealthworker() {
+        return healthworker;
     }
 
     public void setStatusCompleted() {
@@ -111,11 +111,11 @@ public class Order extends TaggedObject {
         return food;
     }
 
-    public void setDeliveryman(Deliveryman newDeliveryman) throws OrdersLimitExceededException {
+    public void setHealthworker(Healthworker newHealthworker) throws OrdersLimitExceededException {
         assert(!isAlreadyAssignedDeliveryman());
-        deliveryman = newDeliveryman;
+        healthworker = newHealthworker;
         updateStatusOngoing();
-        newDeliveryman.addOrder(this);
+        newHealthworker.addOrder(this);
     }
 
     private void updateStatusOngoing() {
@@ -123,7 +123,7 @@ public class Order extends TaggedObject {
     }
 
     public boolean isAlreadyAssignedDeliveryman() {
-        return deliveryman != null;
+        return healthworker != null;
     }
 
     public boolean isCompleted() {

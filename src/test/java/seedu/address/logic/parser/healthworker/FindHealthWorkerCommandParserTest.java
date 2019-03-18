@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.healthworker.FindHealthWorkerCommandPar
 import org.junit.Test;
 
 import seedu.address.logic.commands.healthworker.HealthWorkerFindCommand;
-import seedu.address.model.deliveryman.DeliverymanNameContainsKeywordsPredicate;
+import seedu.address.model.deliveryman.HealthworkerNameContainsKeywordsPredicate;
 
 public class FindHealthWorkerCommandParserTest {
 
@@ -32,7 +32,7 @@ public class FindHealthWorkerCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         HealthWorkerFindCommand expectedFindCommand =
-                new HealthWorkerFindCommand(new DeliverymanNameContainsKeywordsPredicate("Alex"));
+                new HealthWorkerFindCommand(new HealthworkerNameContainsKeywordsPredicate("Alex"));
         assertParseSuccess(parser, " n/Alex", expectedFindCommand);
     }
 }

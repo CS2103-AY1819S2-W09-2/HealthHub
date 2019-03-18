@@ -10,7 +10,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.deliveryman.Deliveryman;
+import seedu.address.model.deliveryman.Healthworker;
 
 /**
  * Deletes a healthworker identified using it's displayed index from the address book.
@@ -24,7 +24,7 @@ public class HealthWorkerDeleteCommand extends HealthWorkerCommand {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + HealthWorkerCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_DELIVERYMAN_SUCCESS = "Deleted Deliveryman: %1$s";
+    public static final String MESSAGE_DELETE_DELIVERYMAN_SUCCESS = "Deleted Healthworker: %1$s";
 
     private final Index targetIndex;
 
@@ -35,21 +35,21 @@ public class HealthWorkerDeleteCommand extends HealthWorkerCommand {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        List<Deliveryman> lastShownList = model.getFilteredDeliverymenList();
+        List<Healthworker> lastShownList = model.getFilteredDeliverymenList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_DELIVERYMAN_DISPLAYED_INDEX);
         }
 
-        Deliveryman deliverymanToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Healthworker healthworkerToDelete = lastShownList.get(targetIndex.getZeroBased());
 
-        if (deliverymanToDelete.hasOrders()) {
+        if (healthworkerToDelete.hasOrders()) {
             throw new CommandException(String.format(Messages.MESSAGE_DELIVERYMEN_HAS_ORDERS_CANNOT_DELETE,
-                    deliverymanToDelete));
+                healthworkerToDelete));
         }
-        model.deleteDeliveryman(deliverymanToDelete);
+        model.deleteDeliveryman(healthworkerToDelete);
         model.commitDeliverymenList();
-        return new CommandResult(String.format(MESSAGE_DELETE_DELIVERYMAN_SUCCESS, deliverymanToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_DELIVERYMAN_SUCCESS, healthworkerToDelete));
     }
 
     @Override

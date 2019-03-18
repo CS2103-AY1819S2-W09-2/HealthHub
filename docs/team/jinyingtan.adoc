@@ -28,7 +28,7 @@ FoodZoom is a desktop application providing food businesses a delivery managemen
 *** Justification: As a user could add the order with the wrong parameter, this feature allows the user to make any edits to the order.
 *** Highlights: This enhancement creates a new `Order` object and any future commands that need a reference to the original `Order` object need to be able to track a change in the object.
 
-* *Minor enhancement*: added a find command to search for existing deliveryman
+* *Minor enhancement*: added a find command to search for existing healthworker
 
 * *Code Contribution*: https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=jinyingtan[RepoSense]
 

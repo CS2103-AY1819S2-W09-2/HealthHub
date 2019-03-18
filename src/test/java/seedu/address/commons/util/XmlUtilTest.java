@@ -17,7 +17,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.model.OrderBook;
-import seedu.address.model.deliveryman.DeliverymenList;
+import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.storage.XmlAdaptedFood;
 import seedu.address.storage.XmlAdaptedOrder;
 import seedu.address.storage.XmlFoodZoom;
@@ -85,19 +85,19 @@ public class XmlUtilTest {
     @Test
     public void getDataFromFile_validFile_validResult() throws Exception {
         OrderBook dataFromFile = XmlUtil.getDataFromFile(VALID_FILE,
-                XmlSerializableOrderBookWithRootElement.class).toModelType();
+            XmlSerializableOrderBookWithRootElement.class).toModelType();
         assertEquals(9, dataFromFile.getOrderList().size());
-        DeliverymenList deliverymenDataFromFile = XmlUtil.getDataFromFile(VALID_DELIVERYMEN_LIST_FILE,
-                XmlSerializableDeliverymenListWithRootElement.class).toModelType();
+        HealthworkerList deliverymenDataFromFile = XmlUtil.getDataFromFile(VALID_DELIVERYMEN_LIST_FILE,
+            XmlSerializableDeliverymenListWithRootElement.class).toModelType();
         assertEquals(2, deliverymenDataFromFile.getDeliverymenList().size());
     }
 
     @Test
     public void xmlAdaptedOrderFromFile_fileWithMissingOrderField_validResult() throws Exception {
         XmlAdaptedOrder actualOrder = XmlUtil.getDataFromFile(
-                MISSING_ORDER_FIELD_FILE, XmlAdaptedOrderWithRootElement.class);
+            MISSING_ORDER_FIELD_FILE, XmlAdaptedOrderWithRootElement.class);
         XmlAdaptedOrder expectedOrder = new XmlAdaptedOrder(
-                VALID_ID, null, VALID_PHONE, VALID_ADDRESS, VALID_DATE, VALID_STATUS, VALID_FOOD, null);
+            VALID_ID, null, VALID_PHONE, VALID_ADDRESS, VALID_DATE, VALID_STATUS, VALID_FOOD, null);
 
         assertEquals(expectedOrder, actualOrder);
     }
@@ -105,9 +105,9 @@ public class XmlUtilTest {
     @Test
     public void xmlAdaptedOrderFromFile_fileWithInvalidOrderField_validResult() throws Exception {
         XmlAdaptedOrder actualOrder = XmlUtil.getDataFromFile(
-                INVALID_ORDER_FIELD_FILE, XmlAdaptedOrderWithRootElement.class);
+            INVALID_ORDER_FIELD_FILE, XmlAdaptedOrderWithRootElement.class);
         XmlAdaptedOrder expectedOrder = new XmlAdaptedOrder(
-                VALID_ID, VALID_NAME, INVALID_PHONE, VALID_ADDRESS, VALID_DATE, VALID_STATUS, VALID_FOOD, null);
+            VALID_ID, VALID_NAME, INVALID_PHONE, VALID_ADDRESS, VALID_DATE, VALID_STATUS, VALID_FOOD, null);
         assertEquals(expectedOrder, actualOrder);
 
         XmlAdaptedDeliveryman actualDeliveryman = XmlUtil.getDataFromFile(
@@ -119,9 +119,9 @@ public class XmlUtilTest {
     @Test
     public void xmlAdaptedOrderFromFile_fileWithValidOrder_validResult() throws Exception {
         XmlAdaptedOrder actualOrder = XmlUtil.getDataFromFile(
-                VALID_ORDER_FILE, XmlAdaptedOrderWithRootElement.class);
+            VALID_ORDER_FILE, XmlAdaptedOrderWithRootElement.class);
         XmlAdaptedOrder expectedOrder = new XmlAdaptedOrder(
-                VALID_ID, VALID_NAME, VALID_PHONE, VALID_ADDRESS, VALID_DATE, VALID_STATUS, VALID_FOOD, null);
+            VALID_ID, VALID_NAME, VALID_PHONE, VALID_ADDRESS, VALID_DATE, VALID_STATUS, VALID_FOOD, null);
 
         System.out.println(actualOrder.toString());
         System.out.println(expectedOrder.toString());
@@ -155,15 +155,15 @@ public class XmlUtilTest {
     @Test
     public void saveDataToFile_validFile_dataSaved() throws Exception {
         FileUtil.createFile(TEMP_FILE);
-        XmlFoodZoom dataToWrite = new XmlFoodZoom(new OrderBook(), new DeliverymenList());
+        XmlFoodZoom dataToWrite = new XmlFoodZoom(new OrderBook(), new HealthworkerList());
         XmlUtil.saveDataToFile(TEMP_FILE, dataToWrite);
         XmlFoodZoom dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE,
             XmlFoodZoom.class);
         assertEquals(new OrderBook(), dataFromFile.getOrderBook());
-        assertEquals(new DeliverymenList(), dataFromFile.getDeliverymenList());
+        assertEquals(new HealthworkerList(), dataFromFile.getDeliverymenList());
 
         OrderBookBuilder builder = new OrderBookBuilder(new OrderBook()).withOrder(new OrderBuilder().build());
-        DeliverymenListBuilder dBuilder = new DeliverymenListBuilder(new DeliverymenList())
+        DeliverymenListBuilder dBuilder = new DeliverymenListBuilder(new HealthworkerList())
             .withDeliveryman(new DeliverymanBuilder().build());
         dataToWrite = new XmlFoodZoom(builder.build(), dBuilder.build());
 
@@ -179,21 +179,24 @@ public class XmlUtilTest {
      * objects.
      */
     @XmlRootElement(name = "request")
-    private static class XmlAdaptedOrderWithRootElement extends XmlAdaptedOrder {}
+    private static class XmlAdaptedOrderWithRootElement extends XmlAdaptedOrder {
+    }
 
     /**
      * Test class annotated with {@code XmlRootElement} to allow unmarshalling of .xml data to
      * {@code XmlAdaptedDeliveryman} objects.
      */
     @XmlRootElement(name = "healthworker")
-    private static class XmlAdaptedDeliverymanWithRootElement extends XmlAdaptedDeliveryman {}
+    private static class XmlAdaptedDeliverymanWithRootElement extends XmlAdaptedDeliveryman {
+    }
 
     /**
      * Test class annotated with {@code XmlRootElement} to allow unmarshalling of .xml data to
      * {@code XmlAdaptedDeliveryman} objects.
      */
     @XmlRootElement(name = "deliverymenlist")
-    private static class XmlSerializableDeliverymenListWithRootElement extends XmlSerializableDeliverymenList {}
+    private static class XmlSerializableDeliverymenListWithRootElement extends XmlSerializableDeliverymenList {
+    }
 
     /**
      * Test class annotated with {@code XmlRootElement} to allow unmarshalling of .xml data to

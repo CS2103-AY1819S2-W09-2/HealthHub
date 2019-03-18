@@ -15,7 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-public class DeliverymanListCommandTest {
+public class HealthworkerListCommandTest {
 
     private Model model;
     private Model expectedModel;
