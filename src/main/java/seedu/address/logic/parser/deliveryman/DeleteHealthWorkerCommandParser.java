@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses the input arguments to produce a HealthWorkerDeleteCommand.
  */
-public class DeliverymanDeleteCommandParser implements Parser<HealthWorkerDeleteCommand> {
+public class DeleteHealthWorkerCommandParser implements Parser<HealthWorkerDeleteCommand> {
     /**
      * Parses the given {@code String} of arguments and returns a HealthWorkerDeleteCommand
      * object for execution.

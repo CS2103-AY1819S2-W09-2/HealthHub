@@ -9,8 +9,8 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.healthworker.HealthWorkerDeleteCommand;
 
-public class DeliverymanDeleteCommandParserTest {
-    private DeliverymanDeleteCommandParser parser = new DeliverymanDeleteCommandParser();
+public class DeleteHealthWorkerCommandParserTest {
+    private DeleteHealthWorkerCommandParser parser = new DeleteHealthWorkerCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {

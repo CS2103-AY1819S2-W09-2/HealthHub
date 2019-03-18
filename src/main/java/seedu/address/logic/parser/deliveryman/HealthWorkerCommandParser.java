@@ -46,7 +46,7 @@ public class HealthWorkerCommandParser {
             return new DeliverymanSelectCommandParser().parse(arguments);
 
         case HealthWorkerDeleteCommand.COMMAND_WORD:
-            return new DeliverymanDeleteCommandParser().parse(arguments);
+            return new DeleteHealthWorkerCommandParser().parse(arguments);
 
         case HealthWorkerListCommand.COMMAND_WORD:
             return new HealthWorkerListCommand();
