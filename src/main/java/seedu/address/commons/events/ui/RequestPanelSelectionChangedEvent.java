@@ -6,12 +6,12 @@ import seedu.address.model.order.Order;
 /**
  * Represents a selection change in the Person List Panel
  */
-public class OrderPanelSelectionChangedEvent extends BaseEvent {
+public class RequestPanelSelectionChangedEvent extends BaseEvent {
 
 
     private final Order newSelection;
 
-    public OrderPanelSelectionChangedEvent(Order newSelection) {
+    public RequestPanelSelectionChangedEvent(Order newSelection) {
         this.newSelection = newSelection;
     }
 

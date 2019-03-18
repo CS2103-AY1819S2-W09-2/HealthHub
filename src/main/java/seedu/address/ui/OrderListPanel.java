@@ -14,7 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.BackToHomeEvent;
 import seedu.address.commons.events.ui.HealthWorkerPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.JumpToRequestListRequestEvent;
-import seedu.address.commons.events.ui.OrderPanelSelectionChangedEvent;
+import seedu.address.commons.events.ui.RequestPanelSelectionChangedEvent;
 import seedu.address.model.order.Order;
 
 /**
@@ -45,7 +45,7 @@ public class OrderListPanel extends UiPart<Region> {
             .addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
                     logger.fine("Selection in order list panel changed to : '" + newValue + "'");
-                    raise(new OrderPanelSelectionChangedEvent(newValue));
+                    raise(new RequestPanelSelectionChangedEvent(newValue));
                 }
             });
     }

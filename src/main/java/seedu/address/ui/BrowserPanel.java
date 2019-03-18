@@ -12,7 +12,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.web.WebView;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.events.ui.OrderPanelSelectionChangedEvent;
+import seedu.address.commons.events.ui.RequestPanelSelectionChangedEvent;
 import seedu.address.model.order.Order;
 
 /**
@@ -65,7 +65,7 @@ public class BrowserPanel extends UiPart<Region> {
     }
 
     @Subscribe
-    private void handleOrderPanelSelectionChangedEvent(OrderPanelSelectionChangedEvent event) {
+    private void handleOrderPanelSelectionChangedEvent(RequestPanelSelectionChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         loadOrderPage(event.getNewSelection());
     }
