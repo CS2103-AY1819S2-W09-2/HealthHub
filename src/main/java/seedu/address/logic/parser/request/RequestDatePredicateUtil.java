@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.order;
+package seedu.address.logic.parser.request;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import seedu.address.model.order.OrderDate;
 /**
  * Parses of date keywords and returns a valid date list
  */
-public class OrderDatePredicateUtil {
+public class RequestDatePredicateUtil {
     private static final int VALID_DATE_LIST_SIZE = 2;
 
     private static final SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");

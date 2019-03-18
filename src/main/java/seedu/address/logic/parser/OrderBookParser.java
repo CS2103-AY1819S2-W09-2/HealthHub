@@ -19,7 +19,7 @@ import seedu.address.logic.commands.healthworker.HealthWorkerCommand;
 import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.logic.parser.healthworker.HealthWorkerCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.order.OrderCommandParser;
+import seedu.address.logic.parser.request.RequestCommandParser;
 
 /**
  * Parses user input.
@@ -49,7 +49,7 @@ public class OrderBookParser {
         switch (commandWord) {
 
         case RequestCommand.COMMAND_WORD:
-            return new OrderCommandParser().parse(arguments);
+            return new RequestCommandParser().parse(arguments);
 
         case HealthWorkerCommand.COMMAND_WORD:
             return new HealthWorkerCommandParser().parse(arguments);

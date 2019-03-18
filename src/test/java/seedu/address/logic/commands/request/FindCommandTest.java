@@ -32,7 +32,7 @@ import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.order.OrderPredicateUtil;
+import seedu.address.logic.parser.request.RequestPredicateUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -190,7 +190,7 @@ public class FindCommandTest {
             throw new ParseException(String.format(MESSAGE_INVALID_ORDER_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        return new OrderPredicateUtil().parsePredicate(argMultimap);
+        return new RequestPredicateUtil().parsePredicate(argMultimap);
     }
 
     private ArgumentMultimap parseStringInput(String input) {

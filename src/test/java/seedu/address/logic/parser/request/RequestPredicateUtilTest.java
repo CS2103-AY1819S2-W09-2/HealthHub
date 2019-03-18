@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.order;
+package seedu.address.logic.parser.request;
 
 import static org.junit.Assert.assertEquals;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -18,14 +18,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderNameContainsKeywordPredicate;
 
-public class OrderPredicateUtilTest {
+public class RequestPredicateUtilTest {
     @Test
     public void test_emptyTags_throwsParseException() throws ParseException {
-        assertParseFailure(" n/", OrderPredicateUtil.MESSAGE_EMPTY_KEYWORD);
-        assertParseFailure(" p/", OrderPredicateUtil.MESSAGE_EMPTY_KEYWORD);
-        assertParseFailure(" a/", OrderPredicateUtil.MESSAGE_EMPTY_KEYWORD);
-        assertParseFailure(" dt/", OrderPredicateUtil.MESSAGE_EMPTY_KEYWORD);
-        assertParseFailure(" f/", OrderPredicateUtil.MESSAGE_EMPTY_KEYWORD);
+        assertParseFailure(" n/", RequestPredicateUtil.MESSAGE_EMPTY_KEYWORD);
+        assertParseFailure(" p/", RequestPredicateUtil.MESSAGE_EMPTY_KEYWORD);
+        assertParseFailure(" a/", RequestPredicateUtil.MESSAGE_EMPTY_KEYWORD);
+        assertParseFailure(" dt/", RequestPredicateUtil.MESSAGE_EMPTY_KEYWORD);
+        assertParseFailure(" f/", RequestPredicateUtil.MESSAGE_EMPTY_KEYWORD);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class OrderPredicateUtilTest {
         Predicate<Order> expectedPredicate = new OrderNameContainsKeywordPredicate(name);
 
         ArgumentMultimap argMultimap = tokenizeInput(" n/alex");
-        Predicate<Order> predicate = new OrderPredicateUtil().parsePredicate(argMultimap);
+        Predicate<Order> predicate = new RequestPredicateUtil().parsePredicate(argMultimap);
 
         assertEquals(predicate, expectedPredicate);
     }
@@ -51,7 +51,7 @@ public class OrderPredicateUtilTest {
     private void assertParseFailure(String userInput, String expectedMessage) {
         try {
             ArgumentMultimap emptyField = tokenizeInput(userInput);
-            Predicate<Order> predicate = new OrderPredicateUtil().parsePredicate(emptyField);
+            Predicate<Order> predicate = new RequestPredicateUtil().parsePredicate(emptyField);
             throw new AssertionError("The expected ParseException was not thrown.");
         } catch (ParseException pe) {
             assertEquals(String.format(expectedMessage, userInput.trim()), pe.getMessage());

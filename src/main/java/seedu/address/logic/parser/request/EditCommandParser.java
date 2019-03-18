@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.order;
+package seedu.address.logic.parser.request;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;

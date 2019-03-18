@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.order;
+package seedu.address.logic.parser.request;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import seedu.address.model.order.OrderStatus;
 /**
  * Parses of status keywords and returns a valid status list
  */
-public class OrderStatusPredicateUtil {
+public class RequestStatusPredicateUtil {
 
     /**
      * Parses a list of {@code stringStatus} and returns a list of OrderStatus object

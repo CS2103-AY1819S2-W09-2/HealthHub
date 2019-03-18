@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.order;
+package seedu.address.logic.parser.request;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +12,7 @@ import org.junit.rules.ExpectedException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.OrderStatus;
 
-public class OrderStatusPredicateUtilTest {
+public class RequestStatusPredicateUtilTest {
     @Rule
     public final ExpectedException thrown = ExpectedException.none();
 
@@ -21,7 +21,7 @@ public class OrderStatusPredicateUtilTest {
         List<OrderStatus> expectedOrderStatuses = Arrays.asList(new OrderStatus("PENDING"), new OrderStatus("ONGOING"));
 
         List<String> stringStatuses = Arrays.asList("PENDING", "ONGOING");
-        List<OrderStatus> statuses = new OrderStatusPredicateUtil().parseOrderStatusKeywords(stringStatuses);
+        List<OrderStatus> statuses = new RequestStatusPredicateUtil().parseOrderStatusKeywords(stringStatuses);
 
         assertEquals(expectedOrderStatuses, statuses);
     }
@@ -31,7 +31,7 @@ public class OrderStatusPredicateUtilTest {
         List<OrderStatus> expectedOrderStatuses = Arrays.asList(new OrderStatus("PENDING"));
 
         List<String> stringStatuses = Arrays.asList("pENdiNG");
-        List<OrderStatus> statuses = new OrderStatusPredicateUtil().parseOrderStatusKeywords(stringStatuses);
+        List<OrderStatus> statuses = new RequestStatusPredicateUtil().parseOrderStatusKeywords(stringStatuses);
 
         assertEquals(expectedOrderStatuses, statuses);
     }
@@ -41,6 +41,6 @@ public class OrderStatusPredicateUtilTest {
         thrown.expect(ParseException.class);
 
         List<String> stringStatuses = Arrays.asList("invalidStatus");
-        List<OrderStatus> statuses = new OrderStatusPredicateUtil().parseOrderStatusKeywords(stringStatuses);
+        List<OrderStatus> statuses = new RequestStatusPredicateUtil().parseOrderStatusKeywords(stringStatuses);
     }
 }

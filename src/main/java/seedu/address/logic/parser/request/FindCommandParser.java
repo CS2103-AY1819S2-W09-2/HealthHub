@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.order;
+package seedu.address.logic.parser.request;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ORDER_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -44,7 +44,7 @@ public class FindCommandParser implements Parser<RequestCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_ORDER_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        Predicate<Order> suppliedPredicates = new OrderPredicateUtil().parsePredicate(argMultimap);
+        Predicate<Order> suppliedPredicates = new RequestPredicateUtil().parsePredicate(argMultimap);
         return new FindCommand(suppliedPredicates);
 
     }

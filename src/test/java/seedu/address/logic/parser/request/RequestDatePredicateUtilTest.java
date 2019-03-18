@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.order;
+package seedu.address.logic.parser.request;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -13,7 +13,7 @@ import org.junit.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.OrderDate;
 
-public class OrderDatePredicateUtilTest {
+public class RequestDatePredicateUtilTest {
     @Test
     public void test_invalidDateGiven_throwsParseException() throws ParseException {
         List<String> invalidDates = Collections.singletonList("first");
@@ -29,7 +29,7 @@ public class OrderDatePredicateUtilTest {
     @Test
     public void test_unsortedList_returnSortedList() throws ParseException {
         List<String> stringDates = Arrays.asList("02-10-2018 10:00:00", "01-12-2018 12:00:00", "03-10-2018 10:00:00");
-        List<Date> dates = new OrderDatePredicateUtil().parseDateKeywords(stringDates);
+        List<Date> dates = new RequestDatePredicateUtil().parseDateKeywords(stringDates);
 
         assertTrue(is_dates_sorted(dates));
     }
@@ -37,7 +37,7 @@ public class OrderDatePredicateUtilTest {
     @Test
     public void test_moreThanTwoDatesSupplied_returnListSizeOfTwo() throws ParseException {
         List<String> stringDates = Arrays.asList("01-10-2018 10:00:00", "02-12-2018 12:00:00", "03-10-2018 10:00:00");
-        List<Date> dates = new OrderDatePredicateUtil().parseDateKeywords(stringDates);
+        List<Date> dates = new RequestDatePredicateUtil().parseDateKeywords(stringDates);
 
         assertTrue(dates.size() == 2);
     }
@@ -61,7 +61,7 @@ public class OrderDatePredicateUtilTest {
      */
     private void assertParseFailure(List<String> userInput, String expectedMessage) {
         try {
-            List<Date> dates = new OrderDatePredicateUtil().parseDateKeywords(userInput);
+            List<Date> dates = new RequestDatePredicateUtil().parseDateKeywords(userInput);
             throw new AssertionError("The expected ParseException was not thrown.");
         } catch (ParseException pe) {
             assertEquals(expectedMessage, pe.getMessage());

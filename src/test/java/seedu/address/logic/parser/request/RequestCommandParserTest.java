@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.order;
+package seedu.address.logic.parser.request;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -35,7 +35,7 @@ public class RequestCommandParserTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private final OrderCommandParser parser = new OrderCommandParser();
+    private final RequestCommandParser parser = new RequestCommandParser();
 
     @Test
     public void parse_add() throws Exception {

@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.order;
+package seedu.address.logic.parser.request;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

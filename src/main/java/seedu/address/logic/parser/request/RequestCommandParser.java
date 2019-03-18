@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.order;
+package seedu.address.logic.parser.request;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ORDER_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -22,7 +22,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses request input.
  */
-public class OrderCommandParser implements Parser<RequestCommand> {
+public class RequestCommandParser implements Parser<RequestCommand> {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**

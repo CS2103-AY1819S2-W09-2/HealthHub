@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.order;
+package seedu.address.logic.parser.request;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
@@ -24,7 +24,7 @@ import seedu.address.model.order.OrderStatusContainsKeywordPredicate;
 /**
  * Util to parse request's predicate
  */
-public class OrderPredicateUtil {
+public class RequestPredicateUtil {
     public static final String MESSAGE_EMPTY_KEYWORD = "%1$s cannot be empty";
 
     private static final String STRING_PREFIX_NAME = "n/";
@@ -103,7 +103,7 @@ public class OrderPredicateUtil {
             break;
 
         case STRING_PREFIX_DATE:
-            List<Date> date = new OrderDatePredicateUtil().parseDateKeywords(keywords);
+            List<Date> date = new RequestDatePredicateUtil().parseDateKeywords(keywords);
             OrderDatePredicate datePredicate = new OrderDatePredicate(date);
 
             setToPredicate(datePredicate);
@@ -122,7 +122,7 @@ public class OrderPredicateUtil {
             String status = getLastValueFromList(keywords);
             String[] statusKeywords = trimAndSplitStringByWhiteSpaces(status);
             List<OrderStatus> orderStatus =
-                    new OrderStatusPredicateUtil().parseOrderStatusKeywords(Arrays.asList(statusKeywords));
+                    new RequestStatusPredicateUtil().parseOrderStatusKeywords(Arrays.asList(statusKeywords));
             OrderStatusContainsKeywordPredicate statusPredicate = new OrderStatusContainsKeywordPredicate(orderStatus);
 
             setToPredicate(statusPredicate);
