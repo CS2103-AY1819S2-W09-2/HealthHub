@@ -6,12 +6,12 @@ import seedu.address.model.deliveryman.Deliveryman;
 /**
  * Represents a selection change in the Person List Panel
  */
-public class DeliveryManPanelSelectionChangedEvent extends BaseEvent {
+public class HealthWorkerPanelSelectionChangedEvent extends BaseEvent {
 
 
     private final Deliveryman newSelection;
 
-    public DeliveryManPanelSelectionChangedEvent(Deliveryman newSelection) {
+    public HealthWorkerPanelSelectionChangedEvent(Deliveryman newSelection) {
         this.newSelection = newSelection;
     }
 

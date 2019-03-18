@@ -16,7 +16,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.BackToHomeEvent;
-import seedu.address.commons.events.ui.DeliveryManPanelSelectionChangedEvent;
+import seedu.address.commons.events.ui.HealthWorkerPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.OrderPanelSelectionChangedEvent;
 import seedu.address.model.order.Food;
 import seedu.address.model.order.Order;
@@ -331,7 +331,7 @@ public class Display extends UiPart<Region> {
     }
 
     @Subscribe
-    public void handleDeliveryPanelSelectionChangedEvent(DeliveryManPanelSelectionChangedEvent event) {
+    public void handleDeliveryPanelSelectionChangedEvent(HealthWorkerPanelSelectionChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         displayPanelPlaceholder.getChildren().setAll(new DeliverymanDisplayCard(event.getNewSelection()).getRoot());
     }

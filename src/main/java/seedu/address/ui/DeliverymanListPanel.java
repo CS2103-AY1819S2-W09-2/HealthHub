@@ -12,7 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.BackToHomeEvent;
-import seedu.address.commons.events.ui.DeliveryManPanelSelectionChangedEvent;
+import seedu.address.commons.events.ui.HealthWorkerPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.JumpToDeliveryManListRequestEvent;
 import seedu.address.commons.events.ui.OrderPanelSelectionChangedEvent;
 import seedu.address.model.deliveryman.Deliveryman;
@@ -45,7 +45,7 @@ public class DeliverymanListPanel extends UiPart<Region> {
                 .addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
                         logger.fine("Selection in delivery man list panel changed to : '" + newValue + "'");
-                        raise(new DeliveryManPanelSelectionChangedEvent(newValue));
+                        raise(new HealthWorkerPanelSelectionChangedEvent(newValue));
                     }
                 });
     }
