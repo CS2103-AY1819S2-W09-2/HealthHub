@@ -83,10 +83,10 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        OrderBook orderBook = new OrderBookBuilder().withOrder(ALICE).withOrder(BENSON).build();
-        OrderBook differentOrderBook = new OrderBook();
+        RequestBook orderBook = new OrderBookBuilder().withOrder(ALICE).withOrder(BENSON).build();
+        RequestBook differentOrderBook = new RequestBook();
         HealthworkerList healthworkerList = new DeliverymenListBuilder().withDeliveryman(RAJUL).withDeliveryman(CHIKAO)
-                .build();
+            .build();
         HealthworkerList differentHealthworkerList = new HealthworkerList();
         UsersList usersList = new UsersListBuilder().withUser(ALICE_MANAGER).withUser(CARL_MANAGER).build();
         UsersList differentUsersList = new UsersList();
@@ -106,7 +106,7 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different OrderBook -> returns false
+        // different RequestBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentOrderBook, differentUsersList,
             differentHealthworkerList, userPrefs)));
         assertFalse(modelManager.equals(new ModelManager(differentOrderBook, usersList,

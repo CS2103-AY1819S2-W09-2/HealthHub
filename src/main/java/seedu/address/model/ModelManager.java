@@ -30,7 +30,7 @@ import seedu.address.model.user.UserSession;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final VersionedOrderBook versionedOrderBook;
+    private final VersionedRequestBook versionedOrderBook;
     private final VersionedUsersList versionedUsersList;
     private final FilteredList<Request> filteredRequests;
     private final FilteredList<User> filteredUsers;
@@ -43,7 +43,7 @@ public class ModelManager extends ComponentManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook, usersList and userPrefs.
      */
-    public ModelManager(ReadOnlyOrderBook orderBook, ReadOnlyUsersList usersList,
+    public ModelManager(ReadOnlyRequestBook orderBook, ReadOnlyUsersList usersList,
                         HealthworkerList healthworkerList, UserPrefs userPrefs) {
         super();
         requireAllNonNull(orderBook, userPrefs, healthworkerList);
@@ -53,10 +53,10 @@ public class ModelManager extends ComponentManager implements Model {
             + " and deliverymen list " + healthworkerList
             + " and user prefs " + userPrefs);
 
-        versionedOrderBook = new VersionedOrderBook(orderBook);
+        versionedOrderBook = new VersionedRequestBook(orderBook);
         versionedUsersList = new VersionedUsersList(usersList);
         versionedHealthworkerList = new VersionedHealthworkerList(healthworkerList);
-        filteredRequests = new FilteredList<>(versionedOrderBook.getOrderList());
+        filteredRequests = new FilteredList<>(versionedOrderBook.getRequestList());
         filteredUsers = new FilteredList<>(versionedUsersList.getUserList());
         filteredDeliverymen = new FilteredList<>(versionedHealthworkerList.getDeliverymenList());
 
@@ -72,11 +72,11 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     public ModelManager() {
-        this(new OrderBook(), new UsersList(), new HealthworkerList(), new UserPrefs());
+        this(new RequestBook(), new UsersList(), new HealthworkerList(), new UserPrefs());
     }
 
     @Override
-    public void resetData(ReadOnlyOrderBook newData) {
+    public void resetData(ReadOnlyRequestBook newData) {
         versionedOrderBook.resetData(newData);
         indicateAppChanged();
     }
@@ -88,7 +88,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public ReadOnlyOrderBook getOrderBook() {
+    public ReadOnlyRequestBook getOrderBook() {
         return versionedOrderBook;
     }
 
@@ -128,18 +128,18 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public boolean hasOrder(Request request) {
         requireNonNull(request);
-        return versionedOrderBook.hasOrder(request);
+        return versionedOrderBook.hasRequest(request);
     }
 
     @Override
     public void deleteOrder(Request target) {
-        versionedOrderBook.removeOrder(target);
+        versionedOrderBook.removeRequest(target);
         indicateAppChanged();
     }
 
     @Override
     public void addOrder(Request request) {
-        versionedOrderBook.addOrder(request);
+        versionedOrderBook.addRequest(request);
         updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         indicateAppChanged();
     }
@@ -148,7 +148,7 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateOrder(Request target, Request editedRequest) {
         requireAllNonNull(target, editedRequest);
 
-        versionedOrderBook.updateOrder(target, editedRequest);
+        versionedOrderBook.updateRequest(target, editedRequest);
         indicateAppChanged();
     }
 

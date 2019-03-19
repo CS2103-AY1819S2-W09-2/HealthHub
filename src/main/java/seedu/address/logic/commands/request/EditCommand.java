@@ -25,7 +25,7 @@ import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.order.Food;
+import seedu.address.model.order.Condition;
 import seedu.address.model.order.Request;
 import seedu.address.model.order.RequestDate;
 import seedu.address.model.order.RequestStatus;
@@ -84,11 +84,11 @@ public class EditCommand extends RequestCommand {
         Phone updatedPhone = editOrderDescriptor.getPhone().orElse(requestToEdit.getPhone());
         Address updatedAddress = editOrderDescriptor.getAddress().orElse(requestToEdit.getAddress());
         RequestDate updatedDate = editOrderDescriptor.getDate().orElse(requestToEdit.getDate());
-        Set<Food> updatedFood = editOrderDescriptor.getFood().orElse(requestToEdit.getFood());
+        Set<Condition> updatedCondition = editOrderDescriptor.getCondition().orElse(requestToEdit.getCondition());
         RequestStatus requestStatus = requestToEdit.getRequestStatus();
         Healthworker healthworker = requestToEdit.getHealthworker();
 
-        return new Request(updatedName, updatedPhone, updatedAddress, updatedDate, requestStatus, updatedFood,
+        return new Request(updatedName, updatedPhone, updatedAddress, updatedDate, requestStatus, updatedCondition,
             healthworker);
     }
 
@@ -152,28 +152,28 @@ public class EditCommand extends RequestCommand {
         private Phone phone;
         private Address address;
         private RequestDate requestDate;
-        private Set<Food> food;
+        private Set<Condition> condition;
 
         public EditOrderDescriptor() {
         }
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code food} is used internally.
+         * A defensive copy of {@code condition} is used internally.
          */
         public EditOrderDescriptor(EditOrderDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setAddress(toCopy.address);
             setDate(toCopy.requestDate);
-            setFood(toCopy.food);
+            setCondition(toCopy.condition);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, address, requestDate, food);
+            return CollectionUtil.isAnyNonNull(name, phone, address, requestDate, condition);
         }
 
         public Optional<Name> getName() {
@@ -209,20 +209,20 @@ public class EditCommand extends RequestCommand {
         }
 
         /**
-         * Returns an unmodifiable food set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable condition set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Food>> getFood() {
-            return (food != null) ? Optional.of(Collections.unmodifiableSet(food)) : Optional.empty();
+        public Optional<Set<Condition>> getCondition() {
+            return (condition != null) ? Optional.of(Collections.unmodifiableSet(condition)) : Optional.empty();
         }
 
         /**
-         * Sets {@code food} to this object's {@code food}.
-         * A defensive copy of {@code food} is used internally.
+         * Sets {@code condition} to this object's {@code condition}.
+         * A defensive copy of {@code condition} is used internally.
          */
-        public void setFood(Set<Food> food) {
-            this.food = (food != null) ? new HashSet<>(food) : null;
+        public void setCondition(Set<Condition> condition) {
+            this.condition = (condition != null) ? new HashSet<>(condition) : null;
         }
 
         @Override
@@ -244,7 +244,7 @@ public class EditCommand extends RequestCommand {
                 && getPhone().equals(e.getPhone())
                 && getAddress().equals(e.getAddress())
                 && getDate().equals(e.getDate())
-                && getFood().equals(e.getFood());
+                && getCondition().equals(e.getCondition());
         }
     }
 }

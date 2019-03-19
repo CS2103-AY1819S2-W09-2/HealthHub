@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.junit.Rule;
@@ -15,7 +16,7 @@ import com.google.common.collect.Streams;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.XmlUtil;
-import seedu.address.model.OrderBook;
+import seedu.address.model.RequestBook;
 import seedu.address.testutil.TypicalOrders;
 
 public class XmlSerializableRequestBookTest {
@@ -30,29 +31,29 @@ public class XmlSerializableRequestBookTest {
 
     @Test
     public void toModelType_typicalOrdersFile_success() throws Exception {
-        XmlSerializableOrderBook dataFromFile = XmlUtil.getDataFromFile(TYPICAL_ORDERS_FILE,
-            XmlSerializableOrderBookWithRootElement.class);
-        OrderBook orderBookFromFile = dataFromFile.toModelType();
-        OrderBook typicalOrdersOrderBook = TypicalOrders.getTypicalOrderBook();
+        XmlSerializableRequestBook dataFromFile = XmlUtil.getDataFromFile(TYPICAL_ORDERS_FILE,
+            XmlSerializableRequestBookWithRootElement.class);
+        RequestBook orderBookFromFile = dataFromFile.toModelType();
+        RequestBook typicalOrdersOrderBook = TypicalOrders.getTypicalOrderBook();
         assertEquals(orderBookFromFile, typicalOrdersOrderBook);
-        assertTrue(Streams.zip(orderBookFromFile.getOrderList().stream(),
-            typicalOrdersOrderBook.getOrderList().stream(), (a, b) -> a.hasSameTag(b)).allMatch(x -> x));
+        assertTrue(Streams.zip(orderBookFromFile.getRequestList().stream(),
+            typicalOrdersOrderBook.getRequestList().stream(), (a, b) -> a.hasSameTag(b)).allMatch(x -> x));
     }
 
     @Test
     public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        XmlSerializableOrderBook dataFromFile = XmlUtil.getDataFromFile(INVALID_ORDER_FILE,
-            XmlSerializableOrderBookWithRootElement.class);
+        XmlSerializableRequestBook dataFromFile = XmlUtil.getDataFromFile(INVALID_ORDER_FILE,
+            XmlSerializableRequestBookWithRootElement.class);
         thrown.expect(IllegalValueException.class);
         dataFromFile.toModelType();
     }
 
     @Test
     public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-        XmlSerializableOrderBook dataFromFile = XmlUtil.getDataFromFile(DUPLICATE_ORDER_FILE,
-            XmlSerializableOrderBookWithRootElement.class);
+        XmlSerializableRequestBook dataFromFile = XmlUtil.getDataFromFile(DUPLICATE_ORDER_FILE,
+            XmlSerializableRequestBookWithRootElement.class);
         thrown.expect(IllegalValueException.class);
-        thrown.expectMessage(XmlSerializableOrderBook.MESSAGE_DUPLICATE_ORDER);
+        thrown.expectMessage(XmlSerializableRequestBook.MESSAGE_DUPLICATE_ORDER);
         dataFromFile.toModelType();
     }
 
@@ -61,6 +62,6 @@ public class XmlSerializableRequestBookTest {
      * {@code XmlAdaptedDeliveryman} objects.
      */
     @XmlRootElement(name = "orderbook")
-    private static class XmlSerializableOrderBookWithRootElement extends XmlSerializableOrderBook {
+    private static class XmlSerializableRequestBookWithRootElement extends XmlSerializableRequestBook {
     }
 }

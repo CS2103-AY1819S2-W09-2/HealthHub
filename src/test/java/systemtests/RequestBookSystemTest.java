@@ -34,7 +34,7 @@ import seedu.address.logic.commands.request.ListCommand;
 import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.logic.commands.request.SelectCommand;
 import seedu.address.model.Model;
-import seedu.address.model.OrderBook;
+import seedu.address.model.RequestBook;
 import seedu.address.model.UsersList;
 import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.testutil.TypicalDeliverymen;
@@ -43,16 +43,15 @@ import seedu.address.testutil.user.TypicalUsers;
 import seedu.address.ui.CommandBox;
 
 /**
- * A system test class for OrderBook, which provides access to handles of GUI components and helper methods
+ * A system test class for RequestBook, which provides access to handles of GUI components and helper methods
  * for test verification.
  */
 public abstract class RequestBookSystemTest {
-    @ClassRule
-    public static ClockRule clockRule = new ClockRule();
     private static final List<String> COMMAND_BOX_DEFAULT_STYLE = Arrays.asList("text-input", "text-field");
     private static final List<String> COMMAND_BOX_ERROR_STYLE =
         Arrays.asList("text-input", "text-field", CommandBox.ERROR_STYLE_CLASS);
-
+    @ClassRule
+    public static ClockRule clockRule = new ClockRule();
     protected TestApp testApp;
 
     private MainWindowHandle mainWindowHandle;
@@ -82,7 +81,7 @@ public abstract class RequestBookSystemTest {
     /**
      * Returns the orders data to be loaded into the file in {@link #getDataFileLocation()}.
      */
-    protected OrderBook getInitialOrdersData() {
+    protected RequestBook getInitialOrdersData() {
         return TypicalOrders.getTypicalOrderBook();
     }
 
@@ -162,7 +161,7 @@ public abstract class RequestBookSystemTest {
      */
     protected void showAllOrders() {
         executeCommand(RequestCommand.COMMAND_WORD + " " + ListCommand.COMMAND_WORD);
-        assertEquals(getModel().getOrderBook().getOrderList().size(), getModel().getFilteredOrderList().size());
+        assertEquals(getModel().getOrderBook().getRequestList().size(), getModel().getFilteredOrderList().size());
     }
 
     /**
@@ -170,7 +169,7 @@ public abstract class RequestBookSystemTest {
      */
     protected void showOrdersWithName(String keyword) {
         executeCommand(RequestCommand.COMMAND_WORD + " " + FindCommand.COMMAND_WORD + " " + keyword);
-        assertTrue(getModel().getFilteredOrderList().size() < getModel().getOrderBook().getOrderList().size());
+        assertTrue(getModel().getFilteredOrderList().size() < getModel().getOrderBook().getRequestList().size());
     }
 
     /**
@@ -186,7 +185,7 @@ public abstract class RequestBookSystemTest {
      */
     protected void deleteAllOrders() {
         executeCommand(RequestCommand.COMMAND_WORD + " " + ClearCommand.COMMAND_WORD);
-        assertEquals(0, getModel().getOrderBook().getOrderList().size());
+        assertEquals(0, getModel().getOrderBook().getRequestList().size());
     }
 
     /**
@@ -198,7 +197,7 @@ public abstract class RequestBookSystemTest {
                                                      Model expectedModel) {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
-        assertEquals(new OrderBook(expectedModel.getOrderBook()), testApp.readStorageOrderBook());
+        assertEquals(new RequestBook(expectedModel.getOrderBook()), testApp.readStorageOrderBook());
         //assertListMatching(getOrderListPanel(), expectedModel.getFilteredOrderList());
     }
 

@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import guitests.guihandles.OrderCardHandle;
+import guitests.guihandles.RequestCardHandle;
 import guitests.guihandles.OrderListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
 import seedu.address.model.order.Request;
@@ -17,19 +17,19 @@ public class GuiTestAssert {
     /**
      * Asserts that {@code actualCard} displays the same values as {@code expectedCard}.
      */
-    public static void assertCardEquals(OrderCardHandle expectedCard, OrderCardHandle actualCard) {
+    public static void assertCardEquals(RequestCardHandle expectedCard, RequestCardHandle actualCard) {
         assertEquals(expectedCard.getId(), actualCard.getId());
         assertEquals(expectedCard.getAddress(), actualCard.getAddress());
-        assertEquals(expectedCard.getFood(), actualCard.getFood());
+        assertEquals(expectedCard.getConditions(), actualCard.getConditions());
     }
 
     /**
      * Asserts that {@code actualCard} displays the details of {@code expectedPerson}.
      */
-    public static void assertCardDisplaysOrder(Request expectedRequest, OrderCardHandle actualCard) {
+    public static void assertCardDisplaysOrder(Request expectedRequest, RequestCardHandle actualCard) {
         assertEquals(expectedRequest.getAddress().value, actualCard.getAddress());
-        assertEquals(expectedRequest.getFood().stream().map(f -> f.foodName).collect(Collectors.toList()),
-                actualCard.getFood());
+        assertEquals(expectedRequest.getCondition().stream().map(f -> f.foodName).collect(Collectors.toList()),
+            actualCard.getConditions());
     }
 
     /**

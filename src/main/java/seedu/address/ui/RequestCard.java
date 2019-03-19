@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
-import seedu.address.model.order.Food;
+import seedu.address.model.order.Condition;
 import seedu.address.model.order.Request;
 
 /**
@@ -24,7 +24,7 @@ public class RequestCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on OrderBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on RequestBook level 4</a>
      */
 
     public final Request request;
@@ -34,7 +34,7 @@ public class RequestCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label foodList;
+    private Label conditionList;
     @FXML
     private Label requestDate;
     @FXML
@@ -47,8 +47,8 @@ public class RequestCard extends UiPart<Region> {
 
         address.setText(request.getAddress().value);
 
-        foodList.setText(String.join(", ",
-            request.getFood().stream().map(Food::toString).collect(Collectors.toSet())));
+        conditionList.setText(String.join(", ",
+            request.getCondition().stream().map(Condition::toString).collect(Collectors.toSet())));
 
         requestDate.setText(request.getDate().toString());
 

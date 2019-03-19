@@ -9,7 +9,7 @@ import org.testfx.api.FxToolkit;
 import guitests.guihandles.MainWindowHandle;
 import javafx.stage.Stage;
 import seedu.address.TestApp;
-import seedu.address.model.ReadOnlyOrderBook;
+import seedu.address.model.ReadOnlyRequestBook;
 import seedu.address.model.ReadOnlyUsersList;
 import seedu.address.model.deliveryman.HealthworkerList;
 
@@ -35,7 +35,7 @@ public class SystemTestSetupHelper {
     /**
      * Sets up a new {@code TestApp} and returns it.
      */
-    public TestApp setupApplication(Supplier<ReadOnlyOrderBook> orderBook, Supplier<HealthworkerList> deliverymenList,
+    public TestApp setupApplication(Supplier<ReadOnlyRequestBook> orderBook, Supplier<HealthworkerList> deliverymenList,
                                     Supplier<ReadOnlyUsersList> usersList, Path saveFileLocation,
                                     Path usersFileLocation) {
         try {

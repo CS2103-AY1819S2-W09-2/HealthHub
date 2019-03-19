@@ -21,7 +21,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.request.EditCommand;
 import seedu.address.model.Model;
-import seedu.address.model.OrderBook;
+import seedu.address.model.RequestBook;
 import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.model.deliveryman.HealthworkerNameContainsKeywordsPredicate;
@@ -110,11 +110,11 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditOrderDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withDate(VALID_DATE_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withFood(VALID_FOOD_BURGER).build();
+            .withPhone(VALID_PHONE_AMY).withDate(VALID_DATE_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withFood(VALID_FOOD_BURGER).build();
         DESC_BOB = new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withDate(VALID_DATE_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withFood(VALID_FOOD_RICE, VALID_FOOD_BURGER).build();
+            .withPhone(VALID_PHONE_BOB).withDate(VALID_DATE_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withFood(VALID_FOOD_RICE, VALID_FOOD_BURGER).build();
     }
 
     /**
@@ -147,7 +147,7 @@ public class CommandTestUtil {
                                             String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        OrderBook expectedOrderBook = new OrderBook(actualModel.getOrderBook());
+        RequestBook expectedOrderBook = new RequestBook(actualModel.getOrderBook());
         List<Request> expectedFilteredList = new ArrayList<>(actualModel.getFilteredOrderList());
         HealthworkerList expectedHealthworkerList = new HealthworkerList(actualModel.getDeliverymenList());
         List<Healthworker> expectedFilteredDeliverymenList = new ArrayList<>(actualModel.getFilteredDeliverymenList());
@@ -194,6 +194,7 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredDeliverymenList().size());
     }
+
     /**
      * Deletes the first common in {@code model}'s filtered list from {@code model}'s address book.
      */

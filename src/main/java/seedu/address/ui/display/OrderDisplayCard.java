@@ -35,7 +35,7 @@ public class OrderDisplayCard extends UiPart<Region> {
 
         nameL.setText("Name: " + request.getName().fullName);
         dateL.setText("Date: " + request.getDate().toString());
-        foodL.setText("Food: " + request.getFood().toString());
+        foodL.setText("Condition: " + request.getCondition().toString());
         phoneL.setText("Phone: " + request.getPhone().toString());
         addressL.setText("Address: " + request.getAddress().toString());
         deliverymanL.setText("Healthworker: " + getFullNameOrNull(request.getHealthworker()));

@@ -14,13 +14,14 @@ import com.google.common.collect.Streams;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.XmlUtil;
-import seedu.address.model.OrderBook;
+import seedu.address.model.RequestBook;
 import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.testutil.TypicalDeliverymen;
 import seedu.address.testutil.TypicalOrders;
 
-public class XmlFoodZoomTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "XmlFoodZoomTest");
+public class XmlConditionZoomTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+        "XmlHealthHubTest");
     private static final Path TYPICAL_FOODZOOM_FILE = TEST_DATA_FOLDER.resolve("typicalFoodZoom.xml");
     private static final Path INVALID_FOODZOOM_FILE = TEST_DATA_FOLDER.resolve("invalidFoodZoom.xml");
 
@@ -31,13 +32,13 @@ public class XmlFoodZoomTest {
     public void getOrdersAndDeliverymen_typicalFoodZoom_success() throws Exception {
         XmlFoodZoom dataFromFile = XmlUtil.getDataFromFile(TYPICAL_FOODZOOM_FILE,
             XmlFoodZoom.class);
-        OrderBook orderBookFromFile = dataFromFile.getOrderBook();
-        OrderBook typicalOrdersOrderBook = TypicalOrders.getTypicalOrderBook();
+        RequestBook orderBookFromFile = dataFromFile.getOrderBook();
+        RequestBook typicalOrdersOrderBook = TypicalOrders.getTypicalOrderBook();
         HealthworkerList healthworkerListFromFile = dataFromFile.getDeliverymenList();
         HealthworkerList typicalDeliverymenHealthworkerList = TypicalDeliverymen.getTypicalDeliverymenList();
         assertEquals(orderBookFromFile, typicalOrdersOrderBook);
-        assertTrue(Streams.zip(orderBookFromFile.getOrderList().stream(),
-            typicalOrdersOrderBook.getOrderList().stream(), (a, b) -> a.hasSameTag(b)).allMatch(x -> x));
+        assertTrue(Streams.zip(orderBookFromFile.getRequestList().stream(),
+            typicalOrdersOrderBook.getRequestList().stream(), (a, b) -> a.hasSameTag(b)).allMatch(x -> x));
         assertEquals(healthworkerListFromFile, typicalDeliverymenHealthworkerList);
         assertTrue(Streams.zip(healthworkerListFromFile.getDeliverymenList().stream(),
             typicalDeliverymenHealthworkerList.getDeliverymenList().stream(), (a, b) -> a.hasSameTag(b))

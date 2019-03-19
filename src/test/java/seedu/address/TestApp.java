@@ -13,8 +13,8 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.XmlUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.OrderBook;
-import seedu.address.model.ReadOnlyOrderBook;
+import seedu.address.model.RequestBook;
+import seedu.address.model.ReadOnlyRequestBook;
 import seedu.address.model.ReadOnlyUsersList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.deliveryman.HealthworkerList;
@@ -35,8 +35,8 @@ public class TestApp extends MainApp {
     public static final String APP_TITLE = "Test App";
 
     protected static final Path DEFAULT_PREF_FILE_LOCATION_FOR_TESTING =
-            TestUtil.getFilePathInSandboxFolder("pref_testing.json");
-    protected Supplier<ReadOnlyOrderBook> initialOrdersDataSupplier = () -> null;
+        TestUtil.getFilePathInSandboxFolder("pref_testing.json");
+    protected Supplier<ReadOnlyRequestBook> initialOrdersDataSupplier = () -> null;
     protected Supplier<HealthworkerList> initialDeliverymenDataSupplier = () -> null;
     protected Supplier<ReadOnlyUsersList> initialUsersListSupplier = () -> null;
     protected Path saveFileLocation = SAVE_LOCATION_FOR_TESTING;
@@ -45,7 +45,7 @@ public class TestApp extends MainApp {
     public TestApp() {
     }
 
-    public TestApp(Supplier<ReadOnlyOrderBook> initialOrdersDataSupplier,
+    public TestApp(Supplier<ReadOnlyRequestBook> initialOrdersDataSupplier,
                    Supplier<HealthworkerList> initialDeliverymenDataSupplier,
                    Supplier<ReadOnlyUsersList> initialUsersListSupplier,
                    Path saveFileLocation, Path usersSaveFileLocation) {
@@ -59,12 +59,12 @@ public class TestApp extends MainApp {
         // If some initial local data for both orders and deliverymen has been provided, write those to the file
         if (initialOrdersDataSupplier.get() != null && initialDeliverymenDataSupplier.get() != null) {
             createDataFileWithData(new XmlFoodZoom(this.initialOrdersDataSupplier.get(),
-                    this.initialDeliverymenDataSupplier.get()), this.saveFileLocation);
+                this.initialDeliverymenDataSupplier.get()), this.saveFileLocation);
         }
 
         if (initialUsersListSupplier.get() != null) {
             createDataFileWithData(new XmlSerializableUsersList(this.initialUsersListSupplier.get()),
-                    this.usersSaveFileLocation);
+                this.usersSaveFileLocation);
         }
     }
 
@@ -94,11 +94,11 @@ public class TestApp extends MainApp {
     /**
      * Returns a defensive copy of the request book data stored inside the storage file.
      */
-    public OrderBook readStorageOrderBook() {
+    public RequestBook readStorageOrderBook() {
         try {
-            return new OrderBook(storage.readOrderBook().get());
+            return new RequestBook(storage.readOrderBook().get());
         } catch (DataConversionException dce) {
-            throw new AssertionError("Data is not in the OrderBook format.", dce);
+            throw new AssertionError("Data is not in the RequestBook format.", dce);
         } catch (IOException ioe) {
             throw new AssertionError("Storage file cannot be found.", ioe);
         }
@@ -116,7 +116,7 @@ public class TestApp extends MainApp {
      */
     public Model getModel() {
         Model copy = new ModelManager(model.getOrderBook(), model.getUsersList(),
-                model.getDeliverymenList(), new UserPrefs());
+            model.getDeliverymenList(), new UserPrefs());
         ModelHelper.setFilteredList(copy, model.getFilteredOrderList());
         return copy;
     }

@@ -18,8 +18,8 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.OrderBook;
-import seedu.address.model.ReadOnlyOrderBook;
+import seedu.address.model.RequestBook;
+import seedu.address.model.ReadOnlyRequestBook;
 import seedu.address.model.ReadOnlyUsersList;
 import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.deliveryman.HealthworkerList;
@@ -104,7 +104,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void resetData(ReadOnlyOrderBook newData) {
+        public void resetData(ReadOnlyRequestBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -114,7 +114,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyOrderBook getOrderBook() {
+        public ReadOnlyRequestBook getOrderBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -322,8 +322,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyOrderBook getOrderBook() {
-            return new OrderBook();
+        public ReadOnlyRequestBook getOrderBook() {
+            return new RequestBook();
         }
     }
 

@@ -13,9 +13,9 @@ import seedu.address.model.order.UniqueRequestList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class OrderBook implements ReadOnlyOrderBook {
+public class RequestBook implements ReadOnlyRequestBook {
 
-    private final UniqueRequestList orders;
+    private final UniqueRequestList requests;
 
     /*
      * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication
@@ -23,18 +23,17 @@ public class OrderBook implements ReadOnlyOrderBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
-        orders = new UniqueRequestList();
+     */ {
+        requests = new UniqueRequestList();
     }
 
-    public OrderBook() {
+    public RequestBook() {
     }
 
     /**
-     * Creates an OrderBook using the Orders in the {@code toBeCopied}
+     * Creates an RequestBook using the Orders in the {@code toBeCopied}
      */
-    public OrderBook(ReadOnlyOrderBook toBeCopied) {
+    public RequestBook(ReadOnlyRequestBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -45,17 +44,17 @@ public class OrderBook implements ReadOnlyOrderBook {
      * Replaces the contents of the request list with {@code requests}.
      * {@code requests} must not contain duplicate requests.
      */
-    public void setOrders(List<Request> requests) {
-        this.orders.setOrder(requests);
+    public void setRequests(List<Request> requests) {
+        this.requests.setRequest(requests);
     }
 
     /**
-     * Resets the existing data of this {@code OrderBook} with {@code newData}.
+     * Resets the existing data of this {@code RequestBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyOrderBook newData) {
+    public void resetData(ReadOnlyRequestBook newData) {
         requireNonNull(newData);
 
-        setOrders(newData.getOrderList());
+        setRequests(newData.getRequestList());
     }
 
     //// common-level operations
@@ -63,20 +62,20 @@ public class OrderBook implements ReadOnlyOrderBook {
     /**
      * Returns true if an request with the same identity as {@code request} exists in the request book.
      */
-    public boolean hasOrder(Request person) {
-        requireNonNull(person);
-        return orders.contains(person);
+    public boolean hasRequest(Request request) {
+        requireNonNull(request);
+        return requests.contains(request);
     }
 
     /**
      * Adds an request to the request book.
      * The request must not already exist in the request book.
      */
-    public void addOrder(Request o) {
-        if (o.getTag() == null) {
-            o.assignTag();
+    public void addRequest(Request request) {
+        if (request.getTag() == null) {
+            request.assignTag();
         }
-        orders.add(o);
+        requests.add(request);
     }
 
     /**
@@ -85,45 +84,45 @@ public class OrderBook implements ReadOnlyOrderBook {
      * The request identity of {@code editedRequest} must not be the same as another existing
      * request in the request book.
      */
-    public void updateOrder(Request target, Request editedRequest) {
+    public void updateRequest(Request target, Request editedRequest) {
         requireNonNull(editedRequest);
 
         if (editedRequest.getTag() == null) {
             editedRequest.assignTag();
         }
-        orders.setOrder(target, editedRequest);
+        requests.setRequest(target, editedRequest);
     }
 
     /**
-     * Removes {@code key} from this {@code OrderBook}.
+     * Removes {@code key} from this {@code RequestBook}.
      * {@code key} must exist in the address book.
      */
-    public void removeOrder(Request key) {
-        orders.remove(key);
+    public void removeRequest(Request key) {
+        requests.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return orders.asUnmodifiableObservableList().size() + " orders";
+        return requests.asUnmodifiableObservableList().toString();
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Request> getOrderList() {
-        return orders.asUnmodifiableObservableList();
+    public ObservableList<Request> getRequestList() {
+        return requests.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof OrderBook // instanceof handles nulls
-                && orders.equals(((OrderBook) other).orders));
+            || (other instanceof RequestBook // instanceof handles nulls
+            && requests.equals(((RequestBook) other).requests));
     }
 
     @Override
     public int hashCode() {
-        return orders.hashCode();
+        return requests.hashCode();
     }
 }

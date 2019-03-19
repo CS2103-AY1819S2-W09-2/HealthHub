@@ -23,13 +23,13 @@ public class OrderListPanelHandle extends NodeHandle<ListView<Request>> {
     }
 
     /**
-     * Returns a handle to the selected {@code OrderCardHandle}.
+     * Returns a handle to the selected {@code RequestCardHandle}.
      * A maximum of 1 item can be selected at any time.
      *
      * @throws AssertionError        if no card is selected, or more than 1 card is selected.
      * @throws IllegalStateException if the selected card is currently not in the scene graph.
      */
-    public OrderCardHandle getHandleToSelectedCard() {
+    public RequestCardHandle getHandleToSelectedCard() {
         List<Request> selectedRequestList = getRootNode().getSelectionModel().getSelectedItems();
 
         if (selectedRequestList.size() != 1) {
@@ -37,10 +37,10 @@ public class OrderListPanelHandle extends NodeHandle<ListView<Request>> {
         }
 
         return getAllCardNodes().stream()
-                .map(OrderCardHandle::new)
-                .filter(handle -> handle.equals(selectedRequestList.get(0)))
-                .findFirst()
-                .orElseThrow(IllegalStateException::new);
+            .map(RequestCardHandle::new)
+            .filter(handle -> handle.equals(selectedRequestList.get(0)))
+            .findFirst()
+            .orElseThrow(IllegalStateException::new);
     }
 
     /**
@@ -103,12 +103,12 @@ public class OrderListPanelHandle extends NodeHandle<ListView<Request>> {
      *
      * @throws IllegalStateException if the selected card is currently not in the scene graph.
      */
-    public OrderCardHandle getOrderCardHandle(int index) {
+    public RequestCardHandle getOrderCardHandle(int index) {
         return getAllCardNodes().stream()
-                .map(OrderCardHandle::new)
-                .filter(handle -> handle.equals(getOrder(index)))
-                .findFirst()
-                .orElseThrow(IllegalStateException::new);
+            .map(RequestCardHandle::new)
+            .filter(handle -> handle.equals(getOrder(index)))
+            .findFirst()
+            .orElseThrow(IllegalStateException::new);
     }
 
     private Request getOrder(int index) {
@@ -148,7 +148,7 @@ public class OrderListPanelHandle extends NodeHandle<ListView<Request>> {
             return lastRememberedSelectedOrderCard.isPresent();
         } else {
             return !lastRememberedSelectedOrderCard.isPresent()
-                    || !lastRememberedSelectedOrderCard.get().equals(selectedItems.get(0));
+                || !lastRememberedSelectedOrderCard.get().equals(selectedItems.get(0));
         }
     }
 

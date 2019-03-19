@@ -4,13 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Food's name in the request book.
+ * Represents a Condition's name in the request book.
  * Guarantees: immutable; is valid as declared in {@link #isValidFoodName(String)}
  */
-public class Food {
+public class Condition {
 
     public static final String MESSAGE_FOOD_CONSTRAINTS =
-            "Food should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Condition should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the food must not be a whitespace,
@@ -21,18 +21,18 @@ public class Food {
     public final String foodName;
 
     /**
-     * Constructs a {@code Food}.
+     * Constructs a {@code Condition}.
      *
      * @param name A valid name.
      */
-    public Food(String name) {
+    public Condition(String name) {
         requireNonNull(name);
         checkArgument(isValidFood(name), MESSAGE_FOOD_CONSTRAINTS);
         foodName = name;
     }
 
     /**
-     * Returns true if a given string is a valid Food.
+     * Returns true if a given string is a valid Condition.
      */
     public static boolean isValidFood(String test) {
         return test.matches(FOOD_VALIDATION_REGEX);
@@ -47,8 +47,8 @@ public class Food {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Food // instanceof handles nulls
-                && foodName.equals(((Food) other).foodName)); // state check
+                || (other instanceof Condition // instanceof handles nulls
+                && foodName.equals(((Condition) other).foodName)); // state check
     }
 
     @Override

@@ -25,7 +25,7 @@ public class Request extends TaggedObject {
     private final Phone phone;
     private final Address address;
     private final RequestDate requestDate;
-    private final Set<Food> food = new HashSet<>();
+    private final Set<Condition> condition = new HashSet<>();
     private RequestStatus requestStatus;
     private Healthworker healthworker;
 
@@ -33,37 +33,37 @@ public class Request extends TaggedObject {
      * Every field must be present and not null.
      */
     public Request(Name name, Phone phone, Address address, RequestDate requestDate,
-                   Set<Food> food) {
-        this(null, name, phone, address, requestDate, new RequestStatus(), food, null);
+                   Set<Condition> condition) {
+        this(null, name, phone, address, requestDate, new RequestStatus(), condition, null);
     }
 
     /**
      * Every field must be present and not null.
      */
     public Request(Name name, Phone phone, Address address, RequestDate requestDate, RequestStatus requestStatus,
-                   Set<Food> food) {
-        this(null, name, phone, address, requestDate, requestStatus, food, null);
+                   Set<Condition> condition) {
+        this(null, name, phone, address, requestDate, requestStatus, condition, null);
     }
 
     /**
      * Every field must be present and not null besides healthworker.
      */
     public Request(Name name, Phone phone, Address address, RequestDate requestDate, RequestStatus requestStatus,
-                   Set<Food> food, Healthworker healthworker) {
-        this(null, name, phone, address, requestDate, requestStatus, food, healthworker);
+                   Set<Condition> condition, Healthworker healthworker) {
+        this(null, name, phone, address, requestDate, requestStatus, condition, healthworker);
     }
 
     /**
      * This constructor is used to create an {@code request} with a specified id.
      */
     public Request(UUID id, Name name, Phone phone, Address address, RequestDate requestDate,
-                   RequestStatus requestStatus, Set<Food> food, Healthworker healthworker) {
+                   RequestStatus requestStatus, Set<Condition> condition, Healthworker healthworker) {
         super(id);
-        requireAllNonNull(name, phone, address, requestDate, food);
+        requireAllNonNull(name, phone, address, requestDate, condition);
         this.name = name;
         this.phone = phone;
         this.address = address;
-        this.food.addAll(food);
+        this.condition.addAll(condition);
         this.requestDate = requestDate;
         this.requestStatus = requestStatus;
         this.healthworker = healthworker;
@@ -74,7 +74,7 @@ public class Request extends TaggedObject {
      */
     public Request(Request request) {
         this(null, request.name, request.phone, request.address, request.requestDate,
-            request.requestStatus, request.food, request.healthworker);
+            request.requestStatus, request.condition, request.healthworker);
     }
 
     public Name getName() {
@@ -105,10 +105,10 @@ public class Request extends TaggedObject {
         requestStatus = new RequestStatus("COMPLETED");
     }
     /**
-     * Returns a food set
+     * Returns a condition set
      */
-    public Set<Food> getFood() {
-        return food;
+    public Set<Condition> getCondition() {
+        return condition;
     }
 
     public void setHealthworker(Healthworker newHealthworker) throws RequestLimitExceededException {
@@ -168,14 +168,14 @@ public class Request extends TaggedObject {
                 && otherRequest.getPhone().equals(getPhone())
                 && otherRequest.getAddress().equals(getAddress())
                 && (otherRequest.getDate().equals(getDate()))
-                && otherRequest.getFood().equals(getFood())
+                && otherRequest.getCondition().equals(getCondition())
                 && otherRequest.getRequestStatus().equals(getRequestStatus());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, address, requestStatus, food);
+        return Objects.hash(name, phone, address, requestStatus, condition);
     }
 
     @Override
@@ -190,8 +190,8 @@ public class Request extends TaggedObject {
                 .append(getDate())
                 .append(" Status: ")
                 .append(getRequestStatus())
-                .append(" Food: ");
-        getFood().forEach(builder::append);
+                .append(" Condition: ");
+        getCondition().forEach(builder::append);
         return builder.toString();
     }
 

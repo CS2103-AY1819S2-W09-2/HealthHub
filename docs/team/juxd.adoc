@@ -11,8 +11,8 @@ recent team project, FoodZoom.
 
 == Overview
 
-FoodZoom is a desktop food delivery management application designed for
-food businesses to streamline their delivery process. FoodZoom is
+FoodZoom is a desktop condition delivery management application designed for
+condition businesses to streamline their delivery process. FoodZoom is
 responsive and quick, allowing managers to plan routes for request
 delivery and dispatch them to delivery men using the Command Line
 Interface (CLI). The delivery men can also use this application to view

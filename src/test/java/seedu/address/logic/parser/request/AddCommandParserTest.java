@@ -44,29 +44,29 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
-                + ADDRESS_DESC_BOB + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedRequest));
+            + ADDRESS_DESC_BOB + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedRequest));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB
-                + ADDRESS_DESC_BOB + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedRequest));
+            + ADDRESS_DESC_BOB + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedRequest));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
-                + ADDRESS_DESC_BOB + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedRequest));
+            + ADDRESS_DESC_BOB + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedRequest));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedRequest));
+            + ADDRESS_DESC_BOB + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedRequest));
 
         // multiple date - last date accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
-                + DATE_DESC_AMY + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedRequest));
+            + DATE_DESC_AMY + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedRequest));
 
         // multiple food - all accepted
-        Request expectedRequestMultipleFood = new RequestBuilder(BOB).withFood(VALID_FOOD_BURGER, VALID_FOOD_RICE)
-                .build();
+        Request expectedRequestMultipleFood = new RequestBuilder(BOB).withCondition(VALID_FOOD_BURGER, VALID_FOOD_RICE)
+            .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + DATE_DESC_BOB
-                + FOOD_DESC_BURGER + FOOD_DESC_RICE, new AddCommand(expectedRequestMultipleFood));
+            + FOOD_DESC_BURGER + FOOD_DESC_RICE, new AddCommand(expectedRequestMultipleFood));
     }
 
     @Test
@@ -75,57 +75,57 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + DATE_DESC_BOB
-                        + FOOD_DESC_BURGER,
-                expectedMessage);
+                + FOOD_DESC_BURGER,
+            expectedMessage);
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + ADDRESS_DESC_BOB + DATE_DESC_BOB
-                        + FOOD_DESC_BURGER,
-                expectedMessage);
+                + FOOD_DESC_BURGER,
+            expectedMessage);
 
         // missing address prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_ADDRESS_BOB + DATE_DESC_BOB
-                        + FOOD_DESC_BURGER,
-                expectedMessage);
+                + FOOD_DESC_BURGER,
+            expectedMessage);
 
         // missing food prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + DATE_DESC_BOB
-                        + VALID_FOOD_BURGER,
-                expectedMessage);
+                + VALID_FOOD_BURGER,
+            expectedMessage);
 
         // missing date prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + VALID_DATE_BOB
-                        + FOOD_DESC_BURGER,
-                expectedMessage);
+                + FOOD_DESC_BURGER,
+            expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_ADDRESS_BOB + VALID_DATE_BOB
-                        + VALID_FOOD_BURGER,
-                expectedMessage);
+                + VALID_FOOD_BURGER,
+            expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + ADDRESS_DESC_BOB + DATE_DESC_BOB
-                + FOOD_DESC_BURGER + FOOD_DESC_RICE, Name.MESSAGE_NAME_CONSTRAINTS);
+            + FOOD_DESC_BURGER + FOOD_DESC_RICE, Name.MESSAGE_NAME_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB + DATE_DESC_BOB
-                + FOOD_DESC_BURGER + FOOD_DESC_RICE, Phone.MESSAGE_PHONE_CONSTRAINTS);
+            + FOOD_DESC_BURGER + FOOD_DESC_RICE, Phone.MESSAGE_PHONE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_ADDRESS_DESC + DATE_DESC_BOB
-                + FOOD_DESC_BURGER + FOOD_DESC_RICE, Address.MESSAGE_ADDRESS_CONSTRAINTS);
+            + FOOD_DESC_BURGER + FOOD_DESC_RICE, Address.MESSAGE_ADDRESS_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + INVALID_ADDRESS_DESC + DATE_DESC_BOB
-                        + FOOD_DESC_BURGER,
-                Name.MESSAGE_NAME_CONSTRAINTS);
+                + FOOD_DESC_BURGER,
+            Name.MESSAGE_NAME_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB
-                        + ADDRESS_DESC_BOB + FOOD_DESC_RICE + FOOD_DESC_BURGER,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                + ADDRESS_DESC_BOB + FOOD_DESC_RICE + FOOD_DESC_BURGER,
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

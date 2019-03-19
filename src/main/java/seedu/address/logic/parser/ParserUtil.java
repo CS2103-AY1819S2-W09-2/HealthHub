@@ -15,7 +15,7 @@ import seedu.address.model.common.Name;
 import seedu.address.model.common.Password;
 import seedu.address.model.common.Phone;
 import seedu.address.model.common.Username;
-import seedu.address.model.order.Food;
+import seedu.address.model.order.Condition;
 import seedu.address.model.order.RequestDate;
 import seedu.address.model.tag.Tag;
 
@@ -129,18 +129,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String food} into a {@code Food}.
+     * Parses a {@code String food} into a {@code Condition}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code food} is invalid.
      */
-    public static Food parseFood(String food) throws ParseException {
+    public static Condition parseFood(String food) throws ParseException {
         requireNonNull(food);
         String trimmedFood = food.trim();
-        if (!Food.isValidFood(trimmedFood)) {
-            throw new ParseException(Food.MESSAGE_FOOD_CONSTRAINTS);
+        if (!Condition.isValidFood(trimmedFood)) {
+            throw new ParseException(Condition.MESSAGE_FOOD_CONSTRAINTS);
         }
-        return new Food(trimmedFood);
+        return new Condition(trimmedFood);
     }
 
     /**
@@ -158,13 +158,13 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static Set<Food> parseFoods(Collection<String> food) throws ParseException {
+    public static Set<Condition> parseFoods(Collection<String> food) throws ParseException {
         requireNonNull(food);
-        final Set<Food> foodSet = new HashSet<>();
+        final Set<Condition> conditionSet = new HashSet<>();
         for (String foodName : food) {
-            foodSet.add(parseFood(foodName));
+            conditionSet.add(parseFood(foodName));
         }
-        return foodSet;
+        return conditionSet;
 
     }
 

@@ -8,7 +8,7 @@ import seedu.address.logic.commands.request.EditCommand.EditOrderDescriptor;
 import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
-import seedu.address.model.order.Food;
+import seedu.address.model.order.Condition;
 import seedu.address.model.order.Request;
 import seedu.address.model.order.RequestDate;
 
@@ -35,7 +35,7 @@ public class EditOrderDescriptorBuilder {
         descriptor.setPhone(request.getPhone());
         descriptor.setAddress(request.getAddress());
         descriptor.setDate(request.getDate());
-        descriptor.setFood(request.getFood());
+        descriptor.setCondition(request.getCondition());
     }
 
     /**
@@ -71,12 +71,12 @@ public class EditOrderDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code food} into a {@code Set<Food>} and set it to the {@code EditOrderDescriptor}
+     * Parses the {@code food} into a {@code Set<Condition>} and set it to the {@code EditOrderDescriptor}
      * that we are building.
      */
     public EditOrderDescriptorBuilder withFood(String... food) {
-        Set<Food> foodSet = Stream.of(food).map(Food::new).collect(Collectors.toSet());
-        descriptor.setFood(foodSet);
+        Set<Condition> conditionSet = Stream.of(food).map(Condition::new).collect(Collectors.toSet());
+        descriptor.setCondition(conditionSet);
         return this;
     }
 

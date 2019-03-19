@@ -25,7 +25,7 @@ import seedu.address.model.order.Request;
 public class DeleteCommandSystemTest extends RequestBookSystemTest {
 
     private static final String MESSAGE_INVALID_DELETE_COMMAND_FORMAT =
-            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
+        String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
 
     private static final String DELETE_COMMAND = RequestCommand.COMMAND_WORD + " " + DeleteCommand.COMMAND_WORD;
 
@@ -36,7 +36,7 @@ public class DeleteCommandSystemTest extends RequestBookSystemTest {
         /* Login */
         String loginCommand = LoginCommand.COMMAND_WORD + " ";
         String command = loginCommand + PREFIX_USERNAME + VALID_MANAGER_USERNAME_ALICE
-                + " " + PREFIX_PASSWORD + VALID_MANAGER_PASSWORD_ALICE;
+            + " " + PREFIX_PASSWORD + VALID_MANAGER_PASSWORD_ALICE;
         executeCommand(command);
         setUpOrderListPanel();
 
@@ -81,7 +81,7 @@ public class DeleteCommandSystemTest extends RequestBookSystemTest {
 
         /* Case: invalid index (size + 1) -> rejected */
         Index outOfBoundsIndex = Index.fromOneBased(
-                getModel().getOrderBook().getOrderList().size() + 1);
+            getModel().getOrderBook().getRequestList().size() + 1);
         command = DELETE_COMMAND + " " + outOfBoundsIndex.getOneBased();
         assertCommandFailure(command, MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
 
@@ -118,7 +118,7 @@ public class DeleteCommandSystemTest extends RequestBookSystemTest {
         String expectedResultMessage = String.format(MESSAGE_DELETE_ORDER_SUCCESS, deletedRequest);
 
         assertCommandSuccess(
-                DELETE_COMMAND + " " + toDelete.getOneBased(), expectedModel, expectedResultMessage);
+            DELETE_COMMAND + " " + toDelete.getOneBased(), expectedModel, expectedResultMessage);
     }
 
     /**

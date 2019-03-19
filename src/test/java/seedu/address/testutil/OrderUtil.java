@@ -10,7 +10,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.request.AddCommand;
 import seedu.address.logic.commands.request.EditCommand.EditOrderDescriptor;
-import seedu.address.model.order.Food;
+import seedu.address.model.order.Condition;
 import seedu.address.model.order.Request;
 
 
@@ -35,7 +35,7 @@ public class OrderUtil {
         sb.append(PREFIX_PHONE + request.getPhone().value + " ");
         sb.append(PREFIX_ADDRESS + request.getAddress().value + " ");
         sb.append(PREFIX_DATE + request.getDate().toString() + " ");
-        request.getFood().stream().forEach(
+        request.getCondition().stream().forEach(
             s -> sb.append(PREFIX_FOOD + s.foodName + " ")
         );
         return sb.toString();
@@ -50,12 +50,12 @@ public class OrderUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address).append(" "));
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date).append(" "));
-        if (descriptor.getFood().isPresent()) {
-            Set<Food> food = descriptor.getFood().get();
-            if (food.isEmpty()) {
+        if (descriptor.getCondition().isPresent()) {
+            Set<Condition> condition = descriptor.getCondition().get();
+            if (condition.isEmpty()) {
                 sb.append(PREFIX_FOOD);
             } else {
-                food.forEach(s -> sb.append(PREFIX_FOOD).append(s.foodName).append(" "));
+                condition.forEach(s -> sb.append(PREFIX_FOOD).append(s.foodName).append(" "));
             }
         }
         return sb.toString();

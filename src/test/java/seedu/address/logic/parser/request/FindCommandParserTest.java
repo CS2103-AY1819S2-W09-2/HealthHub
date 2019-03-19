@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.request.FindCommand;
 import seedu.address.model.order.RequestAddressContainsKeywordPredicate;
-import seedu.address.model.order.OrderFoodContainsKeywordPredicate;
+import seedu.address.model.order.RequestConditionContainsKeywordPredicate;
 import seedu.address.model.order.RequestDatePredicate;
 import seedu.address.model.order.RequestNameContainsKeywordPredicate;
 import seedu.address.model.order.RequestPhoneContainsKeywordPredicate;
@@ -48,7 +48,7 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " a/123, Jurong West Ave 6, #08-111", expectedAddressFindCommand);
 
         FindCommand expectedFoodFindCommand =
-            new FindCommand(new OrderFoodContainsKeywordPredicate("rice"));
+            new FindCommand(new RequestConditionContainsKeywordPredicate("rice"));
         assertParseSuccess(parser, " f/rice", expectedFoodFindCommand);
 
         FindCommand expectedStatusFindCommand =

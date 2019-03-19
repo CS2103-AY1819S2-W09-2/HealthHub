@@ -7,7 +7,7 @@
             <phone>95352563</phone>
             <address>wall street</address>
             <date>01-10-2018 10:00:00</date>
-            <food>Milkshake</food>
+            <condition>Milkshake</condition>
         </requests>
     </routes>
 
@@ -19,7 +19,7 @@
             <phone>95352563</phone>
             <address>wall street</address>
             <date>01-10-2018 10:00:00</date>
-            <food>Milkshake</food>
+            <condition>Milkshake</condition>
         </requests>
     </routes>
 

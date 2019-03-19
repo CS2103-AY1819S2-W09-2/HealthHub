@@ -37,8 +37,26 @@ import seedu.address.testutil.RequestBuilder;
  */
 public class EditCommandTest {
     private Model model = new ModelManager(getTypicalOrderBook(), getTypicalUsersList(),
-            getTypicalDeliverymenList(), new UserPrefs());
+        getTypicalDeliverymenList(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the result message matches {@code expectedMessage} <br>
+     * - the {@code actualModel} matches {@code expectedModel} <br>
+     * - the {@code actualCommandHistory} remains unchanged.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory actualCommandHistory,
+                                            String expectedMessage, Model expectedModel) {
+        CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
+        try {
+            CommandResult result = command.execute(actualModel, actualCommandHistory);
+            assertEquals(expectedMessage, result.feedbackToUser);
+            assertEquals(expectedCommandHistory, actualCommandHistory);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -49,7 +67,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedRequest);
 
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
-                model.getDeliverymenList(), new UserPrefs());
+            model.getDeliverymenList(), new UserPrefs());
         expectedModel.updateOrder(model.getFilteredOrderList().get(0), editedRequest);
         expectedModel.commitOrderBook();
 
@@ -63,16 +81,16 @@ public class EditCommandTest {
 
         RequestBuilder orderInList = new RequestBuilder(lastRequest);
         Request editedRequest = orderInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withFood(VALID_FOOD_BURGER).build();
+            .withCondition(VALID_FOOD_BURGER).build();
 
         EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withFood(VALID_FOOD_BURGER).build();
+            .withPhone(VALID_PHONE_BOB).withFood(VALID_FOOD_BURGER).build();
         EditCommand editCommand = new EditCommand(indexLastOrder, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedRequest);
 
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
-                model.getDeliverymenList(), new UserPrefs());
+            model.getDeliverymenList(), new UserPrefs());
         expectedModel.updateOrder(lastRequest, editedRequest);
         expectedModel.commitOrderBook();
 
@@ -87,7 +105,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedRequest);
 
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
-                model.getDeliverymenList(), new UserPrefs());
+            model.getDeliverymenList(), new UserPrefs());
         expectedModel.commitOrderBook();
 
         assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
@@ -100,12 +118,12 @@ public class EditCommandTest {
         Request requestInFilteredList = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
         Request editedRequest = new RequestBuilder(requestInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST,
-                new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB).build());
+            new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedRequest);
 
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
-                model.getDeliverymenList(), new UserPrefs());
+            model.getDeliverymenList(), new UserPrefs());
         expectedModel.updateOrder(model.getFilteredOrderList().get(0), editedRequest);
         expectedModel.commitOrderBook();
 
@@ -126,9 +144,9 @@ public class EditCommandTest {
         showOrderAtIndex(model, INDEX_FIRST);
 
         // edit request in filtered list into a duplicate in request book
-        Request requestInList = model.getOrderBook().getOrderList().get(INDEX_SECOND.getZeroBased());
+        Request requestInList = model.getOrderBook().getRequestList().get(INDEX_SECOND.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST,
-                new EditOrderDescriptorBuilder(requestInList).build());
+            new EditOrderDescriptorBuilder(requestInList).build());
 
         assertCommandFailure(editCommand, model, commandHistory, EditCommand.MESSAGE_DUPLICATE_ORDER);
     }
@@ -152,10 +170,10 @@ public class EditCommandTest {
         Index outOfBoundIndex = INDEX_SECOND;
 
         // ensures that outOfBoundIndex is still in bounds of request book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getOrderBook().getOrderList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getOrderBook().getRequestList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB).build());
+            new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, commandHistory, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
@@ -167,7 +185,7 @@ public class EditCommandTest {
         EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedRequest).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST, descriptor);
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
-                model.getDeliverymenList(), new UserPrefs());
+            model.getDeliverymenList(), new UserPrefs());
         expectedModel.updateOrder(requestToEdit, editedRequest);
         expectedModel.commitOrderBook();
 
@@ -191,7 +209,7 @@ public class EditCommandTest {
         EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedRequest).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST, descriptor);
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
-                model.getDeliverymenList(), new UserPrefs());
+            model.getDeliverymenList(), new UserPrefs());
 
         showOrderAtIndex(model, INDEX_SECOND);
         Request requestToEdit = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
@@ -225,24 +243,6 @@ public class EditCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST, DESC_BOB)));
-    }
-
-    /**
-     * Executes the given {@code command}, confirms that <br>
-     * - the result message matches {@code expectedMessage} <br>
-     * - the {@code actualModel} matches {@code expectedModel} <br>
-     * - the {@code actualCommandHistory} remains unchanged.
-     */
-    public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory actualCommandHistory,
-                                            String expectedMessage, Model expectedModel) {
-        CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
-        try {
-            CommandResult result = command.execute(actualModel, actualCommandHistory);
-            assertEquals(expectedMessage, result.feedbackToUser);
-            assertEquals(expectedCommandHistory, actualCommandHistory);
-        } catch (CommandException ce) {
-            throw new AssertionError("Execution of command should not fail.", ce);
-        }
     }
 
 }

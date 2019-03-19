@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import seedu.address.model.order.Food;
+import seedu.address.model.order.Condition;
 import seedu.address.model.order.Request;
 import seedu.address.ui.UiPart;
 
@@ -33,7 +33,7 @@ public class OrderDisplayListCard extends UiPart<Region> {
         name.setText(String.format(NAME_LABEL_FORMAT, request.getName().fullName, request.getPhone().toString()));
 
         food.setText(String.format(FOOD_LABEL_FORMAT, String.join(", ",
-            request.getFood().stream().map(Food::toString).collect(Collectors.toSet()))));
+            request.getCondition().stream().map(Condition::toString).collect(Collectors.toSet()))));
     }
 
     @Override

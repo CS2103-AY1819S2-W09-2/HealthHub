@@ -30,7 +30,7 @@
     </rowConstraints>
     <children>
         <Text fx:id="id" text="\$id" textAlignment="RIGHT" GridPane.columnIndex="6" GridPane.halignment="RIGHT"/>
-        <Label fx:id="foodList" prefHeight="17.0" prefWidth="123.0" text="\$first" GridPane.columnIndex="1"
+        <Label fx:id="conditionList" prefHeight="17.0" prefWidth="123.0" text="\$first" GridPane.columnIndex="1"
                GridPane.columnSpan="2147483647"/>
         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
             <image>

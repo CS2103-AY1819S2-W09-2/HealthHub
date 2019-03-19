@@ -4,8 +4,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.OrderBook;
-import seedu.address.model.ReadOnlyOrderBook;
+import seedu.address.model.ReadOnlyRequestBook;
+import seedu.address.model.RequestBook;
 import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.storage.deliveryman.XmlSerializableHealthworkerList;
 
@@ -15,22 +15,22 @@ import seedu.address.storage.deliveryman.XmlSerializableHealthworkerList;
 @XmlRootElement(name = "foodzoom")
 public class XmlFoodZoom {
     @XmlElement(required = true)
-    private XmlSerializableOrderBook orderBook;
+    private XmlSerializableRequestBook orderBook;
 
     @XmlElement(required = true)
     private XmlSerializableHealthworkerList deliverymenList;
 
     public XmlFoodZoom() {
-        orderBook = new XmlSerializableOrderBook();
+        orderBook = new XmlSerializableRequestBook();
         deliverymenList = new XmlSerializableHealthworkerList();
     }
 
-    public XmlFoodZoom(ReadOnlyOrderBook ordersSrc, HealthworkerList deliverymenSrc) {
-        orderBook = new XmlSerializableOrderBook(ordersSrc);
+    public XmlFoodZoom(ReadOnlyRequestBook ordersSrc, HealthworkerList deliverymenSrc) {
+        orderBook = new XmlSerializableRequestBook(ordersSrc);
         deliverymenList = new XmlSerializableHealthworkerList(deliverymenSrc);
     }
 
-    public OrderBook getOrderBook() throws IllegalValueException {
+    public RequestBook getOrderBook() throws IllegalValueException {
         return orderBook.toModelType();
     }
 

@@ -39,7 +39,7 @@ import seedu.address.logic.commands.request.EditCommand.EditOrderDescriptor;
 import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
-import seedu.address.model.order.Food;
+import seedu.address.model.order.Condition;
 import seedu.address.model.order.RequestDate;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
 
@@ -84,7 +84,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_PHONE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_ADDRESS_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_DATE_DESC, RequestDate.MESSAGE_DATE_CONSTRAINTS); // invalid date
-        assertParseFailure(parser, "1" + INVALID_FOOD_DESC, Food.MESSAGE_FOOD_CONSTRAINTS); // invalid food
+        assertParseFailure(parser, "1" + INVALID_FOOD_DESC, Condition.MESSAGE_FOOD_CONSTRAINTS); // invalid food
 
         // invalid phone followed by valid date
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + DATE_DESC_AMY, Phone.MESSAGE_PHONE_CONSTRAINTS);
@@ -94,12 +94,12 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_PHONE_CONSTRAINTS);
 
         // empty food provided
-        assertParseFailure(parser, "1" + FOOD_EMPTY, Food.MESSAGE_FOOD_CONSTRAINTS);
+        assertParseFailure(parser, "1" + FOOD_EMPTY, Condition.MESSAGE_FOOD_CONSTRAINTS);
 
         // parsing empty food with valid food
-        assertParseFailure(parser, "1" + FOOD_EMPTY + FOOD_DESC_RICE, Food.MESSAGE_FOOD_CONSTRAINTS);
-        assertParseFailure(parser, "1" + FOOD_DESC_RICE + FOOD_EMPTY, Food.MESSAGE_FOOD_CONSTRAINTS);
-        assertParseFailure(parser, "1" + FOOD_DESC_BURGER + FOOD_EMPTY + FOOD_DESC_RICE, Food.MESSAGE_FOOD_CONSTRAINTS);
+        assertParseFailure(parser, "1" + FOOD_EMPTY + FOOD_DESC_RICE, Condition.MESSAGE_FOOD_CONSTRAINTS);
+        assertParseFailure(parser, "1" + FOOD_DESC_RICE + FOOD_EMPTY, Condition.MESSAGE_FOOD_CONSTRAINTS);
+        assertParseFailure(parser, "1" + FOOD_DESC_BURGER + FOOD_EMPTY + FOOD_DESC_RICE, Condition.MESSAGE_FOOD_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_DATE_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,

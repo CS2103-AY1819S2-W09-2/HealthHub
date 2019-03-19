@@ -1,7 +1,7 @@
 package seedu.address.commons.events.model;
 
 import seedu.address.commons.events.BaseEvent;
-import seedu.address.model.ReadOnlyOrderBook;
+import seedu.address.model.ReadOnlyRequestBook;
 import seedu.address.model.deliveryman.HealthworkerList;
 
 /**
@@ -9,17 +9,17 @@ import seedu.address.model.deliveryman.HealthworkerList;
  */
 public class HealthHubChangedEvent extends BaseEvent {
 
-    public final ReadOnlyOrderBook orderBook;
+    public final ReadOnlyRequestBook orderBook;
 
     public final HealthworkerList healthworkerList;
 
-    public HealthHubChangedEvent(ReadOnlyOrderBook orderBook, HealthworkerList healthworkerList) {
+    public HealthHubChangedEvent(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList) {
         this.orderBook = orderBook;
         this.healthworkerList = healthworkerList;
     }
 
     @Override
     public String toString() {
-        return "number of orders " + orderBook.getOrderList().size() + healthworkerList.getDeliverymenList().size();
+        return "number of orders " + orderBook.getRequestList().size() + healthworkerList.getDeliverymenList().size();
     }
 }

@@ -12,15 +12,15 @@ any challenging project to work with. This portfolio page serves to document my 
 == Project: FoodZoom
 
 FoodZoom is a desktop application allowing users to streamline their delivery process. The application is
-specifically targeted towards food businesses who need an efficient way to manage their delivery services.
+specifically targeted towards condition businesses who need an efficient way to manage their delivery services.
 FoodZoom uses a Command-Line Interface, meaning users can simply make use of keyword based commands when running the
 application. The application was built by a team of 5 students including myself.
 
 FoodZoom's *core functionality* includes:
 
-- Users being able to track food requests (visualise on a map) they have from customers
+- Users being able to track condition requests (visualise on a map) they have from customers
 - Managing deliverymen and assigning requests to them
-- Analysis of requests to display relevant statistics (request history, trending food etc.) to users
+- Analysis of requests to display relevant statistics (request history, trending condition etc.) to users
 
 == Summary of Contributions
 
@@ -35,7 +35,7 @@ https://github.com/CS2103-AY1819S1-T16-3/main/pull/102[#102],
 https://github.com/CS2103-AY1819S1-T16-3/main/pull/121[#121])
 
 ** What it does: The main screen consists of a map and a dashboard. The map is able to show the number of pending
-requests at a region. The dashboard shows statistics like the most popular food item and the request history
+requests at a region. The dashboard shows statistics like the most popular condition item and the request history
 
 ** Justification: Users of this application can track where their pending requests are in one glance. Orders in the
 same region can now be dispatched to the same healthworker. Users can also use the generated statistics to improve their

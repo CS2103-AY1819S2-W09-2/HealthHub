@@ -7,6 +7,6 @@
         <address isPrivate="false">4th street, 612234</address>
         <date>01-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <food>test</food>
+        <condition>test</condition>
     </orders>
 </orderbook>

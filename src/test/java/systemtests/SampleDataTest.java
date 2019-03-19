@@ -13,7 +13,7 @@ import java.nio.file.Path;
 import org.junit.Test;
 
 import seedu.address.logic.commands.LoginCommand;
-import seedu.address.model.OrderBook;
+import seedu.address.model.RequestBook;
 import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.model.order.Request;
 import seedu.address.model.util.SampleDataUtil;
@@ -24,7 +24,7 @@ public class SampleDataTest extends RequestBookSystemTest {
      * Returns null to force test app to load data of the file in {@code getDataFileLocation()}.
      */
     @Override
-    protected OrderBook getInitialOrdersData() {
+    protected RequestBook getInitialOrdersData() {
         return null;
     }
 
@@ -35,6 +35,7 @@ public class SampleDataTest extends RequestBookSystemTest {
     protected HealthworkerList getInitialDeliverymenData() {
         return null;
     }
+
     /**
      * Returns a non-existent file location to force test app to load sample data.
      */
@@ -61,7 +62,7 @@ public class SampleDataTest extends RequestBookSystemTest {
         /* Login */
         String loginCommand = LoginCommand.COMMAND_WORD + " ";
         String command = loginCommand + PREFIX_USERNAME + VALID_MANAGER_USERNAME_ALICE
-                + " " + PREFIX_PASSWORD + VALID_MANAGER_PASSWORD_ALICE;
+            + " " + PREFIX_PASSWORD + VALID_MANAGER_PASSWORD_ALICE;
         executeCommand(command);
         setUpOrderListPanel();
 

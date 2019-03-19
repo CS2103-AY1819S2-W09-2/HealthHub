@@ -19,7 +19,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.common.Name;
 import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Request;
-import seedu.address.storage.XmlAdaptedOrder;
+import seedu.address.storage.XmlAdaptedRequest;
 
 /**
  * Represents the XML for storage of Healthworker
@@ -35,14 +35,15 @@ public class XmlAdaptedDeliveryman {
     private String name;
     @XmlElement(required = true)
     @XmlIDREF
-    private List<XmlAdaptedOrder> orders = new ArrayList<>();
+    private List<XmlAdaptedRequest> orders = new ArrayList<>();
 
-    public XmlAdaptedDeliveryman() {}
+    public XmlAdaptedDeliveryman() {
+    }
 
     /**
      * Constructs an {@code XmlAdapterDeliveryman} with the given common details.
      */
-    public XmlAdaptedDeliveryman(String tag, String name, List<XmlAdaptedOrder> orders) {
+    public XmlAdaptedDeliveryman(String tag, String name, List<XmlAdaptedRequest> orders) {
         this.tag = tag;
         this.name = name;
         if (orders == null) {
@@ -69,8 +70,8 @@ public class XmlAdaptedDeliveryman {
         tag = source.getTag().toString();
         name = source.getName().fullName;
         orders = source.getRequests().stream()
-                .map(XmlAdaptedOrder::new)
-                .collect(Collectors.toList());
+            .map(XmlAdaptedRequest::new)
+            .collect(Collectors.toList());
     }
 
     /**
@@ -101,7 +102,7 @@ public class XmlAdaptedDeliveryman {
         final Name modelName = new Name(name);
 
         final List<Request> requestStore = new ArrayList<>();
-        for (XmlAdaptedOrder orderItem : orders) {
+        for (XmlAdaptedRequest orderItem : orders) {
             requestStore.add(orderItem.toModelType());
         }
         final Set<Request> modelRequest = new HashSet<>(requestStore);
@@ -121,6 +122,6 @@ public class XmlAdaptedDeliveryman {
 
         XmlAdaptedDeliveryman otherDman = (XmlAdaptedDeliveryman) other;
         return tag.equals(otherDman.tag)
-                && Objects.equals(name, otherDman.name);
+            && Objects.equals(name, otherDman.name);
     }
 }

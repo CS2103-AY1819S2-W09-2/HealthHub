@@ -7,7 +7,7 @@ import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysOrder;
 
 import org.junit.Test;
 
-import guitests.guihandles.OrderCardHandle;
+import guitests.guihandles.RequestCardHandle;
 import seedu.address.model.order.Request;
 import seedu.address.testutil.RequestBuilder;
 
@@ -54,12 +54,12 @@ public class RequestCardTest extends GuiUnitTest {
     private void assertCardDisplay(RequestCard requestCard, Request expectedRequest, int expectedId) {
         guiRobot.pauseForHuman();
 
-        OrderCardHandle orderCardHandle = new OrderCardHandle(requestCard.getRoot());
+        RequestCardHandle requestCardHandle = new RequestCardHandle(requestCard.getRoot());
 
         // verify id is displayed correctly
-        assertEquals("#" + Integer.toString(expectedId), orderCardHandle.getId());
+        assertEquals("#" + Integer.toString(expectedId), requestCardHandle.getId());
 
         // verify common details are displayed correctly
-        assertCardDisplaysOrder(expectedRequest, orderCardHandle);
+        assertCardDisplaysOrder(expectedRequest, requestCardHandle);
     }
 }

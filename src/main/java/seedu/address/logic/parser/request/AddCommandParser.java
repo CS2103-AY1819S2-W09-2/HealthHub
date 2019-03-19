@@ -20,7 +20,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
-import seedu.address.model.order.Food;
+import seedu.address.model.order.Condition;
 import seedu.address.model.order.Request;
 import seedu.address.model.order.RequestDate;
 
@@ -56,9 +56,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         RequestDate requestDate = ParserUtil.parseDate((argMultimap).getValue(PREFIX_DATE).get());
-        Set<Food> foodList = ParserUtil.parseFoods(argMultimap.getAllValues(PREFIX_FOOD));
+        Set<Condition> conditionList = ParserUtil.parseFoods(argMultimap.getAllValues(PREFIX_FOOD));
 
-        Request request = new Request(name, phone, address, requestDate, foodList);
+        Request request = new Request(name, phone, address, requestDate, conditionList);
 
         return new AddCommand(request);
     }

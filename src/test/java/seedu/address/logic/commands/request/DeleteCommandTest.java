@@ -28,7 +28,7 @@ import seedu.address.model.order.Request;
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalOrderBook(), getTypicalUsersList(),
-            getTypicalDeliverymenList(), new UserPrefs());
+        getTypicalDeliverymenList(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
@@ -39,7 +39,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDER_SUCCESS, requestToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
-                model.getDeliverymenList(), new UserPrefs());
+            model.getDeliverymenList(), new UserPrefs());
         expectedModel.deleteOrder(requestToDelete);
         expectedModel.commitOrderBook();
 
@@ -64,7 +64,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDER_SUCCESS, requestToDelete);
 
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
-                model.getDeliverymenList(), new UserPrefs());
+            model.getDeliverymenList(), new UserPrefs());
         expectedModel.deleteOrder(requestToDelete);
         expectedModel.commitOrderBook();
         showNoOrder(expectedModel);
@@ -78,7 +78,7 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getOrderBook().getOrderList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getOrderBook().getRequestList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
@@ -90,7 +90,7 @@ public class DeleteCommandTest {
         Request requestToDelete = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST);
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
-                model.getDeliverymenList(), new UserPrefs());
+            model.getDeliverymenList(), new UserPrefs());
         expectedModel.deleteOrder(requestToDelete);
         expectedModel.commitOrderBook();
 
@@ -118,7 +118,7 @@ public class DeleteCommandTest {
     public void executeUndoRedo_validIndexFilteredList_sameOrderDeleted() throws Exception {
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST);
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
-                model.getDeliverymenList(), new UserPrefs());
+            model.getDeliverymenList(), new UserPrefs());
 
         showOrderAtIndex(model, INDEX_SECOND);
         Request requestToDelete = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());

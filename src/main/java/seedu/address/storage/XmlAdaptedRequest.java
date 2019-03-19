@@ -20,7 +20,7 @@ import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.order.Food;
+import seedu.address.model.order.Condition;
 import seedu.address.model.order.Request;
 import seedu.address.model.order.RequestDate;
 import seedu.address.model.order.RequestStatus;
@@ -28,11 +28,11 @@ import seedu.address.model.order.RequestStatus;
 /**
  * JAXB-friendly version of the Request.
  */
-public class XmlAdaptedOrder {
+public class XmlAdaptedRequest {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Request's %s field is missing!";
 
-    @XmlAttribute (required = true)
+    @XmlAttribute(required = true)
     @XmlID
     private String tag;
 
@@ -47,22 +47,23 @@ public class XmlAdaptedOrder {
     @XmlElement(required = true)
     private String status;
     @XmlElement(required = true)
-    private List<XmlAdaptedFood> food = new ArrayList<>();
+    private List<XmlAdaptedCondition> conditions = new ArrayList<>();
     @XmlElement
     private String deliveryman;
 
     /**
-     * Constructs an XmlAdaptedOrder.
+     * Constructs an XmlAdaptedRequest.
      * This is the no-arg constructor that is required by JAXB.
      */
-    public XmlAdaptedOrder() {
+    public XmlAdaptedRequest() {
     }
 
     /**
-     * Constructs an {@code XmlAdaptedOrder} with the given request details.
+     * Constructs an {@code XmlAdaptedRequest} with the given request details.
      */
-    public XmlAdaptedOrder(String tag, String name, String phone, String address, String date, String status,
-                           List<XmlAdaptedFood> food, String deliveryman) {
+    public XmlAdaptedRequest(String tag, String name, String phone, String address, String date,
+                             String status, List<XmlAdaptedCondition> conditions,
+                             String deliveryman) {
         this.tag = tag;
         this.name = name;
         this.phone = phone;
@@ -71,36 +72,37 @@ public class XmlAdaptedOrder {
         this.status = status;
         this.deliveryman = deliveryman;
 
-        if (food == null) {
-            this.food = new ArrayList<>();
+        if (conditions == null) {
+            this.conditions = new ArrayList<>();
         } else {
-            this.food = new ArrayList<>(food);
+            this.conditions = new ArrayList<>(conditions);
         }
     }
 
     /**
-     * Constructs an {@code XmlAdaptedOrder} with the given request details.
+     * Constructs an {@code XmlAdaptedRequest} with the given request details.
      */
-    public XmlAdaptedOrder(String name, String phone, String address, String date, String status,
-                           List<XmlAdaptedFood> food, String deliveryman) {
-        this(UUID.randomUUID().toString(), name, phone, address, date, status, food, deliveryman);
+    public XmlAdaptedRequest(String name, String phone, String address, String date, String status,
+                             List<XmlAdaptedCondition> conditions, String deliveryman) {
+        this(UUID.randomUUID().toString(), name, phone, address, date, status, conditions,
+            deliveryman);
     }
 
     /**
      * Converts a given Request into this class for JAXB use.
      *
-     * @param source future changes to this will not affect the created XmlAdaptedOrder
+     * @param source future changes to this will not affect the created XmlAdaptedRequest
      */
-    public XmlAdaptedOrder(Request source) {
+    public XmlAdaptedRequest(Request source) {
         tag = source.getTag().toString();
         name = source.getName().fullName;
         phone = source.getPhone().value;
         address = source.getAddress().value;
         date = source.getDate().toString();
         status = source.getRequestStatus().toString();
-        food = source.getFood().stream()
-                .map(XmlAdaptedFood::new)
-                .collect(Collectors.toList());
+        conditions = source.getCondition().stream()
+            .map(XmlAdaptedCondition::new)
+            .collect(Collectors.toList());
         if (source.getHealthworker() != null) {
             deliveryman = source.getHealthworker().getName().fullName;
         }
@@ -109,16 +111,18 @@ public class XmlAdaptedOrder {
     /**
      * Converts this jaxb-friendly adapted request object into the model's Request object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted request
+     * @throws IllegalValueException if there were any data constraints violated in the adapted
+     *                               request
      */
     public Request toModelType() throws IllegalValueException {
-        final List<Food> foodStore = new ArrayList<>();
-        for (XmlAdaptedFood foodItem : food) {
-            foodStore.add(foodItem.toModelType());
+        final List<Condition> conditionStore = new ArrayList<>();
+        for (XmlAdaptedCondition foodItem : conditions) {
+            conditionStore.add(foodItem.toModelType());
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_NAME_CONSTRAINTS);
@@ -126,7 +130,8 @@ public class XmlAdaptedOrder {
         final Name modelName = new Name(name);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Phone.class.getSimpleName()));
         }
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_PHONE_CONSTRAINTS);
@@ -135,7 +140,8 @@ public class XmlAdaptedOrder {
 
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Address.class.getSimpleName()));
         }
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_ADDRESS_CONSTRAINTS);
@@ -144,17 +150,19 @@ public class XmlAdaptedOrder {
 
 
         if (date == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Date.class.getSimpleName()));
         }
         if (!RequestDate.isValidDate(date)) {
             throw new IllegalValueException(RequestDate.MESSAGE_DATE_CONSTRAINTS);
         }
         final RequestDate modelDate = new RequestDate(date);
 
-        if (foodStore.isEmpty()) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Food.class.getSimpleName()));
+        if (conditionStore.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Condition.class.getSimpleName()));
         }
-        final Set<Food> modelFood = new HashSet<>(foodStore);
+        final Set<Condition> modelCondition = new HashSet<>(conditionStore);
 
         if (tag == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Tag"));
@@ -169,11 +177,11 @@ public class XmlAdaptedOrder {
 
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    RequestStatus.class.getSimpleName()));
+                RequestStatus.class.getSimpleName()));
         }
         if (!RequestStatus.isValidStatus(status)) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    RequestStatus.class.getSimpleName()));
+                RequestStatus.class.getSimpleName()));
         }
         final RequestStatus requestStatus = new RequestStatus(status);
 
@@ -185,7 +193,7 @@ public class XmlAdaptedOrder {
         }
 
         return new Request(modelTag, modelName, modelPhone, modelAddress, modelDate, requestStatus,
-                modelFood, modelHealthworker);
+            modelCondition, modelHealthworker);
     }
 
     @Override
@@ -194,18 +202,30 @@ public class XmlAdaptedOrder {
             return true;
         }
 
-        if (!(other instanceof XmlAdaptedOrder)) {
+        if (!(other instanceof XmlAdaptedRequest)) {
             return false;
         }
 
-        XmlAdaptedOrder otherOrder = (XmlAdaptedOrder) other;
+        XmlAdaptedRequest otherOrder = (XmlAdaptedRequest) other;
         return tag.equals(otherOrder.tag)
-                && Objects.equals(name, otherOrder.name)
-                && Objects.equals(phone, otherOrder.phone)
-                && Objects.equals(address, otherOrder.address)
-                && Objects.equals(date, otherOrder.date)
-                && Objects.equals(status, otherOrder.status)
-                && food.equals(otherOrder.food)
-                && Objects.equals(deliveryman, otherOrder.deliveryman);
+            && Objects.equals(name, otherOrder.name)
+            && Objects.equals(phone, otherOrder.phone)
+            && Objects.equals(address, otherOrder.address)
+            && Objects.equals(date, otherOrder.date)
+            && Objects.equals(status, otherOrder.status)
+            && conditions.equals(otherOrder.conditions)
+            && Objects.equals(deliveryman, otherOrder.deliveryman);
+    }
+
+    @Override
+    public String toString() {
+        return "Tag: " + this.tag + "\n"
+            + "Name: " + this.name + "\n"
+            + "Phone: " + this.phone + "\n"
+            + "Address: " + this.address + "\n"
+            + "Date: " + this.date + "\n"
+            + "Status: " + this.status + "\n"
+            + "Conditions: " + this.conditions + "\n"
+            + "Healthworker: " + this.deliveryman;
     }
 }

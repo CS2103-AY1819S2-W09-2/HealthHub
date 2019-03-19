@@ -12,7 +12,7 @@ project portfolio documents my contributions to the project.
 == Overview
 image::Ui.png[width="800"]
 
-FoodZoom is a desktop application providing food businesses a delivery management platform for them to streamline their delivery process. FoodZooms' responsiveness and quickness allows manager to plan for route through a Command Line Interface (CLI). The platform also allows delivery man to view their delivery routes and increase their efficiency. FoodZoom is created by 5 students, namely Tan Jin Ying, Monika Manuela, Julius Sander, Rahul Rajesh and Koh Chi Hao.
+FoodZoom is a desktop application providing condition businesses a delivery management platform for them to streamline their delivery process. FoodZooms' responsiveness and quickness allows manager to plan for route through a Command Line Interface (CLI). The platform also allows delivery man to view their delivery routes and increase their efficiency. FoodZoom is created by 5 students, namely Tan Jin Ying, Monika Manuela, Julius Sander, Rahul Rajesh and Koh Chi Hao.
 
 == Summary of Contribution
 

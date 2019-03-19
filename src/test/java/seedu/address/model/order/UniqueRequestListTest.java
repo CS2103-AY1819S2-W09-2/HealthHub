@@ -22,10 +22,9 @@ import seedu.address.testutil.RequestBuilder;
 
 public class UniqueRequestListTest {
 
+    private final UniqueRequestList uniqueRequestList = new UniqueRequestList();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-
-    private final UniqueRequestList uniqueRequestList = new UniqueRequestList();
 
     @Test
     public void contains_nullOrder_throwsNullPointerException() {
@@ -47,8 +46,8 @@ public class UniqueRequestListTest {
     @Test
     public void contains_orderWithSameIdentityFieldsInList_returnsTrue() {
         uniqueRequestList.add(ALICE);
-        Request editedAlice = new RequestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
-                .build();
+        Request editedAlice = new RequestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withCondition(VALID_FOOD_BURGER)
+            .build();
         assertTrue(uniqueRequestList.contains(editedAlice));
     }
 
@@ -68,25 +67,25 @@ public class UniqueRequestListTest {
     @Test
     public void setOrder_nullTargetOrder_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueRequestList.setOrder(null, ALICE);
+        uniqueRequestList.setRequest(null, ALICE);
     }
 
     @Test
     public void setOrder_nullEditedOrder_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueRequestList.setOrder(ALICE, null);
+        uniqueRequestList.setRequest(ALICE, null);
     }
 
     @Test
     public void setOrder_targetOrderNotInList_throwsOrderNotFoundException() {
         thrown.expect(RequestNotFoundException.class);
-        uniqueRequestList.setOrder(ALICE, ALICE);
+        uniqueRequestList.setRequest(ALICE, ALICE);
     }
 
     @Test
     public void setOrder_editedOrderIsSameOrder_success() {
         uniqueRequestList.add(ALICE);
-        uniqueRequestList.setOrder(ALICE, ALICE);
+        uniqueRequestList.setRequest(ALICE, ALICE);
         UniqueRequestList expectedUniqueRequestList = new UniqueRequestList();
         expectedUniqueRequestList.add(ALICE);
         assertEquals(expectedUniqueRequestList, uniqueRequestList);
@@ -95,9 +94,9 @@ public class UniqueRequestListTest {
     @Test
     public void setOrder_editedOrderHasSameIdentity_success() {
         uniqueRequestList.add(ALICE);
-        Request editedAlice = new RequestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
-                .build();
-        uniqueRequestList.setOrder(ALICE, editedAlice);
+        Request editedAlice = new RequestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withCondition(VALID_FOOD_BURGER)
+            .build();
+        uniqueRequestList.setRequest(ALICE, editedAlice);
         UniqueRequestList expectedUniqueRequestList = new UniqueRequestList();
         expectedUniqueRequestList.add(editedAlice);
         assertEquals(expectedUniqueRequestList, uniqueRequestList);
@@ -106,7 +105,7 @@ public class UniqueRequestListTest {
     @Test
     public void setOrder_editedOrderHasDifferentIdentity_success() {
         uniqueRequestList.add(ALICE);
-        uniqueRequestList.setOrder(ALICE, BOB);
+        uniqueRequestList.setRequest(ALICE, BOB);
         UniqueRequestList expectedUniqueRequestList = new UniqueRequestList();
         expectedUniqueRequestList.add(BOB);
         assertEquals(expectedUniqueRequestList, uniqueRequestList);
@@ -117,7 +116,7 @@ public class UniqueRequestListTest {
         uniqueRequestList.add(ALICE);
         uniqueRequestList.add(BOB);
         thrown.expect(DuplicateRequestException.class);
-        uniqueRequestList.setOrder(ALICE, BOB);
+        uniqueRequestList.setRequest(ALICE, BOB);
     }
 
     @Test
@@ -143,7 +142,7 @@ public class UniqueRequestListTest {
     @Test
     public void setOrder_nullUniqueOrderList_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueRequestList.setOrder((UniqueRequestList) null);
+        uniqueRequestList.setRequest((UniqueRequestList) null);
     }
 
     @Test
@@ -151,21 +150,21 @@ public class UniqueRequestListTest {
         uniqueRequestList.add(ALICE);
         UniqueRequestList expectedUniqueRequestList = new UniqueRequestList();
         expectedUniqueRequestList.add(BOB);
-        uniqueRequestList.setOrder(expectedUniqueRequestList);
+        uniqueRequestList.setRequest(expectedUniqueRequestList);
         assertEquals(expectedUniqueRequestList, uniqueRequestList);
     }
 
     @Test
     public void setOrder_nullList_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueRequestList.setOrder((List<Request>) null);
+        uniqueRequestList.setRequest((List<Request>) null);
     }
 
     @Test
     public void setOrder_list_replacesOwnListWithProvidedList() {
         uniqueRequestList.add(ALICE);
         List<Request> requestList = Collections.singletonList(BOB);
-        uniqueRequestList.setOrder(requestList);
+        uniqueRequestList.setRequest(requestList);
         UniqueRequestList expectedUniqueRequestList = new UniqueRequestList();
         expectedUniqueRequestList.add(BOB);
         assertEquals(expectedUniqueRequestList, uniqueRequestList);
@@ -175,7 +174,7 @@ public class UniqueRequestListTest {
     public void setOrder_listWithDuplicateOrders_throwsDuplicatePersonException() {
         List<Request> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
         thrown.expect(DuplicateRequestException.class);
-        uniqueRequestList.setOrder(listWithDuplicatePersons);
+        uniqueRequestList.setRequest(listWithDuplicatePersons);
     }
 
     @Test

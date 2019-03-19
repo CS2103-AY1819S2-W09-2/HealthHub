@@ -18,7 +18,7 @@ By: `T16-3`      Since: `Aug 2018`      Licence: `MIT`
 
 == Introduction
 
-FoodZoom is a food delivery management platform targeted at food business looking to streamline their delivery process. It is responsive and quick, allowing manager to plan their routes and dispatch requests to delivery man *using a Command Line Interface* (CLI) while having the benefits of a Graphical User Interface (GUI). The delivery man can also this application to view their delivery routes and increase their efficiency.
+FoodZoom is a condition delivery management platform targeted at condition business looking to streamline their delivery process. It is responsive and quick, allowing manager to plan their routes and dispatch requests to delivery man *using a Command Line Interface* (CLI) while having the benefits of a Graphical User Interface (GUI). The delivery man can also this application to view their delivery routes and increase their efficiency.
 
 == Quick Start
 
@@ -209,7 +209,7 @@ Format: `/request add f/FOOD n/NAME p/PHONE a/ADDRESS dt/DATETIME`
 
 There are also some things you need to take note of:
 ****
-* Able to add more than 1 food items by specifying more food tags. e.g. `f/Roti Prata f/Ice Milo`.
+* Able to add more than 1 condition items by specifying more condition tags. e.g. `f/Roti Prata f/Ice Milo`.
 * Address must be a valid address that exists in Singapore to be displayed on the map.
 * If the postal code is longer than 6 digits, much like any other field, only the *last 6 digits* will be taken into
 consideration for approximating the location
@@ -251,7 +251,7 @@ Examples:
 Edits the phone number and name of the 1st request to be `91234567` and `Jonathan` respectively.
 * `/request list` +
 `/request edit 2 f/Maggi Goreng f/Ice Milo` +
-Edits the food of the 2nd request to be `Maggi Goreng, Ice Milo`.
+Edits the condition of the 2nd request to be `Maggi Goreng, Ice Milo`.
 // end::orderedit[]
 
 // tag::orderfind[]
@@ -264,7 +264,7 @@ Format: `/request find [n/NAME] [p/PHONE] [a/ADDRESS] [f/FOOD] [dt/DATETIME] [st
 * All fields are optional. However, at least one field must be specified.
 * Empty value after any fields are not allowed. e.g. `n/`
 * The search is case insensitive. e.g `tom` will match `Tom`
-* Partial match is allowed for name, phone, food and address. e.g. `alex` will match `alex lim` and `al` will match `alex lim`
+* Partial match is allowed for name, phone, condition and address. e.g. `alex` will match `alex lim` and `al` will match `alex lim`
 * When more than 1 fields are given, the find will do an `and` on all fields. e.g. `n/alex p/1234`, will be `n == 'alex' AND p == 1234`
 * When the same fields are given, it will take the last field, except for date search. For date search refer below. e.g. `n/alex n/tom`, Only `n/tom` is taken
 * Phone Find

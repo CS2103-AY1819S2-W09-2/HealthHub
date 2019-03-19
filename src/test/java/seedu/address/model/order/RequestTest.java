@@ -33,7 +33,7 @@ public class RequestTest {
 
         // same name, same phone, same date different address and food -> returns true
         editedAlice = new RequestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
-                .withFood(VALID_FOOD_BURGER).build();
+            .withCondition(VALID_FOOD_BURGER).build();
         assertTrue(ALICE.isSameOrder(editedAlice));
 
         // different data, everything else same -> returns false
@@ -42,7 +42,7 @@ public class RequestTest {
 
         // same everything, different food -> returns true
         editedAlice = new RequestBuilder(ALICE)
-                .withFood(VALID_FOOD_BURGER).build();
+            .withCondition(VALID_FOOD_BURGER).build();
         assertTrue(ALICE.isSameOrder(editedAlice));
     }
 
@@ -77,7 +77,7 @@ public class RequestTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different food -> returns false
-        editedAlice = new RequestBuilder(ALICE).withFood(VALID_FOOD_BURGER).build();
+        editedAlice = new RequestBuilder(ALICE).withCondition(VALID_FOOD_BURGER).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

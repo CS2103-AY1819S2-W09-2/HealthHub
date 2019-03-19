@@ -21,7 +21,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Food;
+import seedu.address.model.order.Condition;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -58,7 +58,7 @@ public class EditCommandParser implements Parser<RequestCommand> {
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             editOrderDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
-        parseFoodForEdit(argMultimap.getAllValues(PREFIX_FOOD)).ifPresent(editOrderDescriptor::setFood);
+        parseFoodForEdit(argMultimap.getAllValues(PREFIX_FOOD)).ifPresent(editOrderDescriptor::setCondition);
 
         if (!editOrderDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -68,11 +68,11 @@ public class EditCommandParser implements Parser<RequestCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> food} into a {@code Set<Food>} if {@code food} is non-empty.
+     * Parses {@code Collection<String> food} into a {@code Set<Condition>} if {@code food} is non-empty.
      * If {@code food} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Food>} containing zero food.
+     * {@code Set<Condition>} containing zero food.
      */
-    private Optional<Set<Food>> parseFoodForEdit(Collection<String> food) throws ParseException {
+    private Optional<Set<Condition>> parseFoodForEdit(Collection<String> food) throws ParseException {
         assert food != null;
 
         if (food.isEmpty()) {
@@ -80,7 +80,7 @@ public class EditCommandParser implements Parser<RequestCommand> {
         }
 
         if (food.size() == 1 && food.contains("")) {
-            throw new ParseException(String.format(Food.MESSAGE_FOOD_CONSTRAINTS));
+            throw new ParseException(String.format(Condition.MESSAGE_FOOD_CONSTRAINTS));
         }
 
         return Optional.of(ParserUtil.parseFoods(food));

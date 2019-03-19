@@ -15,7 +15,7 @@ import java.util.UUID;
 
 import org.junit.Test;
 
-import guitests.guihandles.OrderCardHandle;
+import guitests.guihandles.RequestCardHandle;
 import guitests.guihandles.OrderListPanelHandle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,7 +45,7 @@ public class RequestListPanelTest extends GuiUnitTest {
         for (int i = 0; i < TYPICAL_REQUESTS.size(); i++) {
             orderListPanelHandle.navigateToCard(TYPICAL_REQUESTS.get(i));
             Request expectedRequest = TYPICAL_REQUESTS.get(i);
-            OrderCardHandle actualCard = orderListPanelHandle.getOrderCardHandle(i);
+            RequestCardHandle actualCard = orderListPanelHandle.getOrderCardHandle(i);
 
             assertCardDisplaysOrder(expectedRequest, actualCard);
             assertEquals("#" + Integer.toString(i + 1), actualCard.getId());
@@ -58,8 +58,8 @@ public class RequestListPanelTest extends GuiUnitTest {
         postNow(JUMP_TO_SECOND_EVENT);
         guiRobot.pauseForHuman();
 
-        OrderCardHandle expectedPerson = orderListPanelHandle.getOrderCardHandle(INDEX_SECOND.getZeroBased());
-        OrderCardHandle selectedPerson = orderListPanelHandle.getHandleToSelectedCard();
+        RequestCardHandle expectedPerson = orderListPanelHandle.getOrderCardHandle(INDEX_SECOND.getZeroBased());
+        RequestCardHandle selectedPerson = orderListPanelHandle.getHandleToSelectedCard();
         assertCardEquals(expectedPerson, selectedPerson);
     }
 
@@ -85,7 +85,7 @@ public class RequestListPanelTest extends GuiUnitTest {
         Path xmlFile = createXmlFileWithOrders(orderCount);
         XmlFoodZoom xmlFoodZoom =
             XmlUtil.getDataFromFile(xmlFile, XmlFoodZoom.class);
-        return FXCollections.observableArrayList(xmlFoodZoom.getOrderBook().getOrderList());
+        return FXCollections.observableArrayList(xmlFoodZoom.getOrderBook().getRequestList());
     }
 
     /**

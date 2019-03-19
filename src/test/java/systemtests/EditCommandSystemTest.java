@@ -45,11 +45,11 @@ import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.request.EditCommand;
 import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.model.Model;
-import seedu.address.model.OrderBook;
+import seedu.address.model.RequestBook;
 import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
-import seedu.address.model.order.Food;
+import seedu.address.model.order.Condition;
 import seedu.address.model.order.Request;
 import seedu.address.model.order.RequestDate;
 import seedu.address.testutil.OrderUtil;
@@ -75,7 +75,7 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
         Index index = INDEX_FIRST;
         command = " " + editCommand + "  " + index.getOneBased() + "  " + NAME_DESC_BOB + "  "
             + PHONE_DESC_BOB + " " + DATE_DESC_BOB + "  " + ADDRESS_DESC_BOB + " " + FOOD_DESC_BURGER + " ";
-        Request editedRequest = new RequestBuilder(BOB).withFood(VALID_FOOD_BURGER).build();
+        Request editedRequest = new RequestBuilder(BOB).withCondition(VALID_FOOD_BURGER).build();
         assertCommandSuccess(command, index, editedRequest);
 
         /* Case: edit a request with new values same as existing values -> edited */
@@ -84,7 +84,7 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
         assertCommandSuccess(command, index, BOB);
 
         /* Case: edit a request with new values same as another request's values but with different name -> edited */
-        assertTrue(getModel().getOrderBook().getOrderList().contains(BOB));
+        assertTrue(getModel().getOrderBook().getRequestList().contains(BOB));
         index = INDEX_SECOND;
         assertNotEquals(getModel().getFilteredOrderList().get(index.getZeroBased()), BOB);
         command = editCommand + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_BOB + DATE_DESC_BOB
@@ -116,7 +116,7 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
         /* Case: clear food -> rejected */
         index = INDEX_FIRST;
         command = editCommand + " " + index.getOneBased() + " " + PREFIX_FOOD.getPrefix();
-        assertCommandFailure(command, Food.MESSAGE_FOOD_CONSTRAINTS);
+        assertCommandFailure(command, Condition.MESSAGE_FOOD_CONSTRAINTS);
 
         /* ------------------ Performing edit operation while a filtered list is being shown ------------------------ */
 
@@ -133,7 +133,7 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
          * -> rejected
          */
         showOrdersWithName(KEYWORD_NAME_MATCHING_MEIER);
-        int invalidIndex = getModel().getOrderBook().getOrderList().size();
+        int invalidIndex = getModel().getOrderBook().getRequestList().size();
         assertCommandFailure(editCommand + " " + invalidIndex + NAME_DESC_BOB,
             Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
 
@@ -192,11 +192,11 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
 
         /* Case: invalid food -> rejected */
         assertCommandFailure(editCommand + " " + INDEX_FIRST.getOneBased() + INVALID_FOOD_DESC,
-            Food.MESSAGE_FOOD_CONSTRAINTS);
+            Condition.MESSAGE_FOOD_CONSTRAINTS);
 
         /* Case: edit a request with new values same as another request's values -> rejected */
         executeCommand(RequestCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(BOB));
-        assertTrue(getModel().getOrderBook().getOrderList().stream().anyMatch(x -> x.isSameOrder(BOB)));
+        assertTrue(getModel().getOrderBook().getRequestList().stream().anyMatch(x -> x.isSameOrder(BOB)));
         index = INDEX_FIRST;
         assertFalse(getModel().getFilteredOrderList().get(index.getZeroBased()).equals(BOB));
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB
@@ -288,8 +288,8 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
                                                      Model expectedModel) {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
-        assertEquals(new OrderBook(expectedModel.getOrderBook()).getOrderList().size(),
-            testApp.readStorageOrderBook().getOrderList().size());
+        assertEquals(new RequestBook(expectedModel.getOrderBook()).getRequestList().size(),
+            testApp.readStorageOrderBook().getRequestList().size());
         assertListMatching(getOrderListPanel(), expectedModel.getFilteredOrderList());
     }
 

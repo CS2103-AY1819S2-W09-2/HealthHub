@@ -12,7 +12,7 @@ contributions to one of my projects.
 
 == Overview
 
-FoodZoom is a food delivery management desktop application for food businesses to streamline their
+FoodZoom is a condition delivery management desktop application for condition businesses to streamline their
 delivery process. FoodZoom is responsive and quick as users interact with the application by typing the
 commands (using Command Line Interface). FoodZoom allows managers to plan request delivery routes and
 dispatch them to deliverymen available. Deliverymen can also quickly view their assigned delivery routes and
@@ -34,7 +34,7 @@ image::Ui.png[width="800"]
 request status changes from `PENDING` to `ONGOING`, which means that it can no longer be edited or
 reassigned to another healthworker.
 
-** Justification: This feature streamlines the food delivery process as the manager can assign requests
+** Justification: This feature streamlines the condition delivery process as the manager can assign requests
 to be delivered by their deliverymen conveniently.
 
 ** Highlights: The implementation was challenging as it required two-way association between the request and the healthworker.

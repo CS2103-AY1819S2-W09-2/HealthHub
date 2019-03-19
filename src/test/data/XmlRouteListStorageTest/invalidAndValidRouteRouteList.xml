@@ -8,18 +8,18 @@
             <phone>84625432</phone>
             <address>6 College Ave</address>
             <date>12-10-2018 01:56:00</date>
-            <food>Prata</food>
+            <condition>Prata</condition>
         </requests>
     </routes>
     <!-- Route with invalid source and destination field -->
     <routes tag="778909e5-f134-472a-bfd8-d34b35cf0b62">
-        <source> </source>
+        <source></source>
         <requests tag="92c54d56-e971-407a-81e7-5df71c3c82fc">
             <name>Ha!ns Mu@ster</name>
             <phone>84625432</phone>
             <address>6 College Ave</address>
             <date>12-10-2018 01:56:00</date>
-            <food>Prata</food>
+            <condition>Prata</condition>
         </requests>
     </routes>
 </routelist>

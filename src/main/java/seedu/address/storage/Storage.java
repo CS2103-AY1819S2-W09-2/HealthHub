@@ -8,7 +8,7 @@ import seedu.address.commons.events.model.HealthHubChangedEvent;
 import seedu.address.commons.events.model.UsersListChangedEvent;
 import seedu.address.commons.events.storage.DataSavingExceptionEvent;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyOrderBook;
+import seedu.address.model.ReadOnlyRequestBook;
 import seedu.address.model.ReadOnlyUsersList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.deliveryman.HealthworkerList;
@@ -42,22 +42,25 @@ public interface Storage extends FoodZoomStorage, UserPrefsStorage, UsersListSto
     void handleUsersListChangedEvent(UsersListChangedEvent ulce);
 
     @Override
-    Optional<ReadOnlyOrderBook> readOrderBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyRequestBook> readOrderBook() throws DataConversionException, IOException;
 
     @Override
-    Optional<ReadOnlyOrderBook> readOrderBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyRequestBook> readOrderBook(Path filePath) throws DataConversionException, IOException;
 
     @Override
     Optional<HealthworkerList> readDeliverymenList() throws DataConversionException, IOException;
 
     @Override
-    Optional<HealthworkerList> readDeliverymenList(Path filePath) throws DataConversionException, IOException;
+    Optional<HealthworkerList> readDeliverymenList(Path filePath) throws DataConversionException,
+        IOException;
 
     @Override
-    void saveFoodZoom(ReadOnlyOrderBook orderBook, HealthworkerList healthworkerList) throws IOException;
+    void saveFoodZoom(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList)
+        throws IOException;
 
     @Override
-    void saveFoodZoom(ReadOnlyOrderBook orderBook, HealthworkerList healthworkerList, Path filePath) throws IOException;
+    void saveFoodZoom(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList, Path filePath)
+        throws IOException;
 
-    void handleFoodZoomChangedEvent(HealthHubChangedEvent fzce);
+    void handleFoodZoomChangedEvent(HealthHubChangedEvent healthHubChangedEvent);
 }

@@ -10,7 +10,7 @@ import org.junit.Test;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.OrderBook;
+import seedu.address.model.RequestBook;
 import seedu.address.model.UserPrefs;
 
 public class ClearCommandTest {
@@ -32,7 +32,7 @@ public class ClearCommandTest {
                 getTypicalDeliverymenList(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalOrderBook(), getTypicalUsersList(),
                 getTypicalDeliverymenList(), new UserPrefs());
-        expectedModel.resetData(new OrderBook());
+        expectedModel.resetData(new RequestBook());
         expectedModel.commitOrderBook();
 
         assertCommandSuccess(new ClearCommand(), model, commandHistory, ClearCommand.MESSAGE_SUCCESS, expectedModel);

@@ -6,7 +6,7 @@
         <address isPrivate="false">4th street, 612234</address>
         <date>01-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <food>milo</food>
+        <conditions>milo</conditions>
     </orders>
     <orders tag="27bef72a-03b2-46d9-94d7-b8a0d359ec6e">
         <name>Ruth Mueller</name>
@@ -14,7 +14,7 @@
         <address isPrivate="false">81th street, 612234</address>
         <date>01-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <food>milo</food>
+        <conditions>milo</conditions>
     </orders>
     <orders tag="f2fa7cb9-03fe-4305-95d1-119cb644bd7f">
         <name>Heinz Kurz</name>
@@ -22,7 +22,7 @@
         <address isPrivate="false">wall street, 612234</address>
         <date>01-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <food>milo</food>
+        <conditions>milo</conditions>
     </orders>
     <orders tag="91fab618-8cdf-4be1-b3a7-f94a01953e54">
         <name>Cornelia Meier</name>
@@ -30,7 +30,7 @@
         <address isPrivate="false">10th street, 612234</address>
         <date>01-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <food>milo</food>
+        <conditions>milo</conditions>
     </orders>
     <orders tag="e05002f3-4d81-4ae6-8f27-515125e91d9a">
         <name>Werner Meyer</name>
@@ -38,7 +38,7 @@
         <address isPrivate="false">michegan ave, 612234</address>
         <date>01-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <food>milo</food>
+        <conditions>milo</conditions>
     </orders>
     <orders tag="652302e0-e8b2-4a2e-ad97-c8048681b515">
         <name>Lydia Kunz</name>
@@ -46,7 +46,7 @@
         <address isPrivate="false">little tokyo, 612234</address>
         <date>01-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <food>milo</food>
+        <conditions>milo</conditions>
     </orders>
     <orders tag="00fc91a1-35a9-473b-8635-430556017c2d">
         <name>Anna Best</name>
@@ -54,7 +54,7 @@
         <address isPrivate="false">4th street, 612234</address>
         <date>01-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <food>milo</food>
+        <conditions>milo</conditions>
     </orders>
     <orders tag="8cd10f97-0318-4bbe-b810-6b55f2d088e8">
         <name>Stefan Meier</name>
@@ -62,7 +62,7 @@
         <address isPrivate="false">little india, 612234</address>
         <date>01-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <food>milo</food>
+        <conditions>milo</conditions>
     </orders>
     <orders tag="e8b01f33-373f-4515-ba13-d4926c526d2f">
         <name>Martin Mueller</name>
@@ -70,6 +70,6 @@
         <address isPrivate="false">chicago ave, 612234</address>
         <date>01-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <food>milo</food>
+        <conditions>milo</conditions>
     </orders>
 </orderbook>

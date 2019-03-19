@@ -25,14 +25,13 @@ import seedu.address.testutil.RequestBuilder;
 
 public class RequestBookTest {
 
+    private final RequestBook orderBook = new RequestBook();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private final OrderBook orderBook = new OrderBook();
-
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), orderBook.getOrderList());
+        assertEquals(Collections.emptyList(), orderBook.getRequestList());
     }
 
     @Test
@@ -43,7 +42,7 @@ public class RequestBookTest {
 
     @Test
     public void resetData_withValidReadOnlyOrderBook_replacesData() {
-        OrderBook newData = getTypicalOrderBook();
+        RequestBook newData = getTypicalOrderBook();
         orderBook.resetData(newData);
         assertEquals(newData, orderBook);
     }
@@ -51,10 +50,10 @@ public class RequestBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Request editedAlice = new RequestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
-                .build();
+        Request editedAlice = new RequestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withCondition(VALID_FOOD_BURGER)
+            .build();
         List<Request> newRequests = Arrays.asList(ALICE, editedAlice);
-        OrderBookStub newData = new OrderBookStub(newRequests);
+        RequestBookStub newData = new RequestBookStub(newRequests);
 
         thrown.expect(DuplicateRequestException.class);
         orderBook.resetData(newData);
@@ -63,46 +62,46 @@ public class RequestBookTest {
     @Test
     public void hasOrder_nullOrder_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        orderBook.hasOrder(null);
+        orderBook.hasRequest(null);
     }
 
     @Test
     public void hasOrder_orderNotInOrderBook_returnsFalse() {
-        assertFalse(orderBook.hasOrder(ALICE));
+        assertFalse(orderBook.hasRequest(ALICE));
     }
 
     @Test
     public void hasOrder_orderInOrderBook_returnsTrue() {
-        orderBook.addOrder(ALICE);
-        assertTrue(orderBook.hasOrder(ALICE));
+        orderBook.addRequest(ALICE);
+        assertTrue(orderBook.hasRequest(ALICE));
     }
 
     @Test
     public void hasOrder_orderWithSameIdentityFieldsInOrderBook_returnsTrue() {
-        orderBook.addOrder(ALICE);
-        Request editedAlice = new RequestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
-                .build();
-        assertTrue(orderBook.hasOrder(editedAlice));
+        orderBook.addRequest(ALICE);
+        Request editedAlice = new RequestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withCondition(VALID_FOOD_BURGER)
+            .build();
+        assertTrue(orderBook.hasRequest(editedAlice));
     }
 
     @Test
     public void getOrderList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        orderBook.getOrderList().remove(0);
+        orderBook.getRequestList().remove(0);
     }
 
     /**
-     * A stub ReadOnlyOrderBook whose requests list can violate interface constraints.
+     * A stub ReadOnlyRequestBook whose requests list can violate interface constraints.
      */
-    private static class OrderBookStub implements ReadOnlyOrderBook {
+    private static class RequestBookStub implements ReadOnlyRequestBook {
         private final ObservableList<Request> requests = FXCollections.observableArrayList();
 
-        OrderBookStub(Collection<Request> request) {
+        RequestBookStub(Collection<Request> request) {
             this.requests.setAll(request);
         }
 
         @Override
-        public ObservableList<Request> getOrderList() {
+        public ObservableList<Request> getRequestList() {
             return requests;
         }
     }

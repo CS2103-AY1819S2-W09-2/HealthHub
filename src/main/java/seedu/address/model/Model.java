@@ -31,12 +31,12 @@ public interface Model {
     /**
      * Clears existing backing model and replaces with the provided new data.
      */
-    void resetData(ReadOnlyOrderBook newData);
+    void resetData(ReadOnlyRequestBook newData);
 
     /**
-     * Returns the OrderBook
+     * Returns the RequestBook
      */
-    ReadOnlyOrderBook getOrderBook();
+    ReadOnlyRequestBook getOrderBook();
 
     /**
      * Returns true if a common with the same identity as {@code request} exists in the request book.

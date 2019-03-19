@@ -2,13 +2,13 @@
 <routelist>
     <!-- Route with invalid source and destination field -->
     <routes tag="0">
-        <source> </source>
+        <source></source>
         <requests>
             <name>Ha!ns Mu@ster</name>
             <phone>84625432</phone>
             <address>6 College Ave</address>
             <date>12-10-2018 01:56:00</date>
-            <food>Prata</food>
+            <condition>Prata</condition>
         </requests>
     </routes>
 </routelist>

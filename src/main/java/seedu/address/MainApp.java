@@ -22,9 +22,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.OrderBook;
-import seedu.address.model.ReadOnlyOrderBook;
+import seedu.address.model.ReadOnlyRequestBook;
 import seedu.address.model.ReadOnlyUsersList;
+import seedu.address.model.RequestBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.UsersList;
 import seedu.address.model.deliveryman.HealthworkerList;
@@ -62,7 +62,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing OrderBook ]===========================");
+        logger.info("=============================[ Initializing RequestBook ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -91,8 +91,8 @@ public class MainApp extends Application {
      * or an empty request book will be used instead if errors occur when reading {@code storage}'s request book.
      */
     private Model initModelManager(Storage storage, UserPrefs userPrefs) {
-        Optional<ReadOnlyOrderBook> orderBookOptional;
-        ReadOnlyOrderBook initialData;
+        Optional<ReadOnlyRequestBook> orderBookOptional;
+        ReadOnlyRequestBook initialData;
         Optional<ReadOnlyUsersList> usersListOptional;
         ReadOnlyUsersList initialUser;
         Optional<HealthworkerList> deliverymenListOptional;
@@ -101,15 +101,15 @@ public class MainApp extends Application {
         try {
             orderBookOptional = storage.readOrderBook();
             if (!orderBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample OrderBook");
+                logger.info("Data file not found. Will be starting with a sample RequestBook");
             }
             initialData = orderBookOptional.orElseGet(SampleDataUtil::getSampleOrderBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty OrderBook");
-            initialData = new OrderBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty RequestBook");
+            initialData = new RequestBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty OrderBook");
-            initialData = new OrderBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty RequestBook");
+            initialData = new RequestBook();
         }
 
         try {
@@ -170,7 +170,7 @@ public class MainApp extends Application {
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                    + "Using default config properties");
+                + "Using default config properties");
             initializedConfig = new Config();
         }
 
@@ -198,10 +198,10 @@ public class MainApp extends Application {
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                    + "Using default user prefs");
+                + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty OrderBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty RequestBook");
             initializedPrefs = new UserPrefs();
         }
 
@@ -221,7 +221,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting OrderBook " + MainApp.VERSION);
+        logger.info("Starting RequestBook " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

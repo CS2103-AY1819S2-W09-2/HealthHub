@@ -471,7 +471,7 @@ The statistics panel has four key indicators:
 
 .. The total number of requests displayed
 .. The percentage of requests that are still pending
-.. The most common food item bought
+.. The most common condition item bought
 .. The Order History for the last 7 days in which there was at least one request
 
 Similar to the `MapPanel`, there is a `StatisticsPanel` which updates these statistics based
@@ -486,8 +486,8 @@ process the data is further elaborated on in the table below:
 |Statistic                    |Data Structure  | Technique
 | Total Orders                | Variable       | Count the requests in the list
 | Pending Order Percentage    | Variable       | Count requests with status "PENDING" and divide with total requests
-| Trending Food Item          | HashTable      | Use a lookup table to track the count of each food item in menu.
-Each time there is an update ot the requests, run through the table and see which food item has the largest count value.
+| Trending Food Item          | HashTable      | Use a lookup table to track the count of each condition item in menu.
+Each time there is an update ot the requests, run through the table and see which condition item has the largest count value.
 | Order Histogram             | Balanced Binary Search Tree (Java `TreeMap`)  | The dates from the Orders are put
 into a binary search tree along with their count. The tree uses a custom comparator that allows for dates to be
 compared with each other. This allows the 7 most recent dates with at least one request to be retrieved quickly. The
@@ -559,7 +559,7 @@ that the user experience is not affected.
 
 ==== Current Implementation
 The `add` request command allows the `Manager` to create a new request and add it to the list of requests.
-Adding a new request requires the customer's `name`, customer's `phone` number, customer's `address`, `food` and the `datetime`. +
+Adding a new request requires the customer's `name`, customer's `phone` number, customer's `address`, `condition` and the `datetime`. +
 The format of the `add` command is `/request add n/NAME p/PHONE a/ADDRESS f/FOOD dt/DATETIME`.
 
 The following sequence shows the sequence when the `add` command is execute by the `Manager`:
@@ -1290,7 +1290,7 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 * is reasonably comfortable using CLI apps
 
 
-*Value proposition*: Integrate end-to-end systems and streamline food delivery management
+*Value proposition*: Integrate end-to-end systems and streamline condition delivery management
 
 [appendix]
 == User Stories
@@ -1317,11 +1317,11 @@ have
 
 |`* * *` |manager |find an request using phone number | can find specific requests quickly
 
-|`* *` |manager |update my menu (add/remove food items) | can manage the food items I have and expand by business
+|`* *` |manager |update my menu (add/remove condition items) | can manage the condition items I have and expand by business
 
 |`* *` |manager |view a basic route for request | have a clearer idea on how to dispatch my deliverymen
 
-|`* *` |manager |find requests by more files (name, food item etc.) | have more options to locate specific requests
+|`* *` |manager |find requests by more files (name, condition item etc.) | have more options to locate specific requests
 
 |`* *` |manager |trace status of requests (estimated timeline)  | can have visibility on when requests will be delivered
 
@@ -1462,8 +1462,8 @@ Use case ends
 3.  Delivery man requests for assigned route
 4.  FoodZoom shows the assigned route
 5.  Delivery man looks through each destination and checks address info
-6.  Delivery man checks for status of food
-7.  Deliveryman logs out to collect food & leave for delivery
+6.  Delivery man checks for status of condition
+7.  Deliveryman logs out to collect condition & leave for delivery
 +
 Use case ends.
 
@@ -1616,7 +1616,7 @@ dt/21-10-2018 00:00:00` +
     Expected: No request is added. Error details shown in the status message (invalid date). Status bar remains the same.
 
 ... Test case: `/request add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 dt/32-10-2018 00:00:00` +
-    Expected: No request is added. Error details shown in the status message (no food). Status bar remains the same.
+    Expected: No request is added. Error details shown in the status message (no condition). Status bar remains the same.
 
 ... Test case: `/request add n/John Lee n/John Roe p/98765432 a/311, Clementi Ave 2, #02-25, 612344 f/Roti Prata f/Ice
 Milo dt/30-10-2018 00:00:05` +
@@ -1666,15 +1666,15 @@ Milo dt/30-10-2018 00:00:01` +
     Command: `/request find p/` +
     Expected: Error is shown in the status message. Value cannot be empty.
 
-. Finding request by address, name, food
+. Finding request by address, name, condition
 .. Prerequisites: Having at least 1 request.
 .. Test case: Valid address +
     Command: `/request find a/Blk 10` +
     Expected: Order/s with the address containing `Blk 10` is shown on the left panel.
 
-.. Test case: Valid food +
+.. Test case: Valid condition +
     Command: `/request find f/Chicken Rice` +
-    Expected: Order/s with food `Chicken Rice`, `Chicken Rice with Chilli` is shown on the left panel.
+    Expected: Order/s with condition `Chicken Rice`, `Chicken Rice with Chilli` is shown on the left panel.
 
 .. Test case: Valid name +
     Command: `/request find n/Alex Yeoh` +
@@ -1736,7 +1736,7 @@ Milo dt/30-10-2018 00:00:01` +
  list.
 ... Test case: Valid arguments +
     Command: `/request edit <order_index> f/Roti Canai` +
-    Expected: Food of the request with the `<order_index>` will be overwritten with the food `Roti Canai`
+    Expected: Food of the request with the `<order_index>` will be overwritten with the condition `Roti Canai`
 
 ... Test case: Invalid request index +
     Command: `/request edit 0 n/alex` +

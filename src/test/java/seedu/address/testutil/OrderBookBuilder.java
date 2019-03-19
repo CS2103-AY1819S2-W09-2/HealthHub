@@ -1,34 +1,34 @@
 package seedu.address.testutil;
 
-import seedu.address.model.OrderBook;
+import seedu.address.model.RequestBook;
 import seedu.address.model.order.Request;
 
 /**
  * A utility class to help with building Orderbook objects.
  * Example usage: <br>
- * {@code OrderBook ab = new OrderBookBuilder().withPerson("John", "Doe").build();}
+ * {@code RequestBook ab = new OrderBookBuilder().withPerson("John", "Doe").build();}
  */
 public class OrderBookBuilder {
 
-    private OrderBook orderBook;
+    private RequestBook orderBook;
 
     public OrderBookBuilder() {
-        orderBook = new OrderBook();
+        orderBook = new RequestBook();
     }
 
-    public OrderBookBuilder(OrderBook orderBook) {
+    public OrderBookBuilder(RequestBook orderBook) {
         this.orderBook = orderBook;
     }
 
     /**
-     * Adds a new {@code Request} to the {@code OrderBook} that we are building.
+     * Adds a new {@code Request} to the {@code RequestBook} that we are building.
      */
     public OrderBookBuilder withOrder(Request request) {
-        orderBook.addOrder(request);
+        orderBook.addRequest(request);
         return this;
     }
 
-    public OrderBook build() {
+    public RequestBook build() {
         return orderBook;
     }
 }

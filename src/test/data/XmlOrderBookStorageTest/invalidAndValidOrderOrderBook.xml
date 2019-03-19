@@ -7,7 +7,7 @@
         <address isPrivate="false">4th street, 612234</address>
         <date>01-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <food>milo</food>
+        <condition>milo</condition>
     </requests>
     <!-- Person with invalid phone field -->
     <requests tag="27bef72a-03b2-46d9-94d7-b8a0d359ec6e">
@@ -16,6 +16,6 @@
         <address isPrivate="false">4th street</address>
         <date>01-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <food>milo</food>
+        <condition>milo</condition>
     </requests>
 </orderbook>

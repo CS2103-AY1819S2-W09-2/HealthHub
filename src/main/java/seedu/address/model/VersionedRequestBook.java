@@ -4,28 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * {@code OrderBook} that keeps track of its own history.
+ * {@code RequestBook} that keeps track of its own history.
  */
-public class VersionedOrderBook extends OrderBook {
+public class VersionedRequestBook extends RequestBook {
 
-    private final List<ReadOnlyOrderBook> orderBookStateList;
+    private final List<ReadOnlyRequestBook> orderBookStateList;
     private int currentStatePointer;
 
-    public VersionedOrderBook(ReadOnlyOrderBook initialState) {
+    public VersionedRequestBook(ReadOnlyRequestBook initialState) {
         super(initialState);
 
         orderBookStateList = new ArrayList<>();
-        orderBookStateList.add(new OrderBook(initialState));
+        orderBookStateList.add(new RequestBook(initialState));
         currentStatePointer = 0;
     }
 
     /**
-     * Saves a copy of the current {@code OrderBook} state at the end of the state list.
+     * Saves a copy of the current {@code RequestBook} state at the end of the state list.
      * Undone states are removed from the state list.
      */
     public void commit() {
         removeStatesAfterCurrentPointer();
-        orderBookStateList.add(new OrderBook(this));
+        orderBookStateList.add(new RequestBook(this));
         currentStatePointer++;
     }
 
@@ -77,16 +77,16 @@ public class VersionedOrderBook extends OrderBook {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof VersionedOrderBook)) {
+        if (!(other instanceof VersionedRequestBook)) {
             return false;
         }
 
-        VersionedOrderBook otherVersionedOrderBook = (VersionedOrderBook) other;
+        VersionedRequestBook otherVersionedOrderBook = (VersionedRequestBook) other;
 
         // state check
         return super.equals(otherVersionedOrderBook)
-                && orderBookStateList.equals(otherVersionedOrderBook.orderBookStateList)
-                && currentStatePointer == otherVersionedOrderBook.currentStatePointer;
+            && orderBookStateList.equals(otherVersionedOrderBook.orderBookStateList)
+            && currentStatePointer == otherVersionedOrderBook.currentStatePointer;
     }
 
     /**

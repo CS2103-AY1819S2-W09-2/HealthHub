@@ -8,7 +8,7 @@ import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.order.Food;
+import seedu.address.model.order.Condition;
 import seedu.address.model.order.Request;
 import seedu.address.model.order.RequestDate;
 import seedu.address.model.order.RequestStatus;
@@ -31,7 +31,7 @@ public class RequestBuilder {
     private Address address;
     private RequestDate date;
     private RequestStatus status;
-    private Set<Food> food;
+    private Set<Condition> condition;
     private UUID id;
     private Healthworker healthworker;
 
@@ -40,7 +40,7 @@ public class RequestBuilder {
         phone = new Phone(DEFAULT_PHONE);
         address = new Address(DEFAULT_ADDRESS);
         date = new RequestDate(DEFAULT_DATE);
-        food = SampleDataUtil.getFoodSet(DEFAULT_FOOD);
+        condition = SampleDataUtil.getConditionSet(DEFAULT_FOOD);
         status = new RequestStatus(DEFAULT_STATUS);
         healthworker = null;
     }
@@ -55,7 +55,7 @@ public class RequestBuilder {
         address = requestToCopy.getAddress();
         date = requestToCopy.getDate();
         status = requestToCopy.getRequestStatus();
-        food = new HashSet<>(requestToCopy.getFood());
+        condition = new HashSet<>(requestToCopy.getCondition());
         healthworker = requestToCopy.getHealthworker();
     }
 
@@ -78,10 +78,10 @@ public class RequestBuilder {
     }
 
     /**
-     * Parses the {@code food} into a {@code Set<Food>} and set it to the {@code Request} that we are building.
+     * Parses the {@code condition} into a {@code Set<Condition>} and set it to the {@code Request} that we are building.
      */
-    public RequestBuilder withFood(String... food) {
-        this.food = SampleDataUtil.getFoodSet(food);
+    public RequestBuilder withCondition(String... conditions) {
+        this.condition = SampleDataUtil.getConditionSet(conditions);
         return this;
     }
 
@@ -130,9 +130,9 @@ public class RequestBuilder {
      */
     public Request build() {
         if (id != null) {
-            return new Request(id, name, phone, address, date, status, food, healthworker);
+            return new Request(id, name, phone, address, date, status, condition, healthworker);
         } else {
-            return new Request(name, phone, address, date, status, food);
+            return new Request(name, phone, address, date, status, condition);
         }
     }
 

@@ -18,7 +18,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.BackToHomeEvent;
 import seedu.address.commons.events.ui.HealthWorkerPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.RequestPanelSelectionChangedEvent;
-import seedu.address.model.order.Food;
+import seedu.address.model.order.Condition;
 import seedu.address.model.order.Request;
 import seedu.address.ui.display.DeliverymanDisplayCard;
 import seedu.address.ui.display.OrderDisplayCard;
@@ -201,8 +201,8 @@ public class Display extends UiPart<Region> {
      */
     private void addFoodItems(List<? extends Request> changeList) {
         for (Request o : changeList) {
-            Set<Food> foodList = o.getFood();
-            for (Food item : foodList) {
+            Set<Condition> conditionList = o.getCondition();
+            for (Condition item : conditionList) {
                 String foodKey = item.toString();
                 if (purchaseHistory.containsKey(foodKey)) {
                     purchaseHistory.put(foodKey, purchaseHistory.get(foodKey) + 1);
@@ -220,8 +220,8 @@ public class Display extends UiPart<Region> {
      */
     private void removeFoodItems(List<? extends Request> changeList) {
         for (Request o : changeList) {
-            Set<Food> foodList = o.getFood();
-            for (Food item : foodList) {
+            Set<Condition> conditionList = o.getCondition();
+            for (Condition item : conditionList) {
                 String foodKey = item.toString();
                 if (purchaseHistory.containsKey(foodKey)) {
                     if (purchaseHistory.get(foodKey) <= 1) {

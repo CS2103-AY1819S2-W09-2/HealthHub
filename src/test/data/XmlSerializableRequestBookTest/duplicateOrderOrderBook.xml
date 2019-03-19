@@ -7,7 +7,7 @@
         <address>123, Jurong West Ave 6, #08-111, 612234</address>
         <date>01-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <food>chocolate milk</food>
+        <conditions>chocolate milk</conditions>
     </orders>
 
     <!-- Request with same identity as Alice Pauline -->
@@ -17,7 +17,7 @@
         <address>4th street, 612234</address>
         <date>01-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <food>tea</food>
+        <conditions>tea</conditions>
     </orders>
 
 </orderbook>

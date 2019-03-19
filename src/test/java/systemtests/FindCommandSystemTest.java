@@ -32,7 +32,7 @@ import seedu.address.logic.commands.request.DeleteCommand;
 import seedu.address.logic.commands.request.FindCommand;
 import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.model.Model;
-import seedu.address.model.order.Food;
+import seedu.address.model.order.Condition;
 
 public class FindCommandSystemTest extends RequestBookSystemTest {
 
@@ -43,7 +43,7 @@ public class FindCommandSystemTest extends RequestBookSystemTest {
         /* Login */
         String loginCommand = LoginCommand.COMMAND_WORD + " ";
         String command = loginCommand + PREFIX_USERNAME + VALID_MANAGER_USERNAME_ALICE
-                + " " + PREFIX_PASSWORD + VALID_MANAGER_PASSWORD_ALICE;
+            + " " + PREFIX_PASSWORD + VALID_MANAGER_PASSWORD_ALICE;
         executeCommand(command);
         setUpOrderListPanel();
 
@@ -122,7 +122,7 @@ public class FindCommandSystemTest extends RequestBookSystemTest {
 
         /* Case: find same orders in request book after deleting 1 of them -> 1 request found */
         executeCommand(RequestCommand.COMMAND_WORD + " " + DeleteCommand.COMMAND_WORD + " 1");
-        assertFalse(getModel().getOrderBook().getOrderList().contains(BENSON));
+        assertFalse(getModel().getOrderBook().getRequestList().contains(BENSON));
         command = findCommand + " " + KEYWORD_NAME_MATCHING_MEIER;
         expectedModel = getModel();
         ModelHelper.setFilteredList(expectedModel, DANIEL);
@@ -150,9 +150,9 @@ public class FindCommandSystemTest extends RequestBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find food of request in request book -> 1 orders found */
-        List<Food> food = new ArrayList<>(DANIEL.getFood());
-        command = findCommand + " " + PREFIX_FOOD + food.get(0).foodName;
+        /* Case: find condition of request in request book -> 1 orders found */
+        List<Condition> condition = new ArrayList<>(DANIEL.getCondition());
+        command = findCommand + " " + PREFIX_FOOD + condition.get(0).foodName;
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
@@ -207,7 +207,7 @@ public class FindCommandSystemTest extends RequestBookSystemTest {
         /* Case: find by name while an request is selected -> selected card deselected */
         showAllOrders();
         selectOrder(Index.fromOneBased(1));
-        assertFalse(getOrderListPanel().getHandleToSelectedCard().getFood().equals(DANIEL.getFood()));
+        assertFalse(getOrderListPanel().getHandleToSelectedCard().getConditions().equals(DANIEL.getCondition()));
         command = findCommand + " " + PREFIX_NAME + "Daniel";
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
@@ -239,7 +239,7 @@ public class FindCommandSystemTest extends RequestBookSystemTest {
      */
     private void assertCommandSuccess(String command, Model expectedModel) {
         String expectedResultMessage = String.format(
-                MESSAGE_ORDERS_LISTED_OVERVIEW, expectedModel.getFilteredOrderList().size());
+            MESSAGE_ORDERS_LISTED_OVERVIEW, expectedModel.getFilteredOrderList().size());
 
         executeCommand(command);
         assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);

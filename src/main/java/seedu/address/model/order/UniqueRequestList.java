@@ -18,7 +18,7 @@ import seedu.address.model.order.exceptions.RequestNotFoundException;
  * that the Request being added or updated is unique in terms of identity in the UniqueRequestList.
  * However, the removal of an Request uses Request#equals(Object) so as to ensure that the
  * request with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Request#isSameOrder(Request)
@@ -52,7 +52,7 @@ public class UniqueRequestList implements Iterable<Request> {
      * {@code target} must exist in the list.
      * The request identity of {@code editedRequest} must not be the same as another existing request in the list.
      */
-    public void setOrder(Request target, Request editedRequest) {
+    public void setRequest(Request target, Request editedRequest) {
         requireAllNonNull(target, editedRequest);
 
         int index = internalList.indexOf(target);
@@ -67,7 +67,7 @@ public class UniqueRequestList implements Iterable<Request> {
         internalList.set(index, editedRequest);
     }
 
-    public void setOrder(UniqueRequestList replacement) {
+    public void setRequest(UniqueRequestList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -76,7 +76,7 @@ public class UniqueRequestList implements Iterable<Request> {
      * Replaces the contents of this list with {@code requests}.
      * {@code requests} must not contain duplicate persons.
      */
-    public void setOrder(List<Request> requests) {
+    public void setRequest(List<Request> requests) {
         requireAllNonNull(requests);
         if (!ordersAreUnique(requests)) {
             throw new DuplicateRequestException();
@@ -111,8 +111,8 @@ public class UniqueRequestList implements Iterable<Request> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueRequestList // instanceof handles nulls
-                && internalList.equals(((UniqueRequestList) other).internalList));
+            || (other instanceof UniqueRequestList // instanceof handles nulls
+            && internalList.equals(((UniqueRequestList) other).internalList));
     }
 
     @Override

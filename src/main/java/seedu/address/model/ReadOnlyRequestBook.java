@@ -6,12 +6,12 @@ import seedu.address.model.order.Request;
 /**
  * Unmodifiable view of an request book
  */
-public interface ReadOnlyOrderBook {
+public interface ReadOnlyRequestBook {
 
     /**
      * Returns an unmodifiable view of the orders list.
      * This list will not contain any duplicate orders.
      */
-    ObservableList<Request> getOrderList();
+    ObservableList<Request> getRequestList();
 
 }

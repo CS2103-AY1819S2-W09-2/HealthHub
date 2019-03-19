@@ -8,15 +8,15 @@
             <phone>94351253</phone>
             <address>123, Jurong West Ave 6, #08-111</address>
             <date>01-10-2018 10:00:00</date>
-            <food>Roti Prata</food>
+            <condition>Roti Prata</condition>
         </requests>
         <requests tag="e328789f-c707-49a9-8147-d93e213fb1d7">
             <name>Benson Meier</name>
             <phone>98765432</phone>
             <address>311, Clementi Ave 2, #02-25</address>
             <date>02-10-2018 10:00:00</date>
-            <food>Egg Fried Rice</food>
-            <food>Milo</food>
+            <condition>Egg Fried Rice</condition>
+            <condition>Milo</condition>
         </requests>
     </routes>
     <routes tag="6c974f14-e5f5-4652-ba14-4df75e259b25">
@@ -26,7 +26,7 @@
             <phone>95352563</phone>
             <address>wall street</address>
             <date>03-10-2018 10:00:00</date>
-            <food>Milkshake</food>
+            <condition>Milkshake</condition>
         </requests>
     </routes>
     <routes tag="ec11e415-4794-44c2-9d29-861d359d8b76">
@@ -36,7 +36,7 @@
             <phone>87652533</phone>
             <address>10th street</address>
             <date>04-10-2018 10:00:00</date>
-            <food>Fish and Chips</food>
+            <condition>Fish and Chips</condition>
         </requests>
     </routes>
 </routelist>

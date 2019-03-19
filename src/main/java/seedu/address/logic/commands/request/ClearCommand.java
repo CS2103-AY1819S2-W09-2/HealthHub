@@ -7,7 +7,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.OrderBook;
+import seedu.address.model.RequestBook;
 import seedu.address.model.order.Request;
 
 /**
@@ -22,12 +22,12 @@ public class ClearCommand extends RequestCommand {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        for (Request request : model.getOrderBook().getOrderList()) {
+        for (Request request : model.getOrderBook().getRequestList()) {
             if (request.isOngoing()) {
                 throw new CommandException(Messages.MESSAGE_ORDER_ONGOING_CANNOT_CLEAR);
             }
         }
-        model.resetData(new OrderBook());
+        model.resetData(new RequestBook());
         model.commitOrderBook();
         return new CommandResult(MESSAGE_SUCCESS);
     }

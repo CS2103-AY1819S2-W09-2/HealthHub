@@ -27,26 +27,26 @@ public class AddCommandIntegrationTest {
     @Before
     public void setUp() {
         model = new ModelManager(getTypicalOrderBook(), getTypicalUsersList(),
-                getTypicalDeliverymenList(), new UserPrefs());
+            getTypicalDeliverymenList(), new UserPrefs());
     }
 
     @Test
     public void execute_newOrder_success() {
         Request validRequest = new RequestBuilder().build();
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
-                model.getDeliverymenList(), new UserPrefs());
+            model.getDeliverymenList(), new UserPrefs());
         expectedModel.addOrder(validRequest);
         expectedModel.commitOrderBook();
 
         assertCommandSuccess(new AddCommand(validRequest), model, commandHistory,
-                String.format(AddCommand.MESSAGE_SUCCESS, validRequest), expectedModel);
+            String.format(AddCommand.MESSAGE_SUCCESS, validRequest), expectedModel);
     }
 
     @Test
     public void execute_duplicateOrder_throwsCommandException() {
-        Request requestInList = model.getOrderBook().getOrderList().get(0);
+        Request requestInList = model.getOrderBook().getRequestList().get(0);
         assertCommandFailure(new AddCommand(requestInList), model, commandHistory,
-                AddCommand.MESSAGE_DUPLICATE_ORDER);
+            AddCommand.MESSAGE_DUPLICATE_ORDER);
     }
 
 }
