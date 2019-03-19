@@ -43,7 +43,7 @@ public class Display extends UiPart<Region> {
 
     private StatisticsPanel statisticsPanel;
     private TreeMap<Date, Integer> orderHistory;
-    private HashMap<String, Integer> purchaseHistory;
+    private HashMap<String, Integer> conditionHistory;
     private double progress;
     private int total;
 
@@ -81,7 +81,7 @@ public class Display extends UiPart<Region> {
                     orderHistory = new TreeMap<>();
                     updateOrderHistory(change.getList());
 
-                    purchaseHistory = new HashMap<>();
+                    conditionHistory = new HashMap<>();
                     addConditions(change.getList());
 
                     trackProgress(change.getList(), false);
@@ -130,7 +130,7 @@ public class Display extends UiPart<Region> {
      */
     private void setupStatistics() {
         orderHistory = new TreeMap<>();
-        purchaseHistory = new HashMap<>();
+        conditionHistory = new HashMap<>();
         this.progress = 0;
 
         logger.info(progress + "   " + total);
@@ -181,17 +181,17 @@ public class Display extends UiPart<Region> {
      * @return a String that represents the food item ordered the most
      */
     private String getCommonConditions() {
-        String bestFood = "";
+        String commonCondition = "";
         int bestVal = -1;
 
-        for (String food : purchaseHistory.keySet()) {
-            if (purchaseHistory.get(food) > bestVal) {
-                bestVal = purchaseHistory.get(food);
-                bestFood = food;
+        for (String cond : conditionHistory.keySet()) {
+            if (conditionHistory.get(cond) > bestVal) {
+                bestVal = conditionHistory.get(cond);
+                commonCondition = cond;
             }
         }
 
-        return bestFood;
+        return commonCondition;
     }
 
     /**
@@ -204,10 +204,10 @@ public class Display extends UiPart<Region> {
             Set<Condition> conditionList = o.getCondition();
             for (Condition item : conditionList) {
                 String foodKey = item.toString();
-                if (purchaseHistory.containsKey(foodKey)) {
-                    purchaseHistory.put(foodKey, purchaseHistory.get(foodKey) + 1);
+                if (conditionHistory.containsKey(foodKey)) {
+                    conditionHistory.put(foodKey, conditionHistory.get(foodKey) + 1);
                 } else {
-                    purchaseHistory.put(foodKey, 1);
+                    conditionHistory.put(foodKey, 1);
                 }
             }
         }
@@ -223,11 +223,11 @@ public class Display extends UiPart<Region> {
             Set<Condition> conditionList = o.getCondition();
             for (Condition item : conditionList) {
                 String foodKey = item.toString();
-                if (purchaseHistory.containsKey(foodKey)) {
-                    if (purchaseHistory.get(foodKey) <= 1) {
-                        purchaseHistory.remove(foodKey);
+                if (conditionHistory.containsKey(foodKey)) {
+                    if (conditionHistory.get(foodKey) <= 1) {
+                        conditionHistory.remove(foodKey);
                     } else {
-                        purchaseHistory.put(foodKey, purchaseHistory.get(foodKey) - 1);
+                        conditionHistory.put(foodKey, conditionHistory.get(foodKey) - 1);
                     }
                 }
             }

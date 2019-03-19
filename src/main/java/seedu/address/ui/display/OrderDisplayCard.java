@@ -27,7 +27,7 @@ public class OrderDisplayCard extends UiPart<Region> {
     @FXML
     private Label nameL;
     @FXML
-    private Label deliverymanL;
+    private Label healthworkerL;
 
     public OrderDisplayCard(Request request) {
         super(FXML);
@@ -38,7 +38,7 @@ public class OrderDisplayCard extends UiPart<Region> {
         foodL.setText("Condition: " + request.getCondition().toString());
         phoneL.setText("Phone: " + request.getPhone().toString());
         addressL.setText("Address: " + request.getAddress().toString());
-        deliverymanL.setText("Healthworker: " + getFullNameOrNull(request.getHealthworker()));
+        healthworkerL.setText("Healthworker: " + getFullNameOrNull(request.getHealthworker()));
     }
 
     private String getFullNameOrNull(Healthworker healthworker) {
