@@ -13,7 +13,7 @@ import java.util.Date;
 import org.junit.Test;
 
 import seedu.address.logic.commands.request.FindCommand;
-import seedu.address.model.order.OrderAddressContainsKeywordPredicate;
+import seedu.address.model.order.RequestAddressContainsKeywordPredicate;
 import seedu.address.model.order.OrderFoodContainsKeywordPredicate;
 import seedu.address.model.order.RequestDatePredicate;
 import seedu.address.model.order.RequestNameContainsKeywordPredicate;
@@ -44,7 +44,7 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " p/81223455", expectedPhoneFindCommand);
 
         FindCommand expectedAddressFindCommand =
-            new FindCommand(new OrderAddressContainsKeywordPredicate("123, Jurong West Ave 6, #08-111"));
+            new FindCommand(new RequestAddressContainsKeywordPredicate("123, Jurong West Ave 6, #08-111"));
         assertParseSuccess(parser, " a/123, Jurong West Ave 6, #08-111", expectedAddressFindCommand);
 
         FindCommand expectedFoodFindCommand =

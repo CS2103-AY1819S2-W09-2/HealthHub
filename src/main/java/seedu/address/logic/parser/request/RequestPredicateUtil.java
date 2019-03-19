@@ -12,7 +12,7 @@ import seedu.address.logic.commands.request.FindCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.OrderAddressContainsKeywordPredicate;
+import seedu.address.model.order.RequestAddressContainsKeywordPredicate;
 import seedu.address.model.order.OrderFoodContainsKeywordPredicate;
 import seedu.address.model.order.Request;
 import seedu.address.model.order.RequestDatePredicate;
@@ -99,7 +99,7 @@ public class RequestPredicateUtil {
 
         case STRING_PREFIX_ADDRESS:
             String address = getLastValueFromList(keywords).trim();
-            OrderAddressContainsKeywordPredicate addressPredicate = new OrderAddressContainsKeywordPredicate(address);
+            RequestAddressContainsKeywordPredicate addressPredicate = new RequestAddressContainsKeywordPredicate(address);
 
             setToPredicate(addressPredicate);
 

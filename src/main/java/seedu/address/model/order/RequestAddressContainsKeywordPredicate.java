@@ -5,10 +5,10 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Request}'s {@code Address} matches any of the keywords given.
  */
-public class OrderAddressContainsKeywordPredicate implements Predicate<Request> {
+public class RequestAddressContainsKeywordPredicate implements Predicate<Request> {
     private final String keyword;
 
-    public OrderAddressContainsKeywordPredicate(String address) {
+    public RequestAddressContainsKeywordPredicate(String address) {
         keyword = address.trim().toLowerCase();
     }
 
@@ -20,8 +20,8 @@ public class OrderAddressContainsKeywordPredicate implements Predicate<Request> 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof OrderAddressContainsKeywordPredicate // instanceof handles nulls
-                && keyword.equals(((OrderAddressContainsKeywordPredicate) other).keyword)); // state check
+                || (other instanceof RequestAddressContainsKeywordPredicate // instanceof handles nulls
+                && keyword.equals(((RequestAddressContainsKeywordPredicate) other).keyword)); // state check
     }
 
 }
