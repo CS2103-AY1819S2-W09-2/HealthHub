@@ -16,8 +16,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.address.model.order.exceptions.DuplicateOrderException;
-import seedu.address.model.order.exceptions.OrderNotFoundException;
+import seedu.address.model.order.exceptions.DuplicateRequestException;
+import seedu.address.model.order.exceptions.RequestNotFoundException;
 import seedu.address.testutil.OrderBuilder;
 
 public class UniqueOrderListTest {
@@ -61,7 +61,7 @@ public class UniqueOrderListTest {
     @Test
     public void add_duplicateOrder_throwsDuplicateOrderException() {
         uniqueOrderList.add(ALICE);
-        thrown.expect(DuplicateOrderException.class);
+        thrown.expect(DuplicateRequestException.class);
         uniqueOrderList.add(ALICE);
     }
 
@@ -79,7 +79,7 @@ public class UniqueOrderListTest {
 
     @Test
     public void setOrder_targetOrderNotInList_throwsOrderNotFoundException() {
-        thrown.expect(OrderNotFoundException.class);
+        thrown.expect(RequestNotFoundException.class);
         uniqueOrderList.setOrder(ALICE, ALICE);
     }
 
@@ -116,7 +116,7 @@ public class UniqueOrderListTest {
     public void setOrder_editedOrderHasNonUniqueIdentity_throwsDuplicateOrderException() {
         uniqueOrderList.add(ALICE);
         uniqueOrderList.add(BOB);
-        thrown.expect(DuplicateOrderException.class);
+        thrown.expect(DuplicateRequestException.class);
         uniqueOrderList.setOrder(ALICE, BOB);
     }
 
@@ -128,7 +128,7 @@ public class UniqueOrderListTest {
 
     @Test
     public void remove_orderDoesNotExist_throwsOrderNotFoundException() {
-        thrown.expect(OrderNotFoundException.class);
+        thrown.expect(RequestNotFoundException.class);
         uniqueOrderList.remove(ALICE);
     }
 
@@ -174,7 +174,7 @@ public class UniqueOrderListTest {
     @Test
     public void setOrder_listWithDuplicateOrders_throwsDuplicatePersonException() {
         List<Order> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        thrown.expect(DuplicateOrderException.class);
+        thrown.expect(DuplicateRequestException.class);
         uniqueOrderList.setOrder(listWithDuplicatePersons);
     }
 

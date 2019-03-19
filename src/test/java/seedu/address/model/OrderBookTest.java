@@ -20,7 +20,7 @@ import org.junit.rules.ExpectedException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.exceptions.DuplicateOrderException;
+import seedu.address.model.order.exceptions.DuplicateRequestException;
 import seedu.address.testutil.OrderBuilder;
 
 public class OrderBookTest {
@@ -56,7 +56,7 @@ public class OrderBookTest {
         List<Order> newOrders = Arrays.asList(ALICE, editedAlice);
         OrderBookStub newData = new OrderBookStub(newOrders);
 
-        thrown.expect(DuplicateOrderException.class);
+        thrown.expect(DuplicateRequestException.class);
         orderBook.resetData(newData);
     }
 
