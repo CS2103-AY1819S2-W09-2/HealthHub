@@ -18,7 +18,7 @@ public class XmlSerializableHealthworkerList {
     public static final String MESSAGE_DUPLICATE_DELIVERYMAN = "Deliverymen List contains duplicate deliverymen.";
 
     @XmlElement
-    private List<XmlAdaptedDeliveryman> deliverymen;
+    private List<XmlAdaptedHealthworker> deliverymen;
 
     /**
      * Creates an empty XmlSerializableHealthworkerList.
@@ -33,7 +33,7 @@ public class XmlSerializableHealthworkerList {
      */
     public XmlSerializableHealthworkerList(HealthworkerList src) {
         this();
-        deliverymen.addAll(src.getDeliverymenList().stream().map(XmlAdaptedDeliveryman::new)
+        deliverymen.addAll(src.getDeliverymenList().stream().map(XmlAdaptedHealthworker::new)
             .collect(Collectors.toList()));
     }
 
@@ -44,7 +44,7 @@ public class XmlSerializableHealthworkerList {
      */
     public HealthworkerList toModelType() throws IllegalValueException {
         HealthworkerList healthworkerList = new HealthworkerList();
-        for (XmlAdaptedDeliveryman d : deliverymen) {
+        for (XmlAdaptedHealthworker d : deliverymen) {
             Healthworker dMan = d.toModelType();
             if (healthworkerList.hasDeliveryman(dMan)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_DELIVERYMAN);

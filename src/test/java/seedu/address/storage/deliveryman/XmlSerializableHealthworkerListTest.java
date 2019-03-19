@@ -64,7 +64,7 @@ public class XmlSerializableHealthworkerListTest {
 
     /**
      * Test class annotated with {@code XmlRootElement} to allow unmarshalling of .xml data to
-     * {@code XmlAdaptedDeliveryman} objects.
+     * {@code XmlAdaptedHealthworker} objects.
      */
     @XmlRootElement(name = "deliverymenlist")
     private static class XmlSerializableHealthworkerListWithRootElement extends XmlSerializableHealthworkerList {}

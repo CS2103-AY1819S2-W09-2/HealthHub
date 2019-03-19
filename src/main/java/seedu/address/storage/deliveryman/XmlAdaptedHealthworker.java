@@ -24,7 +24,7 @@ import seedu.address.storage.XmlAdaptedRequest;
 /**
  * Represents the XML for storage of Healthworker
  */
-public class XmlAdaptedDeliveryman {
+public class XmlAdaptedHealthworker {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Healthworker's %s field is missing!";
 
     @XmlAttribute
@@ -37,13 +37,13 @@ public class XmlAdaptedDeliveryman {
     @XmlIDREF
     private List<XmlAdaptedRequest> orders = new ArrayList<>();
 
-    public XmlAdaptedDeliveryman() {
+    public XmlAdaptedHealthworker() {
     }
 
     /**
      * Constructs an {@code XmlAdapterDeliveryman} with the given common details.
      */
-    public XmlAdaptedDeliveryman(String tag, String name, List<XmlAdaptedRequest> orders) {
+    public XmlAdaptedHealthworker(String tag, String name, List<XmlAdaptedRequest> orders) {
         this.tag = tag;
         this.name = name;
         if (orders == null) {
@@ -56,7 +56,7 @@ public class XmlAdaptedDeliveryman {
     /**
      * Constructs an {@code XmlAdapterDeliveryman} with the given common details.
      */
-    public XmlAdaptedDeliveryman(String name) {
+    public XmlAdaptedHealthworker(String name) {
         this.tag = UUID.randomUUID().toString();
         this.name = name;
     }
@@ -66,7 +66,7 @@ public class XmlAdaptedDeliveryman {
      *
      * @param source
      */
-    public XmlAdaptedDeliveryman(Healthworker source) {
+    public XmlAdaptedHealthworker(Healthworker source) {
         tag = source.getTag().toString();
         name = source.getName().fullName;
         orders = source.getRequests().stream()
@@ -116,11 +116,11 @@ public class XmlAdaptedDeliveryman {
             return true;
         }
 
-        if (!(other instanceof XmlAdaptedDeliveryman)) {
+        if (!(other instanceof XmlAdaptedHealthworker)) {
             return false;
         }
 
-        XmlAdaptedDeliveryman otherDman = (XmlAdaptedDeliveryman) other;
+        XmlAdaptedHealthworker otherDman = (XmlAdaptedHealthworker) other;
         return tag.equals(otherDman.tag)
             && Objects.equals(name, otherDman.name);
     }

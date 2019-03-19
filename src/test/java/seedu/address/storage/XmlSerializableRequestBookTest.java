@@ -59,7 +59,7 @@ public class XmlSerializableRequestBookTest {
 
     /**
      * Test class annotated with {@code XmlRootElement} to allow unmarshalling of .xml data to
-     * {@code XmlAdaptedDeliveryman} objects.
+     * {@code XmlAdaptedHealthworker} objects.
      */
     @XmlRootElement(name = "orderbook")
     private static class XmlSerializableRequestBookWithRootElement extends XmlSerializableRequestBook {

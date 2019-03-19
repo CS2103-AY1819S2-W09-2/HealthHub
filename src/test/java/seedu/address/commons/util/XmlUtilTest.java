@@ -22,7 +22,7 @@ import seedu.address.storage.XmlAdaptedCondition;
 import seedu.address.storage.XmlAdaptedRequest;
 import seedu.address.storage.XmlFoodZoom;
 import seedu.address.storage.XmlSerializableRequestBook;
-import seedu.address.storage.deliveryman.XmlAdaptedDeliveryman;
+import seedu.address.storage.deliveryman.XmlAdaptedHealthworker;
 import seedu.address.storage.deliveryman.XmlSerializableHealthworkerList;
 import seedu.address.testutil.DeliverymanBuilder;
 import seedu.address.testutil.DeliverymenListBuilder;
@@ -110,9 +110,9 @@ public class XmlUtilTest {
             VALID_ID, VALID_NAME, INVALID_PHONE, VALID_ADDRESS, VALID_DATE, VALID_STATUS, VALID_FOOD, null);
         assertEquals(expectedOrder, actualOrder);
 
-        XmlAdaptedDeliveryman actualDeliveryman = XmlUtil.getDataFromFile(
-            INVALID_DELIVERYMAN_FIELD_FILE, XmlAdaptedDeliverymanWithRootElement.class);
-        XmlAdaptedDeliveryman expectedDeliveryman = new XmlAdaptedDeliveryman(VALID_NAME);
+        XmlAdaptedHealthworker actualDeliveryman = XmlUtil.getDataFromFile(
+            INVALID_DELIVERYMAN_FIELD_FILE, XmlAdaptedHealthworkerWithRootElement.class);
+        XmlAdaptedHealthworker expectedDeliveryman = new XmlAdaptedHealthworker(VALID_NAME);
         assertNotEquals(expectedDeliveryman, actualDeliveryman);
     }
 
@@ -128,9 +128,9 @@ public class XmlUtilTest {
 
         assertEquals(expectedOrder, actualOrder);
 
-        XmlAdaptedDeliveryman actualDeliveryman = XmlUtil.getDataFromFile(
-            VALID_DELIVERYMAN_FILE, XmlAdaptedDeliverymanWithRootElement.class);
-        XmlAdaptedDeliveryman expectedDeliveryman = new XmlAdaptedDeliveryman(VALID_ID, VALID_NAME, null);
+        XmlAdaptedHealthworker actualDeliveryman = XmlUtil.getDataFromFile(
+            VALID_DELIVERYMAN_FILE, XmlAdaptedHealthworkerWithRootElement.class);
+        XmlAdaptedHealthworker expectedDeliveryman = new XmlAdaptedHealthworker(VALID_ID, VALID_NAME, null);
         assertEquals(expectedDeliveryman, actualDeliveryman);
     }
 
@@ -184,15 +184,15 @@ public class XmlUtilTest {
 
     /**
      * Test class annotated with {@code XmlRootElement} to allow unmarshalling of .xml data to
-     * {@code XmlAdaptedDeliveryman} objects.
+     * {@code XmlAdaptedHealthworker} objects.
      */
     @XmlRootElement(name = "healthworker")
-    private static class XmlAdaptedDeliverymanWithRootElement extends XmlAdaptedDeliveryman {
+    private static class XmlAdaptedHealthworkerWithRootElement extends XmlAdaptedHealthworker {
     }
 
     /**
      * Test class annotated with {@code XmlRootElement} to allow unmarshalling of .xml data to
-     * {@code XmlAdaptedDeliveryman} objects.
+     * {@code XmlAdaptedHealthworker} objects.
      */
     @XmlRootElement(name = "deliverymenlist")
     private static class XmlSerializableHealthworkerListWithRootElement extends XmlSerializableHealthworkerList {
@@ -200,7 +200,7 @@ public class XmlUtilTest {
 
     /**
      * Test class annotated with {@code XmlRootElement} to allow unmarshalling of .xml data to
-     * {@code XmlAdaptedDeliveryman} objects.
+     * {@code XmlAdaptedHealthworker} objects.
      */
     @XmlRootElement(name = "orderbook")
     private static class XmlSerializableRequestBookWithRootElement extends XmlSerializableRequestBook {
