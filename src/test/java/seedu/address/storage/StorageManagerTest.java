@@ -36,7 +36,7 @@ public class StorageManagerTest {
     @Before
     public void setUp() {
         XmlUsersListStorage usersListStorage = new XmlUsersListStorage(getTempFilePath("users"));
-        XmlFoodZoomStorage foodZoomStorage = new XmlFoodZoomStorage(getTempFilePath("foodzoom"));
+        XmlHealthHubStorage foodZoomStorage = new XmlHealthHubStorage(getTempFilePath("foodzoom"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(usersListStorage, foodZoomStorage, userPrefsStorage);
     }
@@ -64,28 +64,28 @@ public class StorageManagerTest {
     public void foodZoomReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link XmlFoodZoomStorage} class.
+         * {@link XmlHealthHubStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link XmlFoodZoomStorageTest} class.
          */
         RequestBook original = getTypicalOrderBook();
         HealthworkerList healthworkerList = getTypicalDeliverymenList();
-        storageManager.saveFoodZoom(original, healthworkerList);
-        ReadOnlyRequestBook ordersRetrieved = storageManager.readOrderBook().get();
+        storageManager.saveHealthHub(original, healthworkerList);
+        ReadOnlyRequestBook ordersRetrieved = storageManager.readRequestBook().get();
         assertEquals(original, new RequestBook(ordersRetrieved));
-        HealthworkerList dmenRetrieved = storageManager.readDeliverymenList().get();
+        HealthworkerList dmenRetrieved = storageManager.readHealthworkerList().get();
         assertEquals(healthworkerList, new HealthworkerList(dmenRetrieved));
     }
 
     @Test
     public void getFoodZoomFilePath() {
-        assertNotNull(storageManager.getFoodZoomFilePath());
+        assertNotNull(storageManager.getHealthHubFilePath());
     }
 
     @Test
     public void handleOrderBookChangedEvent_exceptionThrown_eventRaised() {
         // Create a StorageManager while injecting a stub that  throws an exception when the save method is called
         Storage storage = new StorageManager(new XmlUsersListStorageExceptionThrowingStub(Paths.get("dummy")),
-            new XmlFoodZoomStorageExceptionThrowingStub(Paths.get("dummy2")),
+            new XmlHealthHubStorageExceptionThrowingStub(Paths.get("dummy2")),
             new JsonUserPrefsStorage(Paths.get("dummy")));
         storage.handleFoodZoomChangedEvent(new HealthHubChangedEvent(new RequestBook(), new HealthworkerList()));
         assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof DataSavingExceptionEvent);
@@ -94,14 +94,14 @@ public class StorageManagerTest {
     /**
      * A Stub class to throw an exception when the save method is called
      */
-    class XmlFoodZoomStorageExceptionThrowingStub extends XmlFoodZoomStorage {
+    class XmlHealthHubStorageExceptionThrowingStub extends XmlHealthHubStorage {
 
-        public XmlFoodZoomStorageExceptionThrowingStub(Path filePath) {
+        public XmlHealthHubStorageExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveFoodZoom(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList, Path filePath) throws
+        public void saveHealthHub(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList, Path filePath) throws
             IOException {
             throw new IOException("dummy exception");
         }

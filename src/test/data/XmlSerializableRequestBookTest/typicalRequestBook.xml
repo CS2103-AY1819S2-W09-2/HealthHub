@@ -7,7 +7,7 @@
         <address>123, Jurong West Ave 6, #08-111, 612234</address>
         <date>01-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <conditions>Roti Prata</conditions>
+        <conditions>Alzheimers</conditions>
     </orders>
     <orders tag="e328789f-c707-49a9-8147-d93e213fb1d7">
         <name>Benson Meier</name>
@@ -15,8 +15,8 @@
         <address>311, Clementi Ave 2, #02-25, 612234</address>
         <date>02-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <conditions>Egg Fried Rice</conditions>
-        <conditions>Milo</conditions>
+        <conditions>Physiotherapy</conditions>
+        <conditions>Dialysis</conditions>
     </orders>
     <orders tag="6c974f14-e5f5-4652-ba14-4df75e259b25">
         <name>Carl Kurz</name>
@@ -24,7 +24,7 @@
         <address>wall street, 612234</address>
         <date>03-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <conditions>Milkshake</conditions>
+        <conditions>Physiotherapy</conditions>
     </orders>
     <orders tag="ec11e415-4794-44c2-9d29-861d359d8b76">
         <name>Daniel Meier</name>
@@ -32,7 +32,7 @@
         <address>10th street, 612234</address>
         <date>04-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <conditions>Fish and Chips</conditions>
+        <conditions>ElderCare</conditions>
     </orders>
     <orders tag="d0abc707-2363-46b2-8c45-92667f3d9e0e">
         <name>Elle Meyer</name>
@@ -40,7 +40,7 @@
         <address>michegan ave, 612234</address>
         <date>05-10-2018 10:00:00</date>
         <status>PENDING</status>
-        <conditions>Chicken Chop</conditions>
+        <conditions>Physiotherapy</conditions>
     </orders>
     <orders tag="77bd3598-2d3a-450e-a37b-a79de94792dc">
         <name>Fiona Kunz</name>
@@ -48,7 +48,7 @@
         <address>little tokyo, 612234</address>
         <date>01-10-2018 10:00:00</date>
         <status>COMPLETED</status>
-        <conditions>Tuna Sandwich</conditions>
+        <conditions>Dialysis</conditions>
     </orders>
     <orders tag="e7dc53e1-a1a0-4208-8f29-a6b24f215ff9">
         <name>George Best</name>
@@ -56,6 +56,6 @@
         <address>4th street, 612234</address>
         <date>03-10-2018 14:00:00</date>
         <status>PENDING</status>
-        <conditions>Ice cream</conditions>
+        <conditions>Dialysis</conditions>
     </orders>
 </orderbook>

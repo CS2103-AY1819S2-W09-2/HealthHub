@@ -20,35 +20,35 @@ import seedu.address.model.healthworker.HealthworkerList;
 /**
  * A class to access FoodZoom data stored as an XML file.
  */
-public class XmlFoodZoomStorage implements FoodZoomStorage {
-    private static final Logger logger = LogsCenter.getLogger(XmlFoodZoomStorage.class);
+public class XmlHealthHubStorage implements HealthHubStorage {
+    private static final Logger logger = LogsCenter.getLogger(XmlHealthHubStorage.class);
 
-    private Path foodZoomFilePath;
+    private Path healthHubFilePath;
     private Optional<HealthworkerList> deliverymenList;
     private Optional<RequestBook> orderBook;
 
-    public XmlFoodZoomStorage(Path foodZoomFilePath) {
-        this.foodZoomFilePath = foodZoomFilePath;
+    public XmlHealthHubStorage(Path healthHubFilePath) {
+        this.healthHubFilePath = healthHubFilePath;
     }
 
 
     @Override
-    public Path getFoodZoomFilePath() {
-        return foodZoomFilePath;
+    public Path getHealthHubFilePath() {
+        return healthHubFilePath;
     }
 
     @Override
-    public void saveFoodZoom(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList)
+    public void saveHealthHub(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList)
         throws IOException {
-        saveFoodZoom(orderBook, healthworkerList, foodZoomFilePath);
+        saveHealthHub(orderBook, healthworkerList, healthHubFilePath);
     }
 
     /**
      * Saves data to the XML file in the hard disk.
      */
     @Override
-    public void saveFoodZoom(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList,
-                             Path filePath)
+    public void saveHealthHub(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList,
+                              Path filePath)
         throws IOException {
         requireNonNull(healthworkerList);
         requireNonNull(orderBook);
@@ -59,18 +59,18 @@ public class XmlFoodZoomStorage implements FoodZoomStorage {
     }
 
     @Override
-    public Optional<ReadOnlyRequestBook> readOrderBook() throws DataConversionException, IOException {
-        return readOrderBook(foodZoomFilePath);
+    public Optional<ReadOnlyRequestBook> readRequestBook() throws DataConversionException, IOException {
+        return readRequestBook(healthHubFilePath);
     }
 
     /**
-     * Similar to {@link #readOrderBook()} ()}
+     * Similar to {@link #readRequestBook()} ()}
      *
      * @param filePath location of the data. Cannot be null
      * @throws DataConversionException if the file is not in the correct format.
      */
     @Override
-    public Optional<ReadOnlyRequestBook> readOrderBook(Path filePath) throws DataConversionException,
+    public Optional<ReadOnlyRequestBook> readRequestBook(Path filePath) throws DataConversionException,
         FileNotFoundException {
         requireNonNull(filePath);
 
@@ -89,18 +89,18 @@ public class XmlFoodZoomStorage implements FoodZoomStorage {
     }
 
     @Override
-    public Optional<HealthworkerList> readDeliverymenList() throws DataConversionException, IOException {
-        return readDeliverymenList(foodZoomFilePath);
+    public Optional<HealthworkerList> readHealthworkerList() throws DataConversionException, IOException {
+        return readHealthworkerList(healthHubFilePath);
     }
 
     /**
-     * Similar to {@link #readDeliverymenList()}
+     * Similar to {@link #readHealthworkerList()}
      *
      * @param filePath location of the data. Cannot be null
      * @throws DataConversionException if the file is not in the correct format.
      */
     @Override
-    public Optional<HealthworkerList> readDeliverymenList(Path filePath) throws DataConversionException,
+    public Optional<HealthworkerList> readHealthworkerList(Path filePath) throws DataConversionException,
         FileNotFoundException {
         requireNonNull(filePath);
 

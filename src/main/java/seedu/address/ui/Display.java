@@ -82,7 +82,7 @@ public class Display extends UiPart<Region> {
                     updateOrderHistory(change.getList());
 
                     purchaseHistory = new HashMap<>();
-                    addFoodItems(change.getList());
+                    addConditions(change.getList());
 
                     trackProgress(change.getList(), false);
                     total = change.getList().size();
@@ -94,8 +94,8 @@ public class Display extends UiPart<Region> {
                     removeFromOrderHistory(change.getRemoved());
                     updateOrderHistory(change.getAddedSubList());
 
-                    removeFoodItems(change.getRemoved());
-                    addFoodItems(change.getAddedSubList());
+                    removeConditions(change.getRemoved());
+                    addConditions(change.getAddedSubList());
 
                     trackProgress(change.getRemoved(), true);
                     trackProgress(change.getAddedSubList(), false);
@@ -135,7 +135,7 @@ public class Display extends UiPart<Region> {
 
         logger.info(progress + "   " + total);
 
-        addFoodItems(requestList);
+        addConditions(requestList);
         trackProgress(requestList, false);
         updateOrderHistory(requestList);
 
@@ -161,7 +161,7 @@ public class Display extends UiPart<Region> {
      * This updates the progress bar in the statistics panel with % of pending orders
      *
      * @param changeList list of orders that have to be changed
-     * @param toRemove a flag to indicate whether to update or remove
+     * @param toRemove   a flag to indicate whether to update or remove
      */
     public void trackProgress(List<? extends Request> changeList, boolean toRemove) {
         for (Request o : changeList) {
@@ -199,7 +199,7 @@ public class Display extends UiPart<Region> {
      *
      * @param changeList orders that were changed
      */
-    private void addFoodItems(List<? extends Request> changeList) {
+    private void addConditions(List<? extends Request> changeList) {
         for (Request o : changeList) {
             Set<Condition> conditionList = o.getCondition();
             for (Condition item : conditionList) {
@@ -218,7 +218,7 @@ public class Display extends UiPart<Region> {
      *
      * @param changeList orders that were changed
      */
-    private void removeFoodItems(List<? extends Request> changeList) {
+    private void removeConditions(List<? extends Request> changeList) {
         for (Request o : changeList) {
             Set<Condition> conditionList = o.getCondition();
             for (Condition item : conditionList) {

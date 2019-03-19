@@ -27,7 +27,7 @@ public class AddCommand extends RequestCommand {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_DATE + "DATETIME "
-            + PREFIX_FOOD + "FOOD...\n"
+            + PREFIX_FOOD + "CONDITION...\n"
             + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "

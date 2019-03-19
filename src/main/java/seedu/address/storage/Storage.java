@@ -17,7 +17,7 @@ import seedu.address.storage.user.UsersListStorage;
 /**
  * API of the Storage component
  */
-public interface Storage extends FoodZoomStorage, UserPrefsStorage, UsersListStorage {
+public interface Storage extends HealthHubStorage, UserPrefsStorage, UsersListStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -42,24 +42,24 @@ public interface Storage extends FoodZoomStorage, UserPrefsStorage, UsersListSto
     void handleUsersListChangedEvent(UsersListChangedEvent ulce);
 
     @Override
-    Optional<ReadOnlyRequestBook> readOrderBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyRequestBook> readRequestBook() throws DataConversionException, IOException;
 
     @Override
-    Optional<ReadOnlyRequestBook> readOrderBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyRequestBook> readRequestBook(Path filePath) throws DataConversionException, IOException;
 
     @Override
-    Optional<HealthworkerList> readDeliverymenList() throws DataConversionException, IOException;
+    Optional<HealthworkerList> readHealthworkerList() throws DataConversionException, IOException;
 
     @Override
-    Optional<HealthworkerList> readDeliverymenList(Path filePath) throws DataConversionException,
+    Optional<HealthworkerList> readHealthworkerList(Path filePath) throws DataConversionException,
         IOException;
 
     @Override
-    void saveFoodZoom(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList)
+    void saveHealthHub(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList)
         throws IOException;
 
     @Override
-    void saveFoodZoom(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList, Path filePath)
+    void saveHealthHub(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList, Path filePath)
         throws IOException;
 
     void handleFoodZoomChangedEvent(HealthHubChangedEvent healthHubChangedEvent);

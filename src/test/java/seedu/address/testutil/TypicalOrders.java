@@ -40,7 +40,7 @@ public class TypicalOrders {
         .withPhone("94351253")
         .withDate("01-10-2018 10:00:00")
         .withStatus("PENDING")
-        .withCondition("Roti Prata").build();
+        .withCondition("Alzheimers").build();
 
     public static final Request BENSON = new RequestBuilder().withName("Benson Meier")
         .withId(BENSON_ID)
@@ -48,29 +48,29 @@ public class TypicalOrders {
         .withPhone("98765432")
         .withDate("02-10-2018 10:00:00")
         .withStatus("PENDING")
-        .withCondition("Egg Fried Rice", "Milo").build();
+        .withCondition("Physiotherapy", "Dialysis").build();
 
     public static final Request CARL = new RequestBuilder().withId(CARL_ID).withName("Carl Kurz")
         .withPhone("95352563")
         .withAddress("wall street, 612234").withDate("03-10-2018 10:00:00").withStatus("PENDING")
-        .withCondition("Milkshake").build();
+        .withCondition("Physiotherapy").build();
     public static final Request DANIEL = new RequestBuilder().withId(DANIEL_ID).withName("Daniel Meier")
         .withPhone("87652533").withAddress("10th street, 612234").withDate("04-10-2018 10:00:00")
-        .withStatus("PENDING").withCondition("Fish and Chips").build();
+        .withStatus("PENDING").withCondition("ElderCare").build();
     public static final Request ELLE = new RequestBuilder().withId(ELLE_ID).withName("Elle Meyer")
         .withPhone("9482224")
         .withAddress("michegan ave, 612234").withDate("05-10-2018 10:00:00").withStatus("PENDING")
-        .withCondition("Chicken Chop")
+        .withCondition("Physiotherapy")
         .build();
     public static final Request FIONA = new RequestBuilder().withId(FIONA_ID).withName("Fiona Kunz")
         .withPhone("9482427")
         .withAddress("little tokyo, 612234").withDate("01-10-2018 10:00:00").withStatus("COMPLETED")
-        .withCondition("Tuna Sandwich")
+        .withCondition("Dialysis")
         .build();
     public static final Request GEORGE = new RequestBuilder().withId(GEORGE_ID).withName("George Best")
         .withPhone("9482442")
         .withAddress("4th street, 612234").withDate("03-10-2018 14:00:00").withStatus("PENDING")
-        .withCondition("Ice cream")
+        .withCondition("Dialysis")
         .build();
 
     //Manually added

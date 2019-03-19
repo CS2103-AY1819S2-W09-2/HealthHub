@@ -12,11 +12,11 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs {
 
     private GuiSettings guiSettings;
-    private Path foodZoomFilePath = Paths.get("data" , "addressbook.xml");
+    private Path foodZoomFilePath = Paths.get("data", "addressbook.xml");
     private Path routeListFilePath = Paths.get("data", "routelist.xml");
     private Path usersListFilePath = Paths.get("data", "users.xml");
 
-    private Path deliverymenListFilePath = Paths.get("data" , "deliverymen.xml");
+    private Path deliverymenListFilePath = Paths.get("data", "deliverymen.xml");
 
     public UserPrefs() {
         setGuiSettings(500, 500, 0, 0);
@@ -34,7 +34,7 @@ public class UserPrefs {
         guiSettings = new GuiSettings(width, height, x, y);
     }
 
-    public Path getFoodZoomFilePath() {
+    public Path getHealthHubFilePath() {
         return foodZoomFilePath;
     }
 
@@ -57,6 +57,7 @@ public class UserPrefs {
     public void setUsersListFilePath(Path usersListFilePath) {
         this.usersListFilePath = usersListFilePath;
     }
+
     public Path getDeliverymenListFilePath() {
         return deliverymenListFilePath;
     }
@@ -77,7 +78,7 @@ public class UserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return Objects.equals(guiSettings, o.guiSettings)
-                && Objects.equals(foodZoomFilePath, o.foodZoomFilePath);
+            && Objects.equals(foodZoomFilePath, o.foodZoomFilePath);
     }
 
     @Override

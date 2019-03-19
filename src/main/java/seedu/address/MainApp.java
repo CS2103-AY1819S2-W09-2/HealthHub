@@ -29,12 +29,12 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.UsersList;
 import seedu.address.model.healthworker.HealthworkerList;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.FoodZoomStorage;
+import seedu.address.storage.HealthHubStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
-import seedu.address.storage.XmlFoodZoomStorage;
+import seedu.address.storage.XmlHealthHubStorage;
 import seedu.address.storage.user.UsersListStorage;
 import seedu.address.storage.user.XmlUsersListStorage;
 import seedu.address.ui.Ui;
@@ -70,9 +70,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         userPrefs = initPrefs(userPrefsStorage);
-        FoodZoomStorage foodZoomStorage = new XmlFoodZoomStorage(userPrefs.getFoodZoomFilePath());
+        HealthHubStorage healthHubStorage = new XmlHealthHubStorage(userPrefs.getHealthHubFilePath());
         UsersListStorage usersListStorage = new XmlUsersListStorage(userPrefs.getUsersListFilePath());
-        storage = new StorageManager(usersListStorage, foodZoomStorage, userPrefsStorage);
+        storage = new StorageManager(usersListStorage, healthHubStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -99,7 +99,7 @@ public class MainApp extends Application {
         HealthworkerList initialDeliverymenData;
 
         try {
-            orderBookOptional = storage.readOrderBook();
+            orderBookOptional = storage.readRequestBook();
             if (!orderBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample RequestBook");
             }
@@ -127,7 +127,7 @@ public class MainApp extends Application {
         }
 
         try {
-            deliverymenListOptional = storage.readDeliverymenList();
+            deliverymenListOptional = storage.readHealthworkerList();
             if (!deliverymenListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample HealthworkerList");
             }

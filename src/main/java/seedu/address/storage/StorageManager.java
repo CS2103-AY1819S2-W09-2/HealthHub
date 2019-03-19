@@ -25,14 +25,14 @@ import seedu.address.storage.user.UsersListStorage;
 public class StorageManager extends ComponentManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private FoodZoomStorage foodZoomStorage;
+    private HealthHubStorage healthHubStorage;
     private UserPrefsStorage userPrefsStorage;
     private UsersListStorage usersListStorage;
 
-    public StorageManager(UsersListStorage usersListStorage, FoodZoomStorage foodZoomStorage,
+    public StorageManager(UsersListStorage usersListStorage, HealthHubStorage healthHubStorage,
                           UserPrefsStorage userPrefsStorage) {
         super();
-        this.foodZoomStorage = foodZoomStorage;
+        this.healthHubStorage = healthHubStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.usersListStorage = usersListStorage;
     }
@@ -95,45 +95,45 @@ public class StorageManager extends ComponentManager implements Storage {
     }
 
     @Override
-    public Path getFoodZoomFilePath() {
-        return foodZoomStorage.getFoodZoomFilePath();
+    public Path getHealthHubFilePath() {
+        return healthHubStorage.getHealthHubFilePath();
     }
 
     //================================ data read methods ======================================
     @Override
-    public Optional<ReadOnlyRequestBook> readOrderBook() throws DataConversionException, IOException {
-        return readOrderBook(foodZoomStorage.getFoodZoomFilePath());
+    public Optional<ReadOnlyRequestBook> readRequestBook() throws DataConversionException, IOException {
+        return readRequestBook(healthHubStorage.getHealthHubFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyRequestBook> readOrderBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyRequestBook> readRequestBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return foodZoomStorage.readOrderBook(filePath);
+        return healthHubStorage.readRequestBook(filePath);
     }
 
     @Override
-    public Optional<HealthworkerList> readDeliverymenList() throws DataConversionException, IOException {
-        return readDeliverymenList(foodZoomStorage.getFoodZoomFilePath());
+    public Optional<HealthworkerList> readHealthworkerList() throws DataConversionException, IOException {
+        return readHealthworkerList(healthHubStorage.getHealthHubFilePath());
     }
 
     @Override
-    public Optional<HealthworkerList> readDeliverymenList(Path filePath) throws DataConversionException, IOException {
+    public Optional<HealthworkerList> readHealthworkerList(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return foodZoomStorage.readDeliverymenList(filePath);
+        return healthHubStorage.readHealthworkerList(filePath);
     }
 
     //================================ data save methods ======================================
 
     @Override
-    public void saveFoodZoom(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList) throws IOException {
-        saveFoodZoom(orderBook, healthworkerList, foodZoomStorage.getFoodZoomFilePath());
+    public void saveHealthHub(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList) throws IOException {
+        saveHealthHub(orderBook, healthworkerList, healthHubStorage.getHealthHubFilePath());
     }
 
     @Override
-    public void saveFoodZoom(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList, Path filePath) throws
+    public void saveHealthHub(ReadOnlyRequestBook orderBook, HealthworkerList healthworkerList, Path filePath) throws
         IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        foodZoomStorage.saveFoodZoom(orderBook, healthworkerList, filePath);
+        healthHubStorage.saveHealthHub(orderBook, healthworkerList, filePath);
     }
 
     @Override
@@ -141,7 +141,7 @@ public class StorageManager extends ComponentManager implements Storage {
     public void handleFoodZoomChangedEvent(HealthHubChangedEvent healthHubChangedEvent) {
         logger.info(LogsCenter.getEventHandlingLogMessage(healthHubChangedEvent, "Local data changed, saving to file"));
         try {
-            saveFoodZoom(healthHubChangedEvent.orderBook, healthHubChangedEvent.healthworkerList);
+            saveHealthHub(healthHubChangedEvent.orderBook, healthHubChangedEvent.healthworkerList);
         } catch (IOException e) {
             raise(new DataSavingExceptionEvent(e));
         }

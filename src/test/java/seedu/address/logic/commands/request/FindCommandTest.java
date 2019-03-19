@@ -15,6 +15,7 @@ import static seedu.address.testutil.TypicalDeliverymen.getTypicalDeliverymenLis
 import static seedu.address.testutil.TypicalOrders.ALICE;
 import static seedu.address.testutil.TypicalOrders.BENSON;
 import static seedu.address.testutil.TypicalOrders.CARL;
+import static seedu.address.testutil.TypicalOrders.DANIEL;
 import static seedu.address.testutil.TypicalOrders.FIONA;
 import static seedu.address.testutil.TypicalOrders.GEORGE;
 import static seedu.address.testutil.TypicalOrders.getTypicalOrderBook;
@@ -117,7 +118,7 @@ public class FindCommandTest {
     @Test
     public void execute_multiplePrefixSingleKeywords_oneOrderFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
-        Predicate<Request> predicate = preparePredicate(" p/94351253 f/Prata");
+        Predicate<Request> predicate = preparePredicate(" p/94351253 f/Alzheimers");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
@@ -148,11 +149,11 @@ public class FindCommandTest {
     @Test
     public void execute_singleRepeatedPrefixSingleKeywordTakeLast_multipleOrdersFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
-        Predicate<Request> predicate = preparePredicate(" f/Prata f/Sandwich");
+        Predicate<Request> predicate = preparePredicate(" f/Dialysis f/Eldercare");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(FIONA), model.getFilteredOrderList());
+        assertEquals(Arrays.asList(DANIEL), model.getFilteredOrderList());
     }
 
     @Test
@@ -169,7 +170,8 @@ public class FindCommandTest {
     public void execute_allSupportedPrefixesSingleKeyword_oneOrderFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
         Predicate<Request> predicate =
-            preparePredicate(" n/alice p/94351253 a/Jurong West Ave 6 dt/01-10-2018 10:00:00 f/prata");
+            preparePredicate(" n/alice p/94351253 a/Jurong West Ave 6 dt/01-10-2018 10:00:00 " +
+                "f/Alzheimers");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);

@@ -96,7 +96,7 @@ public class TestApp extends MainApp {
      */
     public RequestBook readStorageOrderBook() {
         try {
-            return new RequestBook(storage.readOrderBook().get());
+            return new RequestBook(storage.readRequestBook().get());
         } catch (DataConversionException dce) {
             throw new AssertionError("Data is not in the RequestBook format.", dce);
         } catch (IOException ioe) {
@@ -108,7 +108,7 @@ public class TestApp extends MainApp {
      * Returns the file path of the storage file.
      */
     public Path getStorageSaveLocation() {
-        return storage.getFoodZoomFilePath();
+        return storage.getHealthHubFilePath();
     }
 
     /**
