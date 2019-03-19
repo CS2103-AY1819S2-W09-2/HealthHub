@@ -24,7 +24,8 @@ public class XmlSerializableHealthworkerListTest {
         "XmlSerializableHealthworkerListTest");
     private static final Path TYPICAL_DELIVERYMEN_FILE =
             TEST_DATA_FOLDER.resolve("typicalDeliverymenDeliverymenList.xml");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidDeliverymanDeliverymenList.xml");
+    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve(
+        "invalidDeliverymanDeliverymenList.xml");
     private static final Path DUPLICATE_PERSON_FILE =
             TEST_DATA_FOLDER.resolve("duplicateDeliverymenDeliverymenList.xml");
 
