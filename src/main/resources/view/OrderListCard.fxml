@@ -34,7 +34,7 @@
                GridPane.columnSpan="2147483647"/>
         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../images/cutlery.png"/>
+                <Image url="@../images/help_icon.png"/>
             </image>
         </ImageView>
         <Label fx:id="requestStatus" text="Pending" GridPane.columnSpan="5" GridPane.rowIndex="1"/>

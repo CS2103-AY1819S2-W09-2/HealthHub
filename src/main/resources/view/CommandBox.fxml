@@ -6,15 +6,17 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <StackPane styleClass="stack-pane">
-         <children>
-             <TextField fx:id="commandTextField" maxWidth="1.7976931348623157E308" minWidth="-Infinity" onAction="#handleCommandEntered" onKeyPressed="#handleKeyPress" promptText="Enter command here..." />
-         </children>
-      </StackPane>
-   </center>
-   <left>
-      <Label fx:id="commandIcon" text="FoodZoom" BorderPane.alignment="CENTER" />
-   </left>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1">
+    <center>
+        <StackPane styleClass="stack-pane">
+            <children>
+                <TextField fx:id="commandTextField" maxWidth="1.7976931348623157E308" minWidth="-Infinity"
+                           onAction="#handleCommandEntered" onKeyPressed="#handleKeyPress"
+                           promptText="Enter command here..."/>
+            </children>
+        </StackPane>
+    </center>
+    <left>
+        <Label fx:id="commandIcon" text="HealthHub" BorderPane.alignment="CENTER"/>
+    </left>
 </BorderPane>

@@ -12,8 +12,8 @@ import seedu.address.ui.UiPart;
 /**
  * UI Component representing the display of a single request in a list.
  */
-public class OrderDisplayListCard extends UiPart<Region> {
-    private static final String FXML = "display/OrderDisplayListCard.fxml";
+public class RequestDisplayListCard extends UiPart<Region> {
+    private static final String FXML = "display/RequestDisplayCard.fxml";
     private static final String NAME_LABEL_FORMAT = "Contact: %1$s (%2$s)";
     private static final String FOOD_LABEL_FORMAT = "Request: %s";
 
@@ -24,15 +24,15 @@ public class OrderDisplayListCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label food;
+    private Label condition;
 
-    public OrderDisplayListCard(Request request) {
+    public RequestDisplayListCard(Request request) {
         super(FXML);
         this.request = request;
         address.setText(request.getAddress().toString());
         name.setText(String.format(NAME_LABEL_FORMAT, request.getName().fullName, request.getPhone().toString()));
 
-        food.setText(String.format(FOOD_LABEL_FORMAT, String.join(", ",
+        condition.setText(String.format(FOOD_LABEL_FORMAT, String.join(", ",
             request.getCondition().stream().map(Condition::toString).collect(Collectors.toSet()))));
     }
 
@@ -44,12 +44,12 @@ public class OrderDisplayListCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof OrderDisplayListCard)) {
+        if (!(other instanceof RequestDisplayListCard)) {
             return false;
         }
 
         // state check
-        OrderDisplayListCard card = (OrderDisplayListCard) other;
+        RequestDisplayListCard card = (RequestDisplayListCard) other;
         return request.equals(card.request);
     }
 }

@@ -19,7 +19,7 @@ import seedu.address.model.healthworker.HealthworkerList;
 import seedu.address.testutil.TypicalDeliverymen;
 import seedu.address.testutil.TypicalOrders;
 
-public class XmlConditionZoomTest {
+public class XmlHealthHubTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
         "XmlHealthHubTest");
     private static final Path TYPICAL_FOODZOOM_FILE = TEST_DATA_FOLDER.resolve("typicalHealthHub.xml");
@@ -29,7 +29,7 @@ public class XmlConditionZoomTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void getOrdersAndDeliverymen_typicalFoodZoom_success() throws Exception {
+    public void getRequestsAndHealthworkers_typicalHealthHub_success() throws Exception {
         XmlHealthHub dataFromFile = XmlUtil.getDataFromFile(TYPICAL_FOODZOOM_FILE,
             XmlHealthHub.class);
         RequestBook orderBookFromFile = dataFromFile.getOrderBook();
@@ -46,7 +46,7 @@ public class XmlConditionZoomTest {
     }
 
     @Test
-    public void getOrdersAndDeliverymen_invalidFile_throwsIllegalValueException() throws Exception {
+    public void getRequestsAndHealthworkers_invalidFile_throwsIllegalValueException() throws Exception {
         XmlHealthHub dataFromFile = XmlUtil.getDataFromFile(INVALID_FOODZOOM_FILE, XmlHealthHub.class);
         thrown.expect(IllegalValueException.class);
         dataFromFile.getOrderBook();

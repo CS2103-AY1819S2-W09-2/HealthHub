@@ -14,7 +14,7 @@ public class ConfigTest {
 
     @Test
     public void toString_defaultObject_stringReturned() {
-        String defaultConfigAsString = "App title : Condition Zoom\n"
+        String defaultConfigAsString = "App title : HealthHub\n"
                 + "Current log level : INFO\n"
                 + "Preference file Location : preferences.json";
 
