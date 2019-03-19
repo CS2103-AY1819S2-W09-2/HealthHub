@@ -22,8 +22,8 @@ import seedu.address.testutil.TypicalOrders;
 public class XmlConditionZoomTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
         "XmlHealthHubTest");
-    private static final Path TYPICAL_FOODZOOM_FILE = TEST_DATA_FOLDER.resolve("typicalFoodZoom.xml");
-    private static final Path INVALID_FOODZOOM_FILE = TEST_DATA_FOLDER.resolve("invalidFoodZoom.xml");
+    private static final Path TYPICAL_FOODZOOM_FILE = TEST_DATA_FOLDER.resolve("typicalHealthHub.xml");
+    private static final Path INVALID_FOODZOOM_FILE = TEST_DATA_FOLDER.resolve("invalidHealthHub.xml");
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
