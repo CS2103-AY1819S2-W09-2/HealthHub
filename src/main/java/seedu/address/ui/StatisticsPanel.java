@@ -95,9 +95,9 @@ public class StatisticsPanel extends UiPart<Region> {
 
         logger.info("PROGRESS " + progress);
 
-        orderCount.setText("Total Orders: " + Integer.toString(count));
+        orderCount.setText("Total Requests: " + Integer.toString(count));
         orderProgress.setProgress(progress);
-        trendingFood.setText("Trending: " + food);
+        trendingFood.setText("Most common: " + food);
     }
 
     public void clear() {
