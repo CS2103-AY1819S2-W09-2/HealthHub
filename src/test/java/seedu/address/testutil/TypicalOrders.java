@@ -34,7 +34,7 @@ public class TypicalOrders {
     public static final String AMY_ID = "2760c196-a7ec-42c3-9bb4-ff0bbfd971c6";
     public static final String BOB_ID = "2b3363a5-899f-4006-9cb6-cb016e3c20cd";
 
-    public static final Request ALICE = new OrderBuilder().withName("Alice Pauline")
+    public static final Request ALICE = new RequestBuilder().withName("Alice Pauline")
             .withId(ALICE_ID)
             .withAddress("123, Jurong West Ave 6, #08-111, 612234")
             .withPhone("94351253")
@@ -42,7 +42,7 @@ public class TypicalOrders {
             .withStatus("PENDING")
             .withFood("Roti Prata").build();
 
-    public static final Request BENSON = new OrderBuilder().withName("Benson Meier")
+    public static final Request BENSON = new RequestBuilder().withName("Benson Meier")
             .withId(BENSON_ID)
             .withAddress("311, Clementi Ave 2, #02-25, 612234")
             .withPhone("98765432")
@@ -50,39 +50,39 @@ public class TypicalOrders {
             .withStatus("PENDING")
             .withFood("Egg Fried Rice", "Milo").build();
 
-    public static final Request CARL = new OrderBuilder().withId(CARL_ID).withName("Carl Kurz").withPhone("95352563")
+    public static final Request CARL = new RequestBuilder().withId(CARL_ID).withName("Carl Kurz").withPhone("95352563")
             .withAddress("wall street, 612234").withDate("03-10-2018 10:00:00").withStatus("PENDING")
             .withFood("Milkshake").build();
-    public static final Request DANIEL = new OrderBuilder().withId(DANIEL_ID).withName("Daniel Meier")
+    public static final Request DANIEL = new RequestBuilder().withId(DANIEL_ID).withName("Daniel Meier")
             .withPhone("87652533").withAddress("10th street, 612234").withDate("04-10-2018 10:00:00")
             .withStatus("PENDING").withFood("Fish and Chips").build();
-    public static final Request ELLE = new OrderBuilder().withId(ELLE_ID).withName("Elle Meyer").withPhone("9482224")
+    public static final Request ELLE = new RequestBuilder().withId(ELLE_ID).withName("Elle Meyer").withPhone("9482224")
             .withAddress("michegan ave, 612234").withDate("05-10-2018 10:00:00").withStatus("PENDING")
             .withFood("Chicken Chop")
             .build();
-    public static final Request FIONA = new OrderBuilder().withId(FIONA_ID).withName("Fiona Kunz").withPhone("9482427")
+    public static final Request FIONA = new RequestBuilder().withId(FIONA_ID).withName("Fiona Kunz").withPhone("9482427")
             .withAddress("little tokyo, 612234").withDate("01-10-2018 10:00:00").withStatus("COMPLETED")
             .withFood("Tuna Sandwich")
             .build();
-    public static final Request GEORGE = new OrderBuilder().withId(GEORGE_ID).withName("George Best").withPhone("9482442")
+    public static final Request GEORGE = new RequestBuilder().withId(GEORGE_ID).withName("George Best").withPhone("9482442")
             .withAddress("4th street, 612234").withDate("03-10-2018 14:00:00").withStatus("PENDING")
             .withFood("Ice cream")
             .build();
 
     //Manually added
-    public static final Request HOON = new OrderBuilder().withId(HOON_ID).withName("Hoon Meier").withPhone("8482424")
+    public static final Request HOON = new RequestBuilder().withId(HOON_ID).withName("Hoon Meier").withPhone("8482424")
             .withAddress("little india, 612234").withDate("01-10-2018 10:00:00").withStatus("PENDING")
             .withFood("Chocolate Milkshake").build();
-    public static final Request IDA = new OrderBuilder().withId(IDA_ID).withName("Ida Mueller").withPhone("8482131")
+    public static final Request IDA = new RequestBuilder().withId(IDA_ID).withName("Ida Mueller").withPhone("8482131")
             .withAddress("chicago ave, 612234").withDate("01-10-2018 10:00:00").withStatus("PENDING")
             .withFood("Bubble Tea")
             .build();
 
     // Manually added - Request's details found in {@code CommandTestUtil}
-    public static final Request AMY = new OrderBuilder().withId(AMY_ID).withName(VALID_NAME_AMY)
+    public static final Request AMY = new RequestBuilder().withId(AMY_ID).withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY).withAddress(VALID_ADDRESS_AMY).withDate(VALID_DATE_AMY).withStatus("PENDING")
             .withFood(VALID_FOOD_BURGER).build();
-    public static final Request BOB = new OrderBuilder().withId(BOB_ID).withName(VALID_NAME_BOB)
+    public static final Request BOB = new RequestBuilder().withId(BOB_ID).withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB).withDate(VALID_DATE_BOB).withStatus("PENDING")
             .withFood(VALID_FOOD_RICE).build();
 

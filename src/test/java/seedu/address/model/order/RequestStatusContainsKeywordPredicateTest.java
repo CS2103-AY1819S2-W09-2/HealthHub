@@ -9,14 +9,14 @@ import java.util.List;
 
 import org.junit.Test;
 
-import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.RequestBuilder;
 
 public class RequestStatusContainsKeywordPredicateTest {
     @Test
     public void equals() {
-        List<OrderStatus> firstPredicateKeyword = Collections.singletonList(new OrderStatus("PENDING"));
-        List<OrderStatus> secondPredicateKeyword =
-                Arrays.asList(new OrderStatus("PENDING"), new OrderStatus("ONGOING"));
+        List<RequestStatus> firstPredicateKeyword = Collections.singletonList(new RequestStatus("PENDING"));
+        List<RequestStatus> secondPredicateKeyword =
+                Arrays.asList(new RequestStatus("PENDING"), new RequestStatus("ONGOING"));
 
         OrderStatusContainsKeywordPredicate firstPredicate =
                 new OrderStatusContainsKeywordPredicate(firstPredicateKeyword);
@@ -45,20 +45,20 @@ public class RequestStatusContainsKeywordPredicateTest {
     public void test_statusContainsKeywords_returnsTrue() {
         // One keyword
         OrderStatusContainsKeywordPredicate predicate =
-                new OrderStatusContainsKeywordPredicate(Collections.singletonList(new OrderStatus("PENDING")));
-        assertTrue(predicate.test(new OrderBuilder().withStatus("PENDING").build()));
+                new OrderStatusContainsKeywordPredicate(Collections.singletonList(new RequestStatus("PENDING")));
+        assertTrue(predicate.test(new RequestBuilder().withStatus("PENDING").build()));
 
         // Keyword match only 2nd status
         predicate = new OrderStatusContainsKeywordPredicate(
-                Arrays.asList(new OrderStatus("PENDING"), new OrderStatus("ONGOING")));
-        assertTrue(predicate.test(new OrderBuilder().withStatus("ONGOING").build()));
+                Arrays.asList(new RequestStatus("PENDING"), new RequestStatus("ONGOING")));
+        assertTrue(predicate.test(new RequestBuilder().withStatus("ONGOING").build()));
     }
 
     @Test
     public void test_statusDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
         OrderStatusContainsKeywordPredicate predicate =
-                new OrderStatusContainsKeywordPredicate(Arrays.asList(new OrderStatus("PENDING")));
-        assertFalse(predicate.test(new OrderBuilder().withStatus("COMPLETED").build()));
+                new OrderStatusContainsKeywordPredicate(Arrays.asList(new RequestStatus("PENDING")));
+        assertFalse(predicate.test(new RequestBuilder().withStatus("COMPLETED").build()));
     }
 }

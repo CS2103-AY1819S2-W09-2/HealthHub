@@ -51,7 +51,7 @@ public class OrderListPanel extends UiPart<Region> {
     }
 
     /**
-     * Scrolls to the {@code OrderCard} at the {@code index} and selects it.
+     * Scrolls to the {@code RequestCard} at the {@code index} and selects it.
      */
     private void scrollTo(int index) {
         Platform.runLater(() -> {
@@ -77,7 +77,7 @@ public class OrderListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Request} using a {@code OrderCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Request} using a {@code RequestCard}.
      */
     class OrderListViewCell extends ListCell<Request> {
         @Override
@@ -88,7 +88,7 @@ public class OrderListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new OrderCard(request, getIndex() + 1).getRoot());
+                setGraphic(new RequestCard(request, getIndex() + 1).getRoot());
             }
         }
     }

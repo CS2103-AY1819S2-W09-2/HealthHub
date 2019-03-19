@@ -33,14 +33,14 @@ import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.order.Request;
-import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.RequestBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Request expectedRequest = new OrderBuilder(BOB).build();
+        Request expectedRequest = new RequestBuilder(BOB).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
@@ -63,7 +63,7 @@ public class AddCommandParserTest {
                 + DATE_DESC_AMY + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedRequest));
 
         // multiple food - all accepted
-        Request expectedRequestMultipleFood = new OrderBuilder(BOB).withFood(VALID_FOOD_BURGER, VALID_FOOD_RICE)
+        Request expectedRequestMultipleFood = new RequestBuilder(BOB).withFood(VALID_FOOD_BURGER, VALID_FOOD_RICE)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + DATE_DESC_BOB
                 + FOOD_DESC_BURGER + FOOD_DESC_RICE, new AddCommand(expectedRequestMultipleFood));

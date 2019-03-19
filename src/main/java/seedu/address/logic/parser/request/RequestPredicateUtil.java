@@ -17,7 +17,7 @@ import seedu.address.model.order.OrderDatePredicate;
 import seedu.address.model.order.OrderFoodContainsKeywordPredicate;
 import seedu.address.model.order.OrderNameContainsKeywordPredicate;
 import seedu.address.model.order.OrderPhoneContainsKeywordPredicate;
-import seedu.address.model.order.OrderStatus;
+import seedu.address.model.order.RequestStatus;
 import seedu.address.model.order.OrderStatusContainsKeywordPredicate;
 import seedu.address.model.order.Request;
 
@@ -121,9 +121,9 @@ public class RequestPredicateUtil {
         case STRING_PREFIX_STATUS:
             String status = getLastValueFromList(keywords);
             String[] statusKeywords = trimAndSplitStringByWhiteSpaces(status);
-            List<OrderStatus> orderStatus =
+            List<RequestStatus> requestStatuses =
                     new RequestStatusPredicateUtil().parseOrderStatusKeywords(Arrays.asList(statusKeywords));
-            OrderStatusContainsKeywordPredicate statusPredicate = new OrderStatusContainsKeywordPredicate(orderStatus);
+            OrderStatusContainsKeywordPredicate statusPredicate = new OrderStatusContainsKeywordPredicate(requestStatuses);
 
             setToPredicate(statusPredicate);
 

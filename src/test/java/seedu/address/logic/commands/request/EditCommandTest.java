@@ -30,7 +30,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.order.Request;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
-import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.RequestBuilder;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
@@ -42,7 +42,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Request editedRequest = new OrderBuilder().build();
+        Request editedRequest = new RequestBuilder().build();
         EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedRequest).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST, descriptor);
 
@@ -61,7 +61,7 @@ public class EditCommandTest {
         Index indexLastOrder = Index.fromOneBased(model.getFilteredOrderList().size());
         Request lastRequest = model.getFilteredOrderList().get(indexLastOrder.getZeroBased());
 
-        OrderBuilder orderInList = new OrderBuilder(lastRequest);
+        RequestBuilder orderInList = new RequestBuilder(lastRequest);
         Request editedRequest = orderInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withFood(VALID_FOOD_BURGER).build();
 
@@ -98,7 +98,7 @@ public class EditCommandTest {
         showOrderAtIndex(model, INDEX_FIRST);
 
         Request requestInFilteredList = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
-        Request editedRequest = new OrderBuilder(requestInFilteredList).withName(VALID_NAME_BOB).build();
+        Request editedRequest = new RequestBuilder(requestInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST,
                 new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
@@ -162,7 +162,7 @@ public class EditCommandTest {
 
     @Test
     public void executeUndoRedo_validIndexUnfilteredList_success() throws Exception {
-        Request editedRequest = new OrderBuilder().build();
+        Request editedRequest = new RequestBuilder().build();
         Request requestToEdit = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
         EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedRequest).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST, descriptor);
@@ -187,7 +187,7 @@ public class EditCommandTest {
 
     @Test
     public void executeUndoRedo_validIndexFilteredList_sameOrderEdited() throws Exception {
-        Request editedRequest = new OrderBuilder().build();
+        Request editedRequest = new RequestBuilder().build();
         EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedRequest).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST, descriptor);
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),

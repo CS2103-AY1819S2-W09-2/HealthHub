@@ -28,7 +28,7 @@ public class XmlAdaptedRequestTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_DATE = BENSON.getDate().toString();
-    private static final String VALID_STATUS = BENSON.getOrderStatus().toString();
+    private static final String VALID_STATUS = BENSON.getRequestStatus().toString();
     private static final List<XmlAdaptedFood> VALID_FOOD = BENSON.getFood().stream()
             .map(XmlAdaptedFood::new)
             .collect(Collectors.toList());

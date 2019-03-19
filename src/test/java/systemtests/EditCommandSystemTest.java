@@ -52,7 +52,7 @@ import seedu.address.model.common.Phone;
 import seedu.address.model.order.Food;
 import seedu.address.model.order.Request;
 import seedu.address.model.order.OrderDate;
-import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.RequestBuilder;
 import seedu.address.testutil.OrderUtil;
 
 public class EditCommandSystemTest extends RequestBookSystemTest {
@@ -75,7 +75,7 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
         Index index = INDEX_FIRST;
         command = " " + editCommand + "  " + index.getOneBased() + "  " + NAME_DESC_BOB + "  "
                 + PHONE_DESC_BOB + " " + DATE_DESC_BOB + "  " + ADDRESS_DESC_BOB + " " + FOOD_DESC_BURGER + " ";
-        Request editedRequest = new OrderBuilder(BOB).withFood(VALID_FOOD_BURGER).build();
+        Request editedRequest = new RequestBuilder(BOB).withFood(VALID_FOOD_BURGER).build();
         assertCommandSuccess(command, index, editedRequest);
 
         /* Case: edit a request with new values same as existing values -> edited */
@@ -89,19 +89,19 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
         assertNotEquals(getModel().getFilteredOrderList().get(index.getZeroBased()), BOB);
         command = editCommand + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_BOB + DATE_DESC_BOB
                 + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
-        editedRequest = new OrderBuilder(BOB).withName(VALID_NAME_AMY).build();
+        editedRequest = new RequestBuilder(BOB).withName(VALID_NAME_AMY).build();
         assertCommandSuccess(command, index, editedRequest);
 
         /* Case: edit a request with new values same as another request's values but with different phone -> edited */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + DATE_DESC_BOB
                 + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
-        editedRequest = new OrderBuilder(BOB).withPhone(VALID_PHONE_AMY).build();
+        editedRequest = new RequestBuilder(BOB).withPhone(VALID_PHONE_AMY).build();
         assertCommandSuccess(command, index, editedRequest);
 
         /* Case: edit a request with new values same as another request's values but with different date -> edited */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_AMY
                 + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
-        editedRequest = new OrderBuilder(BOB).withDate(VALID_DATE_AMY).build();
+        editedRequest = new RequestBuilder(BOB).withDate(VALID_DATE_AMY).build();
         assertCommandSuccess(command, index, editedRequest);
 
         /* Case: edit a request with new values same as another request's values but with different phone and date
@@ -110,7 +110,7 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
         index = INDEX_SECOND;
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + DATE_DESC_AMY
                 + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
-        editedRequest = new OrderBuilder(BOB).withPhone(VALID_PHONE_AMY).withDate(VALID_DATE_AMY).build();
+        editedRequest = new RequestBuilder(BOB).withPhone(VALID_PHONE_AMY).withDate(VALID_DATE_AMY).build();
         assertCommandSuccess(command, index, editedRequest);
 
         /* Case: clear food -> rejected */
@@ -126,7 +126,7 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
         assertTrue(index.getZeroBased() < getModel().getFilteredOrderList().size());
         command = editCommand + " " + index.getOneBased() + " " + NAME_DESC_BOB;
         Request requestToEdit = getModel().getFilteredOrderList().get(index.getZeroBased());
-        editedRequest = new OrderBuilder(requestToEdit).withName(VALID_NAME_BOB).build();
+        editedRequest = new RequestBuilder(requestToEdit).withName(VALID_NAME_BOB).build();
         assertCommandSuccess(command, index, editedRequest);
 
         /* Case: filtered request list, edit index within bounds of request book but out of bounds of request list

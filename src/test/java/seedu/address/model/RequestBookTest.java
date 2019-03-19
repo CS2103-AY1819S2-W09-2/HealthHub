@@ -21,7 +21,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.order.Request;
 import seedu.address.model.order.exceptions.DuplicateRequestException;
-import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.RequestBuilder;
 
 public class RequestBookTest {
 
@@ -51,7 +51,7 @@ public class RequestBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Request editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
+        Request editedAlice = new RequestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
                 .build();
         List<Request> newRequests = Arrays.asList(ALICE, editedAlice);
         OrderBookStub newData = new OrderBookStub(newRequests);
@@ -80,7 +80,7 @@ public class RequestBookTest {
     @Test
     public void hasOrder_orderWithSameIdentityFieldsInOrderBook_returnsTrue() {
         orderBook.addOrder(ALICE);
-        Request editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
+        Request editedAlice = new RequestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
                 .build();
         assertTrue(orderBook.hasOrder(editedAlice));
     }

@@ -11,7 +11,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.order.OrderStatus;
+import seedu.address.model.order.RequestStatus;
 import seedu.address.model.order.Request;
 
 /**
@@ -50,7 +50,7 @@ public class DoneCommand extends RequestCommand {
 
         Request requestToBeCompleted = lastShownList.get(targetIndex.getZeroBased());
 
-        if (!requestToBeCompleted.getOrderStatus().equals(new OrderStatus("ONGOING"))) {
+        if (!requestToBeCompleted.getRequestStatus().equals(new RequestStatus("ONGOING"))) {
             throw new CommandException(MESSAGE_ONGOING_ORDER);
         }
 

@@ -7,16 +7,16 @@ import java.util.function.Predicate;
  * Tests that a {@code Request}'s {@code Status} matches the keywords given.
  */
 public class OrderStatusContainsKeywordPredicate implements Predicate<Request> {
-    private final List<OrderStatus> keywords;
+    private final List<RequestStatus> keywords;
 
-    public OrderStatusContainsKeywordPredicate(List<OrderStatus> statuses) {
+    public OrderStatusContainsKeywordPredicate(List<RequestStatus> statuses) {
         keywords = statuses;
     }
 
     @Override
     public boolean test(Request request) {
         return keywords.stream()
-                .anyMatch(keyword -> request.getOrderStatus().equals(keyword));
+                .anyMatch(keyword -> request.getRequestStatus().equals(keyword));
     }
 
     @Override

@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.RequestBuilder;
 
 public class RequestNameContainsKeywordPredicateTest {
     @Test
@@ -41,25 +41,25 @@ public class RequestNameContainsKeywordPredicateTest {
         // One keyword
         OrderNameContainsKeywordPredicate predicate =
                 new OrderNameContainsKeywordPredicate("Alice");
-        assertTrue(predicate.test(new OrderBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new RequestBuilder().withName("Alice Bob").build()));
 
         // Keyword match 2 word
         predicate = new OrderNameContainsKeywordPredicate("Bob");
-        assertTrue(predicate.test(new OrderBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new RequestBuilder().withName("Alice Bob").build()));
 
         // Partial Match
         predicate = new OrderNameContainsKeywordPredicate("Ali");
-        assertTrue(predicate.test(new OrderBuilder().withName("Alice Carol").build()));
+        assertTrue(predicate.test(new RequestBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
         predicate = new OrderNameContainsKeywordPredicate("aLIce bOB");
-        assertTrue(predicate.test(new OrderBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new RequestBuilder().withName("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
         OrderNameContainsKeywordPredicate predicate = new OrderNameContainsKeywordPredicate("Carol");
-        assertFalse(predicate.test(new OrderBuilder().withName("Alice Bob").build()));
+        assertFalse(predicate.test(new RequestBuilder().withName("Alice Bob").build()));
     }
 }

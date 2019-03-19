@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import seedu.address.model.order.Request;
 import seedu.address.testutil.Assert;
-import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.RequestBuilder;
 
 public class AddressTest {
 
@@ -29,7 +29,7 @@ public class AddressTest {
             "Block 546, 100000", "Triad Street, 123456"};
 
         for (int i = 0; i < directory.length; i++) {
-            Request request = new OrderBuilder().withAddress(directory[i]).build();
+            Request request = new RequestBuilder().withAddress(directory[i]).build();
             assertTrue(request.getAddress().getPostalCode().equals(postalCodes[i]));
         }
 

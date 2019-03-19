@@ -51,7 +51,7 @@ public class DeliverymanListPanel extends UiPart<Region> {
     }
 
     /**
-     * Scrolls to the {@code OrderCard} at the {@code index} and selects it.
+     * Scrolls to the {@code RequestCard} at the {@code index} and selects it.
      */
     private void scrollTo(int index) {
         Platform.runLater(() -> {
@@ -77,7 +77,7 @@ public class DeliverymanListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Request} using a {@code OrderCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Request} using a {@code RequestCard}.
      */
     class DeliveryManListViewCell extends ListCell<Healthworker> {
         @Override

@@ -9,52 +9,52 @@ import org.junit.Test;
 
 import guitests.guihandles.OrderCardHandle;
 import seedu.address.model.order.Request;
-import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.RequestBuilder;
 
 public class RequestCardTest extends GuiUnitTest {
 
     @Test
     public void display() {
-        Request normalRequest = new OrderBuilder().build();
-        OrderCard orderCard = new OrderCard(normalRequest, 2);
-        uiPartRule.setUiPart(orderCard);
-        assertCardDisplay(orderCard, normalRequest, 2);
+        Request normalRequest = new RequestBuilder().build();
+        RequestCard requestCard = new RequestCard(normalRequest, 2);
+        uiPartRule.setUiPart(requestCard);
+        assertCardDisplay(requestCard, normalRequest, 2);
     }
 
     @Test
     public void equals() {
-        Request request = new OrderBuilder().build();
-        OrderCard orderCard = new OrderCard(request, 0);
+        Request request = new RequestBuilder().build();
+        RequestCard requestCard = new RequestCard(request, 0);
 
         // same request, same index -> returns true
-        OrderCard copy = new OrderCard(request, 0);
-        assertTrue(orderCard.equals(copy));
+        RequestCard copy = new RequestCard(request, 0);
+        assertTrue(requestCard.equals(copy));
 
         // same object -> returns true
-        assertTrue(orderCard.equals(orderCard));
+        assertTrue(requestCard.equals(requestCard));
 
         // null -> returns false
-        assertFalse(orderCard.equals(null));
+        assertFalse(requestCard.equals(null));
 
         // different types -> returns false
-        assertFalse(orderCard.equals(0));
+        assertFalse(requestCard.equals(0));
 
         // different request, same index -> returns false
-        Request differentRequest = new OrderBuilder().withName("differentName").build();
-        assertFalse(orderCard.equals(new OrderCard(differentRequest, 0)));
+        Request differentRequest = new RequestBuilder().withName("differentName").build();
+        assertFalse(requestCard.equals(new RequestCard(differentRequest, 0)));
 
         // same request, different index -> returns false
-        assertFalse(orderCard.equals(new OrderCard(request, 1)));
+        assertFalse(requestCard.equals(new RequestCard(request, 1)));
     }
 
     /**
-     * Asserts that {@code orderCard} displays the details of {@code expectedRequest} correctly and matches
+     * Asserts that {@code requestCard} displays the details of {@code expectedRequest} correctly and matches
      * {@code expectedId}.
      */
-    private void assertCardDisplay(OrderCard orderCard, Request expectedRequest, int expectedId) {
+    private void assertCardDisplay(RequestCard requestCard, Request expectedRequest, int expectedId) {
         guiRobot.pauseForHuman();
 
-        OrderCardHandle orderCardHandle = new OrderCardHandle(orderCard.getRoot());
+        OrderCardHandle orderCardHandle = new OrderCardHandle(requestCard.getRoot());
 
         // verify id is displayed correctly
         assertEquals("#" + Integer.toString(expectedId), orderCardHandle.getId());

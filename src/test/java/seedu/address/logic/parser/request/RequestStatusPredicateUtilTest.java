@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.OrderStatus;
+import seedu.address.model.order.RequestStatus;
 
 public class RequestStatusPredicateUtilTest {
     @Rule
@@ -18,22 +18,22 @@ public class RequestStatusPredicateUtilTest {
 
     @Test
     public void test_multipleValidStringStatus_returnStatusList() throws ParseException {
-        List<OrderStatus> expectedOrderStatuses = Arrays.asList(new OrderStatus("PENDING"), new OrderStatus("ONGOING"));
+        List<RequestStatus> expectedRequestStatuses = Arrays.asList(new RequestStatus("PENDING"), new RequestStatus("ONGOING"));
 
         List<String> stringStatuses = Arrays.asList("PENDING", "ONGOING");
-        List<OrderStatus> statuses = new RequestStatusPredicateUtil().parseOrderStatusKeywords(stringStatuses);
+        List<RequestStatus> statuses = new RequestStatusPredicateUtil().parseOrderStatusKeywords(stringStatuses);
 
-        assertEquals(expectedOrderStatuses, statuses);
+        assertEquals(expectedRequestStatuses, statuses);
     }
 
     @Test
     public void test_mixedCaseStringStatuses_returnValidStatusList() throws ParseException {
-        List<OrderStatus> expectedOrderStatuses = Arrays.asList(new OrderStatus("PENDING"));
+        List<RequestStatus> expectedRequestStatuses = Arrays.asList(new RequestStatus("PENDING"));
 
         List<String> stringStatuses = Arrays.asList("pENdiNG");
-        List<OrderStatus> statuses = new RequestStatusPredicateUtil().parseOrderStatusKeywords(stringStatuses);
+        List<RequestStatus> statuses = new RequestStatusPredicateUtil().parseOrderStatusKeywords(stringStatuses);
 
-        assertEquals(expectedOrderStatuses, statuses);
+        assertEquals(expectedRequestStatuses, statuses);
     }
 
     @Test
@@ -41,6 +41,6 @@ public class RequestStatusPredicateUtilTest {
         thrown.expect(ParseException.class);
 
         List<String> stringStatuses = Arrays.asList("invalidStatus");
-        List<OrderStatus> statuses = new RequestStatusPredicateUtil().parseOrderStatusKeywords(stringStatuses);
+        List<RequestStatus> statuses = new RequestStatusPredicateUtil().parseOrderStatusKeywords(stringStatuses);
     }
 }

@@ -9,7 +9,7 @@ import javafx.scene.control.ListView;
 import seedu.address.model.order.Request;
 
 /**
- * Provides a handle for {@code OrderListPanel} containing the list of {@code OrderCard}.
+ * Provides a handle for {@code OrderListPanel} containing the list of {@code RequestCard}.
  */
 public class OrderListPanelHandle extends NodeHandle<ListView<Request>> {
     public static final String ORDER_LIST_VIEW_ID = "#orderListView";
@@ -92,7 +92,7 @@ public class OrderListPanelHandle extends NodeHandle<ListView<Request>> {
     }
 
     /**
-     * Selects the {@code OrderCard} at {@code index} in the list.
+     * Selects the {@code RequestCard} at {@code index} in the list.
      */
     public void select(int index) {
         getRootNode().getSelectionModel().select(index);
@@ -125,7 +125,7 @@ public class OrderListPanelHandle extends NodeHandle<ListView<Request>> {
     }
 
     /**
-     * Remembers the selected {@code OrderCard} in the list.
+     * Remembers the selected {@code RequestCard} in the list.
      */
     public void rememberSelectedOrderCard() {
         List<Request> selectedItems = getRootNode().getSelectionModel().getSelectedItems();
@@ -138,7 +138,7 @@ public class OrderListPanelHandle extends NodeHandle<ListView<Request>> {
     }
 
     /**
-     * Returns true if the selected {@code OrderCard} is different from the value remembered by the most recent
+     * Returns true if the selected {@code RequestCard} is different from the value remembered by the most recent
      * {@code rememberSelectedOrderCard()} call.
      */
     public boolean isSelectedOrderCardChanged() {

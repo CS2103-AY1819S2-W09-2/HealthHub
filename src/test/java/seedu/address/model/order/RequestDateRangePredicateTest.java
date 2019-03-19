@@ -9,7 +9,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.RequestBuilder;
 
 public class RequestDateRangePredicateTest {
     @Test
@@ -70,13 +70,13 @@ public class RequestDateRangePredicateTest {
 
         // Equals lower boundary
         OrderDateRangePredicate predicate = new OrderDateRangePredicate(lowerDateBoundary, upperDateBoundary);
-        assertTrue(predicate.test(new OrderBuilder().withDate("01-10-2018 10:00:00").build()));
+        assertTrue(predicate.test(new RequestBuilder().withDate("01-10-2018 10:00:00").build()));
 
         // Equals upper boundary
-        assertTrue(predicate.test(new OrderBuilder().withDate("03-10-2018 10:00:00").build()));
+        assertTrue(predicate.test(new RequestBuilder().withDate("03-10-2018 10:00:00").build()));
 
         // Within boundary
-        assertTrue(predicate.test(new OrderBuilder().withDate("02-10-2018 10:00:00").build()));
+        assertTrue(predicate.test(new RequestBuilder().withDate("02-10-2018 10:00:00").build()));
     }
 
     @Test
@@ -95,9 +95,9 @@ public class RequestDateRangePredicateTest {
 
         // Below lower boundary
         OrderDateRangePredicate predicate = new OrderDateRangePredicate(lowerDateBoundary, upperDateBoundary);
-        assertFalse(predicate.test(new OrderBuilder().withDate("01-10-2018 09:00:59").build()));
+        assertFalse(predicate.test(new RequestBuilder().withDate("01-10-2018 09:00:59").build()));
 
         // Exceed upper boundary
-        assertFalse(predicate.test(new OrderBuilder().withDate("03-10-2018 10:00:01").build()));
+        assertFalse(predicate.test(new RequestBuilder().withDate("03-10-2018 10:00:01").build()));
     }
 }

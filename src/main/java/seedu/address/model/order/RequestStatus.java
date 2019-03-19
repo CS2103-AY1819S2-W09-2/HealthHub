@@ -4,7 +4,7 @@ package seedu.address.model.order;
  * Represents an Request's Status in the request book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)} (String)}
  */
-public class OrderStatus {
+public class RequestStatus {
 
     public static final String MESSAGE_STATUS_CONSTRAINTS =
             "Status should be either: PENDING, ONGOING or COMPLETED";
@@ -21,18 +21,18 @@ public class OrderStatus {
     private Status orderState = null;
 
     /**
-     * Constructs a {@code OrderStatus}.
+     * Constructs a {@code RequestStatus}.
      */
-    public OrderStatus() {
+    public RequestStatus() {
         this(Status.PENDING.name());
     }
 
     /**
-     * Constructs a {@code OrderStatus} with a parameter.
+     * Constructs a {@code RequestStatus} with a parameter.
      *
      * @param status A valid Request Status string
      */
-    public OrderStatus(String status) {
+    public RequestStatus(String status) {
         orderState = Status.valueOf(status);
     }
 
@@ -73,8 +73,8 @@ public class OrderStatus {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof OrderStatus // instanceof handles nulls
-                && orderState.equals(((OrderStatus) other).orderState)); // state check
+                || (other instanceof RequestStatus // instanceof handles nulls
+                && orderState.equals(((RequestStatus) other).orderState)); // state check
     }
 
     @Override

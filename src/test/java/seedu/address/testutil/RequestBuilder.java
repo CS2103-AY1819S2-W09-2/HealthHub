@@ -11,13 +11,13 @@ import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Food;
 import seedu.address.model.order.Request;
 import seedu.address.model.order.OrderDate;
-import seedu.address.model.order.OrderStatus;
+import seedu.address.model.order.RequestStatus;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Request objects.
  */
-public class OrderBuilder {
+public class RequestBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
@@ -30,31 +30,31 @@ public class OrderBuilder {
     private Phone phone;
     private Address address;
     private OrderDate date;
-    private OrderStatus status;
+    private RequestStatus status;
     private Set<Food> food;
     private UUID id;
     private Healthworker healthworker;
 
-    public OrderBuilder() {
+    public RequestBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         address = new Address(DEFAULT_ADDRESS);
         date = new OrderDate(DEFAULT_DATE);
         food = SampleDataUtil.getFoodSet(DEFAULT_FOOD);
-        status = new OrderStatus(DEFAULT_STATUS);
+        status = new RequestStatus(DEFAULT_STATUS);
         healthworker = null;
     }
 
     /**
-     * Initializes the OrderBuilder with the data of {@code requestToCopy}.
+     * Initializes the RequestBuilder with the data of {@code requestToCopy}.
      */
-    public OrderBuilder(Request requestToCopy) {
+    public RequestBuilder(Request requestToCopy) {
         id = requestToCopy.getTag();
         name = requestToCopy.getName();
         phone = requestToCopy.getPhone();
         address = requestToCopy.getAddress();
         date = requestToCopy.getDate();
-        status = requestToCopy.getOrderStatus();
+        status = requestToCopy.getRequestStatus();
         food = new HashSet<>(requestToCopy.getFood());
         healthworker = requestToCopy.getHealthworker();
     }
@@ -64,7 +64,7 @@ public class OrderBuilder {
      *
      * @param id
      */
-    public OrderBuilder withId(String id) {
+    public RequestBuilder withId(String id) {
         this.id = UUID.fromString(id);
         return this;
     }
@@ -72,7 +72,7 @@ public class OrderBuilder {
     /**
      * Sets the {@code Name} of the {@code Request} that we are building.
      */
-    public OrderBuilder withName(String name) {
+    public RequestBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -80,7 +80,7 @@ public class OrderBuilder {
     /**
      * Parses the {@code food} into a {@code Set<Food>} and set it to the {@code Request} that we are building.
      */
-    public OrderBuilder withFood(String... food) {
+    public RequestBuilder withFood(String... food) {
         this.food = SampleDataUtil.getFoodSet(food);
         return this;
     }
@@ -88,7 +88,7 @@ public class OrderBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public OrderBuilder withAddress(String address) {
+    public RequestBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
@@ -96,7 +96,7 @@ public class OrderBuilder {
     /**
      * Sets the {@code Date} of the {@code Request} that we are building.
      */
-    public OrderBuilder withDate(String orderDate) {
+    public RequestBuilder withDate(String orderDate) {
         this.date = new OrderDate(orderDate);
         return this;
     }
@@ -104,7 +104,7 @@ public class OrderBuilder {
     /**
      * Sets the {@code Phone} of the {@code Request} that we are building.
      */
-    public OrderBuilder withPhone(String phone) {
+    public RequestBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
@@ -112,15 +112,15 @@ public class OrderBuilder {
     /**
      * Sets the {@code Status} of the {@code Request} that we are building.
      */
-    public OrderBuilder withStatus(String status) {
-        this.status = new OrderStatus(status);
+    public RequestBuilder withStatus(String status) {
+        this.status = new RequestStatus(status);
         return this;
     }
 
     /**
      * Sets the {@code Healthworker} of the {@code Request} that we are building.
      */
-    public OrderBuilder withDeliveryman(Healthworker healthworker) {
+    public RequestBuilder withDeliveryman(Healthworker healthworker) {
         this.healthworker = healthworker;
         return this;
     }

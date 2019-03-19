@@ -22,7 +22,7 @@ import seedu.address.model.common.Phone;
 import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Food;
 import seedu.address.model.order.OrderDate;
-import seedu.address.model.order.OrderStatus;
+import seedu.address.model.order.RequestStatus;
 import seedu.address.model.order.Request;
 
 /**
@@ -97,7 +97,7 @@ public class XmlAdaptedOrder {
         phone = source.getPhone().value;
         address = source.getAddress().value;
         date = source.getDate().toString();
-        status = source.getOrderStatus().toString();
+        status = source.getRequestStatus().toString();
         food = source.getFood().stream()
                 .map(XmlAdaptedFood::new)
                 .collect(Collectors.toList());
@@ -169,13 +169,13 @@ public class XmlAdaptedOrder {
 
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    OrderStatus.class.getSimpleName()));
+                    RequestStatus.class.getSimpleName()));
         }
-        if (!OrderStatus.isValidStatus(status)) {
+        if (!RequestStatus.isValidStatus(status)) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    OrderStatus.class.getSimpleName()));
+                    RequestStatus.class.getSimpleName()));
         }
-        final OrderStatus orderStatus = new OrderStatus(status);
+        final RequestStatus requestStatus = new RequestStatus(status);
 
         final Healthworker modelHealthworker;
         if (deliveryman == null) {
@@ -184,7 +184,7 @@ public class XmlAdaptedOrder {
             modelHealthworker = new Healthworker(new Name(deliveryman));
         }
 
-        return new Request(modelTag, modelName, modelPhone, modelAddress, modelDate, orderStatus,
+        return new Request(modelTag, modelName, modelPhone, modelAddress, modelDate, requestStatus,
                 modelFood, modelHealthworker);
     }
 

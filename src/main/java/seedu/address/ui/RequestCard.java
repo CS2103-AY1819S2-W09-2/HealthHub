@@ -12,7 +12,7 @@ import seedu.address.model.order.Request;
 /**
  * An UI component that displays information of a {@code Request}.
  */
-public class OrderCard extends UiPart<Region> {
+public class RequestCard extends UiPart<Region> {
 
     public static final String STATUS_PENDING = "PENDING";
     public static final String STATUS_ONGOING = "ONGOING";
@@ -38,9 +38,9 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label orderDate;
     @FXML
-    private Label orderStatus;
+    private Label requestStatus;
 
-    public OrderCard(Request request, int displayedIndex) {
+    public RequestCard(Request request, int displayedIndex) {
         super(FXML);
         this.request = request;
         id.setText("#" + displayedIndex);
@@ -52,19 +52,19 @@ public class OrderCard extends UiPart<Region> {
 
         orderDate.setText(request.getDate().toString());
 
-        orderStatus.setText(request.getOrderStatus().toString().substring(0, 1).toUpperCase()
-                + request.getOrderStatus().toString().substring(1).toLowerCase());
+        requestStatus.setText(request.getRequestStatus().toString().substring(0, 1).toUpperCase()
+            + request.getRequestStatus().toString().substring(1).toLowerCase());
         setOrderStatusColor();
     }
 
     private void setOrderStatusColor() {
-        orderStatus.getStyleClass().clear();
-        if (request.getOrderStatus().toString().equals(STATUS_PENDING)) {
-            orderStatus.getStyleClass().add("pending");
-        } else if (request.getOrderStatus().toString().equals(STATUS_ONGOING)) {
-            orderStatus.getStyleClass().add("ongoing");
-        } else if (request.getOrderStatus().toString().equals(STATUS_COMPLETED)) {
-            orderStatus.getStyleClass().add("completed");
+        requestStatus.getStyleClass().clear();
+        if (request.getRequestStatus().toString().equals(STATUS_PENDING)) {
+            requestStatus.getStyleClass().add("pending");
+        } else if (request.getRequestStatus().toString().equals(STATUS_ONGOING)) {
+            requestStatus.getStyleClass().add("ongoing");
+        } else if (request.getRequestStatus().toString().equals(STATUS_COMPLETED)) {
+            requestStatus.getStyleClass().add("completed");
         }
     }
 
@@ -77,13 +77,13 @@ public class OrderCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof OrderCard)) {
+        if (!(other instanceof RequestCard)) {
             return false;
         }
 
         // state check
-        OrderCard card = (OrderCard) other;
+        RequestCard card = (RequestCard) other;
         return id.getText().equals(card.id.getText())
-                && request.equals(card.request);
+            && request.equals(card.request);
     }
 }

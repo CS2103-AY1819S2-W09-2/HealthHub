@@ -25,7 +25,7 @@ import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.model.order.Request;
 import seedu.address.model.user.User;
-import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.RequestBuilder;
 
 public class AddCommandTest {
 
@@ -45,7 +45,7 @@ public class AddCommandTest {
     @Test
     public void execute_orderAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded();
-        Request validRequest = new OrderBuilder().build();
+        Request validRequest = new RequestBuilder().build();
 
         CommandResult commandResult = new AddCommand(validRequest).execute(modelStub, commandHistory);
 
@@ -56,7 +56,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicateOrder_throwsCommandException() throws Exception {
-        Request validRequest = new OrderBuilder().build();
+        Request validRequest = new RequestBuilder().build();
         AddCommand addCommand = new AddCommand(validRequest);
         ModelStub modelStub = new ModelStubWithOrder(validRequest);
 
@@ -67,8 +67,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Request alice = new OrderBuilder().withName("Alice").build();
-        Request bob = new OrderBuilder().withName("Bob").build();
+        Request alice = new RequestBuilder().withName("Alice").build();
+        Request bob = new RequestBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 

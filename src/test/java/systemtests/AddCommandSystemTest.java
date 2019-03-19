@@ -41,7 +41,7 @@ import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.order.Request;
 import seedu.address.model.order.OrderDate;
-import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.RequestBuilder;
 import seedu.address.testutil.OrderUtil;
 
 public class AddCommandSystemTest extends RequestBookSystemTest {
@@ -62,14 +62,14 @@ public class AddCommandSystemTest extends RequestBookSystemTest {
         /* Case: add an request to a non-empty address book, command with leading spaces and trailing spaces
          * -> added
          */
-        Request toAdd = new OrderBuilder(AMY).build();
+        Request toAdd = new RequestBuilder(AMY).build();
         String addCommand = RequestCommand.COMMAND_WORD + " " + AddCommand.COMMAND_WORD;
         command = "   " + addCommand + "  " + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " "
                 + "   " + ADDRESS_DESC_AMY + "   " + DATE_DESC_AMY + "  " + FOOD_DESC_BURGER + " ";
         assertCommandSuccess(command, toAdd);
 
         /* Case: add an request with all fields same as another request in the request book except name -> added */
-        toAdd = new OrderBuilder(AMY).withName(VALID_NAME_BOB).build();
+        toAdd = new RequestBuilder(AMY).withName(VALID_NAME_BOB).build();
         command = addCommand + NAME_DESC_BOB + PHONE_DESC_AMY + ADDRESS_DESC_AMY + DATE_DESC_AMY
                 + FOOD_DESC_BURGER;
         assertCommandSuccess(command, toAdd);
@@ -77,28 +77,28 @@ public class AddCommandSystemTest extends RequestBookSystemTest {
         /* Case: add an request with all fields same as another request in the address book except phone
          * -> added
          */
-        toAdd = new OrderBuilder(AMY).withPhone(VALID_PHONE_BOB).build();
+        toAdd = new RequestBuilder(AMY).withPhone(VALID_PHONE_BOB).build();
         command = RequestCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(toAdd);
         assertCommandSuccess(command, toAdd);
 
         /* Case: add to empty address book -> added */
         deleteAllOrders();
-        assertCommandSuccess(new OrderBuilder(ALICE).build());
+        assertCommandSuccess(new RequestBuilder(ALICE).build());
 
         /* Case: add an request, command with parameters in random request -> added */
-        toAdd = new OrderBuilder(BOB).build();
+        toAdd = new RequestBuilder(BOB).build();
         command = addCommand + DATE_DESC_BOB + FOOD_DESC_RICE + PHONE_DESC_BOB + ADDRESS_DESC_BOB + NAME_DESC_BOB;
         assertCommandSuccess(command, toAdd);
 
         /* Case: add an request -> added */
-        assertCommandSuccess(new OrderBuilder(HOON).build());
+        assertCommandSuccess(new RequestBuilder(HOON).build());
 
 
         /* ----------------- Perform add operation while an request card is selected ------------------ */
 
         /* Case: selects first card in the request list, add an request -> added, card selection remains unchanged */
         selectOrder(Index.fromOneBased(1));
-        assertCommandSuccess(new OrderBuilder(CARL).build());
+        assertCommandSuccess(new RequestBuilder(CARL).build());
 
         /* ----------------------------------- Perform invalid add operations --------------------------------------- */
 
@@ -107,7 +107,7 @@ public class AddCommandSystemTest extends RequestBookSystemTest {
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_ORDER);
 
         /* Case: add a duplicate request except with different address -> rejected */
-        toAdd = new OrderBuilder(HOON).withAddress(VALID_ADDRESS_BOB).build();
+        toAdd = new RequestBuilder(HOON).withAddress(VALID_ADDRESS_BOB).build();
         command = RequestCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(toAdd);
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_ORDER);
 

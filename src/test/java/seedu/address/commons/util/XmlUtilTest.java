@@ -27,7 +27,7 @@ import seedu.address.storage.deliveryman.XmlSerializableHealthworkerList;
 import seedu.address.testutil.DeliverymanBuilder;
 import seedu.address.testutil.DeliverymenListBuilder;
 import seedu.address.testutil.OrderBookBuilder;
-import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.RequestBuilder;
 import seedu.address.testutil.TestUtil;
 
 public class XmlUtilTest {
@@ -162,7 +162,7 @@ public class XmlUtilTest {
         assertEquals(new OrderBook(), dataFromFile.getOrderBook());
         assertEquals(new HealthworkerList(), dataFromFile.getDeliverymenList());
 
-        OrderBookBuilder builder = new OrderBookBuilder(new OrderBook()).withOrder(new OrderBuilder().build());
+        OrderBookBuilder builder = new OrderBookBuilder(new OrderBook()).withOrder(new RequestBuilder().build());
         DeliverymenListBuilder dBuilder = new DeliverymenListBuilder(new HealthworkerList())
             .withDeliveryman(new DeliverymanBuilder().build());
         dataToWrite = new XmlFoodZoom(builder.build(), dBuilder.build());

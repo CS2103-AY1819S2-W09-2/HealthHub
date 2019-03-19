@@ -27,7 +27,7 @@ import seedu.address.model.common.Phone;
 import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Food;
 import seedu.address.model.order.OrderDate;
-import seedu.address.model.order.OrderStatus;
+import seedu.address.model.order.RequestStatus;
 import seedu.address.model.order.Request;
 
 
@@ -85,10 +85,10 @@ public class EditCommand extends RequestCommand {
         Address updatedAddress = editOrderDescriptor.getAddress().orElse(requestToEdit.getAddress());
         OrderDate updatedDate = editOrderDescriptor.getDate().orElse(requestToEdit.getDate());
         Set<Food> updatedFood = editOrderDescriptor.getFood().orElse(requestToEdit.getFood());
-        OrderStatus orderStatus = requestToEdit.getOrderStatus();
+        RequestStatus requestStatus = requestToEdit.getRequestStatus();
         Healthworker healthworker = requestToEdit.getHealthworker();
 
-        return new Request(updatedName, updatedPhone, updatedAddress, updatedDate, orderStatus, updatedFood,
+        return new Request(updatedName, updatedPhone, updatedAddress, updatedDate, requestStatus, updatedFood,
             healthworker);
     }
 

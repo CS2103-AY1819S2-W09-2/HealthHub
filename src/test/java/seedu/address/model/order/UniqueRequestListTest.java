@@ -18,7 +18,7 @@ import org.junit.rules.ExpectedException;
 
 import seedu.address.model.order.exceptions.DuplicateRequestException;
 import seedu.address.model.order.exceptions.RequestNotFoundException;
-import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.RequestBuilder;
 
 public class UniqueRequestListTest {
 
@@ -47,7 +47,7 @@ public class UniqueRequestListTest {
     @Test
     public void contains_orderWithSameIdentityFieldsInList_returnsTrue() {
         uniqueRequestList.add(ALICE);
-        Request editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
+        Request editedAlice = new RequestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
                 .build();
         assertTrue(uniqueRequestList.contains(editedAlice));
     }
@@ -95,7 +95,7 @@ public class UniqueRequestListTest {
     @Test
     public void setOrder_editedOrderHasSameIdentity_success() {
         uniqueRequestList.add(ALICE);
-        Request editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
+        Request editedAlice = new RequestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
                 .build();
         uniqueRequestList.setOrder(ALICE, editedAlice);
         UniqueRequestList expectedUniqueRequestList = new UniqueRequestList();

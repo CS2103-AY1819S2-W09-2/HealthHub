@@ -26,7 +26,7 @@ public class Request extends TaggedObject {
     private final Address address;
     private final OrderDate orderDate;
     private final Set<Food> food = new HashSet<>();
-    private OrderStatus orderStatus;
+    private RequestStatus requestStatus;
     private Healthworker healthworker;
 
     /**
@@ -34,29 +34,29 @@ public class Request extends TaggedObject {
      */
     public Request(Name name, Phone phone, Address address, OrderDate orderDate,
                    Set<Food> food) {
-        this(null, name, phone, address, orderDate, new OrderStatus(), food, null);
+        this(null, name, phone, address, orderDate, new RequestStatus(), food, null);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Request(Name name, Phone phone, Address address, OrderDate orderDate, OrderStatus orderStatus,
+    public Request(Name name, Phone phone, Address address, OrderDate orderDate, RequestStatus requestStatus,
                    Set<Food> food) {
-        this(null, name, phone, address, orderDate, orderStatus, food, null);
+        this(null, name, phone, address, orderDate, requestStatus, food, null);
     }
 
     /**
      * Every field must be present and not null besides healthworker.
      */
-    public Request(Name name, Phone phone, Address address, OrderDate orderDate, OrderStatus orderStatus,
+    public Request(Name name, Phone phone, Address address, OrderDate orderDate, RequestStatus requestStatus,
                    Set<Food> food, Healthworker healthworker) {
-        this(null, name, phone, address, orderDate, orderStatus, food, healthworker);
+        this(null, name, phone, address, orderDate, requestStatus, food, healthworker);
     }
 
     /**
      * This constructor is used to create an {@code request} with a specified id.
      */
-    public Request(UUID id, Name name, Phone phone, Address address, OrderDate orderDate, OrderStatus orderStatus,
+    public Request(UUID id, Name name, Phone phone, Address address, OrderDate orderDate, RequestStatus requestStatus,
                    Set<Food> food, Healthworker healthworker) {
         super(id);
         requireAllNonNull(name, phone, address, orderDate, food);
@@ -65,7 +65,7 @@ public class Request extends TaggedObject {
         this.address = address;
         this.food.addAll(food);
         this.orderDate = orderDate;
-        this.orderStatus = orderStatus;
+        this.requestStatus = requestStatus;
         this.healthworker = healthworker;
     }
 
@@ -74,7 +74,7 @@ public class Request extends TaggedObject {
      */
     public Request(Request request) {
         this(null, request.name, request.phone, request.address, request.orderDate,
-            request.orderStatus, request.food, request.healthworker);
+            request.requestStatus, request.food, request.healthworker);
     }
 
     public Name getName() {
@@ -93,8 +93,8 @@ public class Request extends TaggedObject {
         return address;
     }
 
-    public OrderStatus getOrderStatus() {
-        return orderStatus;
+    public RequestStatus getRequestStatus() {
+        return requestStatus;
     }
 
     public Healthworker getHealthworker() {
@@ -102,7 +102,7 @@ public class Request extends TaggedObject {
     }
 
     public void setStatusCompleted() {
-        orderStatus = new OrderStatus("COMPLETED");
+        requestStatus = new RequestStatus("COMPLETED");
     }
     /**
      * Returns a food set
@@ -119,7 +119,7 @@ public class Request extends TaggedObject {
     }
 
     private void updateStatusOngoing() {
-        orderStatus = new OrderStatus("ONGOING");
+        requestStatus = new RequestStatus("ONGOING");
     }
 
     public boolean isAlreadyAssignedDeliveryman() {
@@ -127,11 +127,11 @@ public class Request extends TaggedObject {
     }
 
     public boolean isCompleted() {
-        return orderStatus.isCompletedStatus();
+        return requestStatus.isCompletedStatus();
     }
 
     public boolean isOngoing() {
-        return orderStatus.isOngoingStatus();
+        return requestStatus.isOngoingStatus();
     }
 
     /**
@@ -169,13 +169,13 @@ public class Request extends TaggedObject {
                 && otherRequest.getAddress().equals(getAddress())
                 && (otherRequest.getDate().equals(getDate()))
                 && otherRequest.getFood().equals(getFood())
-                && otherRequest.getOrderStatus().equals(getOrderStatus());
+                && otherRequest.getRequestStatus().equals(getRequestStatus());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, address, orderStatus, food);
+        return Objects.hash(name, phone, address, requestStatus, food);
     }
 
     @Override
@@ -189,7 +189,7 @@ public class Request extends TaggedObject {
                 .append(" Date: ")
                 .append(getDate())
                 .append(" Status: ")
-                .append(getOrderStatus())
+                .append(getRequestStatus())
                 .append(" Food: ");
         getFood().forEach(builder::append);
         return builder.toString();

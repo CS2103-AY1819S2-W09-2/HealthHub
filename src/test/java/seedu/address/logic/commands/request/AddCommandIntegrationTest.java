@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.order.Request;
-import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.RequestBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -32,7 +32,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newOrder_success() {
-        Request validRequest = new OrderBuilder().build();
+        Request validRequest = new RequestBuilder().build();
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
                 model.getDeliverymenList(), new UserPrefs());
         expectedModel.addOrder(validRequest);

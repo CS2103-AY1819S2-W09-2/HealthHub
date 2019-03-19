@@ -165,7 +165,7 @@ public class Display extends UiPart<Region> {
      */
     public void trackProgress(List<? extends Request> changeList, boolean toRemove) {
         for (Request o : changeList) {
-            if (o.getOrderStatus().toString().equals("PENDING")) {
+            if (o.getRequestStatus().toString().equals("PENDING")) {
                 if (toRemove) {
                     progress--;
                 } else {
@@ -241,7 +241,7 @@ public class Display extends UiPart<Region> {
      */
     private void removeFromMapCache(List<? extends Request> changeList) {
         for (Request o : changeList) {
-            if (o.getOrderStatus().toString().equals("PENDING")) {
+            if (o.getRequestStatus().toString().equals("PENDING")) {
                 String postalCode = o.getAddress().getPostalCode();
                 String postalCodeKey = postalCode.substring(0, 2);
                 if (directory.containsKey(postalCodeKey)) {
@@ -262,7 +262,7 @@ public class Display extends UiPart<Region> {
      */
     private void updateMapCache(List<? extends Request> changeList) {
         for (Request o : changeList) {
-            if (o.getOrderStatus().toString().equals("PENDING")) {
+            if (o.getRequestStatus().toString().equals("PENDING")) {
                 String postalCode = o.getAddress().getPostalCode();
                 String postalCodeKey = postalCode.substring(0, 2);
                 if (directory.containsKey(postalCodeKey)) {

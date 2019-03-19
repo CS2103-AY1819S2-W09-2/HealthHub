@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.RequestBuilder;
 
 public class RequestPhoneContainsKeywordPredicateTest {
     @Test
@@ -45,29 +45,29 @@ public class RequestPhoneContainsKeywordPredicateTest {
         // One keyword
         OrderPhoneContainsKeywordPredicate predicate =
                 new OrderPhoneContainsKeywordPredicate(Collections.singletonList("1234"));
-        assertTrue(predicate.test(new OrderBuilder().withPhone("12343678").build()));
+        assertTrue(predicate.test(new RequestBuilder().withPhone("12343678").build()));
 
         // Multiple keywords
         predicate = new OrderPhoneContainsKeywordPredicate(Arrays.asList("1234", "3678"));
-        assertTrue(predicate.test(new OrderBuilder().withPhone("12343678").build()));
+        assertTrue(predicate.test(new RequestBuilder().withPhone("12343678").build()));
 
         // Only one matching keyword
         predicate = new OrderPhoneContainsKeywordPredicate(Arrays.asList("3678", "6789"));
-        assertTrue(predicate.test(new OrderBuilder().withPhone("12346789").build()));
+        assertTrue(predicate.test(new RequestBuilder().withPhone("12346789").build()));
     }
 
     @Test
     public void test_phoneDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         OrderPhoneContainsKeywordPredicate predicate = new OrderPhoneContainsKeywordPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new OrderBuilder().withPhone("2345").build()));
+        assertFalse(predicate.test(new RequestBuilder().withPhone("2345").build()));
 
         // Non-matching keyword
         predicate = new OrderPhoneContainsKeywordPredicate(Arrays.asList("6789"));
-        assertFalse(predicate.test(new OrderBuilder().withPhone("12343678").build()));
+        assertFalse(predicate.test(new RequestBuilder().withPhone("12343678").build()));
 
         // Invalid keyword
         predicate = new OrderPhoneContainsKeywordPredicate(Arrays.asList("abc123"));
-        assertFalse(predicate.test(new OrderBuilder().withPhone("123456789").build()));
+        assertFalse(predicate.test(new RequestBuilder().withPhone("123456789").build()));
     }
 }
