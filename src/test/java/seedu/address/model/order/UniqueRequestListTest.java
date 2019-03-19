@@ -25,162 +25,162 @@ public class UniqueRequestListTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private final UniqueOrderList uniqueOrderList = new UniqueOrderList();
+    private final UniqueRequestList uniqueRequestList = new UniqueRequestList();
 
     @Test
     public void contains_nullOrder_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueOrderList.contains(null);
+        uniqueRequestList.contains(null);
     }
 
     @Test
     public void contains_orderNotInList_returnsFalse() {
-        assertFalse(uniqueOrderList.contains(ALICE));
+        assertFalse(uniqueRequestList.contains(ALICE));
     }
 
     @Test
     public void contains_orderInList_returnsTrue() {
-        uniqueOrderList.add(ALICE);
-        assertTrue(uniqueOrderList.contains(ALICE));
+        uniqueRequestList.add(ALICE);
+        assertTrue(uniqueRequestList.contains(ALICE));
     }
 
     @Test
     public void contains_orderWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueOrderList.add(ALICE);
+        uniqueRequestList.add(ALICE);
         Request editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
                 .build();
-        assertTrue(uniqueOrderList.contains(editedAlice));
+        assertTrue(uniqueRequestList.contains(editedAlice));
     }
 
     @Test
     public void add_nullOrder_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueOrderList.add(null);
+        uniqueRequestList.add(null);
     }
 
     @Test
     public void add_duplicateOrder_throwsDuplicateOrderException() {
-        uniqueOrderList.add(ALICE);
+        uniqueRequestList.add(ALICE);
         thrown.expect(DuplicateRequestException.class);
-        uniqueOrderList.add(ALICE);
+        uniqueRequestList.add(ALICE);
     }
 
     @Test
     public void setOrder_nullTargetOrder_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueOrderList.setOrder(null, ALICE);
+        uniqueRequestList.setOrder(null, ALICE);
     }
 
     @Test
     public void setOrder_nullEditedOrder_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueOrderList.setOrder(ALICE, null);
+        uniqueRequestList.setOrder(ALICE, null);
     }
 
     @Test
     public void setOrder_targetOrderNotInList_throwsOrderNotFoundException() {
         thrown.expect(RequestNotFoundException.class);
-        uniqueOrderList.setOrder(ALICE, ALICE);
+        uniqueRequestList.setOrder(ALICE, ALICE);
     }
 
     @Test
     public void setOrder_editedOrderIsSameOrder_success() {
-        uniqueOrderList.add(ALICE);
-        uniqueOrderList.setOrder(ALICE, ALICE);
-        UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
-        expectedUniqueOrderList.add(ALICE);
-        assertEquals(expectedUniqueOrderList, uniqueOrderList);
+        uniqueRequestList.add(ALICE);
+        uniqueRequestList.setOrder(ALICE, ALICE);
+        UniqueRequestList expectedUniqueRequestList = new UniqueRequestList();
+        expectedUniqueRequestList.add(ALICE);
+        assertEquals(expectedUniqueRequestList, uniqueRequestList);
     }
 
     @Test
     public void setOrder_editedOrderHasSameIdentity_success() {
-        uniqueOrderList.add(ALICE);
+        uniqueRequestList.add(ALICE);
         Request editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
                 .build();
-        uniqueOrderList.setOrder(ALICE, editedAlice);
-        UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
-        expectedUniqueOrderList.add(editedAlice);
-        assertEquals(expectedUniqueOrderList, uniqueOrderList);
+        uniqueRequestList.setOrder(ALICE, editedAlice);
+        UniqueRequestList expectedUniqueRequestList = new UniqueRequestList();
+        expectedUniqueRequestList.add(editedAlice);
+        assertEquals(expectedUniqueRequestList, uniqueRequestList);
     }
 
     @Test
     public void setOrder_editedOrderHasDifferentIdentity_success() {
-        uniqueOrderList.add(ALICE);
-        uniqueOrderList.setOrder(ALICE, BOB);
-        UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
-        expectedUniqueOrderList.add(BOB);
-        assertEquals(expectedUniqueOrderList, uniqueOrderList);
+        uniqueRequestList.add(ALICE);
+        uniqueRequestList.setOrder(ALICE, BOB);
+        UniqueRequestList expectedUniqueRequestList = new UniqueRequestList();
+        expectedUniqueRequestList.add(BOB);
+        assertEquals(expectedUniqueRequestList, uniqueRequestList);
     }
 
     @Test
     public void setOrder_editedOrderHasNonUniqueIdentity_throwsDuplicateOrderException() {
-        uniqueOrderList.add(ALICE);
-        uniqueOrderList.add(BOB);
+        uniqueRequestList.add(ALICE);
+        uniqueRequestList.add(BOB);
         thrown.expect(DuplicateRequestException.class);
-        uniqueOrderList.setOrder(ALICE, BOB);
+        uniqueRequestList.setOrder(ALICE, BOB);
     }
 
     @Test
     public void remove_nullOrder_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueOrderList.remove(null);
+        uniqueRequestList.remove(null);
     }
 
     @Test
     public void remove_orderDoesNotExist_throwsOrderNotFoundException() {
         thrown.expect(RequestNotFoundException.class);
-        uniqueOrderList.remove(ALICE);
+        uniqueRequestList.remove(ALICE);
     }
 
     @Test
     public void remove_existingOrder_removesOrder() {
-        uniqueOrderList.add(ALICE);
-        uniqueOrderList.remove(ALICE);
-        UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
-        assertEquals(expectedUniqueOrderList, uniqueOrderList);
+        uniqueRequestList.add(ALICE);
+        uniqueRequestList.remove(ALICE);
+        UniqueRequestList expectedUniqueRequestList = new UniqueRequestList();
+        assertEquals(expectedUniqueRequestList, uniqueRequestList);
     }
 
     @Test
     public void setOrder_nullUniqueOrderList_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueOrderList.setOrder((UniqueOrderList) null);
+        uniqueRequestList.setOrder((UniqueRequestList) null);
     }
 
     @Test
     public void setOrder_uniqueOrderList_replacesOwnListWithProvidedUniqueOrderList() {
-        uniqueOrderList.add(ALICE);
-        UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
-        expectedUniqueOrderList.add(BOB);
-        uniqueOrderList.setOrder(expectedUniqueOrderList);
-        assertEquals(expectedUniqueOrderList, uniqueOrderList);
+        uniqueRequestList.add(ALICE);
+        UniqueRequestList expectedUniqueRequestList = new UniqueRequestList();
+        expectedUniqueRequestList.add(BOB);
+        uniqueRequestList.setOrder(expectedUniqueRequestList);
+        assertEquals(expectedUniqueRequestList, uniqueRequestList);
     }
 
     @Test
     public void setOrder_nullList_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueOrderList.setOrder((List<Request>) null);
+        uniqueRequestList.setOrder((List<Request>) null);
     }
 
     @Test
     public void setOrder_list_replacesOwnListWithProvidedList() {
-        uniqueOrderList.add(ALICE);
+        uniqueRequestList.add(ALICE);
         List<Request> requestList = Collections.singletonList(BOB);
-        uniqueOrderList.setOrder(requestList);
-        UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
-        expectedUniqueOrderList.add(BOB);
-        assertEquals(expectedUniqueOrderList, uniqueOrderList);
+        uniqueRequestList.setOrder(requestList);
+        UniqueRequestList expectedUniqueRequestList = new UniqueRequestList();
+        expectedUniqueRequestList.add(BOB);
+        assertEquals(expectedUniqueRequestList, uniqueRequestList);
     }
 
     @Test
     public void setOrder_listWithDuplicateOrders_throwsDuplicatePersonException() {
         List<Request> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
         thrown.expect(DuplicateRequestException.class);
-        uniqueOrderList.setOrder(listWithDuplicatePersons);
+        uniqueRequestList.setOrder(listWithDuplicatePersons);
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        uniqueOrderList.asUnmodifiableObservableList().remove(0);
+        uniqueRequestList.asUnmodifiableObservableList().remove(0);
     }
 }

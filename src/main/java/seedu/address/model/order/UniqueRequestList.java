@@ -15,7 +15,7 @@ import seedu.address.model.order.exceptions.RequestNotFoundException;
  * A list of orders that enforces uniqueness between its elements and does not allow nulls.
  * An request is considered unique by comparing using {@code Request#isSameOrder(Request)}. As such,
  * adding and updating of orders uses Request#isSameOrder(Request) for equality so as to ensure
- * that the Request being added or updated is unique in terms of identity in the UniqueOrderList.
+ * that the Request being added or updated is unique in terms of identity in the UniqueRequestList.
  * However, the removal of an Request uses Request#equals(Object) so as to ensure that the
  * request with exactly the same fields will be removed.
  *
@@ -23,7 +23,7 @@ import seedu.address.model.order.exceptions.RequestNotFoundException;
  *
  * @see Request#isSameOrder(Request)
  */
-public class UniqueOrderList implements Iterable<Request> {
+public class UniqueRequestList implements Iterable<Request> {
 
     private final ObservableList<Request> internalList = FXCollections.observableArrayList();
 
@@ -67,7 +67,7 @@ public class UniqueOrderList implements Iterable<Request> {
         internalList.set(index, editedRequest);
     }
 
-    public void setOrder(UniqueOrderList replacement) {
+    public void setOrder(UniqueRequestList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -111,8 +111,8 @@ public class UniqueOrderList implements Iterable<Request> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueOrderList // instanceof handles nulls
-                && internalList.equals(((UniqueOrderList) other).internalList));
+                || (other instanceof UniqueRequestList // instanceof handles nulls
+                && internalList.equals(((UniqueRequestList) other).internalList));
     }
 
     @Override
