@@ -19,11 +19,11 @@ import org.junit.rules.ExpectedException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.model.order.exceptions.DuplicateRequestException;
 import seedu.address.testutil.OrderBuilder;
 
-public class OrderBookTest {
+public class RequestBookTest {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -51,10 +51,10 @@ public class OrderBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Order editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
+        Request editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
                 .build();
-        List<Order> newOrders = Arrays.asList(ALICE, editedAlice);
-        OrderBookStub newData = new OrderBookStub(newOrders);
+        List<Request> newRequests = Arrays.asList(ALICE, editedAlice);
+        OrderBookStub newData = new OrderBookStub(newRequests);
 
         thrown.expect(DuplicateRequestException.class);
         orderBook.resetData(newData);
@@ -80,7 +80,7 @@ public class OrderBookTest {
     @Test
     public void hasOrder_orderWithSameIdentityFieldsInOrderBook_returnsTrue() {
         orderBook.addOrder(ALICE);
-        Order editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
+        Request editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
                 .build();
         assertTrue(orderBook.hasOrder(editedAlice));
     }
@@ -92,18 +92,18 @@ public class OrderBookTest {
     }
 
     /**
-     * A stub ReadOnlyOrderBook whose orders list can violate interface constraints.
+     * A stub ReadOnlyOrderBook whose requests list can violate interface constraints.
      */
     private static class OrderBookStub implements ReadOnlyOrderBook {
-        private final ObservableList<Order> orders = FXCollections.observableArrayList();
+        private final ObservableList<Request> requests = FXCollections.observableArrayList();
 
-        OrderBookStub(Collection<Order> order) {
-            this.orders.setAll(order);
+        OrderBookStub(Collection<Request> request) {
+            this.requests.setAll(request);
         }
 
         @Override
-        public ObservableList<Order> getOrderList() {
-            return orders;
+        public ObservableList<Request> getOrderList() {
+            return requests;
         }
     }
 

@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.OrderBook;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * A utility class to help with building Orderbook objects.
@@ -21,10 +21,10 @@ public class OrderBookBuilder {
     }
 
     /**
-     * Adds a new {@code Order} to the {@code OrderBook} that we are building.
+     * Adds a new {@code Request} to the {@code OrderBook} that we are building.
      */
-    public OrderBookBuilder withOrder(Order order) {
-        orderBook.addOrder(order);
+    public OrderBookBuilder withOrder(Request request) {
+        orderBook.addOrder(request);
         return this;
     }
 

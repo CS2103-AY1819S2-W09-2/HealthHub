@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import seedu.address.testutil.OrderBuilder;
 
-public class OrderTest {
+public class RequestTest {
 
     @Test
     public void isSameOrder() {
@@ -24,7 +24,7 @@ public class OrderTest {
         assertFalse(ALICE.isSameOrder(null));
 
         // different phone -> returns false
-        Order editedAlice = new OrderBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        Request editedAlice = new OrderBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
         assertFalse(ALICE.isSameOrder(editedAlice));
 
         // different name -> returns false
@@ -49,7 +49,7 @@ public class OrderTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Order aliceCopy = new OrderBuilder(ALICE).build();
+        Request aliceCopy = new OrderBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -65,7 +65,7 @@ public class OrderTest {
         assertFalse(ALICE.equals(BENSON));
 
         // different name -> returns false
-        Order editedAlice = new OrderBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Request editedAlice = new OrderBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false

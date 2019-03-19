@@ -10,7 +10,7 @@ Hello there! I am Koh Chi Hao. I am currently studying at National University of
 
 == Overview
 
-FoodZoom is a desktop food delivery management application designed for food businesses to streamline their delivery process. FoodZoom is responsive and quick, allowing managers to plan routes for order delivery and dispatch them to delivery men using the Command Line Interface (CLI). The delivery men can also use this application to view their delivery routes and increase their efficiency. FoodZoom is built by 5 computer science student namely Koh Chi Hao, Rahul Rajesh, Julius Sander, Monika Manuela Hengki and Tan Jin Ying. The picture below shows the home page of FoodZoom.
+FoodZoom is a desktop food delivery management application designed for food businesses to streamline their delivery process. FoodZoom is responsive and quick, allowing managers to plan routes for request delivery and dispatch them to delivery men using the Command Line Interface (CLI). The delivery men can also use this application to view their delivery routes and increase their efficiency. FoodZoom is built by 5 computer science student namely Koh Chi Hao, Rahul Rajesh, Julius Sander, Monika Manuela Hengki and Tan Jin Ying. The picture below shows the home page of FoodZoom.
 
 image::Ui.png[width="800"]
 
@@ -25,7 +25,7 @@ image::Ui.png[width="800"]
 
 * *Major enhancement*: added the ability to sign up, login and logout for the user.
 ** What it does: It allows the user the sign up for the application when they first use it. Subsequently, they can
-login into the application to create orders and dispatch them. At the end of the day, they can easily log out from the application to protect the details.
+login into the application to create requests and dispatch them. At the end of the day, they can easily log out from the application to protect the details.
 ** Justification: This feature improves the security of the application as it allows only the manager of the shop to
 use the application and no one else. As such, the application will be protected against random people from the shop attempting to foil the data.
 ** Highlights: This enhancement will affect all the current and future commands because only certain commands can be
@@ -34,7 +34,7 @@ used when the user is not logged in. As such, when commands in the future are im
 * *Minor enhancement*:
 ** Implemented major UI changes when user log in and log out.
 ** Updated status bar with username after the user log in.
-** Add `/order done` command.
+** Add `/request done` command.
 
 * *Code contribution*: https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=kohchihao[RepoSense]
 

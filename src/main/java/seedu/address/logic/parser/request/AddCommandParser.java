@@ -21,8 +21,8 @@ import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.order.Food;
-import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderDate;
+import seedu.address.model.order.Request;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -58,9 +58,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         OrderDate orderDate = ParserUtil.parseDate((argMultimap).getValue(PREFIX_DATE).get());
         Set<Food> foodList = ParserUtil.parseFoods(argMultimap.getAllValues(PREFIX_FOOD));
 
-        Order order = new Order(name, phone, address, orderDate, foodList);
+        Request request = new Request(name, phone, address, orderDate, foodList);
 
-        return new AddCommand(order);
+        return new AddCommand(request);
     }
 
 }

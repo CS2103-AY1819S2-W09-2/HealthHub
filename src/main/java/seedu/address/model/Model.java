@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.deliveryman.HealthworkerList;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.model.user.User;
 
 /**
@@ -15,7 +15,7 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
+    Predicate<Request> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
 
     /**
      * {@code Predicate} that always evaluate to true
@@ -41,38 +41,39 @@ public interface Model {
     /**
      * Returns true if a common with the same identity as {@code request} exists in the request book.
      */
-    boolean hasOrder(Order order);
+    boolean hasOrder(Request request);
 
     /**
      * Deletes the given request.
      * The request must exist in the address book.
      */
-    void deleteOrder(Order target);
+    void deleteOrder(Request target);
 
     /**
      * Adds the given request.
      * {@code request} must not already exist in the address book.
      */
-    void addOrder(Order order);
+    void addOrder(Request request);
 
     /**
-     * Replaces the given request {@code target} with {@code editedOrder}.
+     * Replaces the given request {@code target} with {@code editedRequest}.
      * {@code target} must exist in the address book.
-     * The request identity of {@code editedOrder} must not be the same as another existing request in the request book.
+     * The request identity of {@code editedRequest} must not be the same as another existing
+     * request in the request book.
      */
-    void updateOrder(Order target, Order editedOrder);
+    void updateOrder(Request target, Request editedRequest);
 
     /**
      * Returns an unmodifiable view of the filtered request list
      */
-    ObservableList<Order> getFilteredOrderList();
+    ObservableList<Request> getFilteredOrderList();
 
     /**
      * Updates the filter of the filtered request list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredOrderList(Predicate<Order> predicate);
+    void updateFilteredOrderList(Predicate<Request> predicate);
 
     /**
      * Returns true if the model has previous request book states to restore.

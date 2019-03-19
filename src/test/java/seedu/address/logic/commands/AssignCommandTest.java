@@ -25,7 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 public class AssignCommandTest {
     @Rule
@@ -33,7 +33,7 @@ public class AssignCommandTest {
 
     private Model model = new ModelManager(getTypicalOrderBook(), getTypicalUsersList(),
             getTypicalDeliverymenList(), new UserPrefs());
-    private Order validOrder = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+    private Request validRequest = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
     private Index validOrderIndex = Index.fromOneBased(model.getFilteredOrderList().size());
     private Index validDeliverymanIndex = Index.fromOneBased(model.getFilteredDeliverymenList().size());
     private Index outOfBoundOrderIndex = Index.fromOneBased(model.getFilteredOrderList().size() + 1);
@@ -56,8 +56,8 @@ public class AssignCommandTest {
 
     @Test
     public void execute_orderAssignedToDeliveryman_successful() throws Exception {
-        Set<Order> ordersToAdd = new HashSet<>();
-        Order toAssign = new Order(validOrder);
+        Set<Request> ordersToAdd = new HashSet<>();
+        Request toAssign = new Request(validRequest);
         ordersToAdd.add(toAssign);
         Healthworker healthworkerToAssign = model.getFilteredDeliverymenList().get(validDeliverymanIndex
             .getZeroBased());
@@ -73,11 +73,11 @@ public class AssignCommandTest {
                 model.getDeliverymenList(), new UserPrefs());
         expectedModel.updateDeliveryman(healthworkerToAssign, assignedHealthworker);
         expectedModel.commitDeliverymenList();
-        expectedModel.updateOrder(validOrder, toAssign);
+        expectedModel.updateOrder(validRequest, toAssign);
         expectedModel.commitOrderBook();
 
         assertTrue(toAssign.getHealthworker().equals(assignedHealthworker));
-        assertTrue(assignedHealthworker.getOrders().contains(toAssign));
+        assertTrue(assignedHealthworker.getRequests().contains(toAssign));
         assertCommandSuccess(assignCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 

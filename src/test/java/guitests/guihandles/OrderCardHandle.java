@@ -9,7 +9,7 @@ import com.google.common.collect.ImmutableMultiset;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * Provides a handle to a request card in the request list panel.
@@ -47,9 +47,9 @@ public class OrderCardHandle extends NodeHandle<Node> {
     /**
      * Returns true if this handle contains {@code request}.
      */
-    public boolean equals(Order order) {
-        return getAddress().equals(order.getAddress().value)
-                && ImmutableMultiset.copyOf(getFood()).equals(ImmutableMultiset.copyOf(order.getFood().stream()
+    public boolean equals(Request request) {
+        return getAddress().equals(request.getAddress().value)
+                && ImmutableMultiset.copyOf(getFood()).equals(ImmutableMultiset.copyOf(request.getFood().stream()
                 .map(food -> food.foodName)
                 .collect(Collectors.toList())));
     }

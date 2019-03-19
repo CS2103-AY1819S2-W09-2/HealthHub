@@ -10,7 +10,7 @@
         <food>chocolate milk</food>
     </orders>
 
-    <!-- Order with same identity as Alice Pauline -->
+    <!-- Request with same identity as Alice Pauline -->
     <orders tag="e7dc53e1-a1a0-4208-8f29-a6b24f215ff9">
         <name>Alice Pauline</name>
         <phone>94351253</phone>

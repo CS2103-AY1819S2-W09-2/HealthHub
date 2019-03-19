@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import seedu.address.model.common.Name;
 import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * A utility class to help build a healthworker
@@ -16,7 +16,7 @@ public class DeliverymanBuilder {
 
     private Name name;
     private UUID id;
-    private Set<Order> orders = new HashSet<>();
+    private Set<Request> requests = new HashSet<>();
 
     public DeliverymanBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -49,10 +49,10 @@ public class DeliverymanBuilder {
     }
 
     /**
-     * Add the {@code Order} of the {@code Healthworker} that we are building.
+     * Add the {@code Request} of the {@code Healthworker} that we are building.
      */
-    public DeliverymanBuilder withOrder(Order order) {
-        this.orders.add(order);
+    public DeliverymanBuilder withOrder(Request request) {
+        this.requests.add(request);
         return this;
     }
 
@@ -61,7 +61,7 @@ public class DeliverymanBuilder {
      */
     public Healthworker build() {
         if (id != null) {
-            return new Healthworker(id, name, orders);
+            return new Healthworker(id, name, requests);
         } else {
             return new Healthworker(name);
         }

@@ -24,7 +24,7 @@ import seedu.address.logic.commands.request.FindCommand;
 import seedu.address.logic.commands.request.ListCommand;
 import seedu.address.logic.commands.request.SelectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.model.order.OrderNameContainsKeywordPredicate;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
 import seedu.address.testutil.OrderBuilder;
@@ -39,9 +39,9 @@ public class RequestCommandParserTest {
 
     @Test
     public void parse_add() throws Exception {
-        Order order = new OrderBuilder().build();
-        AddCommand command = (AddCommand) parser.parse(OrderUtil.getAddCommand(order));
-        assertEquals(new AddCommand(order), command);
+        Request request = new OrderBuilder().build();
+        AddCommand command = (AddCommand) parser.parse(OrderUtil.getAddCommand(request));
+        assertEquals(new AddCommand(request), command);
     }
 
     @Test
@@ -82,8 +82,8 @@ public class RequestCommandParserTest {
 
     @Test
     public void parse_edit() throws Exception {
-        Order order = new OrderBuilder().build();
-        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(order).build();
+        Request request = new OrderBuilder().build();
+        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(request).build();
         EditCommand command = (EditCommand) parser.parse(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST.getOneBased() + " " + OrderUtil.getEditOrderDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST, descriptor), command);

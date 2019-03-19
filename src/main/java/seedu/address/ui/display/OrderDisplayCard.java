@@ -5,16 +5,16 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.ui.UiPart;
 
 /**
- * UI Component that represents the display for an Order
+ * UI Component that represents the display for an Request
  */
 public class OrderDisplayCard extends UiPart<Region> {
     private static final String FXML = "display/OrderDisplayCard.fxml";
 
-    public final Order order;
+    public final Request request;
 
     @FXML
     private Label foodL;
@@ -29,16 +29,16 @@ public class OrderDisplayCard extends UiPart<Region> {
     @FXML
     private Label deliverymanL;
 
-    public OrderDisplayCard(Order order) {
+    public OrderDisplayCard(Request request) {
         super(FXML);
-        this.order = order;
+        this.request = request;
 
-        nameL.setText("Name: " + order.getName().fullName);
-        dateL.setText("Date: " + order.getDate().toString());
-        foodL.setText("Food: " + order.getFood().toString());
-        phoneL.setText("Phone: " + order.getPhone().toString());
-        addressL.setText("Address: " + order.getAddress().toString());
-        deliverymanL.setText("Healthworker: " + getFullNameOrNull(order.getHealthworker()));
+        nameL.setText("Name: " + request.getName().fullName);
+        dateL.setText("Date: " + request.getDate().toString());
+        foodL.setText("Food: " + request.getFood().toString());
+        phoneL.setText("Phone: " + request.getPhone().toString());
+        addressL.setText("Address: " + request.getAddress().toString());
+        deliverymanL.setText("Healthworker: " + getFullNameOrNull(request.getHealthworker()));
     }
 
     private String getFullNameOrNull(Healthworker healthworker) {
@@ -62,6 +62,6 @@ public class OrderDisplayCard extends UiPart<Region> {
 
         // state check
         OrderDisplayCard card = (OrderDisplayCard) other;
-        return order.equals(card.order);
+        return request.equals(card.request);
     }
 }

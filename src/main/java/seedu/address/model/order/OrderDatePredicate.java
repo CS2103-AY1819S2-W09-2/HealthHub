@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Order}'s {@code Date} matches any of the keywords given.
+ * Tests that a {@code Request}'s {@code Date} matches any of the keywords given.
  */
-public class OrderDatePredicate implements Predicate<Order> {
+public class OrderDatePredicate implements Predicate<Request> {
     public static final int VALID_SEARCH_DATE_RANGE_SIZE = 2;
     public static final int LOWER_DATE_RANGE_INDEX = 0;
     public static final int UPPER_DATE_RANGE_INDEX = 1;
 
-    private Predicate<Order> datePredicate;
+    private Predicate<Request> datePredicate;
 
     public OrderDatePredicate(List<Date> dates) {
         assert dates.size() < 3;
@@ -29,8 +29,8 @@ public class OrderDatePredicate implements Predicate<Order> {
     }
 
     @Override
-    public boolean test(Order order) {
-        return datePredicate.test(order);
+    public boolean test(Request request) {
+        return datePredicate.test(request);
     }
 
     @Override

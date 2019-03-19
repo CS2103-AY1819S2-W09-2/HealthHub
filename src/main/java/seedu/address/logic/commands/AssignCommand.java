@@ -17,7 +17,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.deliveryman.exceptions.RequestLimitExceededException;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * Assigns multiple orders to a healthworker with two way association.
@@ -52,8 +52,8 @@ public class AssignCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
         List<Healthworker> lastShownHealthworkerList = model.getFilteredDeliverymenList();
-        List<Order> lastShownOrderList = model.getFilteredOrderList();
-        Set<Order> ordersToAdd = new HashSet<>();
+        List<Request> lastShownRequestList = model.getFilteredOrderList();
+        Set<Request> ordersToAdd = new HashSet<>();
 
         if (deliverymanId.getZeroBased() >= lastShownHealthworkerList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_DELIVERYMAN_DISPLAYED_INDEX);
@@ -61,19 +61,19 @@ public class AssignCommand extends Command {
         Healthworker healthworkerToAssign = lastShownHealthworkerList.get(deliverymanId.getZeroBased());
 
         for (Index i : orderIds) {
-            if (i.getZeroBased() >= lastShownOrderList.size()) {
+            if (i.getZeroBased() >= lastShownRequestList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
             }
-            Order order = lastShownOrderList.get(i.getZeroBased());
-            if (order.isCompleted()) {
+            Request request = lastShownRequestList.get(i.getZeroBased());
+            if (request.isCompleted()) {
                 throw new CommandException(Messages.MESSAGE_COMPLETED_ORDER);
             }
 
-            if (order.isAlreadyAssignedDeliveryman()) {
+            if (request.isAlreadyAssignedDeliveryman()) {
                 throw new CommandException(String.format(Messages.MESSAGE_ORDER_ALREADY_ASSIGNED_TO_DELIVERYMAN,
-                        i.getOneBased(), order.getHealthworker()));
+                        i.getOneBased(), request.getHealthworker()));
             }
-            ordersToAdd.add(order);
+            ordersToAdd.add(request);
         }
 
         Healthworker assignedHealthworker = new Healthworker(healthworkerToAssign);
@@ -81,14 +81,14 @@ public class AssignCommand extends Command {
             throw new CommandException(Messages.MESSAGE_ORDERS_LIMIT_EXCEEDED);
         }
 
-        for (Order order : ordersToAdd) {
-            Order updatedOrder = new Order(order);
+        for (Request request : ordersToAdd) {
+            Request updatedRequest = new Request(request);
             try {
-                updatedOrder.setHealthworker(assignedHealthworker);
+                updatedRequest.setHealthworker(assignedHealthworker);
             } catch (RequestLimitExceededException e) {
                 throw new CommandException(Messages.MESSAGE_ORDERS_LIMIT_EXCEEDED);
             }
-            model.updateOrder(order, updatedOrder);
+            model.updateOrder(request, updatedRequest);
         }
 
         model.updateFilteredOrderList(Model.PREDICATE_SHOW_ALL_ORDERS);

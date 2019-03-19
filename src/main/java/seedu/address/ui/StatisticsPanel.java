@@ -55,7 +55,7 @@ public class StatisticsPanel extends UiPart<Region> {
      */
     public void initialize(TreeMap<Date, Integer> historyDate) {
         xAxis.setLabel("Date");
-        yAxis.setLabel("Order Count");
+        yAxis.setLabel("Request Count");
         barChart.setAnimated(false);
         barChart.setLegendVisible(false);
 

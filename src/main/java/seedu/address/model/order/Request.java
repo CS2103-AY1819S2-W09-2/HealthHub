@@ -15,10 +15,10 @@ import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.deliveryman.exceptions.RequestLimitExceededException;
 
 /**
- * Represents an Order in the request book.
+ * Represents an Request in the request book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Order extends TaggedObject {
+public class Request extends TaggedObject {
 
     // Identity fields
     private final Name name;
@@ -32,32 +32,32 @@ public class Order extends TaggedObject {
     /**
      * Every field must be present and not null.
      */
-    public Order(Name name, Phone phone, Address address, OrderDate orderDate,
-                 Set<Food> food) {
+    public Request(Name name, Phone phone, Address address, OrderDate orderDate,
+                   Set<Food> food) {
         this(null, name, phone, address, orderDate, new OrderStatus(), food, null);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Order(Name name, Phone phone, Address address, OrderDate orderDate, OrderStatus orderStatus,
-                 Set<Food> food) {
+    public Request(Name name, Phone phone, Address address, OrderDate orderDate, OrderStatus orderStatus,
+                   Set<Food> food) {
         this(null, name, phone, address, orderDate, orderStatus, food, null);
     }
 
     /**
      * Every field must be present and not null besides healthworker.
      */
-    public Order(Name name, Phone phone, Address address, OrderDate orderDate, OrderStatus orderStatus, Set<Food> food,
-                 Healthworker healthworker) {
+    public Request(Name name, Phone phone, Address address, OrderDate orderDate, OrderStatus orderStatus,
+                   Set<Food> food, Healthworker healthworker) {
         this(null, name, phone, address, orderDate, orderStatus, food, healthworker);
     }
 
     /**
      * This constructor is used to create an {@code request} with a specified id.
      */
-    public Order(UUID id, Name name, Phone phone, Address address, OrderDate orderDate, OrderStatus orderStatus,
-                 Set<Food> food, Healthworker healthworker) {
+    public Request(UUID id, Name name, Phone phone, Address address, OrderDate orderDate, OrderStatus orderStatus,
+                   Set<Food> food, Healthworker healthworker) {
         super(id);
         requireAllNonNull(name, phone, address, orderDate, food);
         this.name = name;
@@ -72,9 +72,9 @@ public class Order extends TaggedObject {
     /**
      * This constructor is used to create a new copy of {@code request}.
      */
-    public Order(Order order) {
-        this(null, order.name, order.phone, order.address, order.orderDate, order.orderStatus, order.food,
-                order.healthworker);
+    public Request(Request request) {
+        this(null, request.name, request.phone, request.address, request.orderDate,
+            request.orderStatus, request.food, request.healthworker);
     }
 
     public Name getName() {
@@ -135,18 +135,18 @@ public class Order extends TaggedObject {
     }
 
     /**
-     * Returns true if both orders of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two orders.
+     * Returns true if both orders of the same name have at least one other identity field that is
+     * the same. This defines a weaker notion of equality between two orders.
      */
-    public boolean isSameOrder(Order otherOrder) {
-        if (otherOrder == this) {
+    public boolean isSameOrder(Request otherRequest) {
+        if (otherRequest == this) {
             return true;
         }
 
-        return otherOrder != null
-                && otherOrder.getName().equals(getName())
-                && (otherOrder.getPhone().equals(getPhone()))
-                && (otherOrder.getDate().equals(getDate()));
+        return otherRequest != null
+                && otherRequest.getName().equals(getName())
+                && (otherRequest.getPhone().equals(getPhone()))
+                && (otherRequest.getDate().equals(getDate()));
     }
 
     /**
@@ -159,17 +159,17 @@ public class Order extends TaggedObject {
             return true;
         }
 
-        if (!(other instanceof Order)) {
+        if (!(other instanceof Request)) {
             return false;
         }
 
-        Order otherOrder = (Order) other;
-        return otherOrder.getName().equals(getName())
-                && otherOrder.getPhone().equals(getPhone())
-                && otherOrder.getAddress().equals(getAddress())
-                && (otherOrder.getDate().equals(getDate()))
-                && otherOrder.getFood().equals(getFood())
-                && otherOrder.getOrderStatus().equals(getOrderStatus());
+        Request otherRequest = (Request) other;
+        return otherRequest.getName().equals(getName())
+                && otherRequest.getPhone().equals(getPhone())
+                && otherRequest.getAddress().equals(getAddress())
+                && (otherRequest.getDate().equals(getDate()))
+                && otherRequest.getFood().equals(getFood())
+                && otherRequest.getOrderStatus().equals(getOrderStatus());
     }
 
     @Override

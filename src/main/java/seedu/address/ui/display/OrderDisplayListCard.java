@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.model.order.Food;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.ui.UiPart;
 
 /**
@@ -15,9 +15,9 @@ import seedu.address.ui.UiPart;
 public class OrderDisplayListCard extends UiPart<Region> {
     private static final String FXML = "display/OrderDisplayListCard.fxml";
     private static final String NAME_LABEL_FORMAT = "Contact: %1$s (%2$s)";
-    private static final String FOOD_LABEL_FORMAT = "Order: %s";
+    private static final String FOOD_LABEL_FORMAT = "Request: %s";
 
-    public final Order order;
+    public final Request request;
 
     @FXML
     private Label address;
@@ -26,14 +26,14 @@ public class OrderDisplayListCard extends UiPart<Region> {
     @FXML
     private Label food;
 
-    public OrderDisplayListCard(Order order) {
+    public OrderDisplayListCard(Request request) {
         super(FXML);
-        this.order = order;
-        address.setText(order.getAddress().toString());
-        name.setText(String.format(NAME_LABEL_FORMAT, order.getName().fullName, order.getPhone().toString()));
+        this.request = request;
+        address.setText(request.getAddress().toString());
+        name.setText(String.format(NAME_LABEL_FORMAT, request.getName().fullName, request.getPhone().toString()));
 
         food.setText(String.format(FOOD_LABEL_FORMAT, String.join(", ",
-            order.getFood().stream().map(Food::toString).collect(Collectors.toSet()))));
+            request.getFood().stream().map(Food::toString).collect(Collectors.toSet()))));
     }
 
     @Override
@@ -50,6 +50,6 @@ public class OrderDisplayListCard extends UiPart<Region> {
 
         // state check
         OrderDisplayListCard card = (OrderDisplayListCard) other;
-        return order.equals(card.order);
+        return request.equals(card.request);
     }
 }

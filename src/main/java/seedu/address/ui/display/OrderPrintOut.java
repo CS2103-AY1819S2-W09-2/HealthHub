@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.ui.UiPart;
 
 /**
@@ -14,7 +14,7 @@ public class OrderPrintOut extends UiPart<Region> {
 
     private static final String FXML = "display/OrderPrintOut.fxml";
 
-    private final Order order;
+    private final Request request;
 
     @FXML
     private Label nameP;
@@ -28,14 +28,14 @@ public class OrderPrintOut extends UiPart<Region> {
     @FXML
     private Label phoneP;
 
-    public OrderPrintOut(Order order) {
+    public OrderPrintOut(Request request) {
         super(FXML);
-        this.order = order;
+        this.request = request;
 
-        nameP.setText("Order from " + order.getName().fullName);
-        dateP.setText(order.getDate().toString());
-        phoneP.setText(order.getPhone().toString());
-        addressP.setText(order.getAddress().toString());
+        nameP.setText("Request from " + request.getName().fullName);
+        dateP.setText(request.getDate().toString());
+        phoneP.setText(request.getPhone().toString());
+        addressP.setText(request.getAddress().toString());
     }
 
 
@@ -54,7 +54,7 @@ public class OrderPrintOut extends UiPart<Region> {
 
         // state check
         OrderPrintOut card = (OrderPrintOut) other;
-        return order.equals(card.order);
+        return request.equals(card.request);
     }
 
 }

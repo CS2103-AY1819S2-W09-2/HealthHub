@@ -57,14 +57,14 @@ This will generate all resources required by the application and tests.
 
 ==== Configuring the coding style
 
-This project follows https://github.com/oss-generic/process/blob/master/docs/CodingStandards.adoc[oss-generic coding standards]. IntelliJ's default style is mostly compliant with ours but it uses a different import order from ours. To rectify,
+This project follows https://github.com/oss-generic/process/blob/master/docs/CodingStandards.adoc[oss-generic coding standards]. IntelliJ's default style is mostly compliant with ours but it uses a different import request from ours. To rectify,
 
 . Go to `File` > `Settings...` (Windows/Linux), or `IntelliJ IDEA` > `Preferences...` (macOS)
 . Select `Editor` > `Code Style` > `Java`
-. Click on the `Imports` tab to set the order
+. Click on the `Imports` tab to set the request
 
 * For `Class count to use import with '\*'` and `Names count to use static import with '*'`: Set to `999` to prevent IntelliJ from contracting the import statements
-* For `Import Layout`: The order is `import static all other imports`, `import java.\*`, `import javax.*`, `import org.\*`, `import com.*`, `import all other imports`. Add a `<blank line>` between each `import`
+* For `Import Layout`: The request is `import static all other imports`, `import java.\*`, `import javax.*`, `import org.\*`, `import com.*`, `import all other imports`. Add a `<blank line>` between each `import`
 
 Optionally, you can follow the <<UsingCheckstyle#, UsingCheckstyle.adoc>> document to configure Intellij to check style-compliance as you write code.
 
@@ -141,9 +141,9 @@ image::LogicClassDiagram.png[width="800"]
 [discrete]
 ==== Events-Driven nature of the design
 
-The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the command `/order delete 1`.
+The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the command `/request delete 1`.
 
-.Component interactions for `/order delete 1` command (part 1)
+.Component interactions for `/request delete 1` command (part 1)
 image::SDforDeleteOrder.png[width="800"]
 
 [NOTE]
@@ -151,7 +151,7 @@ Note how the `Model` simply raises a `OrderBookChangedEvent` when the Order Book
 
 The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.
 
-.Component interactions for `/order delete 1` command (part 2)
+.Component interactions for `/request delete 1` command (part 2)
 image::SDforDeleteOrderEventHandling.png[width="800"]
 
 [NOTE]
@@ -187,14 +187,14 @@ image::LogicClassDiagram.png[width="800"]
 link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `OrderBookParser` class to parse the user command.
-.  `OrderBookParser` further creates either a `OrderCommandParser` or `DeliverymanCommandParser` to parse order or healthworker command respectively. Other commands that is neither order or healthworker skip this creation of the extra Parser.
+.  `OrderBookParser` further creates either a `OrderCommandParser` or `DeliverymanCommandParser` to parse request or healthworker command respectively. Other commands that is neither request or healthworker skip this creation of the extra Parser.
 .  This results in a `Command` object which is executed by the `LogicManager`.
-.  The command execution can affect the `Model` (e.g. adding an order) and/or raise events.
+.  The command execution can affect the `Model` (e.g. adding an request) and/or raise events.
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("/order delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("/request delete 1")` API call.
 
-.Interactions Inside the Logic Component for the `/order delete 1` Command
+.Interactions Inside the Logic Component for the `/request delete 1` Command
 image::DeleteOrderSdForLogic.png[width="800"]
 
 === Model component
@@ -247,7 +247,7 @@ This section describes some noteworthy details on how certain features are imple
 ==== Current Implementation
 
 The `/login` command allows the `Manager` to login into the FoodZoom application and use authenticated commands like
-`/order add`, `/order edit`, `/order list`, ... .Basically all the `/order` commands and `/healthworker` commands. The
+`/request add`, `/request edit`, `/request list`, ... .Basically all the `/request` commands and `/healthworker` commands. The
 only commands that can be used without logging in are `/signup`, `/login`, `/help` and `/history`. The format of this
  command is `/login u/[USERNAME] pw/[PASSWORD]`.
 
@@ -305,7 +305,7 @@ store locally.
 * **Alternative 1 (current choice):** Check if user is logged in after command is parsed
 ** Pros: It is easy to implement and it doesn't violate the SRP because it wouldn't make sense to check if the user
 is logged in inside a method that is supposed to be parsing the user input.
-** Cons: User is able to type authenticated commands like `/order add` and receive a parse exception which is the
+** Cons: User is able to type authenticated commands like `/request add` and receive a parse exception which is the
 incorrect behavior.
 
 * **Alternative 2:** Check if user is logged in before command is parsed
@@ -327,14 +327,14 @@ Figure 3.2.1.1 Main Screen showing the dashboard with the Map and Statistics Pan
 
 The 2 main components in the dashboard are the:
 
-..   Map showing location of pending orders
+..   Map showing location of pending requests
 ..   Statistics Panel giving insights for the data
 
 Before delving into the details for these specific components, it is
 important to consider some of the implementation details that are common to both.
 
-The dashboard dynamically updates itself when the order list has been changed. For example,
-if `/order find n/john` is executed, the dashboard will also show orders that are specific
+The dashboard dynamically updates itself when the request list has been changed. For example,
+if `/request find n/john` is executed, the dashboard will also show requests that are specific
 to john.
 
 This is done by using the observer pattern. A higher-level component, `Display.java` listens for
@@ -349,13 +349,13 @@ executes a command
 The code snippet for the listener being attached is shown below:
 
 ```
-this.orderList.addListener((ListChangeListener.Change<? extends Order> change) -> {
+this.requestList.addListener((ListChangeListener.Change<? extends Order> change) -> {
     while (change.next()) {
         if (change.wasUpdated()) {
-            // handle order list being updated
+            // handle request list being updated
             ....
         } else {
-            // handle removal or addition to order list
+            // handle removal or addition to request list
             ....
         }
     }
@@ -370,7 +370,7 @@ data processing is done.
 
 ==== Map Component
 
-The Map shows the locations of the pending orders.
+The Map shows the locations of the pending requests.
 
 image::MapPanel.png[width="400"]
 Figure 3.2.2.1 A closer look at the Map on the dashboard.
@@ -380,10 +380,10 @@ The functionality that the map provides is as follows:
 .. It works offline and does not require internet. There is no reliance on any external service
 like Google Maps
 .. Placeholders are rendered based on the location of Order given
-.. The size of the placeholder is indicative of the number of orders in a specific area.
+.. The size of the placeholder is indicative of the number of requests in a specific area.
 
-In order to work offline, the map makes use of the postal code that is given
-with the order address to give a *reasonable* approximation of its location in Singapore.
+In request to work offline, the map makes use of the postal code that is given
+with the request address to give a *reasonable* approximation of its location in Singapore.
 The reason this can be done is because the first 2 digits of a Singapore postal code
 refers to a specific district in Singapore. The demarcation diagram is show below:
 
@@ -395,15 +395,15 @@ For example, if the first 2 digits of the given postal code is "61", the
 Order falls under district 22 (with reference to the image above). If the first 2 digits are
 "47", the location is district 16.
 
-Based on this information in order to create an offline map, the components/data structures
+Based on this information in request to create an offline map, the components/data structures
 used are as follows:
 
 **An image of a Map that lies on a grid (JavaFx `GridPane`)**
 
 This is the component that displays on the dashboard. This component creates and
 updates the placeholders on the map based on the information that it is provided. The component
-has no knowledge of changes to the list of orders. Instead, it exposes 2 methods, `initialise`
-and `clear` that is used by the higher-order component to update the placeholders.
+has no knowledge of changes to the list of requests. Instead, it exposes 2 methods, `initialise`
+and `clear` that is used by the higher-request component to update the placeholders.
 // end::dashboard[]
 
 The code snippet for the initialisation of the placeholders is shown below. Further details on
@@ -438,7 +438,7 @@ code to a specific coordinate on the grid**
 
 As mentioned above, the map is an image that lies on a grid. The placeholders are
 put onto a specific coordinate specified on the grid. The Map component is thus given
-a Hash Table of how many orders fall under a specific postal code region. An example data that it
+a Hash Table of how many requests fall under a specific postal code region. An example data that it
 could be given is shown below:
 
 [width="59%",cols="",options="header",]
@@ -452,12 +452,12 @@ could be given is shown below:
 Using this information, the `MapPanel` uses another lookup table to find out
 which coordinate the placeholder should be put inside. For example, postal code 61, is
 to be put inside grid {row: 6, column: 2}. The size of the placeholder is determined
-by the `count` of orders that fall within a specific region.
+by the `count` of requests that fall within a specific region.
 
 The job of the `Display` component is to process the list of Orders into the format shown
 in the table above. It then calls specific method on the `MapPanel` component to allow
 for placeholders to be shown on the map. This is how the map is able to show locations
-of orders without relying on any internet connection.
+of requests without relying on any internet connection.
 
 
 ==== Statistics Panel
@@ -469,10 +469,10 @@ Figure 3.2.3.1 A closer look at the statistics panel in the dashboard
 
 The statistics panel has four key indicators:
 
-.. The total number of orders displayed
-.. The percentage of orders that are still pending
+.. The total number of requests displayed
+.. The percentage of requests that are still pending
 .. The most common food item bought
-.. The Order History for the last 7 days in which there was at least one order
+.. The Order History for the last 7 days in which there was at least one request
 
 Similar to the `MapPanel`, there is a `StatisticsPanel` which updates these statistics based
 on the information that it is provided from a higher-level component. It has similar methods
@@ -484,14 +484,14 @@ process the data is further elaborated on in the table below:
 [width="90%",cols="",options="header",]
 |=======================================================================
 |Statistic                    |Data Structure  | Technique
-| Total Orders                | Variable       | Count the orders in the list
-| Pending Order Percentage    | Variable       | Count orders with status "PENDING" and divide with total orders
+| Total Orders                | Variable       | Count the requests in the list
+| Pending Order Percentage    | Variable       | Count requests with status "PENDING" and divide with total requests
 | Trending Food Item          | HashTable      | Use a lookup table to track the count of each food item in menu.
-Each time there is an update ot the orders, run through the table and see which food item has the largest count value.
+Each time there is an update ot the requests, run through the table and see which food item has the largest count value.
 | Order Histogram             | Balanced Binary Search Tree (Java `TreeMap`)  | The dates from the Orders are put
 into a binary search tree along with their count. The tree uses a custom comparator that allows for dates to be
-compared with each other. This allows the 7 most recent dates with at least one order to be retrieved quickly. The
-tree is updated accordingly when orders are added or removed.
+compared with each other. This allows the 7 most recent dates with at least one request to be retrieved quickly. The
+tree is updated accordingly when requests are added or removed.
 |=======================================================================
 // end::dashboard2[]
 
@@ -513,11 +513,11 @@ be difficult to configure.
 
 Instead of doing all the processing of data in the UI component itself,
 one consideration was to use a statistics manager. This
-manager will take in the list of orders and return the required statistics needed.
+manager will take in the list of requests and return the required statistics needed.
 
 ** Pros:
 - This solution is more scalable. By having a separate class dedicated to managing the
-statistics of orders, it is easier to add in much more
+statistics of requests, it is easier to add in much more
 complex statistics for the application in future.
 ** Cons:
 - There is more coupling. The UI has to constantly check with the
@@ -537,7 +537,7 @@ map may not work anymore.
 ** Cons:
 - There are inaccuracies in the data that is displayed on the map. It is also
 not very precise. e.g. You cannot zoom into the map and locate where
-exactly the orders are.
+exactly the requests are.
 
 * **Alternative 2 :** Make use of an external API service like Google
 Maps to render the location placeholders on the map
@@ -558,19 +558,19 @@ that the user experience is not affected.
 === Add Order Feature
 
 ==== Current Implementation
-The `add` order command allows the `Manager` to create a new order and add it to the list of orders.
-Adding a new order requires the customer's `name`, customer's `phone` number, customer's `address`, `food` and the `datetime`. +
-The format of the `add` command is `/order add n/NAME p/PHONE a/ADDRESS f/FOOD dt/DATETIME`.
+The `add` request command allows the `Manager` to create a new request and add it to the list of requests.
+Adding a new request requires the customer's `name`, customer's `phone` number, customer's `address`, `food` and the `datetime`. +
+The format of the `add` command is `/request add n/NAME p/PHONE a/ADDRESS f/FOOD dt/DATETIME`.
 
 The following sequence shows the sequence when the `add` command is execute by the `Manager`:
 
 image::OrderAddSequenceDiagram.png[width="650"]
-Figure 3.3.1.1 Sequence Diagram for order `find` command
+Figure 3.3.1.1 Sequence Diagram for request `find` command
 
 From the diagram above:
 
-.  `LogicManager`'s execute is called when the `Manager` keys in `/order add` and it calls upon `parseCommand` of `OrderBookParser` to parse the command
-.  `OrderBookParser` will initialize `OrderCommandParser` and invoke the method `parse` to further parse `order` command
+.  `LogicManager`'s execute is called when the `Manager` keys in `/request add` and it calls upon `parseCommand` of `OrderBookParser` to parse the command
+.  `OrderBookParser` will initialize `OrderCommandParser` and invoke the method `parse` to further parse `request` command
 .  `AddCommandParser` will be invoked and passed the parameters of the add command.
 .  If all the arguments of the `add` commands are valid, `AddCommand` will be returned to the `LogicManager`
 .  `LogicManger` will then calls the method `execute` method of `AddCommand`
@@ -580,12 +580,12 @@ From the diagram above:
 ==== Design Consideration
 ===== Aspect: Data Structure for the list of Orders
 * **Alternative 1 (Current Approach):** Using a `UniqueOrderList`
-** Pros: The comparison is not as rigid. You can create orders with similar names/address as long as it passes a less stringent criteria.
+** Pros: The comparison is not as rigid. You can create requests with similar names/address as long as it passes a less stringent criteria.
 ** Cons: You need additional overhead. You need to create an extra class and function to check.
 
 * **Alternative 2:** Using a `Set`
 ** Pros: Do not need an extra function. You can use use `equals` for comparison
-** Cons: It is a strict check and as a result you will not be allowed to create orders with same address/same name etc.
+** Cons: It is a strict check and as a result you will not be allowed to create requests with same address/same name etc.
 
 ===== Aspect: Data Structure of `Order`
 * **Alternative 1 (Current Approach):** All parameters in `Order` are abstracted out to have a class of its own.
@@ -601,17 +601,17 @@ From the diagram above:
 === Find Order Feature
 
 ==== Current Implementation
-The order `find` command allows searching of orders in FoodZoom. It allows searching for orders with any order fields.
+The request `find` command allows searching of requests in FoodZoom. It allows searching for requests with any request fields.
 
 The following sequence diagram shows the sequence flow from the `LogicManager` to the `ModelManager` when a user enter a `find` command:
 
 image::OrderFindSequenceDiagram.png[width="650"]
-Figure 3.4.1.1 Sequence Diagram for order `find` command
+Figure 3.4.1.1 Sequence Diagram for request `find` command
 
 From the sequence diagram:
 
 .  When `LogicManager` receive the `execute` command, it calls the `parseCommand` method in `OrderBookParser`.
-.  `OrderBookParser` will receive `/order` as the command and instantiate `OrderCommandParser` to further parse the command.
+.  `OrderBookParser` will receive `/request` as the command and instantiate `OrderCommandParser` to further parse the command.
 .  `OrderCommandParser` receive `find` as the command and calls `FindCommandParser` to handle the fields for the find command.
 .  If at least one field is provided, `FindCommandParser` will call `parsePredicate` of `OrderPredicateUtil` to handle the given fields.
 .  `OrderPredicateUtil` will call its own `chainPredicate` to create the predicate for the relevant fields.
@@ -619,7 +619,7 @@ From the sequence diagram:
 .  `LogicManager` will proceed to call execute of `FindCommand`.
 .  `FindCommand` will update the list in the `Model` and create a new `CommandResult` to be returned.
 
-The differentiation is handled by `OrderPredicateUtil` which checks for the fields provided. It throws `ParseException` if a invalid order field is specified or when any field is given without any value.
+The differentiation is handled by `OrderPredicateUtil` which checks for the fields provided. It throws `ParseException` if a invalid request field is specified or when any field is given without any value.
 
 `OrderPredicateUtil` will chain up the different fields and return a `Predicate<Order>` to narrow the scope
 of the search.
@@ -636,7 +636,7 @@ Figure 3.4.1.2 Sequence Diagram for `datetime` search
 ==== Design Consideration
 
 ===== Aspect: Implementation of `FindCommand`
-* **Alternative 1 (current choice):** All different order field having its own test method.
+* **Alternative 1 (current choice):** All different request field having its own test method.
 ** Pros: It adheres to the Single Responsibility Principle (SRP) and the Separation of Concern (SoC). Each predicate handles its own search values.
 ** Cons: More classes will be needed, which results in higher complexity of the code base.
 * **Alternative 2:** One predicate class to handle all the predicates.
@@ -699,7 +699,7 @@ a `ParseException` would be thrown.
 
 ===== Implementation of `DeliverymanAddCommand`
 * **Alternative 1 (current choice):** Deliverymen are stored in separate file
-** Pros: Allows for greater flexibility in how deliverymen interact with other resources like order/routes - better separation of concerns.
+** Pros: Allows for greater flexibility in how deliverymen interact with other resources like request/routes - better separation of concerns.
 ** Cons: Harder to implement & maintain
 
 * **Alternative 2:** Deliverymen are stored in the same file as `Order`
@@ -709,13 +709,13 @@ a `ParseException` would be thrown.
 
 // tag::route[]
 === Create Route Feature [deprecated since v1.2.1]
-This feature is deprecated as there was a design change regarding the relationship between delivery man and order.
-Previously, route was the middleman between delivery men and orders. Now, delivery men and orders are directly related.
+This feature is deprecated as there was a design change regarding the relationship between delivery man and request.
+Previously, route was the middleman between delivery men and requests. Now, delivery men and requests are directly related.
 Route is removed as its existence will complicate implementations of other features without adding much benefit.
 
 ==== Current Implementation
 The `create` route command allows creation of routes in FoodZoom.
-It allows creating routes based on the order ids.
+It allows creating routes based on the request ids.
 
 The following sequence diagram shows the sequence flow from the `LogicManager` to the `ModelManager` when a user enter a `/route create` command:
 
@@ -750,7 +750,7 @@ From the sequence diagram:
 // tag::assign[]
 === Assign feature
 ==== Current Implementation
-The `/assign` command allows assigning of multiple orders to a delivery man in FoodZoom.
+The `/assign` command allows assigning of multiple requests to a delivery man in FoodZoom.
 
 The following sequence diagram shows the sequence flow from the `LogicManager` to the `ModelManager` when a user enter a `/assign` command:
 
@@ -767,21 +767,21 @@ From the sequence diagram:
 .  If the arguments specified in the `/assign` command are valid, a `AssignCommand` will be created and return back to the `LogicManger`
 .  `LogicManager` will proceed to call the `execute` command of `AssignCommand`
 .  `AssignCommand` will proceed to call the `getFilteredOrderList` and `getFilteredDeliverymanList` method of `Model`
-.  Iterate through the `orderIds`, if valid, add the `order` corresponding to that `index` to the set of `Order`.
+.  Iterate through the `orderIds`, if valid, add the `request` corresponding to that `index` to the set of `Order`.
 .  Create a new `Deliveryman` to be assigned from the `healthworker` corresponding to the healthworker index.
-.  Iterate through the orders, call `setDeliveryman`.
+.  Iterate through the requests, call `setDeliveryman`.
 .  A new route would be added and create a new `CommandResult` to be returned.
 
 ==== Design Consideration
 
 ===== Aspect: Relationship between `Order` and `Deliveryman`
 * **Alternative 1 (current choice):** Two way associations between the `Order` and `Deliveryman`
-** Pros: Performing update operations such as assigning orders or marking orders as completed and displaying information on each order and
+** Pros: Performing update operations such as assigning requests or marking requests as completed and displaying information on each request and
 delivery man are more effective as they are aware of one another.
-** Cons: More complicated to implement the assigning of order, and subsequently other features regarding this relationship such as removing of order.
+** Cons: More complicated to implement the assigning of request, and subsequently other features regarding this relationship such as removing of request.
 * **Alternative 2:** Only the `Deliveryman` is aware of the `Order`
-** Pros: Easier to implement the feature and manage the order and healthworker states.
-** Cons: Performing the update operations mentioned above will be ineffective, and it will be more difficult to display information on which delivery man an order is assigned to.
+** Pros: Easier to implement the feature and manage the request and healthworker states.
+** Cons: Performing the update operations mentioned above will be ineffective, and it will be more difficult to display information on which delivery man an request is assigned to.
 
 // end::assign[]
 
@@ -1009,7 +1009,7 @@ Each individual exercise in this section is component-based (i.e. you would not 
 [discrete]
 ==== `Logic` component
 
-*Scenario:* You are in charge of `logic`. During dog-fooding, your team realize that it is troublesome for the user to type the whole command in order to execute a command. Your team devise some strategies to help cut down the amount of typing necessary, and one of the suggestions was to implement aliases for the command words. Your job is to implement such aliases.
+*Scenario:* You are in charge of `logic`. During dog-fooding, your team realize that it is troublesome for the user to type the whole command in request to execute a command. Your team devise some strategies to help cut down the amount of typing necessary, and one of the suggestions was to implement aliases for the command words. Your job is to implement such aliases.
 
 [TIP]
 Do take a look at <<Design-Logic>> before attempting to modify the `Logic` component.
@@ -1283,10 +1283,10 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 *Target user profile*:
 
 * Business Owners and Delivery Man
-* Needs to manage a large collection of orders
-* Needs to dispatch orders to relevant delivery man
+* Needs to manage a large collection of requests
+* Needs to dispatch requests to relevant delivery man
 * Wants to view route information and calculate timings
-* Wants insights on purchases and order history
+* Wants insights on purchases and request history
 * is reasonably comfortable using CLI apps
 
 
@@ -1306,53 +1306,53 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |manager |login/logout/signup of application |able to protect my data and access it when I need do
 
-|`* * *` |manager |add a new customer order | can track the current orders I
+|`* * *` |manager |add a new customer request | can track the current requests I
 have
 
-|`* * *` |manager |add or remove a healthworker | can manage the deliverymen available to dispatch orders
+|`* * *` |manager |add or remove a healthworker | can manage the deliverymen available to dispatch requests
 
-|`* * *` |manager |assign orders to available deliverymen | can send out orders and fulfil customer requests
+|`* * *` |manager |assign requests to available deliverymen | can send out requests and fulfil customer requests
 
-|`* * *` |manager |delete an order | can cancel orders that should not be in the queue
+|`* * *` |manager |delete an request | can cancel requests that should not be in the queue
 
-|`* * *` |manager |find an order using phone number | can find specific orders quickly
+|`* * *` |manager |find an request using phone number | can find specific requests quickly
 
 |`* *` |manager |update my menu (add/remove food items) | can manage the food items I have and expand by business
 
-|`* *` |manager |view a basic route for order | have a clearer idea on how to dispatch my deliverymen
+|`* *` |manager |view a basic route for request | have a clearer idea on how to dispatch my deliverymen
 
-|`* *` |manager |find orders by more files (name, food item etc.) | have more options to locate specific orders
+|`* *` |manager |find requests by more files (name, food item etc.) | have more options to locate specific requests
 
-|`* *` |manager |trace status of orders (estimated timeline)  | can have visibility on when orders will be delivered
+|`* *` |manager |trace status of requests (estimated timeline)  | can have visibility on when requests will be delivered
 
-|`* *` |manager |have a dashboard to view succesful and failed orders  | can have insights on how my outlet is doing
+|`* *` |manager |have a dashboard to view succesful and failed requests  | can have insights on how my outlet is doing
 
-|`* *` |manager |have a dynamic indication of which healthworker is available  | can send out multiple orders to many deliverymen and have improved service
+|`* *` |manager |have a dynamic indication of which healthworker is available  | can send out multiple requests to many deliverymen and have improved service
 
-|`* *` |manager |view individual customer order history  | gain insights on
+|`* *` |manager |view individual customer request history  | gain insights on
 what specific customers are ordering
 
 |`* *` |manager |find my deliverman by name     | find details about the healthworker,
 
 |`* *` |manager |see a thumbnail of healthworker  | can easily tell who is who in one glance
 
-|`* *` |manager |edit my order  | make changes to the order
+|`* *` |manager |edit my request  | make changes to the request
 
-|`*` |manager |sms confirmation on succesful order  | have visibility on how my order delivery service is doing
+|`*` |manager |sms confirmation on succesful request  | have visibility on how my request delivery service is doing
 
-|`*` |manager |view a map with placeholders showing orders/deliverymen routes  | have immediate view on delivery status and gain insights on my service
+|`*` |manager |view a map with placeholders showing requests/deliverymen routes  | have immediate view on delivery status and gain insights on my service
 
 |`* * *` |new healthworker |see usage instructions |refer to instructions when I forget how to use the App
 
 |`* * *` |healthworker |login/logout of application |able to protect my data and access it when I need do
 
-|`* * *` |healthworker |list assigned orders |can tell what are the jobs I need to complete
+|`* * *` |healthworker |list assigned requests |can tell what are the jobs I need to complete
 
-|`* * *` |healthworker |get customer contact for orders |can contact customer if there is a need (delivery delay/incorrect address/queries etc.)
+|`* * *` |healthworker |get customer contact for requests |can contact customer if there is a need (delivery delay/incorrect address/queries etc.)
 
-|`* *` |healthworker |view delivery route for orders |dont have to consult external service to know how to reach the destination
+|`* *` |healthworker |view delivery route for requests |dont have to consult external service to know how to reach the destination
 
-|`* *` |healthworker |confirm succesful order in system |the manager can track the completion of orders
+|`* *` |healthworker |confirm succesful request in system |the manager can track the completion of requests
 
 |`*` |healthworker |send feedback on delivery process |the manager can relate and improve the dispatch service
 
@@ -1368,9 +1368,9 @@ what specific customers are ordering
 
 *MSS*
 
-1.  Manager requests to add order to the FoodZoom
+1.  Manager requests to add request to the FoodZoom
 2.  FoodZoom checks the format of the add command
-3.  FoodZoom adds the order to the database
+3.  FoodZoom adds the request to the database
 4.  FoodZoom shows success message to the manager
 +
 Use case ends.
@@ -1384,17 +1384,17 @@ Use case ends.
 
 
 [discrete]
-=== Use Case: Find orders by phone number
+=== Use Case: Find requests by phone number
 
 *MSS*
 
-1.  Manager request to list orders by phone number
-2.  FoodZoom shows a list of orders and their status
+1.  Manager request to list requests by phone number
+2.  FoodZoom shows a list of requests and their status
 3.  Use case ends.
 
 *Extensions*
 
-* 1a. The phone number not found in the list of orders.
+* 1a. The phone number not found in the list of requests.
 +
 Use case ends.
 
@@ -1403,10 +1403,10 @@ Use case ends.
 
 *MSS*
 
-1. Manager requests to view pending orders
-2. FoodZoom lists all orders
-3. Manager adds pending orders to planner
-4. FoodZoom shows travel route and timing details to Manager for all orders added
+1. Manager requests to view pending requests
+2. FoodZoom lists all requests
+3. Manager adds pending requests to planner
+4. FoodZoom shows travel route and timing details to Manager for all requests added
 5. Manager requests to add route to available deliverymen
 6. FoodZoom adds route to delivery man and displays on same screen
 7. Manager requests to show routing information
@@ -1416,7 +1416,7 @@ Use case ends.
 
 *Extension*
 
-* 2a.  No available orders
+* 2a.  No available requests
 +
 Use case ends.
 
@@ -1435,18 +1435,18 @@ Use case ends.
 
 *MSS*
 
-1.  Manager requests to find the order by phone number
-2.  FoodZoom shows the order
-3.  Manager requests to delete the order
-4.  FoodZoom deletes the order
-5.  FoodZoom shows message order successfully deleted
+1.  Manager requests to find the request by phone number
+2.  FoodZoom shows the request
+3.  Manager requests to delete the request
+4.  FoodZoom deletes the request
+5.  FoodZoom shows message request successfully deleted
 +
 Use case ends.
 
 *Extension*
 
-* The order does not exist.
-** 1a. FoodZoom shows message that order does not exist
+* The request does not exist.
+** 1a. FoodZoom shows message that request does not exist
 +
 Use case ends
 
@@ -1474,7 +1474,7 @@ Use case ends.
 Use case ends
 
 * 4a. Location info is unclear to healthworker
-** 4b. Delivery man searches for order to get customer's contact
+** 4b. Delivery man searches for request to get customer's contact
 ** 4c. Delivery man contacts customer to clarify location
 +
 Use case ends
@@ -1484,10 +1484,10 @@ Use case ends
 == Non Functional Requirements
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `9` or higher installed.
-. Should be able to hold up to 1000 orders and should respond within 2 seconds
+. Should be able to hold up to 1000 requests and should respond within 2 seconds
 . The system should work on both 32-bit and 64-bit environments.
 . The system should only show data to the people with the <<appropriate-roles,appropriate roles>>
-. The system should persist data about orders for the past year
+. The system should persist data about requests for the past year
 
 
 
@@ -1595,228 +1595,228 @@ Command: `/signup n/Alicepauline u/alicepauline pw/alicepauline01` +
 Expected: Fail to sign up. User already exist within the application.
 
 === Adding an Order
-.. Prerequisites: Logged into the application. An order with name "John Lee", phone "98765432" and date "20-10-2018
-00:00:00" does not already exist. To check, type `/order list` to see all existing order.
+.. Prerequisites: Logged into the application. An request with name "John Lee", phone "98765432" and date "20-10-2018
+00:00:00" does not already exist. To check, type `/request list` to see all existing request.
 
-... Test case: `/order add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 f/Roti Prata f/Ice Milo
+... Test case: `/request add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 f/Roti Prata f/Ice Milo
 dt/20-10-2018 00:00:00` +
-    Expected: A new order with the above details is added to the list. The command box should reflect this accordingly
-    with the message "New order added: " + <details of order>. The map should show a new placeholder (or an existing
+    Expected: A new request with the above details is added to the list. The command box should reflect this accordingly
+    with the message "New request added: " + <details of request>. The map should show a new placeholder (or an existing
     placeholder will increase in size). Timestamp in the status bar is updated.
 
-... Test case: `/order add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 f/Roti Prata f/Ice Milo
+... Test case: `/request add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 f/Roti Prata f/Ice Milo
 dt/21-10-2018 00:00:00` +
-    Expected: A new order with the above details is added to the list. The command box should reflect this accordingly
-             with the message "New order added: " + <details of order>. The map should show a new placeholder (or an
+    Expected: A new request with the above details is added to the list. The command box should reflect this accordingly
+             with the message "New request added: " + <details of request>. The map should show a new placeholder (or an
              existing placeholder will increase in size) that gives an approximation of location. Timestamp in the
              status bar is updated.
 
-... Test case: `/order add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 f/Roti Prata f/Ice Milo
+... Test case: `/request add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 f/Roti Prata f/Ice Milo
                 dt/32-10-2018 00:00:00` +
-    Expected: No order is added. Error details shown in the status message (invalid date). Status bar remains the same.
+    Expected: No request is added. Error details shown in the status message (invalid date). Status bar remains the same.
 
-... Test case: `/order add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 dt/32-10-2018 00:00:00` +
-    Expected: No order is added. Error details shown in the status message (no food). Status bar remains the same.
+... Test case: `/request add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 dt/32-10-2018 00:00:00` +
+    Expected: No request is added. Error details shown in the status message (no food). Status bar remains the same.
 
-... Test case: `/order add n/John Lee n/John Roe p/98765432 a/311, Clementi Ave 2, #02-25, 612344 f/Roti Prata f/Ice
+... Test case: `/request add n/John Lee n/John Roe p/98765432 a/311, Clementi Ave 2, #02-25, 612344 f/Roti Prata f/Ice
 Milo dt/30-10-2018 00:00:05` +
-    Expected: A new order with the above details is added to the list. The name is taken as the last name given which
+    Expected: A new request with the above details is added to the list. The name is taken as the last name given which
      is John Roe. The command box should reflect this accordingly
-           with the message "New order added: " + <details of order>. The map should show a new placeholder (or an
+           with the message "New request added: " + <details of request>. The map should show a new placeholder (or an
             existing placeholder will increase in size) that gives an approximation of location. Timestamp in the
             status bar is updated.
 
-... Test case: `/order add n/John Lee n/John Roe p/98765432 a/311, Clementi Ave 2, #02-25, 54612344 f/Roti Prata f/Ice
+... Test case: `/request add n/John Lee n/John Roe p/98765432 a/311, Clementi Ave 2, #02-25, 54612344 f/Roti Prata f/Ice
 Milo dt/30-10-2018 00:00:01` +
-    Expected: A new order with the above details is added to the list. The command box should reflect this accordingly
-           with the message "New order added: " + <details of order>. The map should show a new placeholder (or an
+    Expected: A new request with the above details is added to the list. The command box should reflect this accordingly
+           with the message "New request added: " + <details of request>. The map should show a new placeholder (or an
             existing placeholder will increase in size) that gives an approximation of location. The location will
             point to postal code `612344` as only last six digits are considered. Timestamp in the
             status bar is updated.
 
 
-.. Prerequisites: An order with name "John Lee", phone "98765432" and date "20-10-2018
+.. Prerequisites: An request with name "John Lee", phone "98765432" and date "20-10-2018
                   00:00:00" already exists
-... Test case: `/order add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 f/Roti Prata f/Ice Milo dt/20-10-2018 00:00:00` +
-    Expected: No order is added. Error details shown in the status message (duplicate order). Status bar remains the
+... Test case: `/request add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 f/Roti Prata f/Ice Milo dt/20-10-2018 00:00:00` +
+    Expected: No request is added. Error details shown in the status message (duplicate request). Status bar remains the
     same.
 
 
-=== Selecting order
-.. Prerequisites: Logged into the application. There is at least 1 order being displayed in the list.
+=== Selecting request
+.. Prerequisites: Logged into the application. There is at least 1 request being displayed in the list.
 
-... Test case: `/order select 1` +
-    Expected: The selected order would be displayed on the display panel.
+... Test case: `/request select 1` +
+    Expected: The selected request would be displayed on the display panel.
 
-... Test case: `/order select 0` +
-    Expected: No order would be selected and displayed as this is an invalid index.
+... Test case: `/request select 0` +
+    Expected: No request would be selected and displayed as this is an invalid index.
 
-=== Finding order/s
-. Finding order by phone
-.. Prerequisites: Having at least 1 order.
+=== Finding request/s
+. Finding request by phone
+.. Prerequisites: Having at least 1 request.
 .. Test case: Valid phone without space +
-    Command: `/order find p/9111` +
+    Command: `/request find p/9111` +
     Expected: Order/s with the phone `9111` and `911122113` is shown on the left panel.
 
 .. Test case: Valid phones with space +
-    Command: `/order find p/1234 9111` +
+    Command: `/request find p/1234 9111` +
     Expected: Order/s with the phone `9111`, `911122113`, `1234`, `12345678` is shown on the left panel.
 
 .. Test case: Empty value +
-    Command: `/order find p/` +
+    Command: `/request find p/` +
     Expected: Error is shown in the status message. Value cannot be empty.
 
-. Finding order by address, name, food
-.. Prerequisites: Having at least 1 order.
+. Finding request by address, name, food
+.. Prerequisites: Having at least 1 request.
 .. Test case: Valid address +
-    Command: `/order find a/Blk 10` +
+    Command: `/request find a/Blk 10` +
     Expected: Order/s with the address containing `Blk 10` is shown on the left panel.
 
 .. Test case: Valid food +
-    Command: `/order find f/Chicken Rice` +
+    Command: `/request find f/Chicken Rice` +
     Expected: Order/s with food `Chicken Rice`, `Chicken Rice with Chilli` is shown on the left panel.
 
 .. Test case: Valid name +
-    Command: `/order find n/Alex Yeoh` +
+    Command: `/request find n/Alex Yeoh` +
     Expected: Order/s with name `Alex Yeoh`, `Alex Yeoh Jin` is shown on the left panel.
 
-. Finding order by status
-.. Prerequisites: Logged into the application. Having orders in the list with 3 different status
+. Finding request by status
+.. Prerequisites: Logged into the application. Having requests in the list with 3 different status
 .. Test case: Exact Status +
-    Command: `/order find st/PENDING` +
+    Command: `/request find st/PENDING` +
     Expected: Order/s with status `PENDING` is shown on the left panel.
 
 .. Test case: Exact status in lower case +
-    Command: `/order find st/pending` +
+    Command: `/request find st/pending` +
     Expected: Order/s with status `PENDING` is shown on the left panel.
 
 .. Test case: Empty status value +
-    Command: `/order find st/` +
+    Command: `/request find st/` +
     Expected: Error is shown in the status message. Value cannot be empty.
 
 .. Test case: Invalid status +
-    Command: `/order find st/abc` +
+    Command: `/request find st/abc` +
     Expected: Error is shown in the status message. Only valid status are allowed.
 
-. Finding order by date
-.. Prerequisites: Logged into the application. Having orders added with different dates
+. Finding request by date
+.. Prerequisites: Logged into the application. Having requests added with different dates
 .. Test case: Find with one datetime parameter +
-    Command: `/order find dt/01-10-2018 10:00:00` +
+    Command: `/request find dt/01-10-2018 10:00:00` +
     Expected: Order/s with the datetime `01-10-2018 10:00:00` is shown on the left panel.
 
 .. Test case: Find with two datetime parameter +
-    Command: `/order find dt/01-10-2018 10:00:00 dt/03-10-2018 14:00:00` +
+    Command: `/request find dt/01-10-2018 10:00:00 dt/03-10-2018 14:00:00` +
     Expected: Order/s within and on the datetime `01-10-2018 10:00:00` and `03-10-2018 10:00:00` is shown on the left panel.
 
 .. Test case: Find with more than 2 datetime parameter +
-    Command: `/order find dt/01-10-2018 10:00:00 dt/03-10-2018 14:00:00 dt/02-10-2018 10:00:00` +
+    Command: `/request find dt/01-10-2018 10:00:00 dt/03-10-2018 14:00:00 dt/02-10-2018 10:00:00` +
     Expected: Order/s within and on the datetime `01-10-2018 10:00:00` and `03-10-2018 10:00:00` is shown on the left panel.
 
 .. Test case: Empty date value +
-    Command: `/order find dt/` +
+    Command: `/request find dt/` +
     Expected: Error is shown in the status message. Value cannot be empty.
 
 .. Test case: Only date is given. No time is given +
-    Command: `/order find dt/01-10-2018` +
+    Command: `/request find dt/01-10-2018` +
     Expected: Error is shown in the status message. Date should follow the format `dd-MM-yyy HH:mm:ss`.
 
 .. Test case: Invalid datetime is given +
-    Command: `/order find dt/57-10-2018 10:00:00` +
+    Command: `/request find dt/57-10-2018 10:00:00` +
     Expected: Error is shown in the status message. Date should be a valid date.
 
-. Finding order with more than 1 argument
-.. Prerequisites: Logged into the application. Having at least 1 order
+. Finding request with more than 1 argument
+.. Prerequisites: Logged into the application. Having at least 1 request
 .. Test case: Valid name and status value +
-    Command: `/order find n/john st/pending` +
+    Command: `/request find n/john st/pending` +
     Expected: Order/s with the name `john` and the status `PENDING` is shown on the left panel.
 
-=== Editing an order
-. Edit an order while all orders are listed
-.. Prerequisites: Logged into the application. List all orders using the `/order list` command. Multiple orders in the
+=== Editing an request
+. Edit an request while all requests are listed
+.. Prerequisites: Logged into the application. List all requests using the `/request list` command. Multiple requests in the
  list.
 ... Test case: Valid arguments +
-    Command: `/order edit <order_index> f/Roti Canai` +
-    Expected: Food of the order with the `<order_index>` will be overwritten with the food `Roti Canai`
+    Command: `/request edit <order_index> f/Roti Canai` +
+    Expected: Food of the request with the `<order_index>` will be overwritten with the food `Roti Canai`
 
-... Test case: Invalid order index +
-    Command: `/order edit 0 n/alex` +
-    Expected: Cannot edit as the order index is a non-zero unsigned integer.
+... Test case: Invalid request index +
+    Command: `/request edit 0 n/alex` +
+    Expected: Cannot edit as the request index is a non-zero unsigned integer.
 
-... Other incorrect edit commands to try: `/order edit x f/alex` (where x is larger than the list on the left) +
-    Expected: Cannot edit as the order index must be a valid index in the list shown on the left.
+... Other incorrect edit commands to try: `/request edit x f/alex` (where x is larger than the list on the left) +
+    Expected: Cannot edit as the request index must be a valid index in the list shown on the left.
 
-.. Prerequisites: Logged into the application. There is an order with the name `alex`, phone `12345678` and datetime
+.. Prerequisites: Logged into the application. There is an request with the name `alex`, phone `12345678` and datetime
 `01-10-2018 10:00:00`
-... Test case: Edit an order to an existing order in the list +
-    Command: `/order edit 1 n/alex p/12345678 dt/01-10-2018 10:00:00` +
-    Expected: Cannot edit as an order with the same name, phone and datetime is already in the list of orders.
+... Test case: Edit an request to an existing request in the list +
+    Command: `/request edit 1 n/alex p/12345678 dt/01-10-2018 10:00:00` +
+    Expected: Cannot edit as an request with the same name, phone and datetime is already in the list of requests.
 
-.. Prerequisites: Logged into the application. Have orders that are `Ongoing` or `Completed`
-... Test case: Edit an order with status `Ongoing` or `Completed` +
-    Command: `/order edit <ongoing_or_completed_order_index> f/tea` +
-    Expected: Cannot edit as the order is already assign to a healthworker.
+.. Prerequisites: Logged into the application. Have requests that are `Ongoing` or `Completed`
+... Test case: Edit an request with status `Ongoing` or `Completed` +
+    Command: `/request edit <ongoing_or_completed_order_index> f/tea` +
+    Expected: Cannot edit as the request is already assign to a healthworker.
 
-=== Deleting an order
+=== Deleting an request
 
-. Deleting an order while all order are listed
+. Deleting an request while all request are listed
 
-.. Prerequisites: Logged into the application. List all orders using the `/order list` command. Multiple orders in the
- list. The order to be deleted is `Pending` or `Completed`.
-.. Test case: `/order delete <pending_or_completed_order_index>` +
-   Expected: That order is deleted from the list. Details of the deleted order shown in the status message.
+.. Prerequisites: Logged into the application. List all requests using the `/request list` command. Multiple requests in the
+ list. The request to be deleted is `Pending` or `Completed`.
+.. Test case: `/request delete <pending_or_completed_order_index>` +
+   Expected: That request is deleted from the list. Details of the deleted request shown in the status message.
    Timestamp in the status bar is updated.
-.. Test case: `/order delete 0` +
-   Expected: No order is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `/order delete`, `/order delete x` (where x is larger than the list size)
+.. Test case: `/request delete 0` +
+   Expected: No request is deleted. Error details shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `/request delete`, `/request delete x` (where x is larger than the list size)
 _{give more}_ +
    Expected: Similar to previous.
-.. Test case: Logged into the application. Deleting an `Ongoing` order +
-   Command: `/order delete o/<ongoing_order_index>`
-   Expected: Unable to delete the order because it is already assigned to a healthworker.
+.. Test case: Logged into the application. Deleting an `Ongoing` request +
+   Command: `/request delete o/<ongoing_order_index>`
+   Expected: Unable to delete the request because it is already assigned to a healthworker.
 
 _{ more test cases ... }_
 
-=== Mark an order as Completed
+=== Mark an request as Completed
 
-. Marking an order as `Completed`
-.. Prerequisites: Logged into the application. Already have an `Ongoing` order.
+. Marking an request as `Completed`
+.. Prerequisites: Logged into the application. Already have an `Ongoing` request.
 ... Test case: Mark an invalid index as completed +
-Command: `/order done 0` +
-Expected: No order is marked as completed. Index have to a positive integer.
+Command: `/request done 0` +
+Expected: No request is marked as completed. Index have to a positive integer.
 
-... Test case: Mark an valid index `Ongoing` order as completed +
-Command: `/order done <order_index_of_ongoing_status>` +
-Expected: Order on order list panel is marked as `Completed` and healthworker is updated (Deliveryman total assigned
-orders will decrease by `1` or become `available`).
+... Test case: Mark an valid index `Ongoing` request as completed +
+Command: `/request done <order_index_of_ongoing_status>` +
+Expected: Order on request list panel is marked as `Completed` and healthworker is updated (Deliveryman total assigned
+requests will decrease by `1` or become `available`).
 
-.. Prerequisites: Logged into the application. Have some `Pending` orders.
+.. Prerequisites: Logged into the application. Have some `Pending` requests.
 ... Test case: Mark a valid index as completed but would fail. +
-Command: `/order done <order_index_of_pending_status>` +
-Expected: Fail to mark the order as `Completed` because only `ongoing` status can be marked as `completed`.
+Command: `/request done <order_index_of_pending_status>` +
+Expected: Fail to mark the request as `Completed` because only `ongoing` status can be marked as `completed`.
 
-.. Prerequisites: Logged into the application. Have some `Completed` orders.
+.. Prerequisites: Logged into the application. Have some `Completed` requests.
 ... Test case: Mark a valid index as completed but would fail. +
-Command: `/order done <order_index_of_completed_status>` +
-Expected: Fail to mark the order as `Completed` because it is already `completed`.
+Command: `/request done <order_index_of_completed_status>` +
+Expected: Fail to mark the request as `Completed` because it is already `completed`.
 
-=== Assigning orders to a healthworker
+=== Assigning requests to a healthworker
 
-. Assigning multiple pending orders to a healthworker
+. Assigning multiple pending requests to a healthworker
 
-.. Prerequisite: Logged into the application. Have orders that are `Pending`, and a healthworker +
-   Test case: Assigning two `Pending` orders to a healthworker +
+.. Prerequisite: Logged into the application. Have requests that are `Pending`, and a healthworker +
+   Test case: Assigning two `Pending` requests to a healthworker +
    Command: `/assign o/<first_pending_order_index> o/<second_pending_order_index> d/1` +
-   Expected: First healthworker's assigned order count increases by 2, the two orders change status to become `Ongoing`.
+   Expected: First healthworker's assigned request count increases by 2, the two requests change status to become `Ongoing`.
 
 .. Prerequisite: Logged into the application. Have a healthworker +
-   Test case: Invalid order or healthworker index +
+   Test case: Invalid request or healthworker index +
    Command: `/assign o/0 d/1`, `/assign o/1 d/0` +
-   Expected: Cannot assign because the order index is not a non-zero unsigned integer.
+   Expected: Cannot assign because the request index is not a non-zero unsigned integer.
 
-.. Prerequisite: Logged into the application. Have an `Ongoing` or `Completed` order +
-   Test case: Assigning an `Ongoing` or `Completed` order to a healthworker +
+.. Prerequisite: Logged into the application. Have an `Ongoing` or `Completed` request +
+   Test case: Assigning an `Ongoing` or `Completed` request to a healthworker +
    Command: `/assign o/<ongoing_or_completed_order_index> d/1` +
-   Expected: Cannot assign because that order was already assigned to a healthworker previously.
+   Expected: Cannot assign because that request was already assigned to a healthworker previously.
 
 === Adding healthworker
 
@@ -1841,7 +1841,7 @@ all existing deliverymen.
 === Deleting healthworker
 
 .. Prerequisites: Logged into the application. There is 1 healthworker being displayed in the list. This healthworker
-must not have any orders assigned to him too.
+must not have any requests assigned to him too.
 To achieve this, you can filter deliverymen by name, for example, using the default deliverymen, you can try `/healthworker find n/Chi Kao`
 
 ... Test case: `/healthworker delete 0` +
@@ -1854,11 +1854,11 @@ To achieve this, you can filter deliverymen by name, for example, using the defa
     Expected: The healthworker displayed will be deleted.
 
 .. Prerequisites: Logged into the application. There is 1 healthworker being displayed in the list. This healthworker
-has an order assigned to him.
-To achieve this, you can filter healthworker by name, then assign him a `Pending` order, for example `/assign o/1 d/1`.
+has an request assigned to him.
+To achieve this, you can filter healthworker by name, then assign him a `Pending` request, for example `/assign o/1 d/1`.
 
 ... Test case: `/healthworker delete 1` +
-    Expected: Deliveryman would not be deleted as you are not allowed to delete healthworker with orders assigned.
+    Expected: Deliveryman would not be deleted as you are not allowed to delete healthworker with requests assigned.
 
 === Selecting healthworker
 .. Prerequisites: Logged into the application. There is at least 1 healthworker being displayed in the list.

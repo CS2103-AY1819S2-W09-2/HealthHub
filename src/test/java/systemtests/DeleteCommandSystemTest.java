@@ -20,9 +20,9 @@ import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.request.DeleteCommand;
 import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.model.Model;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
-public class DeleteCommandSystemTest extends OrderBookSystemTest {
+public class DeleteCommandSystemTest extends RequestBookSystemTest {
 
     private static final String MESSAGE_INVALID_DELETE_COMMAND_FORMAT =
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
@@ -43,8 +43,8 @@ public class DeleteCommandSystemTest extends OrderBookSystemTest {
         /* Case: delete the first common in the list, command with leading spaces and trailing spaces -> deleted */
         Model expectedModel = getModel();
         command = "     " + DELETE_COMMAND + "      " + INDEX_FIRST.getOneBased() + "       ";
-        Order deletedOrder = removeOrder(expectedModel, INDEX_FIRST);
-        String expectedResultMessage = String.format(MESSAGE_DELETE_ORDER_SUCCESS, deletedOrder);
+        Request deletedRequest = removeOrder(expectedModel, INDEX_FIRST);
+        String expectedResultMessage = String.format(MESSAGE_DELETE_ORDER_SUCCESS, deletedRequest);
         assertCommandSuccess(command, expectedModel, expectedResultMessage);
 
         /* Case: delete the last common in the list -> deleted */
@@ -65,8 +65,8 @@ public class DeleteCommandSystemTest extends OrderBookSystemTest {
         Index expectedIndex = Index.fromZeroBased(selectedIndex.getZeroBased() - 1);
         selectOrder(selectedIndex);
         command = DELETE_COMMAND + " " + selectedIndex.getOneBased();
-        deletedOrder = removeOrder(expectedModel, selectedIndex);
-        expectedResultMessage = String.format(MESSAGE_DELETE_ORDER_SUCCESS, deletedOrder);
+        deletedRequest = removeOrder(expectedModel, selectedIndex);
+        expectedResultMessage = String.format(MESSAGE_DELETE_ORDER_SUCCESS, deletedRequest);
         assertCommandSuccess(command, expectedModel, expectedResultMessage, expectedIndex);
 
         /* --------------------------------- Performing invalid delete operation ------------------------------------ */
@@ -100,10 +100,10 @@ public class DeleteCommandSystemTest extends OrderBookSystemTest {
      *
      * @return the removed common
      */
-    private Order removeOrder(Model model, Index index) {
-        Order targetOrder = getOrder(model, index);
-        model.deleteOrder(targetOrder);
-        return targetOrder;
+    private Request removeOrder(Model model, Index index) {
+        Request targetRequest = getOrder(model, index);
+        model.deleteOrder(targetRequest);
+        return targetRequest;
     }
 
     /**
@@ -114,8 +114,8 @@ public class DeleteCommandSystemTest extends OrderBookSystemTest {
      */
     private void assertCommandSuccess(Index toDelete) {
         Model expectedModel = getModel();
-        Order deletedOrder = removeOrder(expectedModel, toDelete);
-        String expectedResultMessage = String.format(MESSAGE_DELETE_ORDER_SUCCESS, deletedOrder);
+        Request deletedRequest = removeOrder(expectedModel, toDelete);
+        String expectedResultMessage = String.format(MESSAGE_DELETE_ORDER_SUCCESS, deletedRequest);
 
         assertCommandSuccess(
                 DELETE_COMMAND + " " + toDelete.getOneBased(), expectedModel, expectedResultMessage);

@@ -23,7 +23,7 @@ import seedu.address.model.ReadOnlyOrderBook;
 import seedu.address.model.ReadOnlyUsersList;
 import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.deliveryman.HealthworkerList;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.model.user.User;
 import seedu.address.testutil.OrderBuilder;
 
@@ -45,20 +45,20 @@ public class AddCommandTest {
     @Test
     public void execute_orderAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded();
-        Order validOrder = new OrderBuilder().build();
+        Request validRequest = new OrderBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validOrder).execute(modelStub, commandHistory);
+        CommandResult commandResult = new AddCommand(validRequest).execute(modelStub, commandHistory);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validOrder), commandResult.feedbackToUser);
-        assertEquals(Arrays.asList(validOrder), modelStub.ordersAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validRequest), commandResult.feedbackToUser);
+        assertEquals(Arrays.asList(validRequest), modelStub.ordersAdded);
         assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
     }
 
     @Test
     public void execute_duplicateOrder_throwsCommandException() throws Exception {
-        Order validOrder = new OrderBuilder().build();
-        AddCommand addCommand = new AddCommand(validOrder);
-        ModelStub modelStub = new ModelStubWithOrder(validOrder);
+        Request validRequest = new OrderBuilder().build();
+        AddCommand addCommand = new AddCommand(validRequest);
+        ModelStub modelStub = new ModelStubWithOrder(validRequest);
 
         thrown.expect(CommandException.class);
         thrown.expectMessage(AddCommand.MESSAGE_DUPLICATE_ORDER);
@@ -67,8 +67,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Order alice = new OrderBuilder().withName("Alice").build();
-        Order bob = new OrderBuilder().withName("Bob").build();
+        Request alice = new OrderBuilder().withName("Alice").build();
+        Request bob = new OrderBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -94,7 +94,7 @@ public class AddCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public void addOrder(Order order) {
+        public void addOrder(Request request) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,27 +124,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasOrder(Order order) {
+        public boolean hasOrder(Request request) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteOrder(Order target) {
+        public void deleteOrder(Request target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateOrder(Order target, Order editedOrder) {
+        public void updateOrder(Request target, Request editedRequest) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Order> getFilteredOrderList() {
+        public ObservableList<Request> getFilteredOrderList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredOrderList(Predicate<Order> predicate) {
+        public void updateFilteredOrderList(Predicate<Request> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -284,17 +284,17 @@ public class AddCommandTest {
      * A Model stub that contains a single request.
      */
     private class ModelStubWithOrder extends ModelStub {
-        private final Order order;
+        private final Request request;
 
-        ModelStubWithOrder(Order order) {
-            requireNonNull(order);
-            this.order = order;
+        ModelStubWithOrder(Request request) {
+            requireNonNull(request);
+            this.request = request;
         }
 
         @Override
-        public boolean hasOrder(Order order) {
-            requireNonNull(order);
-            return this.order.isSameOrder(order);
+        public boolean hasOrder(Request request) {
+            requireNonNull(request);
+            return this.request.isSameOrder(request);
         }
     }
 
@@ -302,18 +302,18 @@ public class AddCommandTest {
      * A Model stub that always accept the request being added.
      */
     private class ModelStubAcceptingOrderAdded extends ModelStub {
-        final ArrayList<Order> ordersAdded = new ArrayList<>();
+        final ArrayList<Request> ordersAdded = new ArrayList<>();
 
         @Override
-        public boolean hasOrder(Order person) {
+        public boolean hasOrder(Request person) {
             requireNonNull(person);
             return ordersAdded.stream().anyMatch(person::isSameOrder);
         }
 
         @Override
-        public void addOrder(Order order) {
-            requireNonNull(order);
-            ordersAdded.add(order);
+        public void addOrder(Request request) {
+            requireNonNull(request);
+            ordersAdded.add(request);
         }
 
         @Override

@@ -9,7 +9,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 
 /**
@@ -27,9 +27,9 @@ public class FindCommand extends RequestCommand {
             + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
             + " dt/01-10-2018 10:00:00 dt/03-10-2018 10:00:00";
 
-    private final Predicate<Order> predicate;
+    private final Predicate<Request> predicate;
 
-    public FindCommand(Predicate<Order> predicate) {
+    public FindCommand(Predicate<Request> predicate) {
         this.predicate = predicate;
     }
 

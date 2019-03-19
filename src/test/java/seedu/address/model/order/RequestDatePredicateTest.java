@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import seedu.address.testutil.OrderBuilder;
 
-public class OrderDatePredicateTest {
+public class RequestDatePredicateTest {
     @Test
     public void equals() {
         SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");

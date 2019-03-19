@@ -22,11 +22,11 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.events.ui.JumpToRequestListRequestEvent;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.XmlUtil;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.storage.XmlFoodZoom;
 
-public class OrderListPanelTest extends GuiUnitTest {
-    private static final ObservableList<Order> TYPICAL_ORDERS =
+public class RequestListPanelTest extends GuiUnitTest {
+    private static final ObservableList<Request> TYPICAL_REQUESTS =
         FXCollections.observableList(getTypicalOrders());
 
     private static final JumpToRequestListRequestEvent JUMP_TO_SECOND_EVENT =
@@ -40,21 +40,21 @@ public class OrderListPanelTest extends GuiUnitTest {
 
     @Test
     public void display() {
-        initUi(TYPICAL_ORDERS);
+        initUi(TYPICAL_REQUESTS);
 
-        for (int i = 0; i < TYPICAL_ORDERS.size(); i++) {
-            orderListPanelHandle.navigateToCard(TYPICAL_ORDERS.get(i));
-            Order expectedOrder = TYPICAL_ORDERS.get(i);
+        for (int i = 0; i < TYPICAL_REQUESTS.size(); i++) {
+            orderListPanelHandle.navigateToCard(TYPICAL_REQUESTS.get(i));
+            Request expectedRequest = TYPICAL_REQUESTS.get(i);
             OrderCardHandle actualCard = orderListPanelHandle.getOrderCardHandle(i);
 
-            assertCardDisplaysOrder(expectedOrder, actualCard);
+            assertCardDisplaysOrder(expectedRequest, actualCard);
             assertEquals("#" + Integer.toString(i + 1), actualCard.getId());
         }
     }
 
     @Test
     public void handleJumpToListRequestEvent() {
-        initUi(TYPICAL_ORDERS);
+        initUi(TYPICAL_REQUESTS);
         postNow(JUMP_TO_SECOND_EVENT);
         guiRobot.pauseForHuman();
 
@@ -69,7 +69,7 @@ public class OrderListPanelTest extends GuiUnitTest {
      */
     @Test
     public void performanceTest() throws Exception {
-        ObservableList<Order> backingList = createBackingList(10000);
+        ObservableList<Request> backingList = createBackingList(10000);
 
         assertTimeoutPreemptively(ofMillis(CARD_CREATION_AND_DELETION_TIMEOUT), () -> {
             initUi(backingList);
@@ -81,7 +81,7 @@ public class OrderListPanelTest extends GuiUnitTest {
      * Returns a list of orders containing {@code orderCount} orders that is used to populate the
      * {@code OrderListPanel}.
      */
-    private ObservableList<Order> createBackingList(int orderCount) throws Exception {
+    private ObservableList<Request> createBackingList(int orderCount) throws Exception {
         Path xmlFile = createXmlFileWithOrders(orderCount);
         XmlFoodZoom xmlFoodZoom =
             XmlUtil.getDataFromFile(xmlFile, XmlFoodZoom.class);
@@ -122,7 +122,7 @@ public class OrderListPanelTest extends GuiUnitTest {
      * Initializes {@code orderListPanelHandle} with a {@code OrderListPanel} backed by {@code backingList}.
      * Also shows the {@code Stage} that displays only {@code OrderListPanel}.
      */
-    private void initUi(ObservableList<Order> backingList) {
+    private void initUi(ObservableList<Request> backingList) {
         OrderListPanel orderListPanel = new OrderListPanel(backingList);
         uiPartRule.setUiPart(orderListPanel);
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!-- Order with an invalid phone field -->
+<!-- Request with an invalid phone field -->
 <request tag="1650dbab-e584-4e7f-87dc-fcac93a2aea9">
     <name>Hans Muster</name>
     <phone>9482asf424</phone>

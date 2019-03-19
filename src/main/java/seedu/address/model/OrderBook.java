@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.model.order.UniqueOrderList;
 
 
@@ -42,11 +42,11 @@ public class OrderBook implements ReadOnlyOrderBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the request list with {@code orders}.
-     * {@code orders} must not contain duplicate orders.
+     * Replaces the contents of the request list with {@code requests}.
+     * {@code requests} must not contain duplicate requests.
      */
-    public void setOrders(List<Order> orders) {
-        this.orders.setOrder(orders);
+    public void setOrders(List<Request> requests) {
+        this.orders.setOrder(requests);
     }
 
     /**
@@ -63,7 +63,7 @@ public class OrderBook implements ReadOnlyOrderBook {
     /**
      * Returns true if an request with the same identity as {@code request} exists in the request book.
      */
-    public boolean hasOrder(Order person) {
+    public boolean hasOrder(Request person) {
         requireNonNull(person);
         return orders.contains(person);
     }
@@ -72,7 +72,7 @@ public class OrderBook implements ReadOnlyOrderBook {
      * Adds an request to the request book.
      * The request must not already exist in the request book.
      */
-    public void addOrder(Order o) {
+    public void addOrder(Request o) {
         if (o.getTag() == null) {
             o.assignTag();
         }
@@ -80,24 +80,25 @@ public class OrderBook implements ReadOnlyOrderBook {
     }
 
     /**
-     * Replaces the given request {@code target} in the list with {@code editedOrder}.
+     * Replaces the given request {@code target} in the list with {@code editedRequest}.
      * {@code target} must exist in the request book.
-     * The request identity of {@code editedOrder} must not be the same as another existing request in the request book.
+     * The request identity of {@code editedRequest} must not be the same as another existing
+     * request in the request book.
      */
-    public void updateOrder(Order target, Order editedOrder) {
-        requireNonNull(editedOrder);
+    public void updateOrder(Request target, Request editedRequest) {
+        requireNonNull(editedRequest);
 
-        if (editedOrder.getTag() == null) {
-            editedOrder.assignTag();
+        if (editedRequest.getTag() == null) {
+            editedRequest.assignTag();
         }
-        orders.setOrder(target, editedOrder);
+        orders.setOrder(target, editedRequest);
     }
 
     /**
      * Removes {@code key} from this {@code OrderBook}.
      * {@code key} must exist in the address book.
      */
-    public void removeOrder(Order key) {
+    public void removeOrder(Request key) {
         orders.remove(key);
     }
 
@@ -110,7 +111,7 @@ public class OrderBook implements ReadOnlyOrderBook {
     }
 
     @Override
-    public ObservableList<Order> getOrderList() {
+    public ObservableList<Request> getOrderList() {
         return orders.asUnmodifiableObservableList();
     }
 

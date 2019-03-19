@@ -16,7 +16,7 @@ import org.junit.Test;
 
 import seedu.address.testutil.OrderBookBuilder;
 
-public class VersionedOrderBookTest {
+public class VersionedRequestBookTest {
 
     private final ReadOnlyOrderBook orderBookWithAlice = new OrderBookBuilder().withOrder(ALICE).build();
     private final ReadOnlyOrderBook orderBookWithBob = new OrderBookBuilder().withOrder(BENSON).build();

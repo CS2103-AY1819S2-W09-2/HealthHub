@@ -3,9 +3,9 @@ package seedu.address.model.order;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Order}'s {@code Address} matches any of the keywords given.
+ * Tests that a {@code Request}'s {@code Address} matches any of the keywords given.
  */
-public class OrderAddressContainsKeywordPredicate implements Predicate<Order> {
+public class OrderAddressContainsKeywordPredicate implements Predicate<Request> {
     private final String keyword;
 
     public OrderAddressContainsKeywordPredicate(String address) {
@@ -13,8 +13,8 @@ public class OrderAddressContainsKeywordPredicate implements Predicate<Order> {
     }
 
     @Override
-    public boolean test(Order order) {
-        return order.getAddress().value.toLowerCase().contains(keyword);
+    public boolean test(Request request) {
+        return request.getAddress().value.toLowerCase().contains(keyword);
     }
 
     @Override

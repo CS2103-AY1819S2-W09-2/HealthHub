@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import seedu.address.testutil.OrderBuilder;
 
-public class OrderStatusContainsKeywordPredicateTest {
+public class RequestStatusContainsKeywordPredicateTest {
     @Test
     public void equals() {
         List<OrderStatus> firstPredicateKeyword = Collections.singletonList(new OrderStatus("PENDING"));

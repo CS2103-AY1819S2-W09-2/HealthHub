@@ -8,26 +8,26 @@ import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysOrder;
 import org.junit.Test;
 
 import guitests.guihandles.OrderCardHandle;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.testutil.OrderBuilder;
 
-public class OrderCardTest extends GuiUnitTest {
+public class RequestCardTest extends GuiUnitTest {
 
     @Test
     public void display() {
-        Order normalOrder = new OrderBuilder().build();
-        OrderCard orderCard = new OrderCard(normalOrder, 2);
+        Request normalRequest = new OrderBuilder().build();
+        OrderCard orderCard = new OrderCard(normalRequest, 2);
         uiPartRule.setUiPart(orderCard);
-        assertCardDisplay(orderCard, normalOrder, 2);
+        assertCardDisplay(orderCard, normalRequest, 2);
     }
 
     @Test
     public void equals() {
-        Order order = new OrderBuilder().build();
-        OrderCard orderCard = new OrderCard(order, 0);
+        Request request = new OrderBuilder().build();
+        OrderCard orderCard = new OrderCard(request, 0);
 
         // same request, same index -> returns true
-        OrderCard copy = new OrderCard(order, 0);
+        OrderCard copy = new OrderCard(request, 0);
         assertTrue(orderCard.equals(copy));
 
         // same object -> returns true
@@ -40,18 +40,18 @@ public class OrderCardTest extends GuiUnitTest {
         assertFalse(orderCard.equals(0));
 
         // different request, same index -> returns false
-        Order differentOrder = new OrderBuilder().withName("differentName").build();
-        assertFalse(orderCard.equals(new OrderCard(differentOrder, 0)));
+        Request differentRequest = new OrderBuilder().withName("differentName").build();
+        assertFalse(orderCard.equals(new OrderCard(differentRequest, 0)));
 
         // same request, different index -> returns false
-        assertFalse(orderCard.equals(new OrderCard(order, 1)));
+        assertFalse(orderCard.equals(new OrderCard(request, 1)));
     }
 
     /**
-     * Asserts that {@code orderCard} displays the details of {@code expectedOrder} correctly and matches
+     * Asserts that {@code orderCard} displays the details of {@code expectedRequest} correctly and matches
      * {@code expectedId}.
      */
-    private void assertCardDisplay(OrderCard orderCard, Order expectedOrder, int expectedId) {
+    private void assertCardDisplay(OrderCard orderCard, Request expectedRequest, int expectedId) {
         guiRobot.pauseForHuman();
 
         OrderCardHandle orderCardHandle = new OrderCardHandle(orderCard.getRoot());
@@ -60,6 +60,6 @@ public class OrderCardTest extends GuiUnitTest {
         assertEquals("#" + Integer.toString(expectedId), orderCardHandle.getId());
 
         // verify common details are displayed correctly
-        assertCardDisplaysOrder(expectedOrder, orderCardHandle);
+        assertCardDisplaysOrder(expectedRequest, orderCardHandle);
     }
 }

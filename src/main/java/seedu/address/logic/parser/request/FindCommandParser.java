@@ -18,7 +18,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * Parses the given {@code String} of arguments in the context of the OrderFindCommand
@@ -44,7 +44,7 @@ public class FindCommandParser implements Parser<RequestCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_ORDER_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        Predicate<Order> suppliedPredicates = new RequestPredicateUtil().parsePredicate(argMultimap);
+        Predicate<Request> suppliedPredicates = new RequestPredicateUtil().parsePredicate(argMultimap);
         return new FindCommand(suppliedPredicates);
 
     }

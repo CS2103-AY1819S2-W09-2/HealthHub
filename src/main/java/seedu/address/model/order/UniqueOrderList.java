@@ -13,32 +13,33 @@ import seedu.address.model.order.exceptions.RequestNotFoundException;
 
 /**
  * A list of orders that enforces uniqueness between its elements and does not allow nulls.
- * An request is considered unique by comparing using {@code Order#isSameOrder(Order)}. As such, adding and updating of
- * orders uses Order#isSameOrder(Order) for equality so as to ensure that the Order being added or updated is
- * unique in terms of identity in the UniqueOrderList. However, the removal of an Order uses Order#equals(Object) so
- * as to ensure that the request with exactly the same fields will be removed.
+ * An request is considered unique by comparing using {@code Request#isSameOrder(Request)}. As such,
+ * adding and updating of orders uses Request#isSameOrder(Request) for equality so as to ensure
+ * that the Request being added or updated is unique in terms of identity in the UniqueOrderList.
+ * However, the removal of an Request uses Request#equals(Object) so as to ensure that the
+ * request with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Order#isSameOrder(Order)
+ * @see Request#isSameOrder(Request)
  */
-public class UniqueOrderList implements Iterable<Order> {
+public class UniqueOrderList implements Iterable<Request> {
 
-    private final ObservableList<Order> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Request> internalList = FXCollections.observableArrayList();
 
     /**
      * Returns true if the list contains an equivalent request as the given argument.
      */
-    public boolean contains(Order toCheck) {
+    public boolean contains(Request toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameOrder);
     }
 
     /**
-     * Adds an Order to the list.
+     * Adds an Request to the list.
      * The request must not already exist in the list.
      */
-    public void add(Order toAdd) {
+    public void add(Request toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateRequestException();
@@ -47,23 +48,23 @@ public class UniqueOrderList implements Iterable<Order> {
     }
 
     /**
-     * Replaces the request {@code target} in the list with {@code editedOrder}.
+     * Replaces the request {@code target} in the list with {@code editedRequest}.
      * {@code target} must exist in the list.
-     * The request identity of {@code editedOrder} must not be the same as another existing request in the list.
+     * The request identity of {@code editedRequest} must not be the same as another existing request in the list.
      */
-    public void setOrder(Order target, Order editedOrder) {
-        requireAllNonNull(target, editedOrder);
+    public void setOrder(Request target, Request editedRequest) {
+        requireAllNonNull(target, editedRequest);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new RequestNotFoundException();
         }
 
-        if (!target.isSameOrder(editedOrder) && contains(editedOrder)) {
+        if (!target.isSameOrder(editedRequest) && contains(editedRequest)) {
             throw new DuplicateRequestException();
         }
 
-        internalList.set(index, editedOrder);
+        internalList.set(index, editedRequest);
     }
 
     public void setOrder(UniqueOrderList replacement) {
@@ -72,23 +73,23 @@ public class UniqueOrderList implements Iterable<Order> {
     }
 
     /**
-     * Replaces the contents of this list with {@code orders}.
-     * {@code orders} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code requests}.
+     * {@code requests} must not contain duplicate persons.
      */
-    public void setOrder(List<Order> orders) {
-        requireAllNonNull(orders);
-        if (!ordersAreUnique(orders)) {
+    public void setOrder(List<Request> requests) {
+        requireAllNonNull(requests);
+        if (!ordersAreUnique(requests)) {
             throw new DuplicateRequestException();
         }
 
-        internalList.setAll(orders);
+        internalList.setAll(requests);
     }
 
     /**
      * Removes the equivalent request from the list.
      * The request must exist in the list.
      */
-    public void remove(Order toRemove) {
+    public void remove(Request toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new RequestNotFoundException();
@@ -98,12 +99,12 @@ public class UniqueOrderList implements Iterable<Order> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Order> asUnmodifiableObservableList() {
+    public ObservableList<Request> asUnmodifiableObservableList() {
         return FXCollections.unmodifiableObservableList(internalList);
     }
 
     @Override
-    public Iterator<Order> iterator() {
+    public Iterator<Request> iterator() {
         return internalList.iterator();
     }
 
@@ -120,12 +121,12 @@ public class UniqueOrderList implements Iterable<Order> {
     }
 
     /**
-     * Returns true if {@code orders} contains only unique orders.
+     * Returns true if {@code requests} contains only unique requests.
      */
-    private boolean ordersAreUnique(List<Order> orders) {
-        for (int i = 0; i < orders.size() - 1; i++) {
-            for (int j = i + 1; j < orders.size(); j++) {
-                if (orders.get(i).isSameOrder(orders.get(j))) {
+    private boolean ordersAreUnique(List<Request> requests) {
+        for (int i = 0; i < requests.size() - 1; i++) {
+            for (int j = i + 1; j < requests.size(); j++) {
+                if (requests.get(i).isSameOrder(requests.get(j))) {
                     return false;
                 }
             }

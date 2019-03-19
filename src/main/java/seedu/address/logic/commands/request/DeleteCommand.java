@@ -10,7 +10,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * Deletes an request identified using it's displayed index from the request book.
@@ -24,7 +24,7 @@ public class DeleteCommand extends RequestCommand {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted Order: %1$s";
+    public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted Request: %1$s";
 
     private final Index targetIndex;
 
@@ -35,20 +35,20 @@ public class DeleteCommand extends RequestCommand {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        List<Order> lastShownList = model.getFilteredOrderList();
+        List<Request> lastShownList = model.getFilteredOrderList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
-        Order orderToDelete = lastShownList.get(targetIndex.getZeroBased());
-        if (orderToDelete.isAlreadyAssignedDeliveryman() && orderToDelete.isOngoing()) {
+        Request requestToDelete = lastShownList.get(targetIndex.getZeroBased());
+        if (requestToDelete.isAlreadyAssignedDeliveryman() && requestToDelete.isOngoing()) {
             throw new CommandException(Messages.MESSAGE_ORDER_HAS_DELIVERYMAN_CANNOT_DELETE);
         }
 
-        model.deleteOrder(orderToDelete);
+        model.deleteOrder(requestToDelete);
         model.commitOrderBook();
-        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, requestToDelete));
     }
 
     @Override

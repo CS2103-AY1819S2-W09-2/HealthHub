@@ -26,7 +26,7 @@ import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.model.deliveryman.HealthworkerNameContainsKeywordsPredicate;
 import seedu.address.model.order.NameContainsKeywordsPredicate;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
 
 /**
@@ -148,7 +148,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         OrderBook expectedOrderBook = new OrderBook(actualModel.getOrderBook());
-        List<Order> expectedFilteredList = new ArrayList<>(actualModel.getFilteredOrderList());
+        List<Request> expectedFilteredList = new ArrayList<>(actualModel.getFilteredOrderList());
         HealthworkerList expectedHealthworkerList = new HealthworkerList(actualModel.getDeliverymenList());
         List<Healthworker> expectedFilteredDeliverymenList = new ArrayList<>(actualModel.getFilteredDeliverymenList());
 
@@ -174,8 +174,8 @@ public class CommandTestUtil {
     public static void showOrderAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredOrderList().size());
 
-        Order order = model.getFilteredOrderList().get(targetIndex.getZeroBased());
-        final String[] splitName = order.getName().fullName.split("\\s+");
+        Request request = model.getFilteredOrderList().get(targetIndex.getZeroBased());
+        final String[] splitName = request.getName().fullName.split("\\s+");
         model.updateFilteredOrderList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredOrderList().size());
@@ -198,8 +198,8 @@ public class CommandTestUtil {
      * Deletes the first common in {@code model}'s filtered list from {@code model}'s address book.
      */
     public static void deleteFirstPerson(Model model) {
-        Order firstOrder = model.getFilteredOrderList().get(0);
-        model.deleteOrder(firstOrder);
+        Request firstRequest = model.getFilteredOrderList().get(0);
+        model.deleteOrder(firstRequest);
         model.commitOrderBook();
     }
 

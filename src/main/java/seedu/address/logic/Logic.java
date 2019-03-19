@@ -5,7 +5,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * API of the Logic component
@@ -24,7 +24,7 @@ public interface Logic {
     /**
      * Returns an unmodifiable view of the filtered list of request
      */
-    ObservableList<Order> getFilteredOrderList();
+    ObservableList<Request> getFilteredOrderList();
 
     /**
      * Returns an unmodifiable view of the filtered list of delivery men

@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Order}'s {@code Phone} matches any of the keywords given.
+ * Tests that a {@code Request}'s {@code Phone} matches any of the keywords given.
  */
-public class OrderPhoneContainsKeywordPredicate implements Predicate<Order> {
+public class OrderPhoneContainsKeywordPredicate implements Predicate<Request> {
     private final List<String> keywords;
 
     public OrderPhoneContainsKeywordPredicate(List<String> phone) {
@@ -15,9 +15,9 @@ public class OrderPhoneContainsKeywordPredicate implements Predicate<Order> {
     }
 
     @Override
-    public boolean test(Order order) {
+    public boolean test(Request request) {
         return keywords.stream()
-                .anyMatch(keyword -> order.getPhone().value.contains(keyword));
+                .anyMatch(keyword -> request.getPhone().value.contains(keyword));
     }
 
     @Override

@@ -14,7 +14,7 @@ ifndef::env-github[]
 image::images/Ui.png[width="600"]
 endif::[]
 
-Welcome to FoodZoom! FoodZoom is a desktop food delivery management application designed for food businesses to streamline their delivery process. FoodZoom is responsive and quick, allowing managers to plan routes for order delivery and dispatch them to delivery men using a Command Line Interface (CLI). The delivery men can also use this application to view their delivery routes and increase their efficiency.
+Welcome to FoodZoom! FoodZoom is a desktop food delivery management application designed for food businesses to streamline their delivery process. FoodZoom is responsive and quick, allowing managers to plan routes for request delivery and dispatch them to delivery men using a Command Line Interface (CLI). The delivery men can also use this application to view their delivery routes and increase their efficiency.
 
 Make your food delivery system more seamless today with FoodZoom!
 

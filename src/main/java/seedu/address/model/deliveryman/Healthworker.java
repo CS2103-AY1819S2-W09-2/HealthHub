@@ -11,7 +11,7 @@ import java.util.UUID;
 import seedu.address.model.TaggedObject;
 import seedu.address.model.common.Name;
 import seedu.address.model.deliveryman.exceptions.RequestLimitExceededException;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * Represents a Healthworker in FoodZoom.
@@ -19,27 +19,27 @@ import seedu.address.model.order.Order;
  */
 public class Healthworker extends TaggedObject {
 
-    /** Limit for amount of orders a healthworker can have at one point of time */
+    /** Limit for amount of requests a healthworker can have at one point of time */
     public static final int ORDERS_LIMIT = 5;
 
     private final Name name;
-    private final Set<Order> orders = new HashSet<>();
+    private final Set<Request> requests = new HashSet<>();
 
     public Healthworker(Name name) {
         this(null, name, null);
     }
 
-    public Healthworker(Name name, Set<Order> orders) {
-        this(null, name, orders);
+    public Healthworker(Name name, Set<Request> requests) {
+        this(null, name, requests);
     }
 
     /** This constructor is used when the {@code id} is specified. */
-    public Healthworker(UUID id, Name name, Set<Order> orders) {
+    public Healthworker(UUID id, Name name, Set<Request> requests) {
         super(id);
         requireAllNonNull(name);
         this.name = name;
-        if (orders != null) {
-            this.orders.addAll(orders);
+        if (requests != null) {
+            this.requests.addAll(requests);
         }
     }
 
@@ -47,38 +47,38 @@ public class Healthworker extends TaggedObject {
      * This constructor is used to create a new copy of {@code healthworker}.
      */
     public Healthworker(Healthworker healthworker) {
-        this(null, healthworker.name, healthworker.orders);
+        this(null, healthworker.name, healthworker.requests);
     }
 
     public Name getName() {
         return name;
     }
 
-    public Set<Order> getOrders() {
-        return orders;
+    public Set<Request> getRequests() {
+        return requests;
     }
 
     /**
-     * Adds {@code request} to the set of orders for the healthworker.
-     * Throws {@code RequestLimitExceededException} if the amount of orders assigned exceeds the limit for orders.
+     * Adds {@code request} to the set of requests for the healthworker.
+     * Throws {@code RequestLimitExceededException} if the amount of requests assigned exceeds the limit for requests.
      */
-    public void addOrder(Order order) throws RequestLimitExceededException {
-        if (orders.size() >= ORDERS_LIMIT) {
+    public void addOrder(Request request) throws RequestLimitExceededException {
+        if (requests.size() >= ORDERS_LIMIT) {
             throw new RequestLimitExceededException();
         }
-        orders.add(order);
+        requests.add(request);
     }
 
-    public boolean canAccommodate(Collection<Order> orders) {
-        return getOrders().size() + orders.size() <= ORDERS_LIMIT;
+    public boolean canAccommodate(Collection<Request> requests) {
+        return getRequests().size() + requests.size() <= ORDERS_LIMIT;
     }
 
-    public void removeOrder(Order order) {
-        orders.remove(order);
+    public void removeOrder(Request request) {
+        requests.remove(request);
     }
 
     public boolean hasOrders() {
-        return !orders.isEmpty();
+        return !requests.isEmpty();
     }
 
     /**

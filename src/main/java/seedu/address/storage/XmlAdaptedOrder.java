@@ -21,16 +21,16 @@ import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Food;
-import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderDate;
 import seedu.address.model.order.OrderStatus;
+import seedu.address.model.order.Request;
 
 /**
- * JAXB-friendly version of the Order.
+ * JAXB-friendly version of the Request.
  */
 public class XmlAdaptedOrder {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Request's %s field is missing!";
 
     @XmlAttribute (required = true)
     @XmlID
@@ -87,11 +87,11 @@ public class XmlAdaptedOrder {
     }
 
     /**
-     * Converts a given Order into this class for JAXB use.
+     * Converts a given Request into this class for JAXB use.
      *
      * @param source future changes to this will not affect the created XmlAdaptedOrder
      */
-    public XmlAdaptedOrder(Order source) {
+    public XmlAdaptedOrder(Request source) {
         tag = source.getTag().toString();
         name = source.getName().fullName;
         phone = source.getPhone().value;
@@ -107,11 +107,11 @@ public class XmlAdaptedOrder {
     }
 
     /**
-     * Converts this jaxb-friendly adapted request object into the model's Order object.
+     * Converts this jaxb-friendly adapted request object into the model's Request object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted request
      */
-    public Order toModelType() throws IllegalValueException {
+    public Request toModelType() throws IllegalValueException {
         final List<Food> foodStore = new ArrayList<>();
         for (XmlAdaptedFood foodItem : food) {
             foodStore.add(foodItem.toModelType());
@@ -184,7 +184,7 @@ public class XmlAdaptedOrder {
             modelHealthworker = new Healthworker(new Name(deliveryman));
         }
 
-        return new Order(modelTag, modelName, modelPhone, modelAddress, modelDate, orderStatus,
+        return new Request(modelTag, modelName, modelPhone, modelAddress, modelDate, orderStatus,
                 modelFood, modelHealthworker);
     }
 

@@ -5,9 +5,9 @@ import java.util.function.Predicate;
 
 
 /**
- * Tests that a {@code Order}'s {@code Date} matches any of the keywords given.
+ * Tests that a {@code Request}'s {@code Date} matches any of the keywords given.
  */
-public class OrderDateSinglePredicate implements Predicate<Order> {
+public class OrderDateSinglePredicate implements Predicate<Request> {
     private final Date keyword;
 
     public OrderDateSinglePredicate(Date date) {
@@ -15,8 +15,8 @@ public class OrderDateSinglePredicate implements Predicate<Order> {
     }
 
     @Override
-    public boolean test(Order order) {
-        return order.getDate().getDate().equals(keyword);
+    public boolean test(Request request) {
+        return request.getDate().getDate().equals(keyword);
     }
 
     @Override

@@ -17,7 +17,7 @@ import org.junit.Test;
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.model.Model;
 
-public class LoginCommandSystemTest extends OrderBookSystemTest {
+public class LoginCommandSystemTest extends RequestBookSystemTest {
 
 
     @Test

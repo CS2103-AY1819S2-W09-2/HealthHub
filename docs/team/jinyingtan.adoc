@@ -18,14 +18,14 @@ FoodZoom is a desktop application providing food businesses a delivery managemen
 
 ---
 * *Major enhancement*:
-**  Added the ability to *find for existing order/s*
-*** What it does: It allows the user to find for existing order in the list of orders with any order parameter that it was created with.
-*** Justification: This feature improve the ease for the user to look for the order in the potential long list of order they could have.
+**  Added the ability to *find for existing request/s*
+*** What it does: It allows the user to find for existing request in the list of requests with any request parameter that it was created with.
+*** Justification: This feature improve the ease for the user to look for the request in the potential long list of request they could have.
 *** Highlights: The enhancement changes the `INDEX` in the User Interface. Any command that relies on the `INDEX` needs keep this in mind.
 
-** Added the ability to *edit existing order*
-*** What it does: This feature allows the user to make amendments to any order they have created previous.
-*** Justification: As a user could add the order with the wrong parameter, this feature allows the user to make any edits to the order.
+** Added the ability to *edit existing request*
+*** What it does: This feature allows the user to make amendments to any request they have created previous.
+*** Justification: As a user could add the request with the wrong parameter, this feature allows the user to make any edits to the request.
 *** Highlights: This enhancement creates a new `Order` object and any future commands that need a reference to the original `Order` object need to be able to track a change in the object.
 
 * *Minor enhancement*: added a find command to search for existing healthworker

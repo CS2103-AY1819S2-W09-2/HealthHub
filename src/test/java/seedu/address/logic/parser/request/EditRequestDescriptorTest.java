@@ -15,7 +15,7 @@ import org.junit.Test;
 import seedu.address.logic.commands.request.EditCommand.EditOrderDescriptor;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
 
-public class EditOrderDescriptorTest {
+public class EditRequestDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true

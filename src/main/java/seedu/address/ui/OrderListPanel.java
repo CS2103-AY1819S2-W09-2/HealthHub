@@ -15,7 +15,7 @@ import seedu.address.commons.events.ui.BackToHomeEvent;
 import seedu.address.commons.events.ui.HealthWorkerPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.JumpToRequestListRequestEvent;
 import seedu.address.commons.events.ui.RequestPanelSelectionChangedEvent;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * Panel containing the list of orders.
@@ -25,17 +25,17 @@ public class OrderListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(OrderListPanel.class);
 
     @FXML
-    private ListView<Order> orderListView;
+    private ListView<Request> orderListView;
 
-    public OrderListPanel(ObservableList<Order> orderList) {
+    public OrderListPanel(ObservableList<Request> requestList) {
         super(FXML);
 
-        setConnections(orderList);
+        setConnections(requestList);
         registerAsAnEventHandler(this);
     }
 
-    private void setConnections(ObservableList<Order> orderList) {
-        orderListView.setItems(orderList);
+    private void setConnections(ObservableList<Request> requestList) {
+        orderListView.setItems(requestList);
         orderListView.setCellFactory(listView -> new OrderListViewCell());
         setEventHandlerForSelectionChangeEvent();
     }
@@ -77,18 +77,18 @@ public class OrderListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Order} using a {@code OrderCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Request} using a {@code OrderCard}.
      */
-    class OrderListViewCell extends ListCell<Order> {
+    class OrderListViewCell extends ListCell<Request> {
         @Override
-        protected void updateItem(Order order, boolean empty) {
-            super.updateItem(order, empty);
+        protected void updateItem(Request request, boolean empty) {
+            super.updateItem(request, empty);
 
-            if (empty || order == null) {
+            if (empty || request == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new OrderCard(order, getIndex() + 1).getRoot());
+                setGraphic(new OrderCard(request, getIndex() + 1).getRoot());
             }
         }
     }

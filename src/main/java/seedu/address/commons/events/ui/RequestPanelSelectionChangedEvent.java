@@ -1,7 +1,7 @@
 package seedu.address.commons.events.ui;
 
 import seedu.address.commons.events.BaseEvent;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * Represents a selection change in the Person List Panel
@@ -9,9 +9,9 @@ import seedu.address.model.order.Order;
 public class RequestPanelSelectionChangedEvent extends BaseEvent {
 
 
-    private final Order newSelection;
+    private final Request newSelection;
 
-    public RequestPanelSelectionChangedEvent(Order newSelection) {
+    public RequestPanelSelectionChangedEvent(Request newSelection) {
         this.newSelection = newSelection;
     }
 
@@ -20,7 +20,7 @@ public class RequestPanelSelectionChangedEvent extends BaseEvent {
         return getClass().getSimpleName();
     }
 
-    public Order getNewSelection() {
+    public Request getNewSelection() {
         return newSelection;
     }
 }

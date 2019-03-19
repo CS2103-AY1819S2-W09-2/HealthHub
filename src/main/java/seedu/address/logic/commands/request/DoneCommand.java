@@ -11,8 +11,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderStatus;
+import seedu.address.model.order.Request;
 
 /**
  * Mark an request as COMPLETED.
@@ -27,7 +27,7 @@ public class DoneCommand extends RequestCommand {
             + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1 ";
 
 
-    public static final String MESSAGE_COMPLETED_ORDER_SUCCESS = "Order %1$s have been completed.";
+    public static final String MESSAGE_COMPLETED_ORDER_SUCCESS = "Request %1$s have been completed.";
     public static final String MESSAGE_ONGOING_ORDER = "Only ONGOING status can be marked as completed.";
     public static final String MESSAGE_DELIVERYMAN_NOT_EXIST = "Healthworker does not exist inside healthworker list.";
 
@@ -41,32 +41,32 @@ public class DoneCommand extends RequestCommand {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        List<Order> lastShownList = model.getFilteredOrderList();
+        List<Request> lastShownList = model.getFilteredOrderList();
         List<Healthworker> lastShowHealthworkerList = model.getFilteredDeliverymenList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
-        Order orderToBeCompleted = lastShownList.get(targetIndex.getZeroBased());
+        Request requestToBeCompleted = lastShownList.get(targetIndex.getZeroBased());
 
-        if (!orderToBeCompleted.getOrderStatus().equals(new OrderStatus("ONGOING"))) {
+        if (!requestToBeCompleted.getOrderStatus().equals(new OrderStatus("ONGOING"))) {
             throw new CommandException(MESSAGE_ONGOING_ORDER);
         }
 
 
 
         //fetch healthworker from index because request's healthworker not reliable.
-        Healthworker healthworkerToRemoveOrder = orderToBeCompleted.getHealthworker();
+        Healthworker healthworkerToRemoveOrder = requestToBeCompleted.getHealthworker();
         Healthworker correctHealthworker = lastShowHealthworkerList.stream()
                 .filter(deliveryman -> deliveryman.equals(healthworkerToRemoveOrder))
                 .findFirst()
                 .orElseThrow(() -> new CommandException(MESSAGE_DELIVERYMAN_NOT_EXIST));
-        Healthworker updatedHealthworker = removeOrderFromDeliveryman(correctHealthworker, orderToBeCompleted);
+        Healthworker updatedHealthworker = removeOrderFromDeliveryman(correctHealthworker, requestToBeCompleted);
 
-        orderToBeCompleted.setStatusCompleted();
+        requestToBeCompleted.setStatusCompleted();
 
-        model.updateOrder(orderToBeCompleted, orderToBeCompleted);
+        model.updateOrder(requestToBeCompleted, requestToBeCompleted);
         model.updateFilteredOrderList(Model.PREDICATE_SHOW_ALL_ORDERS);
         model.commitOrderBook();
 
@@ -74,18 +74,18 @@ public class DoneCommand extends RequestCommand {
         model.updateFilteredDeliverymenList(Model.PREDICATE_SHOW_ALL_DELIVERYMEN);
         model.commitDeliverymenList();
 
-        return new CommandResult(String.format(MESSAGE_COMPLETED_ORDER_SUCCESS, orderToBeCompleted));
+        return new CommandResult(String.format(MESSAGE_COMPLETED_ORDER_SUCCESS, requestToBeCompleted));
     }
 
     /**
      * Remove request from healthworker.
      */
-    private static Healthworker removeOrderFromDeliveryman(Healthworker targetHealthworker, Order targetOrder) {
+    private static Healthworker removeOrderFromDeliveryman(Healthworker targetHealthworker, Request targetRequest) {
         assert targetHealthworker != null;
-        assert targetOrder != null;
+        assert targetRequest != null;
 
         Healthworker removedOrderHealthworker = new Healthworker(targetHealthworker);
-        removedOrderHealthworker.removeOrder(targetOrder);
+        removedOrderHealthworker.removeOrder(targetRequest);
 
         return removedOrderHealthworker;
     }

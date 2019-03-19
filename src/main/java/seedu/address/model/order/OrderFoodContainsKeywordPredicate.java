@@ -3,9 +3,9 @@ package seedu.address.model.order;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Order}'s {@code Food} matches any of the keywords given.
+ * Tests that a {@code Request}'s {@code Food} matches any of the keywords given.
  */
-public class OrderFoodContainsKeywordPredicate implements Predicate<Order> {
+public class OrderFoodContainsKeywordPredicate implements Predicate<Request> {
     private final String keyword;
 
     public OrderFoodContainsKeywordPredicate(String food) {
@@ -13,8 +13,8 @@ public class OrderFoodContainsKeywordPredicate implements Predicate<Order> {
     }
 
     @Override
-    public boolean test(Order order) {
-        return order.getFood().stream()
+    public boolean test(Request request) {
+        return request.getFood().stream()
                 .anyMatch(orderFood -> orderFood.foodName.toLowerCase().contains(keyword));
     }
 

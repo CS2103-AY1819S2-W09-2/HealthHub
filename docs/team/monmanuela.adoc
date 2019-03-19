@@ -14,7 +14,7 @@ contributions to one of my projects.
 
 FoodZoom is a food delivery management desktop application for food businesses to streamline their
 delivery process. FoodZoom is responsive and quick as users interact with the application by typing the
-commands (using Command Line Interface). FoodZoom allows managers to plan order delivery routes and
+commands (using Command Line Interface). FoodZoom allows managers to plan request delivery routes and
 dispatch them to deliverymen available. Deliverymen can also quickly view their assigned delivery routes and
 increase their efficiency. FoodZoom is built by me and 4 other Computer Science students.
 
@@ -28,20 +28,20 @@ image::Ui.png[width="800"]
 |Given below are contributions that I made to this application.
 |===
 
-* *Major enhancement*: added the ability to assign orders to a healthworker.
+* *Major enhancement*: added the ability to assign requests to a healthworker.
 
-** What it does: It allows the manager to assign multiple orders to a healthworker. Subsequently, the
-order status changes from `PENDING` to `ONGOING`, which means that it can no longer be edited or
+** What it does: It allows the manager to assign multiple requests to a healthworker. Subsequently, the
+request status changes from `PENDING` to `ONGOING`, which means that it can no longer be edited or
 reassigned to another healthworker.
 
-** Justification: This feature streamlines the food delivery process as the manager can assign orders
+** Justification: This feature streamlines the food delivery process as the manager can assign requests
 to be delivered by their deliverymen conveniently.
 
-** Highlights: The implementation was challenging as it required two-way association between the order and the healthworker.
+** Highlights: The implementation was challenging as it required two-way association between the request and the healthworker.
 
 * *Minor enhancements*:
 
-** Improved checking for the date of the order to prevent invalid dates.
+** Improved checking for the date of the request to prevent invalid dates.
 ** Modified command words of some commands to unify the patterns.
 
 * *Code contributions*: https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=monmanuela[RepoSense]

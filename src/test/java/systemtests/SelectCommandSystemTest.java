@@ -21,7 +21,7 @@ import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.logic.commands.request.SelectCommand;
 import seedu.address.model.Model;
 
-public class SelectCommandSystemTest extends OrderBookSystemTest {
+public class SelectCommandSystemTest extends RequestBookSystemTest {
     @Test
     public void select() {
 
@@ -132,7 +132,7 @@ public class SelectCommandSystemTest extends OrderBookSystemTest {
      * Verifications 1, 3 and 4 are performed by
      * {@code AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
      *
-     * @see OrderBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     * @see RequestBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {
         Model expectedModel = getModel();

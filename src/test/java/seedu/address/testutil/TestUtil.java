@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * A utility class for test cases.
@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the common in the {@code model}'s common list at {@code index}.
      */
-    public static Order getOrder(Model model, Index index) {
+    public static Request getOrder(Model model, Index index) {
         return model.getFilteredOrderList().get(index.getZeroBased());
     }
 }

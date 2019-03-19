@@ -26,9 +26,9 @@ import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Food;
-import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderDate;
 import seedu.address.model.order.OrderStatus;
+import seedu.address.model.order.Request;
 
 
 /**
@@ -39,24 +39,24 @@ public class EditCommand extends RequestCommand {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Edits the details of the request identified "
-            + "by the index number used in the displayed request book. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_FOOD + "FOOD]...\n"
-            + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_FOOD + "Roti Prata "
-            + PREFIX_FOOD + "Ice Milo";
+        + ": Edits the details of the request identified "
+        + "by the index number used in the displayed request book. "
+        + "Existing values will be overwritten by the input values.\n"
+        + "Parameters: INDEX (must be a positive integer) "
+        + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_PHONE + "PHONE] "
+        + "[" + PREFIX_ADDRESS + "ADDRESS] "
+        + "[" + PREFIX_DATE + "DATE] "
+        + "[" + PREFIX_FOOD + "FOOD]...\n"
+        + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1 "
+        + PREFIX_PHONE + "91234567 "
+        + PREFIX_FOOD + "Roti Prata "
+        + PREFIX_FOOD + "Ice Milo";
 
-    public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
+    public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Request: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ORDER = "This request already exists in the request book.";
-    public static final String MESSAGE_INVALID_ORDER_INDEX = "Invalid Order Index: %1$s";
+    public static final String MESSAGE_INVALID_ORDER_INDEX = "Invalid Request Index: %1$s";
 
     private final Index index;
     private final EditOrderDescriptor editOrderDescriptor;
@@ -73,56 +73,56 @@ public class EditCommand extends RequestCommand {
         this.editOrderDescriptor = new EditOrderDescriptor(editOrderDescriptor);
     }
 
+    /**
+     * Creates and returns a {@code Request} with the details of {@code requestToEdit}
+     * edited with {@code editOrderDescriptor}.
+     */
+    private static Request createEditedOrder(Request requestToEdit, EditOrderDescriptor editOrderDescriptor) {
+        assert requestToEdit != null;
+
+        Name updatedName = editOrderDescriptor.getName().orElse(requestToEdit.getName());
+        Phone updatedPhone = editOrderDescriptor.getPhone().orElse(requestToEdit.getPhone());
+        Address updatedAddress = editOrderDescriptor.getAddress().orElse(requestToEdit.getAddress());
+        OrderDate updatedDate = editOrderDescriptor.getDate().orElse(requestToEdit.getDate());
+        Set<Food> updatedFood = editOrderDescriptor.getFood().orElse(requestToEdit.getFood());
+        OrderStatus orderStatus = requestToEdit.getOrderStatus();
+        Healthworker healthworker = requestToEdit.getHealthworker();
+
+        return new Request(updatedName, updatedPhone, updatedAddress, updatedDate, orderStatus, updatedFood,
+            healthworker);
+    }
+
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        List<Order> lastShownList = model.getFilteredOrderList();
+        List<Request> lastShownList = model.getFilteredOrderList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
-        Order orderToEdit = lastShownList.get(index.getZeroBased());
-        Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor);
+        Request requestToEdit = lastShownList.get(index.getZeroBased());
+        Request editedRequest = createEditedOrder(requestToEdit, editOrderDescriptor);
 
 
-        if (!orderToEdit.isSameOrder(editedOrder) && model.hasOrder(editedOrder)) {
+        if (!requestToEdit.isSameOrder(editedRequest) && model.hasOrder(editedRequest)) {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);
         }
 
-        if (editedOrder.isCompleted()) {
+        if (editedRequest.isCompleted()) {
             throw new CommandException(Messages.MESSAGE_COMPLETED_ORDER);
         }
 
-        if (editedOrder.isAlreadyAssignedDeliveryman()) {
+        if (editedRequest.isAlreadyAssignedDeliveryman()) {
             throw new CommandException(String.format(Messages.MESSAGE_ORDER_ALREADY_ASSIGNED_TO_DELIVERYMAN,
-                    index.getOneBased(), editedOrder.getHealthworker()));
+                index.getOneBased(), editedRequest.getHealthworker()));
         }
 
-        model.updateOrder(orderToEdit, editedOrder);
+        model.updateOrder(requestToEdit, editedRequest);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         model.commitOrderBook();
-        return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder));
+        return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedRequest));
 
-    }
-
-    /**
-     * Creates and returns a {@code Order} with the details of {@code orderToEdit}
-     * edited with {@code editOrderDescriptor}.
-     */
-    private static Order createEditedOrder(Order orderToEdit, EditOrderDescriptor editOrderDescriptor) {
-        assert orderToEdit != null;
-
-        Name updatedName = editOrderDescriptor.getName().orElse(orderToEdit.getName());
-        Phone updatedPhone = editOrderDescriptor.getPhone().orElse(orderToEdit.getPhone());
-        Address updatedAddress = editOrderDescriptor.getAddress().orElse(orderToEdit.getAddress());
-        OrderDate updatedDate = editOrderDescriptor.getDate().orElse(orderToEdit.getDate());
-        Set<Food> updatedFood = editOrderDescriptor.getFood().orElse(orderToEdit.getFood());
-        OrderStatus orderStatus = orderToEdit.getOrderStatus();
-        Healthworker healthworker = orderToEdit.getHealthworker();
-
-        return new Order(updatedName, updatedPhone, updatedAddress, updatedDate, orderStatus, updatedFood,
-            healthworker);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class EditCommand extends RequestCommand {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editOrderDescriptor.equals(e.editOrderDescriptor);
+            && editOrderDescriptor.equals(e.editOrderDescriptor);
     }
 
     /**
@@ -176,44 +176,36 @@ public class EditCommand extends RequestCommand {
             return CollectionUtil.isAnyNonNull(name, phone, address, orderDate, food);
         }
 
-        public void setName(Name name) {
-            this.name = name;
-        }
-
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setName(Name name) {
+            this.name = name;
         }
 
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setPhone(Phone phone) {
+            this.phone = phone;
         }
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
 
-        public void setDate(OrderDate orderDate) {
-            this.orderDate = orderDate;
+        public void setAddress(Address address) {
+            this.address = address;
         }
 
         public Optional<OrderDate> getDate() {
             return Optional.ofNullable(orderDate);
         }
 
-        /**
-         * Sets {@code food} to this object's {@code food}.
-         * A defensive copy of {@code food} is used internally.
-         */
-        public void setFood(Set<Food> food) {
-            this.food = (food != null) ? new HashSet<>(food) : null;
+        public void setDate(OrderDate orderDate) {
+            this.orderDate = orderDate;
         }
 
         /**
@@ -223,6 +215,14 @@ public class EditCommand extends RequestCommand {
          */
         public Optional<Set<Food>> getFood() {
             return (food != null) ? Optional.of(Collections.unmodifiableSet(food)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code food} to this object's {@code food}.
+         * A defensive copy of {@code food} is used internally.
+         */
+        public void setFood(Set<Food> food) {
+            this.food = (food != null) ? new HashSet<>(food) : null;
         }
 
         @Override
@@ -241,10 +241,10 @@ public class EditCommand extends RequestCommand {
             EditOrderDescriptor e = (EditOrderDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getAddress().equals(e.getAddress())
-                    && getDate().equals(e.getDate())
-                    && getFood().equals(e.getFood());
+                && getPhone().equals(e.getPhone())
+                && getAddress().equals(e.getAddress())
+                && getDate().equals(e.getDate())
+                && getFood().equals(e.getFood());
         }
     }
 }

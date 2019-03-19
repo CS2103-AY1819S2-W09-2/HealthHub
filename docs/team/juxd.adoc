@@ -13,7 +13,7 @@ recent team project, FoodZoom.
 
 FoodZoom is a desktop food delivery management application designed for
 food businesses to streamline their delivery process. FoodZoom is
-responsive and quick, allowing managers to plan routes for order
+responsive and quick, allowing managers to plan routes for request
 delivery and dispatch them to delivery men using the Command Line
 Interface (CLI). The delivery men can also use this application to view
 their delivery routes and increase their efficiency. FoodZoom is built
@@ -33,13 +33,13 @@ image::Ui.png[width="800"]
 
 * *Major enhancement*: Added deliverymen into the application.
 
-** _What it does_: Managers can add, delete or assign order deliveries
+** _What it does_: Managers can add, delete or assign request deliveries
 to the deliverymen with this feature. Managers can also see and monitor
 the activity of the deliverymen from the main screen.
 
 ** _Justification_: This feature provides managers the ability to manage
-healthworker independently from orders, giving them added control over
-their order deliveries.
+healthworker independently from requests, giving them added control over
+their request deliveries.
 
 ** _Highlights_: This enhancement adds new commands into the
 application, and requires in-depth analysis of design analysis with

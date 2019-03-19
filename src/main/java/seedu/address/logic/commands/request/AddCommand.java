@@ -11,7 +11,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * Adds an request to the request book.
@@ -39,14 +39,14 @@ public class AddCommand extends RequestCommand {
     public static final String MESSAGE_SUCCESS = "New request added: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This request already exists in the request book";
 
-    private final Order toAdd;
+    private final Request toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Order}
+     * Creates an AddCommand to add the specified {@code Request}
      */
-    public AddCommand(Order order) {
-        requireNonNull(order);
-        toAdd = order;
+    public AddCommand(Request request) {
+        requireNonNull(request);
+        toAdd = request;
 
     }
 

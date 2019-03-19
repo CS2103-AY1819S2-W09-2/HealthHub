@@ -28,7 +28,7 @@ import seedu.address.logic.commands.request.EditCommand.EditOrderDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
 import seedu.address.testutil.OrderBuilder;
 
@@ -42,15 +42,15 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Order editedOrder = new OrderBuilder().build();
-        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedOrder).build();
+        Request editedRequest = new OrderBuilder().build();
+        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedRequest).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedRequest);
 
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
                 model.getDeliverymenList(), new UserPrefs());
-        expectedModel.updateOrder(model.getFilteredOrderList().get(0), editedOrder);
+        expectedModel.updateOrder(model.getFilteredOrderList().get(0), editedRequest);
         expectedModel.commitOrderBook();
 
         assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
@@ -59,21 +59,21 @@ public class EditCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastOrder = Index.fromOneBased(model.getFilteredOrderList().size());
-        Order lastOrder = model.getFilteredOrderList().get(indexLastOrder.getZeroBased());
+        Request lastRequest = model.getFilteredOrderList().get(indexLastOrder.getZeroBased());
 
-        OrderBuilder orderInList = new OrderBuilder(lastOrder);
-        Order editedOrder = orderInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        OrderBuilder orderInList = new OrderBuilder(lastRequest);
+        Request editedRequest = orderInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withFood(VALID_FOOD_BURGER).build();
 
         EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withFood(VALID_FOOD_BURGER).build();
         EditCommand editCommand = new EditCommand(indexLastOrder, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedRequest);
 
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
                 model.getDeliverymenList(), new UserPrefs());
-        expectedModel.updateOrder(lastOrder, editedOrder);
+        expectedModel.updateOrder(lastRequest, editedRequest);
         expectedModel.commitOrderBook();
 
         assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
@@ -82,9 +82,9 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST, new EditOrderDescriptor());
-        Order editedOrder = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+        Request editedRequest = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedRequest);
 
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
                 model.getDeliverymenList(), new UserPrefs());
@@ -97,16 +97,16 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showOrderAtIndex(model, INDEX_FIRST);
 
-        Order orderInFilteredList = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
-        Order editedOrder = new OrderBuilder(orderInFilteredList).withName(VALID_NAME_BOB).build();
+        Request requestInFilteredList = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+        Request editedRequest = new OrderBuilder(requestInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST,
                 new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedRequest);
 
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
                 model.getDeliverymenList(), new UserPrefs());
-        expectedModel.updateOrder(model.getFilteredOrderList().get(0), editedOrder);
+        expectedModel.updateOrder(model.getFilteredOrderList().get(0), editedRequest);
         expectedModel.commitOrderBook();
 
         assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
@@ -114,8 +114,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicateOrderUnfilteredList_failure() {
-        Order firstOrder = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
-        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(firstOrder).build();
+        Request firstRequest = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(firstRequest).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND, descriptor);
 
         assertCommandFailure(editCommand, model, commandHistory, EditCommand.MESSAGE_DUPLICATE_ORDER);
@@ -126,9 +126,9 @@ public class EditCommandTest {
         showOrderAtIndex(model, INDEX_FIRST);
 
         // edit request in filtered list into a duplicate in request book
-        Order orderInList = model.getOrderBook().getOrderList().get(INDEX_SECOND.getZeroBased());
+        Request requestInList = model.getOrderBook().getOrderList().get(INDEX_SECOND.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST,
-                new EditOrderDescriptorBuilder(orderInList).build());
+                new EditOrderDescriptorBuilder(requestInList).build());
 
         assertCommandFailure(editCommand, model, commandHistory, EditCommand.MESSAGE_DUPLICATE_ORDER);
     }
@@ -162,13 +162,13 @@ public class EditCommandTest {
 
     @Test
     public void executeUndoRedo_validIndexUnfilteredList_success() throws Exception {
-        Order editedOrder = new OrderBuilder().build();
-        Order orderToEdit = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
-        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedOrder).build();
+        Request editedRequest = new OrderBuilder().build();
+        Request requestToEdit = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedRequest).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST, descriptor);
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
                 model.getDeliverymenList(), new UserPrefs());
-        expectedModel.updateOrder(orderToEdit, editedOrder);
+        expectedModel.updateOrder(requestToEdit, editedRequest);
         expectedModel.commitOrderBook();
 
         // edit -> first request edited
@@ -187,15 +187,15 @@ public class EditCommandTest {
 
     @Test
     public void executeUndoRedo_validIndexFilteredList_sameOrderEdited() throws Exception {
-        Order editedOrder = new OrderBuilder().build();
-        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedOrder).build();
+        Request editedRequest = new OrderBuilder().build();
+        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedRequest).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST, descriptor);
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
                 model.getDeliverymenList(), new UserPrefs());
 
         showOrderAtIndex(model, INDEX_SECOND);
-        Order orderToEdit = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
-        expectedModel.updateOrder(orderToEdit, editedOrder);
+        Request requestToEdit = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+        expectedModel.updateOrder(requestToEdit, editedRequest);
         expectedModel.commitOrderBook();
 
         // edit -> edits second request in unfiltered request list / first request in filtered request list

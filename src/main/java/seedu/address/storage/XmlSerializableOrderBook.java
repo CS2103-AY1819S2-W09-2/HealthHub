@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.OrderBook;
 import seedu.address.model.ReadOnlyOrderBook;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * An Immutable OrderBook that is serializable to XML format
@@ -46,11 +46,11 @@ public class XmlSerializableOrderBook {
     public OrderBook toModelType() throws IllegalValueException {
         OrderBook orderBook = new OrderBook();
         for (XmlAdaptedOrder o : orders) {
-            Order order = o.toModelType();
-            if (orderBook.hasOrder(order)) {
+            Request request = o.toModelType();
+            if (orderBook.hasOrder(request)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ORDER);
             }
-            orderBook.addOrder(order);
+            orderBook.addOrder(request);
         }
         return orderBook;
     }

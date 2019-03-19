@@ -15,7 +15,7 @@ import org.junit.Test;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.model.order.OrderNameContainsKeywordPredicate;
 
 public class RequestPredicateUtilTest {
@@ -31,10 +31,10 @@ public class RequestPredicateUtilTest {
     @Test
     public void test_singleValidPredicate_returnsTrue() throws ParseException {
         String name = "alex";
-        Predicate<Order> expectedPredicate = new OrderNameContainsKeywordPredicate(name);
+        Predicate<Request> expectedPredicate = new OrderNameContainsKeywordPredicate(name);
 
         ArgumentMultimap argMultimap = tokenizeInput(" n/alex");
-        Predicate<Order> predicate = new RequestPredicateUtil().parsePredicate(argMultimap);
+        Predicate<Request> predicate = new RequestPredicateUtil().parsePredicate(argMultimap);
 
         assertEquals(predicate, expectedPredicate);
     }
@@ -51,7 +51,7 @@ public class RequestPredicateUtilTest {
     private void assertParseFailure(String userInput, String expectedMessage) {
         try {
             ArgumentMultimap emptyField = tokenizeInput(userInput);
-            Predicate<Order> predicate = new RequestPredicateUtil().parsePredicate(emptyField);
+            Predicate<Request> predicate = new RequestPredicateUtil().parsePredicate(emptyField);
             throw new AssertionError("The expected ParseException was not thrown.");
         } catch (ParseException pe) {
             assertEquals(String.format(expectedMessage, userInput.trim()), pe.getMessage());

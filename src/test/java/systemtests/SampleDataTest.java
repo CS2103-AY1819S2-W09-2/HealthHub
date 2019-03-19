@@ -15,11 +15,11 @@ import org.junit.Test;
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.model.OrderBook;
 import seedu.address.model.deliveryman.HealthworkerList;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.TestUtil;
 
-public class SampleDataTest extends OrderBookSystemTest {
+public class SampleDataTest extends RequestBookSystemTest {
     /**
      * Returns null to force test app to load data of the file in {@code getDataFileLocation()}.
      */
@@ -65,7 +65,7 @@ public class SampleDataTest extends OrderBookSystemTest {
         executeCommand(command);
         setUpOrderListPanel();
 
-        Order[] expectedList = SampleDataUtil.getSampleOrders();
+        Request[] expectedList = SampleDataUtil.getSampleOrders();
         assertListMatching(getOrderListPanel(), expectedList);
     }
 }

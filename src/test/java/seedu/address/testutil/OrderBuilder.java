@@ -9,13 +9,13 @@ import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Food;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.model.order.OrderDate;
 import seedu.address.model.order.OrderStatus;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Order objects.
+ * A utility class to help with building Request objects.
  */
 public class OrderBuilder {
 
@@ -46,21 +46,21 @@ public class OrderBuilder {
     }
 
     /**
-     * Initializes the OrderBuilder with the data of {@code orderToCopy}.
+     * Initializes the OrderBuilder with the data of {@code requestToCopy}.
      */
-    public OrderBuilder(Order orderToCopy) {
-        id = orderToCopy.getTag();
-        name = orderToCopy.getName();
-        phone = orderToCopy.getPhone();
-        address = orderToCopy.getAddress();
-        date = orderToCopy.getDate();
-        status = orderToCopy.getOrderStatus();
-        food = new HashSet<>(orderToCopy.getFood());
-        healthworker = orderToCopy.getHealthworker();
+    public OrderBuilder(Request requestToCopy) {
+        id = requestToCopy.getTag();
+        name = requestToCopy.getName();
+        phone = requestToCopy.getPhone();
+        address = requestToCopy.getAddress();
+        date = requestToCopy.getDate();
+        status = requestToCopy.getOrderStatus();
+        food = new HashSet<>(requestToCopy.getFood());
+        healthworker = requestToCopy.getHealthworker();
     }
 
     /**
-     * Sets the {@code id} of the {@code Order} that we are building
+     * Sets the {@code id} of the {@code Request} that we are building
      *
      * @param id
      */
@@ -70,7 +70,7 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Order} that we are building.
+     * Sets the {@code Name} of the {@code Request} that we are building.
      */
     public OrderBuilder withName(String name) {
         this.name = new Name(name);
@@ -78,7 +78,7 @@ public class OrderBuilder {
     }
 
     /**
-     * Parses the {@code food} into a {@code Set<Food>} and set it to the {@code Order} that we are building.
+     * Parses the {@code food} into a {@code Set<Food>} and set it to the {@code Request} that we are building.
      */
     public OrderBuilder withFood(String... food) {
         this.food = SampleDataUtil.getFoodSet(food);
@@ -94,7 +94,7 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the {@code Date} of the {@code Order} that we are building.
+     * Sets the {@code Date} of the {@code Request} that we are building.
      */
     public OrderBuilder withDate(String orderDate) {
         this.date = new OrderDate(orderDate);
@@ -102,7 +102,7 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Order} that we are building.
+     * Sets the {@code Phone} of the {@code Request} that we are building.
      */
     public OrderBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -110,7 +110,7 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the {@code Status} of the {@code Order} that we are building.
+     * Sets the {@code Status} of the {@code Request} that we are building.
      */
     public OrderBuilder withStatus(String status) {
         this.status = new OrderStatus(status);
@@ -118,7 +118,7 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the {@code Healthworker} of the {@code Order} that we are building.
+     * Sets the {@code Healthworker} of the {@code Request} that we are building.
      */
     public OrderBuilder withDeliveryman(Healthworker healthworker) {
         this.healthworker = healthworker;
@@ -128,11 +128,11 @@ public class OrderBuilder {
     /**
      * Builds and returns an request.
      */
-    public Order build() {
+    public Request build() {
         if (id != null) {
-            return new Order(id, name, phone, address, date, status, food, healthworker);
+            return new Request(id, name, phone, address, date, status, food, healthworker);
         } else {
-            return new Order(name, phone, address, date, status, food);
+            return new Request(name, phone, address, date, status, food);
         }
     }
 

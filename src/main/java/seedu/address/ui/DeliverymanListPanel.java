@@ -77,7 +77,7 @@ public class DeliverymanListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Order} using a {@code OrderCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Request} using a {@code OrderCard}.
      */
     class DeliveryManListViewCell extends ListCell<Healthworker> {
         @Override

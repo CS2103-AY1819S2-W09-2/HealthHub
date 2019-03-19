@@ -14,7 +14,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 
 /**
- * An UI component that displays a map along with placeholders for pending {@code Order}.
+ * An UI component that displays a map along with placeholders for pending {@code Request}.
  */
 public class MapPanel extends UiPart<Region> {
 

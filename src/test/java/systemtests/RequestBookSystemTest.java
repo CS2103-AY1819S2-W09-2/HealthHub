@@ -46,7 +46,7 @@ import seedu.address.ui.CommandBox;
  * A system test class for OrderBook, which provides access to handles of GUI components and helper methods
  * for test verification.
  */
-public abstract class OrderBookSystemTest {
+public abstract class RequestBookSystemTest {
     @ClassRule
     public static ClockRule clockRule = new ClockRule();
     private static final List<String> COMMAND_BOX_DEFAULT_STYLE = Arrays.asList("text-input", "text-field");

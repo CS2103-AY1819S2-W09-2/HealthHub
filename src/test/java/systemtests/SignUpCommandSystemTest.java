@@ -31,7 +31,7 @@ import seedu.address.model.Model;
 import seedu.address.model.user.User;
 import seedu.address.testutil.user.UserBuilder;
 
-public class SignUpCommandSystemTest extends OrderBookSystemTest {
+public class SignUpCommandSystemTest extends RequestBookSystemTest {
 
     private String signupCommand = SignUpCommand.COMMAND_WORD + " ";
 

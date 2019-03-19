@@ -39,12 +39,12 @@ import seedu.address.model.Model;
 import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.model.order.OrderDate;
 import seedu.address.testutil.OrderBuilder;
 import seedu.address.testutil.OrderUtil;
 
-public class AddCommandSystemTest extends OrderBookSystemTest {
+public class AddCommandSystemTest extends RequestBookSystemTest {
 
     @Test
     public void add() {
@@ -62,7 +62,7 @@ public class AddCommandSystemTest extends OrderBookSystemTest {
         /* Case: add an request to a non-empty address book, command with leading spaces and trailing spaces
          * -> added
          */
-        Order toAdd = new OrderBuilder(AMY).build();
+        Request toAdd = new OrderBuilder(AMY).build();
         String addCommand = RequestCommand.COMMAND_WORD + " " + AddCommand.COMMAND_WORD;
         command = "   " + addCommand + "  " + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " "
                 + "   " + ADDRESS_DESC_AMY + "   " + DATE_DESC_AMY + "  " + FOOD_DESC_BURGER + " ";
@@ -164,19 +164,19 @@ public class AddCommandSystemTest extends OrderBookSystemTest {
      * 5. Browser url and selected card remain unchanged.<br>
      * 6. Status bar's sync status changes.<br>
      * Verifications 1, 3 and 4 are performed by
-     * {@code OrderBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * {@code RequestBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
      *
-     * @see OrderBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     * @see RequestBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
-    private void assertCommandSuccess(Order toAdd) {
+    private void assertCommandSuccess(Request toAdd) {
         assertCommandSuccess(RequestCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(toAdd), toAdd);
     }
 
     /**
-     * Performs the same verification as {@code assertCommandSuccess(Order)}. Executes {@code command}
+     * Performs the same verification as {@code assertCommandSuccess(Request)}. Executes {@code command}
      * instead.
      */
-    private void assertCommandSuccess(String command, Order toAdd) {
+    private void assertCommandSuccess(String command, Request toAdd) {
         Model expectedModel = getModel();
         expectedModel.addOrder(toAdd);
         String expectedResultMessage = String.format(AddCommand.MESSAGE_SUCCESS, toAdd);
@@ -191,7 +191,7 @@ public class AddCommandSystemTest extends OrderBookSystemTest {
      * 2. {@code Storage} and {@code PersonListPanel} equal to the corresponding components in
      * {@code expectedModel}.<br>
      *
-     * @see AddCommandSystemTest#assertCommandSuccess(String, Order)
+     * @see AddCommandSystemTest#assertCommandSuccess(String, Request)
      */
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage) {
         executeCommand(command);
@@ -210,9 +210,9 @@ public class AddCommandSystemTest extends OrderBookSystemTest {
      * 4. {@code Storage} and {@code PersonListPanel} remain unchanged.<br>
      * 5. Browser url and status bar remain unchanged.<br>
      * Verifications 1, 3 and 4 are performed by
-     * {@code OrderBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * {@code RequestBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
      *
-     * @see OrderBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     * @see RequestBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {
         Model expectedModel = getModel();

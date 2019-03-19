@@ -12,7 +12,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * Selects an request identified using it's displayed index from the request book.
@@ -26,7 +26,7 @@ public class SelectCommand extends RequestCommand {
         + "Parameters: INDEX (must be a positive integer)\n"
         + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SELECT_ORDER_SUCCESS = "Selected Order: %1$s";
+    public static final String MESSAGE_SELECT_ORDER_SUCCESS = "Selected Request: %1$s";
 
     private final Index targetIndex;
 
@@ -38,9 +38,9 @@ public class SelectCommand extends RequestCommand {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        List<Order> filteredOrderList = model.getFilteredOrderList();
+        List<Request> filteredRequestList = model.getFilteredOrderList();
 
-        if (targetIndex.getZeroBased() >= filteredOrderList.size()) {
+        if (targetIndex.getZeroBased() >= filteredRequestList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 

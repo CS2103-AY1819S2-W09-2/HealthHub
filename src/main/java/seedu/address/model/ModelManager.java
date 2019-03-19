@@ -20,7 +20,7 @@ import seedu.address.commons.events.ui.BackToHomeEvent;
 import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.deliveryman.HealthworkerList;
 import seedu.address.model.deliveryman.VersionedHealthworkerList;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.model.user.User;
 import seedu.address.model.user.UserSession;
 
@@ -32,7 +32,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final VersionedOrderBook versionedOrderBook;
     private final VersionedUsersList versionedUsersList;
-    private final FilteredList<Order> filteredOrders;
+    private final FilteredList<Request> filteredRequests;
     private final FilteredList<User> filteredUsers;
 
     private final VersionedHealthworkerList versionedHealthworkerList;
@@ -56,7 +56,7 @@ public class ModelManager extends ComponentManager implements Model {
         versionedOrderBook = new VersionedOrderBook(orderBook);
         versionedUsersList = new VersionedUsersList(usersList);
         versionedHealthworkerList = new VersionedHealthworkerList(healthworkerList);
-        filteredOrders = new FilteredList<>(versionedOrderBook.getOrderList());
+        filteredRequests = new FilteredList<>(versionedOrderBook.getOrderList());
         filteredUsers = new FilteredList<>(versionedUsersList.getUserList());
         filteredDeliverymen = new FilteredList<>(versionedHealthworkerList.getDeliverymenList());
 
@@ -126,29 +126,29 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public boolean hasOrder(Order order) {
-        requireNonNull(order);
-        return versionedOrderBook.hasOrder(order);
+    public boolean hasOrder(Request request) {
+        requireNonNull(request);
+        return versionedOrderBook.hasOrder(request);
     }
 
     @Override
-    public void deleteOrder(Order target) {
+    public void deleteOrder(Request target) {
         versionedOrderBook.removeOrder(target);
         indicateAppChanged();
     }
 
     @Override
-    public void addOrder(Order order) {
-        versionedOrderBook.addOrder(order);
+    public void addOrder(Request request) {
+        versionedOrderBook.addOrder(request);
         updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         indicateAppChanged();
     }
 
     @Override
-    public void updateOrder(Order target, Order editedOrder) {
-        requireAllNonNull(target, editedOrder);
+    public void updateOrder(Request target, Request editedRequest) {
+        requireAllNonNull(target, editedRequest);
 
-        versionedOrderBook.updateOrder(target, editedOrder);
+        versionedOrderBook.updateOrder(target, editedRequest);
         indicateAppChanged();
     }
 
@@ -183,18 +183,18 @@ public class ModelManager extends ComponentManager implements Model {
     //=========== Filtered Orders List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Request} backed by the internal list of
      * {@code versionedOrderBook}
      */
     @Override
-    public ObservableList<Order> getFilteredOrderList() {
-        return FXCollections.unmodifiableObservableList(filteredOrders);
+    public ObservableList<Request> getFilteredOrderList() {
+        return FXCollections.unmodifiableObservableList(filteredRequests);
     }
 
     @Override
-    public void updateFilteredOrderList(Predicate<Order> predicate) {
+    public void updateFilteredOrderList(Predicate<Request> predicate) {
         requireNonNull(predicate);
-        filteredOrders.setPredicate(predicate);
+        filteredRequests.setPredicate(predicate);
         EventsCenter.getInstance().post(new BackToHomeEvent());
     }
 
@@ -351,7 +351,7 @@ public class ModelManager extends ComponentManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return versionedOrderBook.equals(other.versionedOrderBook)
-            && filteredOrders.equals(other.filteredOrders)
+            && filteredRequests.equals(other.filteredRequests)
             && versionedUsersList.equals(other.versionedUsersList)
             && filteredUsers.equals(other.filteredUsers)
             && versionedHealthworkerList.equals(other.versionedHealthworkerList)

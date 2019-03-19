@@ -6,9 +6,9 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Order}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Request}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Order> {
+public class NameContainsKeywordsPredicate implements Predicate<Request> {
     private final List<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
@@ -16,9 +16,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Order> {
     }
 
     @Override
-    public boolean test(Order order) {
+    public boolean test(Request request) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(order.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(request.getName().fullName, keyword));
     }
 
     @Override

@@ -22,7 +22,7 @@ import seedu.address.model.ReadOnlyOrderBook;
 import seedu.address.model.ReadOnlyUsersList;
 import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.deliveryman.HealthworkerList;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.model.user.User;
 import seedu.address.testutil.DeliverymanBuilder;
 
@@ -97,7 +97,7 @@ public class AddHealthWorkerCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public void addOrder(Order order) {
+        public void addOrder(Request request) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -127,27 +127,27 @@ public class AddHealthWorkerCommandTest {
         }
 
         @Override
-        public boolean hasOrder(Order order) {
+        public boolean hasOrder(Request request) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteOrder(Order target) {
+        public void deleteOrder(Request target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateOrder(Order target, Order editedOrder) {
+        public void updateOrder(Request target, Request editedRequest) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Order> getFilteredOrderList() {
+        public ObservableList<Request> getFilteredOrderList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredOrderList(Predicate<Order> predicate) {
+        public void updateFilteredOrderList(Predicate<Request> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

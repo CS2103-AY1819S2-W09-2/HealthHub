@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import seedu.address.testutil.OrderBuilder;
 
-public class OrderAddressContainsKeywordPredicateTest {
+public class RequestAddressContainsKeywordPredicateTest {
 
     @Test
     public void equals() {

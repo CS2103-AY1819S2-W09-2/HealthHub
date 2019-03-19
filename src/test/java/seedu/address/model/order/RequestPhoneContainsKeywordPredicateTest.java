@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import seedu.address.testutil.OrderBuilder;
 
-public class OrderPhoneContainsKeywordPredicateTest {
+public class RequestPhoneContainsKeywordPredicateTest {
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("91122113");

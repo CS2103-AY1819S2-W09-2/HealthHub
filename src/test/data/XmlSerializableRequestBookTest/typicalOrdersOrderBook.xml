@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!-- OrderBook save file which contains the same Order values as in TypicalOrders#getTypicalOrderBook() -->
+<!-- OrderBook save file which contains the same Request values as in TypicalOrders#getTypicalOrderBook() -->
 <orderbook>
     <orders tag="92c54d56-e971-407a-81e7-5df71c3c82fc">
         <name>Alice Pauline</name>

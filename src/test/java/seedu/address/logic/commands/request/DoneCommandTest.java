@@ -24,7 +24,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.testutil.OrderBuilder;
 
 public class DoneCommandTest {
@@ -40,9 +40,9 @@ public class DoneCommandTest {
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST, ordersSet);
         assignCommand.execute(model, commandHistory);
 
-        Order expectedOrder = new OrderBuilder(ALICE).withStatus("COMPLETED").build();
+        Request expectedRequest = new OrderBuilder(ALICE).withStatus("COMPLETED").build();
 
-        String expectedMessage = String.format(DoneCommand.MESSAGE_COMPLETED_ORDER_SUCCESS, expectedOrder);
+        String expectedMessage = String.format(DoneCommand.MESSAGE_COMPLETED_ORDER_SUCCESS, expectedRequest);
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST);
         assertCommandSuccess(doneCommand, model, commandHistory, expectedMessage);
     }

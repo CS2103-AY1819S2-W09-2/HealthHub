@@ -20,7 +20,7 @@ import seedu.address.model.order.exceptions.DuplicateRequestException;
 import seedu.address.model.order.exceptions.RequestNotFoundException;
 import seedu.address.testutil.OrderBuilder;
 
-public class UniqueOrderListTest {
+public class UniqueRequestListTest {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -47,7 +47,7 @@ public class UniqueOrderListTest {
     @Test
     public void contains_orderWithSameIdentityFieldsInList_returnsTrue() {
         uniqueOrderList.add(ALICE);
-        Order editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
+        Request editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
                 .build();
         assertTrue(uniqueOrderList.contains(editedAlice));
     }
@@ -95,7 +95,7 @@ public class UniqueOrderListTest {
     @Test
     public void setOrder_editedOrderHasSameIdentity_success() {
         uniqueOrderList.add(ALICE);
-        Order editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
+        Request editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withFood(VALID_FOOD_BURGER)
                 .build();
         uniqueOrderList.setOrder(ALICE, editedAlice);
         UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
@@ -158,14 +158,14 @@ public class UniqueOrderListTest {
     @Test
     public void setOrder_nullList_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        uniqueOrderList.setOrder((List<Order>) null);
+        uniqueOrderList.setOrder((List<Request>) null);
     }
 
     @Test
     public void setOrder_list_replacesOwnListWithProvidedList() {
         uniqueOrderList.add(ALICE);
-        List<Order> orderList = Collections.singletonList(BOB);
-        uniqueOrderList.setOrder(orderList);
+        List<Request> requestList = Collections.singletonList(BOB);
+        uniqueOrderList.setOrder(requestList);
         UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
         expectedUniqueOrderList.add(BOB);
         assertEquals(expectedUniqueOrderList, uniqueOrderList);
@@ -173,7 +173,7 @@ public class UniqueOrderListTest {
 
     @Test
     public void setOrder_listWithDuplicateOrders_throwsDuplicatePersonException() {
-        List<Order> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
+        List<Request> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
         thrown.expect(DuplicateRequestException.class);
         uniqueOrderList.setOrder(listWithDuplicatePersons);
     }

@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import seedu.address.testutil.OrderBuilder;
 
-public class OrderFoodContainsKeywordPredicateTest {
+public class RequestFoodContainsKeywordPredicateTest {
     @Test
     public void equals() {
         String firstPredicateKeyword = "first";

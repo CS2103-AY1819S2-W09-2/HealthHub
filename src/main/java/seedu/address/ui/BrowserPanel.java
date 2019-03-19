@@ -13,7 +13,7 @@ import javafx.scene.web.WebView;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.RequestPanelSelectionChangedEvent;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * The Browser Panel of the App.
@@ -41,8 +41,8 @@ public class BrowserPanel extends UiPart<Region> {
         registerAsAnEventHandler(this);
     }
 
-    private void loadOrderPage(Order order) {
-        loadPage(SEARCH_PAGE_URL + order.getName().fullName);
+    private void loadOrderPage(Request request) {
+        loadPage(SEARCH_PAGE_URL + request.getName().fullName);
     }
 
     public void loadPage(String url) {

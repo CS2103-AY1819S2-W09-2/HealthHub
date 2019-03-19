@@ -13,7 +13,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.testutil.OrderBuilder;
 
 /**
@@ -32,20 +32,20 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newOrder_success() {
-        Order validOrder = new OrderBuilder().build();
+        Request validRequest = new OrderBuilder().build();
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
                 model.getDeliverymenList(), new UserPrefs());
-        expectedModel.addOrder(validOrder);
+        expectedModel.addOrder(validRequest);
         expectedModel.commitOrderBook();
 
-        assertCommandSuccess(new AddCommand(validOrder), model, commandHistory,
-                String.format(AddCommand.MESSAGE_SUCCESS, validOrder), expectedModel);
+        assertCommandSuccess(new AddCommand(validRequest), model, commandHistory,
+                String.format(AddCommand.MESSAGE_SUCCESS, validRequest), expectedModel);
     }
 
     @Test
     public void execute_duplicateOrder_throwsCommandException() {
-        Order orderInList = model.getOrderBook().getOrderList().get(0);
-        assertCommandFailure(new AddCommand(orderInList), model, commandHistory,
+        Request requestInList = model.getOrderBook().getOrderList().get(0);
+        assertCommandFailure(new AddCommand(requestInList), model, commandHistory,
                 AddCommand.MESSAGE_DUPLICATE_ORDER);
     }
 

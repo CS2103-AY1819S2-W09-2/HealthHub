@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.testutil.Assert;
 import seedu.address.testutil.OrderBuilder;
 
@@ -29,8 +29,8 @@ public class AddressTest {
             "Block 546, 100000", "Triad Street, 123456"};
 
         for (int i = 0; i < directory.length; i++) {
-            Order order = new OrderBuilder().withAddress(directory[i]).build();
-            assertTrue(order.getAddress().getPostalCode().equals(postalCodes[i]));
+            Request request = new OrderBuilder().withAddress(directory[i]).build();
+            assertTrue(request.getAddress().getPostalCode().equals(postalCodes[i]));
         }
 
     }

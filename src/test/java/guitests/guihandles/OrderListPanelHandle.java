@@ -6,19 +6,19 @@ import java.util.Set;
 
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * Provides a handle for {@code OrderListPanel} containing the list of {@code OrderCard}.
  */
-public class OrderListPanelHandle extends NodeHandle<ListView<Order>> {
+public class OrderListPanelHandle extends NodeHandle<ListView<Request>> {
     public static final String ORDER_LIST_VIEW_ID = "#orderListView";
 
     private static final String CARD_PANE_ID = "#cardPane";
 
-    private Optional<Order> lastRememberedSelectedOrderCard;
+    private Optional<Request> lastRememberedSelectedOrderCard;
 
-    public OrderListPanelHandle(ListView<Order> orderListPanelNode) {
+    public OrderListPanelHandle(ListView<Request> orderListPanelNode) {
         super(orderListPanelNode);
     }
 
@@ -30,15 +30,15 @@ public class OrderListPanelHandle extends NodeHandle<ListView<Order>> {
      * @throws IllegalStateException if the selected card is currently not in the scene graph.
      */
     public OrderCardHandle getHandleToSelectedCard() {
-        List<Order> selectedOrderList = getRootNode().getSelectionModel().getSelectedItems();
+        List<Request> selectedRequestList = getRootNode().getSelectionModel().getSelectedItems();
 
-        if (selectedOrderList.size() != 1) {
-            throw new AssertionError("Order list size expected 1.");
+        if (selectedRequestList.size() != 1) {
+            throw new AssertionError("Request list size expected 1.");
         }
 
         return getAllCardNodes().stream()
                 .map(OrderCardHandle::new)
-                .filter(handle -> handle.equals(selectedOrderList.get(0)))
+                .filter(handle -> handle.equals(selectedRequestList.get(0)))
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
     }
@@ -54,7 +54,7 @@ public class OrderListPanelHandle extends NodeHandle<ListView<Order>> {
      * Returns true if a card is currently selected.
      */
     public boolean isAnyCardSelected() {
-        List<Order> selectedCardsList = getRootNode().getSelectionModel().getSelectedItems();
+        List<Request> selectedCardsList = getRootNode().getSelectionModel().getSelectedItems();
 
         if (selectedCardsList.size() > 1) {
             throw new AssertionError("Card list size expected 0 or 1.");
@@ -66,13 +66,13 @@ public class OrderListPanelHandle extends NodeHandle<ListView<Order>> {
     /**
      * Navigates the listview to display {@code request}.
      */
-    public void navigateToCard(Order order) {
-        if (!getRootNode().getItems().contains(order)) {
-            throw new IllegalArgumentException("Order does not exist.");
+    public void navigateToCard(Request request) {
+        if (!getRootNode().getItems().contains(request)) {
+            throw new IllegalArgumentException("Request does not exist.");
         }
 
         guiRobot.interact(() -> {
-            getRootNode().scrollTo(order);
+            getRootNode().scrollTo(request);
         });
         guiRobot.pauseForHuman();
     }
@@ -111,7 +111,7 @@ public class OrderListPanelHandle extends NodeHandle<ListView<Order>> {
                 .orElseThrow(IllegalStateException::new);
     }
 
-    private Order getOrder(int index) {
+    private Request getOrder(int index) {
         return getRootNode().getItems().get(index);
     }
 
@@ -128,7 +128,7 @@ public class OrderListPanelHandle extends NodeHandle<ListView<Order>> {
      * Remembers the selected {@code OrderCard} in the list.
      */
     public void rememberSelectedOrderCard() {
-        List<Order> selectedItems = getRootNode().getSelectionModel().getSelectedItems();
+        List<Request> selectedItems = getRootNode().getSelectionModel().getSelectedItems();
 
         if (selectedItems.size() == 0) {
             lastRememberedSelectedOrderCard = Optional.empty();
@@ -142,7 +142,7 @@ public class OrderListPanelHandle extends NodeHandle<ListView<Order>> {
      * {@code rememberSelectedOrderCard()} call.
      */
     public boolean isSelectedOrderCardChanged() {
-        List<Order> selectedItems = getRootNode().getSelectionModel().getSelectedItems();
+        List<Request> selectedItems = getRootNode().getSelectionModel().getSelectedItems();
 
         if (selectedItems.size() == 0) {
             return lastRememberedSelectedOrderCard.isPresent();

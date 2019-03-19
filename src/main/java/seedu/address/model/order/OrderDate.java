@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Represents an Order's date in the request book.
+ * Represents an Request's date in the request book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)} (String)}
  */
 public class OrderDate {
@@ -23,7 +23,7 @@ public class OrderDate {
     /**
      * Constructs a {@code OrderDate}.
      *
-     * @param orderDate A valid Order Date.
+     * @param orderDate A valid Request Date.
      */
     public OrderDate(String orderDate) {
 

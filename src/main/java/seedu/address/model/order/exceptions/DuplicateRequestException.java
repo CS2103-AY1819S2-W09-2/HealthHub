@@ -1,7 +1,7 @@
 package seedu.address.model.order.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Order (Orders are considered duplicates if they have the same
+ * Signals that the operation will result in duplicate Request (Orders are considered duplicates if they have the same
  * identity).
  */
 public class DuplicateRequestException extends RuntimeException {

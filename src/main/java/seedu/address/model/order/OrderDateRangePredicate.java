@@ -4,9 +4,9 @@ import java.util.Date;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Order}'s {@code Date} is within the 2 dates given.
+ * Tests that a {@code Request}'s {@code Date} is within the 2 dates given.
  */
-public class OrderDateRangePredicate implements Predicate<Order> {
+public class OrderDateRangePredicate implements Predicate<Request> {
     private final Date lowerDateBoundary;
     private final Date upperDateBoundary;
 
@@ -16,8 +16,8 @@ public class OrderDateRangePredicate implements Predicate<Order> {
     }
 
     @Override
-    public boolean test(Order order) {
-        return isWithinDateBoundary(order.getDate().getDate());
+    public boolean test(Request request) {
+        return isWithinDateBoundary(request.getDate().getDate());
     }
 
     @Override

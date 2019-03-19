@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import seedu.address.testutil.Assert;
 
-public class OrderDateTest {
+public class RequestDateTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {

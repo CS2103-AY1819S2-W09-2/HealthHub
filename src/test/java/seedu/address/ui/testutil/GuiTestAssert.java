@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import guitests.guihandles.OrderCardHandle;
 import guitests.guihandles.OrderListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * A set of assertion methods useful for writing GUI tests.
@@ -26,29 +26,29 @@ public class GuiTestAssert {
     /**
      * Asserts that {@code actualCard} displays the details of {@code expectedPerson}.
      */
-    public static void assertCardDisplaysOrder(Order expectedOrder, OrderCardHandle actualCard) {
-        assertEquals(expectedOrder.getAddress().value, actualCard.getAddress());
-        assertEquals(expectedOrder.getFood().stream().map(f -> f.foodName).collect(Collectors.toList()),
+    public static void assertCardDisplaysOrder(Request expectedRequest, OrderCardHandle actualCard) {
+        assertEquals(expectedRequest.getAddress().value, actualCard.getAddress());
+        assertEquals(expectedRequest.getFood().stream().map(f -> f.foodName).collect(Collectors.toList()),
                 actualCard.getFood());
     }
 
     /**
-     * Asserts that the list in {@code orderListPanelHandle} displays the details of {@code orders} correctly and
+     * Asserts that the list in {@code orderListPanelHandle} displays the details of {@code requests} correctly and
      * in the correct request.
      */
-    public static void assertListMatching(OrderListPanelHandle orderListPanelHandle, Order... orders) {
-        for (int i = 0; i < orders.length; i++) {
+    public static void assertListMatching(OrderListPanelHandle orderListPanelHandle, Request... requests) {
+        for (int i = 0; i < requests.length; i++) {
             orderListPanelHandle.navigateToCard(i);
-            assertCardDisplaysOrder(orders[i], orderListPanelHandle.getOrderCardHandle(i));
+            assertCardDisplaysOrder(requests[i], orderListPanelHandle.getOrderCardHandle(i));
         }
     }
 
     /**
-     * Asserts that the list in {@code orderListPanelHandle} displays the details of {@code orders} correctly and
+     * Asserts that the list in {@code orderListPanelHandle} displays the details of {@code requests} correctly and
      * in the correct request.
      */
-    public static void assertListMatching(OrderListPanelHandle orderListPanelHandle, List<Order> orders) {
-        assertListMatching(orderListPanelHandle, orders.toArray(new Order[0]));
+    public static void assertListMatching(OrderListPanelHandle orderListPanelHandle, List<Request> requests) {
+        assertListMatching(orderListPanelHandle, requests.toArray(new Request[0]));
     }
 
     /**

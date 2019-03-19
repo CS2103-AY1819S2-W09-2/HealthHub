@@ -18,9 +18,9 @@ application. The application was built by a team of 5 students including myself.
 
 FoodZoom's *core functionality* includes:
 
-- Users being able to track food orders (visualise on a map) they have from customers
-- Managing deliverymen and assigning orders to them
-- Analysis of orders to display relevant statistics (order history, trending food etc.) to users
+- Users being able to track food requests (visualise on a map) they have from customers
+- Managing deliverymen and assigning requests to them
+- Analysis of requests to display relevant statistics (request history, trending food etc.) to users
 
 == Summary of Contributions
 
@@ -35,9 +35,9 @@ https://github.com/CS2103-AY1819S1-T16-3/main/pull/102[#102],
 https://github.com/CS2103-AY1819S1-T16-3/main/pull/121[#121])
 
 ** What it does: The main screen consists of a map and a dashboard. The map is able to show the number of pending
-orders at a region. The dashboard shows statistics like the most popular food item and the order history
+requests at a region. The dashboard shows statistics like the most popular food item and the request history
 
-** Justification: Users of this application can track where their pending orders are in one glance. Orders in the
+** Justification: Users of this application can track where their pending requests are in one glance. Orders in the
 same region can now be dispatched to the same healthworker. Users can also use the generated statistics to improve their
 profits and improve the overall experience they can provide to their customers
 
@@ -49,7 +49,7 @@ https://github.com/CS2103-AY1819S1-T16-3/main/pull/171[#171]
 https://github.com/CS2103-AY1819S1-T16-3/main/pull/183[#183])
 
 ** What it does: Users of this application have a visually appealing interface. They are able to view
-the status of their orders, available deliverymen and key insights for their data all in one screen.
+the status of their requests, available deliverymen and key insights for their data all in one screen.
 
 ** Justification: The UI is minimalistic and was designed with the end-user in mind. There is only one screen that
 the user uses at all times and all essential details are on that screen. The UI updates itself based on the
@@ -59,7 +59,7 @@ actions of the user e.g. the map/dashboard will dynamically update when there is
 
 * *Minor enhancements*:
 
-** Added essential fields such as address and date to order model
+** Added essential fields such as address and date to request model
 (https://github.com/CS2103-AY1819S1-T16-3/main/pull/37[#37],
 https://github.com/CS2103-AY1819S1-T16-3/main/pull/37[#99]).
 ** Came up with `/home` command to return to the dashboard panel (https://github.com/CS2103-AY1819S1-T16-3/main/pull/123[#123])

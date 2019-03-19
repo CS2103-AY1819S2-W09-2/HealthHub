@@ -12,7 +12,6 @@ import seedu.address.logic.commands.request.FindCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderAddressContainsKeywordPredicate;
 import seedu.address.model.order.OrderDatePredicate;
 import seedu.address.model.order.OrderFoodContainsKeywordPredicate;
@@ -20,6 +19,7 @@ import seedu.address.model.order.OrderNameContainsKeywordPredicate;
 import seedu.address.model.order.OrderPhoneContainsKeywordPredicate;
 import seedu.address.model.order.OrderStatus;
 import seedu.address.model.order.OrderStatusContainsKeywordPredicate;
+import seedu.address.model.order.Request;
 
 /**
  * Util to parse request's predicate
@@ -34,14 +34,14 @@ public class RequestPredicateUtil {
     private static final String STRING_PREFIX_FOOD = "f/";
     private static final String STRING_PREFIX_STATUS = "st/";
 
-    private Predicate<Order> chainedPredicated;
+    private Predicate<Request> chainedPredicated;
 
     /**
      * Parses the given {@code argMultimap} to a chained predicate
      * and returns the chained predicate
      * @throws ParseException if any supplied prefix is empty
      */
-    public Predicate<Order> parsePredicate(ArgumentMultimap argMultimap) throws ParseException {
+    public Predicate<Request> parsePredicate(ArgumentMultimap argMultimap) throws ParseException {
         Set<Prefix> prefixes = argMultimap.getAllPrefixes();
 
         for (Prefix prefix : prefixes) {
@@ -147,7 +147,7 @@ public class RequestPredicateUtil {
      * Set {@code chainedPredicate} to {@code predicate} if predicate is not set
      * else AND the predicates
      */
-    private void setToPredicate(Predicate<Order> predicate) {
+    private void setToPredicate(Predicate<Request> predicate) {
         // predicate is not set
         if (chainedPredicated == null) {
             chainedPredicated = predicate;

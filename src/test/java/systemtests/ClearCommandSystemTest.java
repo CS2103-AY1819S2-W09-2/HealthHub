@@ -14,7 +14,7 @@ import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
-public class ClearCommandSystemTest extends OrderBookSystemTest {
+public class ClearCommandSystemTest extends RequestBookSystemTest {
 
     @Test
     public void clear() {
@@ -77,7 +77,7 @@ public class ClearCommandSystemTest extends OrderBookSystemTest {
      * Also verifies that the browser url and status bar remain unchanged, and the command box has the
      * error style.
      *
-     * @see OrderBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     * @see RequestBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {
         Model expectedModel = getModel();

@@ -7,7 +7,7 @@ import javafx.scene.layout.VBox;
 import seedu.address.model.deliveryman.Healthworker;
 
 /**
- * An UI component that displays information of a {@code Order}.
+ * An UI component that displays information of a {@code Request}.
  */
 public class DeliverymanCard extends UiPart<Region> {
 
@@ -40,10 +40,10 @@ public class DeliverymanCard extends UiPart<Region> {
     }
 
     private void setDeliverymanStatus() {
-        if (healthworker.getOrders().size() > 0) {
+        if (healthworker.getRequests().size() > 0) {
             deliverymanIndicator.getStyleClass().clear();
             deliverymanIndicator.getStyleClass().add(BUSY_LABEL_CLASS);
-            deliverymanIndicator.setText("Assigned: " + healthworker.getOrders().size());
+            deliverymanIndicator.setText("Assigned: " + healthworker.getRequests().size());
         } else {
             deliverymanIndicator.getStyleClass().clear();
             deliverymanIndicator.getStyleClass().add(AVAILABLE_LABEL_CLASS);

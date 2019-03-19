@@ -18,7 +18,7 @@ import seedu.address.model.order.Food;
 import seedu.address.model.order.OrderDate;
 import seedu.address.testutil.Assert;
 
-public class XmlAdaptedOrderTest {
+public class XmlAdaptedRequestTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";

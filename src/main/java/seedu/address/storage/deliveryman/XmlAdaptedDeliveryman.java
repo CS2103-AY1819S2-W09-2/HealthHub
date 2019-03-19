@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlIDREF;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.common.Name;
 import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.storage.XmlAdaptedOrder;
 
 /**
@@ -68,7 +68,7 @@ public class XmlAdaptedDeliveryman {
     public XmlAdaptedDeliveryman(Healthworker source) {
         tag = source.getTag().toString();
         name = source.getName().fullName;
-        orders = source.getOrders().stream()
+        orders = source.getRequests().stream()
                 .map(XmlAdaptedOrder::new)
                 .collect(Collectors.toList());
     }
@@ -100,13 +100,13 @@ public class XmlAdaptedDeliveryman {
 
         final Name modelName = new Name(name);
 
-        final List<Order> orderStore = new ArrayList<>();
+        final List<Request> requestStore = new ArrayList<>();
         for (XmlAdaptedOrder orderItem : orders) {
-            orderStore.add(orderItem.toModelType());
+            requestStore.add(orderItem.toModelType());
         }
-        final Set<Order> modelOrder = new HashSet<>(orderStore);
+        final Set<Request> modelRequest = new HashSet<>(requestStore);
 
-        return new Healthworker(modelTag, modelName, modelOrder);
+        return new Healthworker(modelTag, modelName, modelRequest);
     }
 
     @Override

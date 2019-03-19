@@ -32,7 +32,7 @@ import seedu.address.logic.commands.request.AddCommand;
 import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.testutil.OrderBuilder;
 
 public class AddCommandParserTest {
@@ -40,33 +40,33 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Order expectedOrder = new OrderBuilder(BOB).build();
+        Request expectedRequest = new OrderBuilder(BOB).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
-                + ADDRESS_DESC_BOB + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedOrder));
+                + ADDRESS_DESC_BOB + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedRequest));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB
-                + ADDRESS_DESC_BOB + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedOrder));
+                + ADDRESS_DESC_BOB + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedRequest));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
-                + ADDRESS_DESC_BOB + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedOrder));
+                + ADDRESS_DESC_BOB + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedRequest));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedOrder));
+                + ADDRESS_DESC_BOB + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedRequest));
 
         // multiple date - last date accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
-                + DATE_DESC_AMY + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedOrder));
+                + DATE_DESC_AMY + DATE_DESC_BOB + FOOD_DESC_RICE, new AddCommand(expectedRequest));
 
         // multiple food - all accepted
-        Order expectedOrderMultipleFood = new OrderBuilder(BOB).withFood(VALID_FOOD_BURGER, VALID_FOOD_RICE)
+        Request expectedRequestMultipleFood = new OrderBuilder(BOB).withFood(VALID_FOOD_BURGER, VALID_FOOD_RICE)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + DATE_DESC_BOB
-                + FOOD_DESC_BURGER + FOOD_DESC_RICE, new AddCommand(expectedOrderMultipleFood));
+                + FOOD_DESC_BURGER + FOOD_DESC_RICE, new AddCommand(expectedRequestMultipleFood));
     }
 
     @Test

@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.ui.UiPart;
 
 /**
@@ -34,11 +34,11 @@ public class DeliverymanDisplayCard extends UiPart<Region> {
         namePrintOut.setText(healthworker.getName().fullName);
 
         setDeliverymanStatus();
-        setOrders(healthworker.getOrders());
+        setOrders(healthworker.getRequests());
     }
 
     private void setDeliverymanStatus() {
-        if (healthworker.getOrders().size() > 0) {
+        if (healthworker.getRequests().size() > 0) {
             deliverymanStatusPrintOut.setText("Delivering");
             deliverymanStatusPrintOut.getStyleClass().clear();
             deliverymanStatusPrintOut.getStyleClass().add(BUSY_LABEL_CLASS);
@@ -49,8 +49,8 @@ public class DeliverymanDisplayCard extends UiPart<Region> {
         }
     }
 
-    private void setOrders(Set<Order> orders) {
-        for (Order o : orders) {
+    private void setOrders(Set<Request> requests) {
+        for (Request o : requests) {
 
             OrderPrintOut orderPrintOut = new OrderPrintOut(o);
             orderListDisplay.getChildren().add(orderPrintOut.getRoot());

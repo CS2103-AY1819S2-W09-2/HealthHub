@@ -24,7 +24,7 @@ public class Messages {
             + "currently assigned to some orders.";
     public static final String MESSAGE_ORDER_HAS_DELIVERYMAN_CANNOT_DELETE = "Unable to delete request, "
             + "already assigned to a healthworker.";
-    public static final String MESSAGE_ORDER_ALREADY_ASSIGNED_TO_DELIVERYMAN = "Order %1$s is already assigned to "
+    public static final String MESSAGE_ORDER_ALREADY_ASSIGNED_TO_DELIVERYMAN = "Request %1$s is already assigned to "
             + "healthworker %2$s, cannot be edited or reassigned to another healthworker!";
     public static final String MESSAGE_ORDER_ONGOING_CANNOT_CLEAR = "There is at least one ongoing request"
         + " in the list, request list cannot be cleared.";

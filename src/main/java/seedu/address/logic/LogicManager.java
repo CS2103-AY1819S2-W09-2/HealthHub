@@ -20,7 +20,7 @@ import seedu.address.logic.parser.RequestBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * The main LogicManager of the app.
@@ -54,7 +54,7 @@ public class LogicManager extends ComponentManager implements Logic {
     }
 
     @Override
-    public ObservableList<Order> getFilteredOrderList() {
+    public ObservableList<Request> getFilteredOrderList() {
         return model.getFilteredOrderList();
     }
 

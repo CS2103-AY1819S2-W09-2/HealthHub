@@ -18,9 +18,9 @@ import seedu.address.commons.util.XmlUtil;
 import seedu.address.model.OrderBook;
 import seedu.address.testutil.TypicalOrders;
 
-public class XmlSerializableOrderBookTest {
+public class XmlSerializableRequestBookTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "XmlSerializableOrderBookTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "XmlSerializableRequestBookTest");
     private static final Path TYPICAL_ORDERS_FILE = TEST_DATA_FOLDER.resolve("typicalOrdersOrderBook.xml");
     private static final Path INVALID_ORDER_FILE = TEST_DATA_FOLDER.resolve("invalidOrderOrderBook.xml");
     private static final Path DUPLICATE_ORDER_FILE = TEST_DATA_FOLDER.resolve("duplicateOrderOrderBook.xml");

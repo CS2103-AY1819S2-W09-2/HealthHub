@@ -9,7 +9,7 @@ import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.order.Food;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.model.order.OrderDate;
 
 /**
@@ -29,13 +29,13 @@ public class EditOrderDescriptorBuilder {
     /**
      * Returns an {@code EditOrderDescriptor} with fields containing {@code request}'s details
      */
-    public EditOrderDescriptorBuilder(Order order) {
+    public EditOrderDescriptorBuilder(Request request) {
         descriptor = new EditOrderDescriptor();
-        descriptor.setName(order.getName());
-        descriptor.setPhone(order.getPhone());
-        descriptor.setAddress(order.getAddress());
-        descriptor.setDate(order.getDate());
-        descriptor.setFood(order.getFood());
+        descriptor.setName(request.getName());
+        descriptor.setPhone(request.getPhone());
+        descriptor.setAddress(request.getAddress());
+        descriptor.setDate(request.getDate());
+        descriptor.setFood(request.getFood());
     }
 
     /**

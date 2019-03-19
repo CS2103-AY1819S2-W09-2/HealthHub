@@ -19,7 +19,7 @@ import seedu.address.commons.events.ui.BackToHomeEvent;
 import seedu.address.commons.events.ui.HealthWorkerPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.RequestPanelSelectionChangedEvent;
 import seedu.address.model.order.Food;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.ui.display.DeliverymanDisplayCard;
 import seedu.address.ui.display.OrderDisplayCard;
 
@@ -48,26 +48,26 @@ public class Display extends UiPart<Region> {
     private int total;
 
     private MapPanel mapPanel;
-    private ObservableList<Order> orderList;
+    private ObservableList<Request> requestList;
     private HashMap<String, Integer> directory;
 
 
     /**
      * Constructor for this panel. Process information related to request and updates respective UI components
      *
-     * @param orderList the current list of orders in-memory
+     * @param requestList the current list of orders in-memory
      */
-    public Display(ObservableList<Order> orderList) {
+    public Display(ObservableList<Request> requestList) {
         super(FXML);
-        this.orderList = orderList;
+        this.requestList = requestList;
         this.progress = 0;
-        this.total = orderList.size();
+        this.total = requestList.size();
 
         fillInnerParts();
         setupMap();
         setupStatistics();
 
-        this.orderList.addListener((ListChangeListener.Change<? extends Order> change) -> {
+        this.requestList.addListener((ListChangeListener.Change<? extends Request> change) -> {
             while (change.next()) {
 
                 if (change.wasUpdated()) {
@@ -121,7 +121,7 @@ public class Display extends UiPart<Region> {
      */
     private void setupMap() {
         directory = new HashMap<>();
-        updateMapCache(orderList);
+        updateMapCache(requestList);
         mapPanel.initialise(directory);
     }
 
@@ -135,9 +135,9 @@ public class Display extends UiPart<Region> {
 
         logger.info(progress + "   " + total);
 
-        addFoodItems(orderList);
-        trackProgress(orderList, false);
-        updateOrderHistory(orderList);
+        addFoodItems(requestList);
+        trackProgress(requestList, false);
+        updateOrderHistory(requestList);
 
         statisticsPanel.initialize(orderHistory);
 
@@ -163,8 +163,8 @@ public class Display extends UiPart<Region> {
      * @param changeList list of orders that have to be changed
      * @param toRemove a flag to indicate whether to update or remove
      */
-    public void trackProgress(List<? extends Order> changeList, boolean toRemove) {
-        for (Order o : changeList) {
+    public void trackProgress(List<? extends Request> changeList, boolean toRemove) {
+        for (Request o : changeList) {
             if (o.getOrderStatus().toString().equals("PENDING")) {
                 if (toRemove) {
                     progress--;
@@ -199,8 +199,8 @@ public class Display extends UiPart<Region> {
      *
      * @param changeList orders that were changed
      */
-    private void addFoodItems(List<? extends Order> changeList) {
-        for (Order o : changeList) {
+    private void addFoodItems(List<? extends Request> changeList) {
+        for (Request o : changeList) {
             Set<Food> foodList = o.getFood();
             for (Food item : foodList) {
                 String foodKey = item.toString();
@@ -218,8 +218,8 @@ public class Display extends UiPart<Region> {
      *
      * @param changeList orders that were changed
      */
-    private void removeFoodItems(List<? extends Order> changeList) {
-        for (Order o : changeList) {
+    private void removeFoodItems(List<? extends Request> changeList) {
+        for (Request o : changeList) {
             Set<Food> foodList = o.getFood();
             for (Food item : foodList) {
                 String foodKey = item.toString();
@@ -239,8 +239,8 @@ public class Display extends UiPart<Region> {
      *
      * @param changeList orders that were changed
      */
-    private void removeFromMapCache(List<? extends Order> changeList) {
-        for (Order o : changeList) {
+    private void removeFromMapCache(List<? extends Request> changeList) {
+        for (Request o : changeList) {
             if (o.getOrderStatus().toString().equals("PENDING")) {
                 String postalCode = o.getAddress().getPostalCode();
                 String postalCodeKey = postalCode.substring(0, 2);
@@ -260,8 +260,8 @@ public class Display extends UiPart<Region> {
      *
      * @param changeList orders that were changed
      */
-    private void updateMapCache(List<? extends Order> changeList) {
-        for (Order o : changeList) {
+    private void updateMapCache(List<? extends Request> changeList) {
+        for (Request o : changeList) {
             if (o.getOrderStatus().toString().equals("PENDING")) {
                 String postalCode = o.getAddress().getPostalCode();
                 String postalCodeKey = postalCode.substring(0, 2);
@@ -279,8 +279,8 @@ public class Display extends UiPart<Region> {
      *
      * @param changeList orders that were changed
      */
-    private void updateOrderHistory(List<? extends Order> changeList) {
-        for (Order o : changeList) {
+    private void updateOrderHistory(List<? extends Request> changeList) {
+        for (Request o : changeList) {
             Date dateKey = o.getDate().getShortenedDate();
             logger.info("ADDED " + o.toString());
             if (orderHistory.containsKey(dateKey)) {
@@ -298,8 +298,8 @@ public class Display extends UiPart<Region> {
      *
      * @param changeList orders that were changed
      */
-    private void removeFromOrderHistory(List<? extends Order> changeList) {
-        for (Order o : changeList) {
+    private void removeFromOrderHistory(List<? extends Request> changeList) {
+        for (Request o : changeList) {
             Date dateKey = o.getDate().getShortenedDate();
             logger.info("REMOVED " + o.toString());
             if (orderHistory.containsKey(dateKey)) {

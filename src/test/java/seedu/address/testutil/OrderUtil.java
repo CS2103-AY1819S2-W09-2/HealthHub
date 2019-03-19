@@ -11,31 +11,31 @@ import java.util.Set;
 import seedu.address.logic.commands.request.AddCommand;
 import seedu.address.logic.commands.request.EditCommand.EditOrderDescriptor;
 import seedu.address.model.order.Food;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 
 /**
- * A utility class for Order.
+ * A utility class for Request.
  */
 public class OrderUtil {
 
     /**
      * Returns an add command string for adding the {@code request}.
      */
-    public static String getAddCommand(Order order) {
-        return AddCommand.COMMAND_WORD + " " + getOrderDetails(order);
+    public static String getAddCommand(Request request) {
+        return AddCommand.COMMAND_WORD + " " + getOrderDetails(request);
     }
 
     /**
      * Returns the part of command string for the given {@code request}'s details.
      */
-    public static String getOrderDetails(Order order) {
+    public static String getOrderDetails(Request request) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + order.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + order.getPhone().value + " ");
-        sb.append(PREFIX_ADDRESS + order.getAddress().value + " ");
-        sb.append(PREFIX_DATE + order.getDate().toString() + " ");
-        order.getFood().stream().forEach(
+        sb.append(PREFIX_NAME + request.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + request.getPhone().value + " ");
+        sb.append(PREFIX_ADDRESS + request.getAddress().value + " ");
+        sb.append(PREFIX_DATE + request.getDate().toString() + " ");
+        request.getFood().stream().forEach(
             s -> sb.append(PREFIX_FOOD + s.foodName + " ")
         );
         return sb.toString();

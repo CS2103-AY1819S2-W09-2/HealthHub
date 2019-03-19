@@ -50,12 +50,12 @@ import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.order.Food;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.model.order.OrderDate;
 import seedu.address.testutil.OrderBuilder;
 import seedu.address.testutil.OrderUtil;
 
-public class EditCommandSystemTest extends OrderBookSystemTest {
+public class EditCommandSystemTest extends RequestBookSystemTest {
     @Test
     public void edit() {
         Model model = getModel();
@@ -75,8 +75,8 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
         Index index = INDEX_FIRST;
         command = " " + editCommand + "  " + index.getOneBased() + "  " + NAME_DESC_BOB + "  "
                 + PHONE_DESC_BOB + " " + DATE_DESC_BOB + "  " + ADDRESS_DESC_BOB + " " + FOOD_DESC_BURGER + " ";
-        Order editedOrder = new OrderBuilder(BOB).withFood(VALID_FOOD_BURGER).build();
-        assertCommandSuccess(command, index, editedOrder);
+        Request editedRequest = new OrderBuilder(BOB).withFood(VALID_FOOD_BURGER).build();
+        assertCommandSuccess(command, index, editedRequest);
 
         /* Case: edit a request with new values same as existing values -> edited */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB
@@ -89,20 +89,20 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
         assertNotEquals(getModel().getFilteredOrderList().get(index.getZeroBased()), BOB);
         command = editCommand + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_BOB + DATE_DESC_BOB
                 + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
-        editedOrder = new OrderBuilder(BOB).withName(VALID_NAME_AMY).build();
-        assertCommandSuccess(command, index, editedOrder);
+        editedRequest = new OrderBuilder(BOB).withName(VALID_NAME_AMY).build();
+        assertCommandSuccess(command, index, editedRequest);
 
         /* Case: edit a request with new values same as another request's values but with different phone -> edited */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + DATE_DESC_BOB
                 + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
-        editedOrder = new OrderBuilder(BOB).withPhone(VALID_PHONE_AMY).build();
-        assertCommandSuccess(command, index, editedOrder);
+        editedRequest = new OrderBuilder(BOB).withPhone(VALID_PHONE_AMY).build();
+        assertCommandSuccess(command, index, editedRequest);
 
         /* Case: edit a request with new values same as another request's values but with different date -> edited */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_AMY
                 + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
-        editedOrder = new OrderBuilder(BOB).withDate(VALID_DATE_AMY).build();
-        assertCommandSuccess(command, index, editedOrder);
+        editedRequest = new OrderBuilder(BOB).withDate(VALID_DATE_AMY).build();
+        assertCommandSuccess(command, index, editedRequest);
 
         /* Case: edit a request with new values same as another request's values but with different phone and date
          * -> edited
@@ -110,8 +110,8 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
         index = INDEX_SECOND;
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + DATE_DESC_AMY
                 + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
-        editedOrder = new OrderBuilder(BOB).withPhone(VALID_PHONE_AMY).withDate(VALID_DATE_AMY).build();
-        assertCommandSuccess(command, index, editedOrder);
+        editedRequest = new OrderBuilder(BOB).withPhone(VALID_PHONE_AMY).withDate(VALID_DATE_AMY).build();
+        assertCommandSuccess(command, index, editedRequest);
 
         /* Case: clear food -> rejected */
         index = INDEX_FIRST;
@@ -125,9 +125,9 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
         index = INDEX_FIRST;
         assertTrue(index.getZeroBased() < getModel().getFilteredOrderList().size());
         command = editCommand + " " + index.getOneBased() + " " + NAME_DESC_BOB;
-        Order orderToEdit = getModel().getFilteredOrderList().get(index.getZeroBased());
-        editedOrder = new OrderBuilder(orderToEdit).withName(VALID_NAME_BOB).build();
-        assertCommandSuccess(command, index, editedOrder);
+        Request requestToEdit = getModel().getFilteredOrderList().get(index.getZeroBased());
+        editedRequest = new OrderBuilder(requestToEdit).withName(VALID_NAME_BOB).build();
+        assertCommandSuccess(command, index, editedRequest);
 
         /* Case: filtered request list, edit index within bounds of request book but out of bounds of request list
          * -> rejected
@@ -221,27 +221,27 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
      *
      * @param toEdit the index of the current model's filtered list
      */
-    private void assertCommandSuccess(String command, Index toEdit, Order editedOrder) {
-        assertCommandSuccess(command, toEdit, editedOrder, null);
+    private void assertCommandSuccess(String command, Index toEdit, Request editedRequest) {
+        assertCommandSuccess(command, toEdit, editedRequest, null);
     }
 
     /**
      * Performs the same verification as {@code assertCommandSuccess(String, Model, String, Index)} and in addition,<br>
      * 1. Asserts that result display box displays the success message of executing {@code EditCommand}.<br>
      * 2. Asserts that the model related components are updated to reflect the request at index {@code toEdit} being
-     * updated to values specified {@code editedOrder}.<br>
+     * updated to values specified {@code editedRequest}.<br>
      *
      * @param toEdit the index of the current model's filtered list.
      * @see EditCommandSystemTest#assertCommandSuccess(String, Model, String, Index)
      */
-    private void assertCommandSuccess(String command, Index toEdit, Order editedOrder,
+    private void assertCommandSuccess(String command, Index toEdit, Request editedRequest,
                                       Index expectedSelectedCardIndex) {
         Model expectedModel = getModel();
-        expectedModel.updateOrder(expectedModel.getFilteredOrderList().get(toEdit.getZeroBased()), editedOrder);
+        expectedModel.updateOrder(expectedModel.getFilteredOrderList().get(toEdit.getZeroBased()), editedRequest);
         expectedModel.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
 
         assertCommandSuccess(command, expectedModel,
-                String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder), expectedSelectedCardIndex);
+                String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedRequest), expectedSelectedCardIndex);
     }
 
     /**
@@ -263,10 +263,10 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
      * 4. Asserts that the status bar's sync status changes.<br>
      * 5. Asserts that the command box has the default style class.<br>
      * Verifications 1 and 2 are performed by
-     * {@code OrderBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * {@code RequestBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
      *
-     * @see OrderBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
-     * @see OrderBookSystemTest#assertSelectedCardChanged(Index)
+     * @see RequestBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     * @see RequestBookSystemTest#assertSelectedCardChanged(Index)
      */
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage,
                                       Index expectedSelectedCardIndex) {
@@ -301,9 +301,9 @@ public class EditCommandSystemTest extends OrderBookSystemTest {
      * 3. Asserts that the browser url and status bar remain unchanged.<br>
      * 4. Asserts that the command box has the error style.<br>
      * Verifications 1 and 2 are performed by
-     * {@code OrderBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * {@code RequestBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
      *
-     * @see OrderBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     * @see RequestBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {
         Model expectedModel = getModel();

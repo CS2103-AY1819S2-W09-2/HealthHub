@@ -19,7 +19,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -33,14 +33,14 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+        Request requestToDelete = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDER_SUCCESS, requestToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
                 model.getDeliverymenList(), new UserPrefs());
-        expectedModel.deleteOrder(orderToDelete);
+        expectedModel.deleteOrder(requestToDelete);
         expectedModel.commitOrderBook();
 
         assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
@@ -58,14 +58,14 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showOrderAtIndex(model, INDEX_FIRST);
 
-        Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+        Request requestToDelete = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDER_SUCCESS, requestToDelete);
 
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
                 model.getDeliverymenList(), new UserPrefs());
-        expectedModel.deleteOrder(orderToDelete);
+        expectedModel.deleteOrder(requestToDelete);
         expectedModel.commitOrderBook();
         showNoOrder(expectedModel);
 
@@ -87,11 +87,11 @@ public class DeleteCommandTest {
 
     @Test
     public void executeUndoRedo_validIndexUnfilteredList_success() throws Exception {
-        Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+        Request requestToDelete = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST);
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
                 model.getDeliverymenList(), new UserPrefs());
-        expectedModel.deleteOrder(orderToDelete);
+        expectedModel.deleteOrder(requestToDelete);
         expectedModel.commitOrderBook();
 
         // delete -> first common deleted
@@ -108,7 +108,7 @@ public class DeleteCommandTest {
     }
 
     /**
-     * 1. Deletes a {@code Order} from a filtered list.
+     * 1. Deletes a {@code Request} from a filtered list.
      * 2. Undo the deletion.
      * 3. The unfiltered list should be shown now. Verify that the index of the previously deleted common in the
      * unfiltered list is different from the index at the filtered list.
@@ -121,8 +121,8 @@ public class DeleteCommandTest {
                 model.getDeliverymenList(), new UserPrefs());
 
         showOrderAtIndex(model, INDEX_SECOND);
-        Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
-        expectedModel.deleteOrder(orderToDelete);
+        Request requestToDelete = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+        expectedModel.deleteOrder(requestToDelete);
         expectedModel.commitOrderBook();
 
         // delete -> deletes second common in unfiltered common list / first common in filtered common list

@@ -7,10 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import seedu.address.model.order.Food;
-import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 
 /**
- * An UI component that displays information of a {@code Order}.
+ * An UI component that displays information of a {@code Request}.
  */
 public class OrderCard extends UiPart<Region> {
 
@@ -27,7 +27,7 @@ public class OrderCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on OrderBook level 4</a>
      */
 
-    public final Order order;
+    public final Request request;
 
     @FXML
     private Text id;
@@ -40,30 +40,30 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label orderStatus;
 
-    public OrderCard(Order order, int displayedIndex) {
+    public OrderCard(Request request, int displayedIndex) {
         super(FXML);
-        this.order = order;
+        this.request = request;
         id.setText("#" + displayedIndex);
 
-        address.setText(order.getAddress().value);
+        address.setText(request.getAddress().value);
 
         foodList.setText(String.join(", ",
-            order.getFood().stream().map(Food::toString).collect(Collectors.toSet())));
+            request.getFood().stream().map(Food::toString).collect(Collectors.toSet())));
 
-        orderDate.setText(order.getDate().toString());
+        orderDate.setText(request.getDate().toString());
 
-        orderStatus.setText(order.getOrderStatus().toString().substring(0, 1).toUpperCase()
-                + order.getOrderStatus().toString().substring(1).toLowerCase());
+        orderStatus.setText(request.getOrderStatus().toString().substring(0, 1).toUpperCase()
+                + request.getOrderStatus().toString().substring(1).toLowerCase());
         setOrderStatusColor();
     }
 
     private void setOrderStatusColor() {
         orderStatus.getStyleClass().clear();
-        if (order.getOrderStatus().toString().equals(STATUS_PENDING)) {
+        if (request.getOrderStatus().toString().equals(STATUS_PENDING)) {
             orderStatus.getStyleClass().add("pending");
-        } else if (order.getOrderStatus().toString().equals(STATUS_ONGOING)) {
+        } else if (request.getOrderStatus().toString().equals(STATUS_ONGOING)) {
             orderStatus.getStyleClass().add("ongoing");
-        } else if (order.getOrderStatus().toString().equals(STATUS_COMPLETED)) {
+        } else if (request.getOrderStatus().toString().equals(STATUS_COMPLETED)) {
             orderStatus.getStyleClass().add("completed");
         }
     }
@@ -84,6 +84,6 @@ public class OrderCard extends UiPart<Region> {
         // state check
         OrderCard card = (OrderCard) other;
         return id.getText().equals(card.id.getText())
-                && order.equals(card.order);
+                && request.equals(card.request);
     }
 }
