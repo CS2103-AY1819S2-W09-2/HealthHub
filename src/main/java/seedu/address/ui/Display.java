@@ -203,11 +203,11 @@ public class Display extends UiPart<Region> {
         for (Request o : changeList) {
             Set<Condition> conditionList = o.getCondition();
             for (Condition item : conditionList) {
-                String foodKey = item.toString();
-                if (conditionHistory.containsKey(foodKey)) {
-                    conditionHistory.put(foodKey, conditionHistory.get(foodKey) + 1);
+                String conditionKey = item.toString();
+                if (conditionHistory.containsKey(conditionKey)) {
+                    conditionHistory.put(conditionKey, conditionHistory.get(conditionKey) + 1);
                 } else {
-                    conditionHistory.put(foodKey, 1);
+                    conditionHistory.put(conditionKey, 1);
                 }
             }
         }
@@ -222,12 +222,12 @@ public class Display extends UiPart<Region> {
         for (Request o : changeList) {
             Set<Condition> conditionList = o.getCondition();
             for (Condition item : conditionList) {
-                String foodKey = item.toString();
-                if (conditionHistory.containsKey(foodKey)) {
-                    if (conditionHistory.get(foodKey) <= 1) {
-                        conditionHistory.remove(foodKey);
+                String conditionKey = item.toString();
+                if (conditionHistory.containsKey(conditionKey)) {
+                    if (conditionHistory.get(conditionKey) <= 1) {
+                        conditionHistory.remove(conditionKey);
                     } else {
-                        conditionHistory.put(foodKey, conditionHistory.get(foodKey) - 1);
+                        conditionHistory.put(conditionKey, conditionHistory.get(conditionKey) - 1);
                     }
                 }
             }
