@@ -17,7 +17,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.healthworker.Healthworker;
 import seedu.address.model.healthworker.exceptions.RequestLimitExceededException;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 
 /**
  * Assigns multiple orders to a healthworker with two way association.

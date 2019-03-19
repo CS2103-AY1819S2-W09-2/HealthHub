@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.RequestStatus;
+import seedu.address.model.request.RequestStatus;
 
 public class RequestStatusPredicateUtilTest {
     @Rule

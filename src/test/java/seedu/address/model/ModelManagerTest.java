@@ -20,7 +20,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.model.healthworker.HealthworkerList;
-import seedu.address.model.order.NameContainsKeywordsPredicate;
+import seedu.address.model.request.NameContainsKeywordsPredicate;
 import seedu.address.model.user.User;
 import seedu.address.testutil.DeliverymenListBuilder;
 import seedu.address.testutil.OrderBookBuilder;

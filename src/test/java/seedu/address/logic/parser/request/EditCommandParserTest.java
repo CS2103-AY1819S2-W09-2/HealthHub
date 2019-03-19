@@ -39,8 +39,8 @@ import seedu.address.logic.commands.request.EditCommand.EditOrderDescriptor;
 import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
-import seedu.address.model.order.Condition;
-import seedu.address.model.order.RequestDate;
+import seedu.address.model.request.Condition;
+import seedu.address.model.request.RequestDate;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
 
 public class EditCommandParserTest {

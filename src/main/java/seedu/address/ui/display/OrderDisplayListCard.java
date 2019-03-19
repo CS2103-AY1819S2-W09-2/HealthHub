@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import seedu.address.model.order.Condition;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Condition;
+import seedu.address.model.request.Request;
 import seedu.address.ui.UiPart;
 
 /**

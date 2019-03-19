@@ -11,7 +11,7 @@ import java.util.List;
 import org.junit.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.RequestDate;
+import seedu.address.model.request.RequestDate;
 
 public class RequestDatePredicateUtilTest {
     @Test

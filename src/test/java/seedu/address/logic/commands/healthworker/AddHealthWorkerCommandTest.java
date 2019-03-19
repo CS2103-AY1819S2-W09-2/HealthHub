@@ -22,7 +22,7 @@ import seedu.address.model.ReadOnlyRequestBook;
 import seedu.address.model.ReadOnlyUsersList;
 import seedu.address.model.healthworker.Healthworker;
 import seedu.address.model.healthworker.HealthworkerList;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 import seedu.address.model.user.User;
 import seedu.address.testutil.DeliverymanBuilder;
 

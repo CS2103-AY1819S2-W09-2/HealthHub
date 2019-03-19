@@ -22,8 +22,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.events.ui.JumpToRequestListRequestEvent;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.XmlUtil;
-import seedu.address.model.order.Request;
-import seedu.address.storage.XmlFoodZoom;
+import seedu.address.model.request.Request;
+import seedu.address.storage.XmlHealthHub;
 
 public class RequestListPanelTest extends GuiUnitTest {
     private static final ObservableList<Request> TYPICAL_REQUESTS =
@@ -83,9 +83,9 @@ public class RequestListPanelTest extends GuiUnitTest {
      */
     private ObservableList<Request> createBackingList(int orderCount) throws Exception {
         Path xmlFile = createXmlFileWithOrders(orderCount);
-        XmlFoodZoom xmlFoodZoom =
-            XmlUtil.getDataFromFile(xmlFile, XmlFoodZoom.class);
-        return FXCollections.observableArrayList(xmlFoodZoom.getOrderBook().getRequestList());
+        XmlHealthHub xmlHealthHub =
+            XmlUtil.getDataFromFile(xmlFile, XmlHealthHub.class);
+        return FXCollections.observableArrayList(xmlHealthHub.getOrderBook().getRequestList());
     }
 
     /**

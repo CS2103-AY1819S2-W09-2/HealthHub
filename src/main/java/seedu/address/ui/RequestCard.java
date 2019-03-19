@@ -6,8 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
-import seedu.address.model.order.Condition;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Condition;
+import seedu.address.model.request.Request;
 
 /**
  * An UI component that displays information of a {@code Request}.

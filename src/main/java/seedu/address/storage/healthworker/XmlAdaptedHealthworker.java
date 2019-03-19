@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlIDREF;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.common.Name;
 import seedu.address.model.healthworker.Healthworker;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 import seedu.address.storage.XmlAdaptedRequest;
 
 /**

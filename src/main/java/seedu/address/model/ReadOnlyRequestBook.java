@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 
 /**
  * Unmodifiable view of an request book

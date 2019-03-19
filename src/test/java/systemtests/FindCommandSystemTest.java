@@ -32,7 +32,7 @@ import seedu.address.logic.commands.request.DeleteCommand;
 import seedu.address.logic.commands.request.FindCommand;
 import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.model.Model;
-import seedu.address.model.order.Condition;
+import seedu.address.model.request.Condition;
 
 public class FindCommandSystemTest extends RequestBookSystemTest {
 

@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.healthworker.Healthworker;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 import seedu.address.ui.UiPart;
 
 /**

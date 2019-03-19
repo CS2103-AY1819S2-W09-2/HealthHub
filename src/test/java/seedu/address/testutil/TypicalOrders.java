@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.RequestBook;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 
 /**
  * A utility class containing a list of {@code Request} objects to be used in tests.

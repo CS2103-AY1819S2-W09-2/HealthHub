@@ -8,7 +8,7 @@ import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysOrder;
 import org.junit.Test;
 
 import guitests.guihandles.RequestCardHandle;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 import seedu.address.testutil.RequestBuilder;
 
 public class RequestCardTest extends GuiUnitTest {

@@ -30,8 +30,8 @@ public class XmlConditionZoomTest {
 
     @Test
     public void getOrdersAndDeliverymen_typicalFoodZoom_success() throws Exception {
-        XmlFoodZoom dataFromFile = XmlUtil.getDataFromFile(TYPICAL_FOODZOOM_FILE,
-            XmlFoodZoom.class);
+        XmlHealthHub dataFromFile = XmlUtil.getDataFromFile(TYPICAL_FOODZOOM_FILE,
+            XmlHealthHub.class);
         RequestBook orderBookFromFile = dataFromFile.getOrderBook();
         RequestBook typicalOrdersOrderBook = TypicalOrders.getTypicalOrderBook();
         HealthworkerList healthworkerListFromFile = dataFromFile.getDeliverymenList();
@@ -47,7 +47,7 @@ public class XmlConditionZoomTest {
 
     @Test
     public void getOrdersAndDeliverymen_invalidFile_throwsIllegalValueException() throws Exception {
-        XmlFoodZoom dataFromFile = XmlUtil.getDataFromFile(INVALID_FOODZOOM_FILE, XmlFoodZoom.class);
+        XmlHealthHub dataFromFile = XmlUtil.getDataFromFile(INVALID_FOODZOOM_FILE, XmlHealthHub.class);
         thrown.expect(IllegalValueException.class);
         dataFromFile.getOrderBook();
     }

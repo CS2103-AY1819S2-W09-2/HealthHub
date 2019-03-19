@@ -15,8 +15,8 @@ import org.junit.Test;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Request;
-import seedu.address.model.order.RequestNameContainsKeywordPredicate;
+import seedu.address.model.request.Request;
+import seedu.address.model.request.RequestNameContainsKeywordPredicate;
 
 public class RequestPredicateUtilTest {
     @Test

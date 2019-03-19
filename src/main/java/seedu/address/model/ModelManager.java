@@ -20,7 +20,7 @@ import seedu.address.commons.events.ui.BackToHomeEvent;
 import seedu.address.model.healthworker.Healthworker;
 import seedu.address.model.healthworker.HealthworkerList;
 import seedu.address.model.healthworker.VersionedHealthworkerList;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 import seedu.address.model.user.User;
 import seedu.address.model.user.UserSession;
 

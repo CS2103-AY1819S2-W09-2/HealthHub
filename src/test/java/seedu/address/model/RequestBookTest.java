@@ -19,8 +19,8 @@ import org.junit.rules.ExpectedException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.order.Request;
-import seedu.address.model.order.exceptions.DuplicateRequestException;
+import seedu.address.model.request.Request;
+import seedu.address.model.request.exceptions.DuplicateRequestException;
 import seedu.address.testutil.RequestBuilder;
 
 public class RequestBookTest {

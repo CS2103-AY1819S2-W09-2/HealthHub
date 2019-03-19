@@ -36,8 +36,8 @@ import seedu.address.logic.parser.request.RequestPredicateUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.order.Request;
-import seedu.address.model.order.RequestNameContainsKeywordPredicate;
+import seedu.address.model.request.Request;
+import seedu.address.model.request.RequestNameContainsKeywordPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

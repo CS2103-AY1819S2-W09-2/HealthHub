@@ -6,7 +6,7 @@ import java.util.Set;
 
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 
 /**
  * Provides a handle for {@code OrderListPanel} containing the list of {@code RequestCard}.

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.RequestStatus;
+import seedu.address.model.request.RequestStatus;
 
 /**
  * Parses of status keywords and returns a valid status list

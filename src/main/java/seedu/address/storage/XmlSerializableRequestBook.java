@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyRequestBook;
 import seedu.address.model.RequestBook;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 
 /**
  * An Immutable RequestBook that is serializable to XML format

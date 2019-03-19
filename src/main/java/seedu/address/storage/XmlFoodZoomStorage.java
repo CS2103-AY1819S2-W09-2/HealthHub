@@ -55,7 +55,7 @@ public class XmlFoodZoomStorage implements FoodZoomStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        XmlFileStorage.saveFoodZoomDataToFile(filePath, new XmlFoodZoom(orderBook, healthworkerList));
+        XmlFileStorage.saveFoodZoomDataToFile(filePath, new XmlHealthHub(orderBook, healthworkerList));
     }
 
     @Override
@@ -79,9 +79,9 @@ public class XmlFoodZoomStorage implements FoodZoomStorage {
             return Optional.empty();
         }
 
-        XmlFoodZoom xmlFoodZoom = XmlFileStorage.loadFoodZoomDataFromSaveFile(filePath);
+        XmlHealthHub xmlHealthHub = XmlFileStorage.loadFoodZoomDataFromSaveFile(filePath);
         try {
-            return Optional.of(xmlFoodZoom.getOrderBook());
+            return Optional.of(xmlHealthHub.getOrderBook());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -109,9 +109,9 @@ public class XmlFoodZoomStorage implements FoodZoomStorage {
             return Optional.empty();
         }
 
-        XmlFoodZoom xmlFoodZoom = XmlFileStorage.loadFoodZoomDataFromSaveFile(filePath);
+        XmlHealthHub xmlHealthHub = XmlFileStorage.loadFoodZoomDataFromSaveFile(filePath);
         try {
-            return Optional.of(xmlFoodZoom.getDeliverymenList());
+            return Optional.of(xmlHealthHub.getDeliverymenList());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

@@ -18,7 +18,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 
 /**
  * Parses the given {@code String} of arguments in the context of the OrderFindCommand

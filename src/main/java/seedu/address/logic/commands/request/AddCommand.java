@@ -11,7 +11,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 
 /**
  * Adds an request to the request book.

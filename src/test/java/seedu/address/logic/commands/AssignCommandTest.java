@@ -25,7 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.healthworker.Healthworker;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 
 public class AssignCommandTest {
     @Rule

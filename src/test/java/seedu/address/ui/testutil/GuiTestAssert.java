@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import guitests.guihandles.RequestCardHandle;
 import guitests.guihandles.OrderListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 
 /**
  * A set of assertion methods useful for writing GUI tests.

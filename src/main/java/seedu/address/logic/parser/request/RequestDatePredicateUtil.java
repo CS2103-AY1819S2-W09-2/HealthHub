@@ -8,7 +8,7 @@ import java.util.List;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import seedu.address.model.order.RequestDate;
+import seedu.address.model.request.RequestDate;
 
 /**
  * Parses of date keywords and returns a valid date list

@@ -20,7 +20,7 @@ import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.request.DeleteCommand;
 import seedu.address.logic.commands.request.RequestCommand;
 import seedu.address.model.Model;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 
 public class DeleteCommandSystemTest extends RequestBookSystemTest {
 

@@ -1,7 +1,7 @@
 package seedu.address.commons.events.ui;
 
 import seedu.address.commons.events.BaseEvent;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 
 /**
  * Represents a selection change in the Person List Panel

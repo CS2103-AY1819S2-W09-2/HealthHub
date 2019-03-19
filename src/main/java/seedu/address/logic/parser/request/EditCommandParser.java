@@ -21,7 +21,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Condition;
+import seedu.address.model.request.Condition;
 
 /**
  * Parses input arguments and creates a new EditCommand object

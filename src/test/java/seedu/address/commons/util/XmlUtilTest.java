@@ -20,7 +20,7 @@ import seedu.address.model.RequestBook;
 import seedu.address.model.healthworker.HealthworkerList;
 import seedu.address.storage.XmlAdaptedCondition;
 import seedu.address.storage.XmlAdaptedRequest;
-import seedu.address.storage.XmlFoodZoom;
+import seedu.address.storage.XmlHealthHub;
 import seedu.address.storage.XmlSerializableRequestBook;
 import seedu.address.storage.healthworker.XmlAdaptedHealthworker;
 import seedu.address.storage.healthworker.XmlSerializableHealthworkerList;
@@ -155,20 +155,20 @@ public class XmlUtilTest {
     @Test
     public void saveDataToFile_validFile_dataSaved() throws Exception {
         FileUtil.createFile(TEMP_FILE);
-        XmlFoodZoom dataToWrite = new XmlFoodZoom(new RequestBook(), new HealthworkerList());
+        XmlHealthHub dataToWrite = new XmlHealthHub(new RequestBook(), new HealthworkerList());
         XmlUtil.saveDataToFile(TEMP_FILE, dataToWrite);
-        XmlFoodZoom dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE,
-            XmlFoodZoom.class);
+        XmlHealthHub dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE,
+            XmlHealthHub.class);
         assertEquals(new RequestBook(), dataFromFile.getOrderBook());
         assertEquals(new HealthworkerList(), dataFromFile.getDeliverymenList());
 
         OrderBookBuilder builder = new OrderBookBuilder(new RequestBook()).withOrder(new RequestBuilder().build());
         DeliverymenListBuilder dBuilder = new DeliverymenListBuilder(new HealthworkerList())
             .withDeliveryman(new DeliverymanBuilder().build());
-        dataToWrite = new XmlFoodZoom(builder.build(), dBuilder.build());
+        dataToWrite = new XmlHealthHub(builder.build(), dBuilder.build());
 
         XmlUtil.saveDataToFile(TEMP_FILE, dataToWrite);
-        dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE, XmlFoodZoom.class);
+        dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE, XmlHealthHub.class);
         assertEquals(dataToWrite.getOrderBook(), dataFromFile.getOrderBook());
         assertEquals(dataToWrite.getDeliverymenList(), dataFromFile.getDeliverymenList());
 

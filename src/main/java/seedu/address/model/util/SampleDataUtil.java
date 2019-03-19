@@ -15,9 +15,9 @@ import seedu.address.model.common.Phone;
 import seedu.address.model.common.Username;
 import seedu.address.model.healthworker.Healthworker;
 import seedu.address.model.healthworker.HealthworkerList;
-import seedu.address.model.order.Condition;
-import seedu.address.model.order.Request;
-import seedu.address.model.order.RequestDate;
+import seedu.address.model.request.Condition;
+import seedu.address.model.request.Request;
+import seedu.address.model.request.RequestDate;
 import seedu.address.model.user.User;
 
 /**

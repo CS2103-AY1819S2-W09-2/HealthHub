@@ -19,7 +19,7 @@ import seedu.address.model.ReadOnlyUsersList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.healthworker.HealthworkerList;
 import seedu.address.storage.UserPrefsStorage;
-import seedu.address.storage.XmlFoodZoom;
+import seedu.address.storage.XmlHealthHub;
 import seedu.address.storage.user.XmlSerializableUsersList;
 import seedu.address.testutil.TestUtil;
 import systemtests.ModelHelper;
@@ -58,7 +58,7 @@ public class TestApp extends MainApp {
 
         // If some initial local data for both orders and deliverymen has been provided, write those to the file
         if (initialOrdersDataSupplier.get() != null && initialDeliverymenDataSupplier.get() != null) {
-            createDataFileWithData(new XmlFoodZoom(this.initialOrdersDataSupplier.get(),
+            createDataFileWithData(new XmlHealthHub(this.initialOrdersDataSupplier.get(),
                 this.initialDeliverymenDataSupplier.get()), this.saveFileLocation);
         }
 

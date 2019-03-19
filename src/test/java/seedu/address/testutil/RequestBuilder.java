@@ -8,10 +8,10 @@ import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.healthworker.Healthworker;
-import seedu.address.model.order.Condition;
-import seedu.address.model.order.Request;
-import seedu.address.model.order.RequestDate;
-import seedu.address.model.order.RequestStatus;
+import seedu.address.model.request.Condition;
+import seedu.address.model.request.Request;
+import seedu.address.model.request.RequestDate;
+import seedu.address.model.request.RequestStatus;
 import seedu.address.model.util.SampleDataUtil;
 
 /**

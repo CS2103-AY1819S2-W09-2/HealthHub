@@ -20,7 +20,7 @@ import seedu.address.logic.parser.RequestBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.healthworker.Healthworker;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 
 /**
  * The main LogicManager of the app.

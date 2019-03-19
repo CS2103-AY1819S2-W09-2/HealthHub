@@ -32,7 +32,7 @@ import seedu.address.logic.commands.request.AddCommand;
 import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 import seedu.address.testutil.RequestBuilder;
 
 public class AddCommandParserTest {

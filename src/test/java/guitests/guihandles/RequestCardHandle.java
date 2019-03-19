@@ -9,7 +9,7 @@ import com.google.common.collect.ImmutableMultiset;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 
 /**
  * Provides a handle to a request card in the request list panel.

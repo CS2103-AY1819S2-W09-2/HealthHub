@@ -16,7 +16,7 @@ public class XmlFileStorage {
     /**
      * Saves the data for FoodZoom to the specified file.
      */
-    public static void saveFoodZoomDataToFile(Path file, XmlFoodZoom foodZoomData) throws FileNotFoundException {
+    public static void saveFoodZoomDataToFile(Path file, XmlHealthHub foodZoomData) throws FileNotFoundException {
         try {
             XmlUtil.saveDataToFile(file, foodZoomData);
         } catch (JAXBException e) {
@@ -27,9 +27,9 @@ public class XmlFileStorage {
     /**
      * Returns the FoodZoom data from file
      */
-    public static XmlFoodZoom loadFoodZoomDataFromSaveFile(Path file) throws FileNotFoundException {
+    public static XmlHealthHub loadFoodZoomDataFromSaveFile(Path file) throws FileNotFoundException {
         try {
-            return XmlUtil.getDataFromFile(file, XmlFoodZoom.class);
+            return XmlUtil.getDataFromFile(file, XmlHealthHub.class);
         } catch (JAXBException e) {
             throw new AssertionError("Unexpected exception " + e.getMessage(), e);
         }

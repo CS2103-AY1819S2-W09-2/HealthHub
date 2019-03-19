@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.model.healthworker.Healthworker;
 import seedu.address.model.healthworker.HealthworkerList;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 import seedu.address.model.user.User;
 
 /**

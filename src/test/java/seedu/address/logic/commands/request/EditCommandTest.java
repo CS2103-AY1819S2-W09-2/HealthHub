@@ -28,7 +28,7 @@ import seedu.address.logic.commands.request.EditCommand.EditOrderDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
 import seedu.address.testutil.RequestBuilder;
 

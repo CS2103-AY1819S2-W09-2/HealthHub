@@ -25,8 +25,8 @@ import seedu.address.model.RequestBook;
 import seedu.address.model.healthworker.Healthworker;
 import seedu.address.model.healthworker.HealthworkerList;
 import seedu.address.model.healthworker.HealthworkerNameContainsKeywordsPredicate;
-import seedu.address.model.order.NameContainsKeywordsPredicate;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.NameContainsKeywordsPredicate;
+import seedu.address.model.request.Request;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
 
 /**

@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import seedu.address.model.common.Name;
 import seedu.address.model.healthworker.Healthworker;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 
 /**
  * A utility class to help build a healthworker

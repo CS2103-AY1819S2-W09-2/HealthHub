@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 import seedu.address.testutil.Assert;
 import seedu.address.testutil.RequestBuilder;
 

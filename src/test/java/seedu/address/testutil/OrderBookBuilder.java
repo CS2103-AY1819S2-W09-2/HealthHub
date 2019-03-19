@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.RequestBook;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 
 /**
  * A utility class to help with building Orderbook objects.

@@ -12,14 +12,14 @@ import seedu.address.logic.commands.request.FindCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Request;
-import seedu.address.model.order.RequestAddressContainsKeywordPredicate;
-import seedu.address.model.order.RequestConditionContainsKeywordPredicate;
-import seedu.address.model.order.RequestDatePredicate;
-import seedu.address.model.order.RequestNameContainsKeywordPredicate;
-import seedu.address.model.order.RequestPhoneContainsKeywordPredicate;
-import seedu.address.model.order.RequestStatus;
-import seedu.address.model.order.RequestStatusContainsKeywordPredicate;
+import seedu.address.model.request.Request;
+import seedu.address.model.request.RequestAddressContainsKeywordPredicate;
+import seedu.address.model.request.RequestConditionContainsKeywordPredicate;
+import seedu.address.model.request.RequestDatePredicate;
+import seedu.address.model.request.RequestNameContainsKeywordPredicate;
+import seedu.address.model.request.RequestPhoneContainsKeywordPredicate;
+import seedu.address.model.request.RequestStatus;
+import seedu.address.model.request.RequestStatusContainsKeywordPredicate;
 
 /**
  * Util to parse request's predicate

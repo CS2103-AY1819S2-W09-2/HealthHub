@@ -11,7 +11,7 @@ import java.util.UUID;
 import seedu.address.model.TaggedObject;
 import seedu.address.model.common.Name;
 import seedu.address.model.healthworker.exceptions.RequestLimitExceededException;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Request;
 
 /**
  * Represents a Healthworker in FoodZoom.

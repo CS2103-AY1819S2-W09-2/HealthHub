@@ -18,8 +18,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.BackToHomeEvent;
 import seedu.address.commons.events.ui.HealthWorkerPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.RequestPanelSelectionChangedEvent;
-import seedu.address.model.order.Condition;
-import seedu.address.model.order.Request;
+import seedu.address.model.request.Condition;
+import seedu.address.model.request.Request;
 import seedu.address.ui.display.DeliverymanDisplayCard;
 import seedu.address.ui.display.OrderDisplayCard;
 
