@@ -6,10 +6,10 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Request}'s {@code Status} matches the keywords given.
  */
-public class OrderStatusContainsKeywordPredicate implements Predicate<Request> {
+public class RequestStatusContainsKeywordPredicate implements Predicate<Request> {
     private final List<RequestStatus> keywords;
 
-    public OrderStatusContainsKeywordPredicate(List<RequestStatus> statuses) {
+    public RequestStatusContainsKeywordPredicate(List<RequestStatus> statuses) {
         keywords = statuses;
     }
 
@@ -22,7 +22,7 @@ public class OrderStatusContainsKeywordPredicate implements Predicate<Request> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof OrderStatusContainsKeywordPredicate // instanceof handles nulls
-                && keywords.equals(((OrderStatusContainsKeywordPredicate) other).keywords)); // state check
+                || (other instanceof RequestStatusContainsKeywordPredicate // instanceof handles nulls
+                && keywords.equals(((RequestStatusContainsKeywordPredicate) other).keywords)); // state check
     }
 }

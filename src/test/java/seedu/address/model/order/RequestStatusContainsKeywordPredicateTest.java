@@ -18,17 +18,17 @@ public class RequestStatusContainsKeywordPredicateTest {
         List<RequestStatus> secondPredicateKeyword =
                 Arrays.asList(new RequestStatus("PENDING"), new RequestStatus("ONGOING"));
 
-        OrderStatusContainsKeywordPredicate firstPredicate =
-                new OrderStatusContainsKeywordPredicate(firstPredicateKeyword);
-        OrderStatusContainsKeywordPredicate secondPredicate =
-                new OrderStatusContainsKeywordPredicate(secondPredicateKeyword);
+        RequestStatusContainsKeywordPredicate firstPredicate =
+                new RequestStatusContainsKeywordPredicate(firstPredicateKeyword);
+        RequestStatusContainsKeywordPredicate secondPredicate =
+                new RequestStatusContainsKeywordPredicate(secondPredicateKeyword);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        OrderStatusContainsKeywordPredicate firstPredicateCopy =
-                new OrderStatusContainsKeywordPredicate(firstPredicateKeyword);
+        RequestStatusContainsKeywordPredicate firstPredicateCopy =
+                new RequestStatusContainsKeywordPredicate(firstPredicateKeyword);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -44,12 +44,12 @@ public class RequestStatusContainsKeywordPredicateTest {
     @Test
     public void test_statusContainsKeywords_returnsTrue() {
         // One keyword
-        OrderStatusContainsKeywordPredicate predicate =
-                new OrderStatusContainsKeywordPredicate(Collections.singletonList(new RequestStatus("PENDING")));
+        RequestStatusContainsKeywordPredicate predicate =
+                new RequestStatusContainsKeywordPredicate(Collections.singletonList(new RequestStatus("PENDING")));
         assertTrue(predicate.test(new RequestBuilder().withStatus("PENDING").build()));
 
         // Keyword match only 2nd status
-        predicate = new OrderStatusContainsKeywordPredicate(
+        predicate = new RequestStatusContainsKeywordPredicate(
                 Arrays.asList(new RequestStatus("PENDING"), new RequestStatus("ONGOING")));
         assertTrue(predicate.test(new RequestBuilder().withStatus("ONGOING").build()));
     }
@@ -57,8 +57,8 @@ public class RequestStatusContainsKeywordPredicateTest {
     @Test
     public void test_statusDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
-        OrderStatusContainsKeywordPredicate predicate =
-                new OrderStatusContainsKeywordPredicate(Arrays.asList(new RequestStatus("PENDING")));
+        RequestStatusContainsKeywordPredicate predicate =
+                new RequestStatusContainsKeywordPredicate(Arrays.asList(new RequestStatus("PENDING")));
         assertFalse(predicate.test(new RequestBuilder().withStatus("COMPLETED").build()));
     }
 }

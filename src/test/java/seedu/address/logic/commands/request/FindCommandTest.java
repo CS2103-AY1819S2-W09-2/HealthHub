@@ -37,24 +37,32 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.order.Request;
-import seedu.address.model.order.OrderNameContainsKeywordPredicate;
+import seedu.address.model.order.RequestNameContainsKeywordPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalOrderBook(), getTypicalUsersList(),
-            getTypicalDeliverymenList(), new UserPrefs());
+        getTypicalDeliverymenList(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalOrderBook(), getTypicalUsersList(),
-            getTypicalDeliverymenList(), new UserPrefs());
+        getTypicalDeliverymenList(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
 
     @Test
     public void equals() {
         Predicate<Request> firstPredicate =
-                new OrderNameContainsKeywordPredicate("first");
+            new RequestNameContainsKeywordPredicate("first");
         Predicate<Request> secondPredicate =
-                new OrderNameContainsKeywordPredicate("second");
+            new RequestNameContainsKeywordPredicate("second");
 
         FindCommand findFirstOrderCommand = new FindCommand(firstPredicate);
         FindCommand findSecondOrderCommand = new FindCommand(secondPredicate);
@@ -130,7 +138,7 @@ public class FindCommandTest {
     public void execute_multiplePrefixMultipleKeywords_zeroOrderFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
         Predicate<Request> predicate =
-                preparePredicate(" f/Milo Chicken a/Jurong");
+            preparePredicate(" f/Milo Chicken a/Jurong");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
@@ -161,7 +169,7 @@ public class FindCommandTest {
     public void execute_allSupportedPrefixesSingleKeyword_oneOrderFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
         Predicate<Request> predicate =
-                preparePredicate(" n/alice p/94351253 a/Jurong West Ave 6 dt/01-10-2018 10:00:00 f/prata");
+            preparePredicate(" n/alice p/94351253 a/Jurong West Ave 6 dt/01-10-2018 10:00:00 f/prata");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
@@ -172,7 +180,7 @@ public class FindCommandTest {
     public void execute_allSupportedPrefixesSingleKeyword_zeroOrderFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
         Predicate<Request> predicate =
-                preparePredicate(" n/alice dt/01-10-2018 10:00:00 f/Chicken p/1223214 a/Block 38");
+            preparePredicate(" n/alice dt/01-10-2018 10:00:00 f/Chicken p/1223214 a/Block 38");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
@@ -186,7 +194,7 @@ public class FindCommandTest {
         ArgumentMultimap argMultimap = parseStringInput(userInput);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_FOOD)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_ORDER_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
@@ -195,14 +203,6 @@ public class FindCommandTest {
 
     private ArgumentMultimap parseStringInput(String input) {
         return ArgumentTokenizer.tokenize(input, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_FOOD);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
 

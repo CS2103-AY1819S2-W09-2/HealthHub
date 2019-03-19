@@ -7,10 +7,10 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Request}'s {@code Phone} matches any of the keywords given.
  */
-public class OrderPhoneContainsKeywordPredicate implements Predicate<Request> {
+public class RequestPhoneContainsKeywordPredicate implements Predicate<Request> {
     private final List<String> keywords;
 
-    public OrderPhoneContainsKeywordPredicate(List<String> phone) {
+    public RequestPhoneContainsKeywordPredicate(List<String> phone) {
         keywords = phone;
     }
 
@@ -23,7 +23,7 @@ public class OrderPhoneContainsKeywordPredicate implements Predicate<Request> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof OrderPhoneContainsKeywordPredicate // instanceof handles nulls
-                && keywords.equals(((OrderPhoneContainsKeywordPredicate) other).keywords)); // state check
+                || (other instanceof RequestPhoneContainsKeywordPredicate // instanceof handles nulls
+                && keywords.equals(((RequestPhoneContainsKeywordPredicate) other).keywords)); // state check
     }
 }

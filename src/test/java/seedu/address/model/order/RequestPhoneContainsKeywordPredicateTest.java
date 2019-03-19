@@ -17,17 +17,17 @@ public class RequestPhoneContainsKeywordPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("91122113");
         List<String> secondPredicateKeywordList = Arrays.asList("91122113", "81223123");
 
-        OrderPhoneContainsKeywordPredicate firstPredicate =
-                new OrderPhoneContainsKeywordPredicate(firstPredicateKeywordList);
-        OrderPhoneContainsKeywordPredicate secondPredicate =
-                new OrderPhoneContainsKeywordPredicate(secondPredicateKeywordList);
+        RequestPhoneContainsKeywordPredicate firstPredicate =
+                new RequestPhoneContainsKeywordPredicate(firstPredicateKeywordList);
+        RequestPhoneContainsKeywordPredicate secondPredicate =
+                new RequestPhoneContainsKeywordPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        OrderPhoneContainsKeywordPredicate firstPredicateCopy =
-                new OrderPhoneContainsKeywordPredicate(firstPredicateKeywordList);
+        RequestPhoneContainsKeywordPredicate firstPredicateCopy =
+                new RequestPhoneContainsKeywordPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -43,31 +43,31 @@ public class RequestPhoneContainsKeywordPredicateTest {
     @Test
     public void test_phoneContainsKeywords_returnsTrue() {
         // One keyword
-        OrderPhoneContainsKeywordPredicate predicate =
-                new OrderPhoneContainsKeywordPredicate(Collections.singletonList("1234"));
+        RequestPhoneContainsKeywordPredicate predicate =
+                new RequestPhoneContainsKeywordPredicate(Collections.singletonList("1234"));
         assertTrue(predicate.test(new RequestBuilder().withPhone("12343678").build()));
 
         // Multiple keywords
-        predicate = new OrderPhoneContainsKeywordPredicate(Arrays.asList("1234", "3678"));
+        predicate = new RequestPhoneContainsKeywordPredicate(Arrays.asList("1234", "3678"));
         assertTrue(predicate.test(new RequestBuilder().withPhone("12343678").build()));
 
         // Only one matching keyword
-        predicate = new OrderPhoneContainsKeywordPredicate(Arrays.asList("3678", "6789"));
+        predicate = new RequestPhoneContainsKeywordPredicate(Arrays.asList("3678", "6789"));
         assertTrue(predicate.test(new RequestBuilder().withPhone("12346789").build()));
     }
 
     @Test
     public void test_phoneDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        OrderPhoneContainsKeywordPredicate predicate = new OrderPhoneContainsKeywordPredicate(Collections.emptyList());
+        RequestPhoneContainsKeywordPredicate predicate = new RequestPhoneContainsKeywordPredicate(Collections.emptyList());
         assertFalse(predicate.test(new RequestBuilder().withPhone("2345").build()));
 
         // Non-matching keyword
-        predicate = new OrderPhoneContainsKeywordPredicate(Arrays.asList("6789"));
+        predicate = new RequestPhoneContainsKeywordPredicate(Arrays.asList("6789"));
         assertFalse(predicate.test(new RequestBuilder().withPhone("12343678").build()));
 
         // Invalid keyword
-        predicate = new OrderPhoneContainsKeywordPredicate(Arrays.asList("abc123"));
+        predicate = new RequestPhoneContainsKeywordPredicate(Arrays.asList("abc123"));
         assertFalse(predicate.test(new RequestBuilder().withPhone("123456789").build()));
     }
 }

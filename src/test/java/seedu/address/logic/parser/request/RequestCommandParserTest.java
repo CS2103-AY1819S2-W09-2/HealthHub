@@ -25,17 +25,16 @@ import seedu.address.logic.commands.request.ListCommand;
 import seedu.address.logic.commands.request.SelectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Request;
-import seedu.address.model.order.OrderNameContainsKeywordPredicate;
+import seedu.address.model.order.RequestNameContainsKeywordPredicate;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
 import seedu.address.testutil.RequestBuilder;
 import seedu.address.testutil.OrderUtil;
 
 
 public class RequestCommandParserTest {
+    private final RequestCommandParser parser = new RequestCommandParser();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-
-    private final RequestCommandParser parser = new RequestCommandParser();
 
     @Test
     public void parse_add() throws Exception {
@@ -53,7 +52,7 @@ public class RequestCommandParserTest {
     @Test
     public void parse_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parse(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST), command);
     }
 
@@ -66,7 +65,7 @@ public class RequestCommandParserTest {
     @Test
     public void parse_select() throws Exception {
         SelectCommand command = (SelectCommand) parser.parse(
-                SelectCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+            SelectCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
         assertEquals(new SelectCommand(INDEX_FIRST), command);
     }
 
@@ -76,8 +75,8 @@ public class RequestCommandParserTest {
         String searchKeyword = keywords.stream().collect(Collectors.joining(" "));
 
         FindCommand command = (FindCommand) parser.parse(
-                FindCommand.COMMAND_WORD + " n/" + searchKeyword);
-        assertEquals(new FindCommand(new OrderNameContainsKeywordPredicate(searchKeyword)), command);
+            FindCommand.COMMAND_WORD + " n/" + searchKeyword);
+        assertEquals(new FindCommand(new RequestNameContainsKeywordPredicate(searchKeyword)), command);
     }
 
     @Test
@@ -85,7 +84,7 @@ public class RequestCommandParserTest {
         Request request = new RequestBuilder().build();
         EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(request).build();
         EditCommand command = (EditCommand) parser.parse(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST.getOneBased() + " " + OrderUtil.getEditOrderDescriptorDetails(descriptor));
+            + INDEX_FIRST.getOneBased() + " " + OrderUtil.getEditOrderDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST, descriptor), command);
     }
 

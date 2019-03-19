@@ -16,7 +16,7 @@ import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Request;
-import seedu.address.model.order.OrderNameContainsKeywordPredicate;
+import seedu.address.model.order.RequestNameContainsKeywordPredicate;
 
 public class RequestPredicateUtilTest {
     @Test
@@ -31,7 +31,7 @@ public class RequestPredicateUtilTest {
     @Test
     public void test_singleValidPredicate_returnsTrue() throws ParseException {
         String name = "alex";
-        Predicate<Request> expectedPredicate = new OrderNameContainsKeywordPredicate(name);
+        Predicate<Request> expectedPredicate = new RequestNameContainsKeywordPredicate(name);
 
         ArgumentMultimap argMultimap = tokenizeInput(" n/alex");
         Predicate<Request> predicate = new RequestPredicateUtil().parsePredicate(argMultimap);
@@ -41,7 +41,7 @@ public class RequestPredicateUtilTest {
 
     private ArgumentMultimap tokenizeInput(String input) {
         return ArgumentTokenizer.tokenize(
-                input, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_FOOD, PREFIX_STATUS);
+            input, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_FOOD, PREFIX_STATUS);
     }
 
     /**
