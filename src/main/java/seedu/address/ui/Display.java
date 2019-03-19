@@ -109,7 +109,7 @@ public class Display extends UiPart<Region> {
 
                 statisticsPanel.clear();
                 statisticsPanel.initialize(orderHistory);
-                statisticsPanel.updateLabels(total, progress / total, getTrendingFood());
+                statisticsPanel.updateLabels(total, progress / total, getCommonConditions());
             }
         });
 
@@ -143,7 +143,7 @@ public class Display extends UiPart<Region> {
 
         logger.info(progress + "   " + total);
 
-        statisticsPanel.updateLabels(total, progress / total, getTrendingFood());
+        statisticsPanel.updateLabels(total, progress / total, getCommonConditions());
     }
 
     /**
@@ -180,7 +180,7 @@ public class Display extends UiPart<Region> {
      *
      * @return a String that represents the food item ordered the most
      */
-    private String getTrendingFood() {
+    private String getCommonConditions() {
         String bestFood = "";
         int bestVal = -1;
 
