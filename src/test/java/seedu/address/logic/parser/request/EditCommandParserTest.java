@@ -24,7 +24,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_FOOD_RICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
@@ -44,7 +44,7 @@ import seedu.address.model.request.RequestDate;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
 
 public class EditCommandParserTest {
-    private static final String FOOD_EMPTY = " " + PREFIX_FOOD;
+    private static final String FOOD_EMPTY = " " + PREFIX_CONDITION;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);

@@ -31,7 +31,7 @@ public class RequestPredicateUtil {
     private static final String STRING_PREFIX_PHONE = "p/";
     private static final String STRING_PREFIX_ADDRESS = "a/";
     private static final String STRING_PREFIX_DATE = "dt/";
-    private static final String STRING_PREFIX_FOOD = "f/";
+    private static final String STRING_PREFIX_FOOD = "c/";
     private static final String STRING_PREFIX_STATUS = "st/";
 
     private Predicate<Request> chainedPredicated;

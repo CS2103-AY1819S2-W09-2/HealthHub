@@ -560,7 +560,7 @@ that the user experience is not affected.
 ==== Current Implementation
 The `add` request command allows the `Manager` to create a new request and add it to the list of requests.
 Adding a new request requires the customer's `name`, customer's `phone` number, customer's `address`, `condition` and the `datetime`. +
-The format of the `add` command is `/request add n/NAME p/PHONE a/ADDRESS f/FOOD dt/DATETIME`.
+The format of the `add` command is `/request add n/NAME p/PHONE a/ADDRESS c/CONDITION dt/DATETIME`.
 
 The following sequence shows the sequence when the `add` command is execute by the `Manager`:
 
@@ -1598,20 +1598,20 @@ Expected: Fail to sign up. User already exist within the application.
 .. Prerequisites: Logged into the application. An request with name "John Lee", phone "98765432" and date "20-10-2018
 00:00:00" does not already exist. To check, type `/request list` to see all existing request.
 
-... Test case: `/request add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 f/Roti Prata f/Ice Milo
+... Test case: `/request add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 c/Physio c/Alzheimers
 dt/20-10-2018 00:00:00` +
     Expected: A new request with the above details is added to the list. The command box should reflect this accordingly
     with the message "New request added: " + <details of request>. The map should show a new placeholder (or an existing
     placeholder will increase in size). Timestamp in the status bar is updated.
 
-... Test case: `/request add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 f/Roti Prata f/Ice Milo
+... Test case: `/request add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 c/Physio c/Alzheimers
 dt/21-10-2018 00:00:00` +
     Expected: A new request with the above details is added to the list. The command box should reflect this accordingly
              with the message "New request added: " + <details of request>. The map should show a new placeholder (or an
              existing placeholder will increase in size) that gives an approximation of location. Timestamp in the
              status bar is updated.
 
-... Test case: `/request add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 f/Roti Prata f/Ice Milo
+... Test case: `/request add n/John Lee p/98765432 a/311, Clementi Ave 2, #02-25, 612344 c/Physio c/Alzheimers
                 dt/32-10-2018 00:00:00` +
     Expected: No request is added. Error details shown in the status message (invalid date). Status bar remains the same.
 

@@ -8,7 +8,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.testutil.TypicalDeliverymen.getTypicalDeliverymenList;
@@ -118,7 +118,7 @@ public class FindCommandTest {
     @Test
     public void execute_multiplePrefixSingleKeywords_oneOrderFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
-        Predicate<Request> predicate = preparePredicate(" p/94351253 f/Alzheimers");
+        Predicate<Request> predicate = preparePredicate(" p/94351253 c/Alzheimers");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
@@ -128,7 +128,7 @@ public class FindCommandTest {
     @Test
     public void execute_multiplePrefixSingleKeywords_zeroOrderFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
-        Predicate<Request> predicate = preparePredicate(" dt/01-10-2018 10:00:00 f/Chicken");
+        Predicate<Request> predicate = preparePredicate(" dt/01-10-2018 10:00:00 c/Physiotherapy");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
@@ -139,7 +139,7 @@ public class FindCommandTest {
     public void execute_multiplePrefixMultipleKeywords_zeroOrderFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
         Predicate<Request> predicate =
-            preparePredicate(" f/Milo Chicken a/Jurong");
+            preparePredicate(" c/Cancer a/Jurong");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
@@ -149,7 +149,7 @@ public class FindCommandTest {
     @Test
     public void execute_singleRepeatedPrefixSingleKeywordTakeLast_multipleOrdersFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
-        Predicate<Request> predicate = preparePredicate(" f/Dialysis f/Eldercare");
+        Predicate<Request> predicate = preparePredicate(" c/Dialysis c/Eldercare");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
@@ -171,7 +171,7 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
         Predicate<Request> predicate =
             preparePredicate(" n/alice p/94351253 a/Jurong West Ave 6 dt/01-10-2018 10:00:00 " +
-                "f/Alzheimers");
+                "c/Alzheimers");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
@@ -182,7 +182,7 @@ public class FindCommandTest {
     public void execute_allSupportedPrefixesSingleKeyword_zeroOrderFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
         Predicate<Request> predicate =
-            preparePredicate(" n/alice dt/01-10-2018 10:00:00 f/Chicken p/1223214 a/Block 38");
+            preparePredicate(" n/alice dt/01-10-2018 10:00:00 c/Chicken Pox p/1223214 a/Block 38");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
@@ -195,7 +195,7 @@ public class FindCommandTest {
     private Predicate<Request> preparePredicate(String userInput) throws ParseException {
         ArgumentMultimap argMultimap = parseStringInput(userInput);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_FOOD)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_CONDITION)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_ORDER_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
@@ -204,7 +204,7 @@ public class FindCommandTest {
     }
 
     private ArgumentMultimap parseStringInput(String input) {
-        return ArgumentTokenizer.tokenize(input, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_FOOD);
+        return ArgumentTokenizer.tokenize(input, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_CONDITION);
     }
 }
 

@@ -3,7 +3,7 @@ package seedu.address.logic.commands.request;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
@@ -27,13 +27,13 @@ public class AddCommand extends RequestCommand {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_DATE + "DATETIME "
-            + PREFIX_FOOD + "CONDITION...\n"
+            + PREFIX_CONDITION + "CONDITION...\n"
             + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25, 612344 "
-            + PREFIX_FOOD + "Roti Prata "
-            + PREFIX_FOOD + "Ice Milo "
+            + PREFIX_CONDITION + "Physiotherapy "
+            + PREFIX_CONDITION + "Cancer Treatment "
             + PREFIX_DATE + "12-10-2018 00:00:00";
 
     public static final String MESSAGE_SUCCESS = "New request added: %1$s";

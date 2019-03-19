@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
@@ -35,7 +35,7 @@ public class EditCommandParser implements Parser<RequestCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE , PREFIX_ADDRESS, PREFIX_DATE, PREFIX_FOOD);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE , PREFIX_ADDRESS, PREFIX_DATE, PREFIX_CONDITION);
 
         Index index;
 
@@ -58,7 +58,7 @@ public class EditCommandParser implements Parser<RequestCommand> {
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             editOrderDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
-        parseFoodForEdit(argMultimap.getAllValues(PREFIX_FOOD)).ifPresent(editOrderDescriptor::setCondition);
+        parseFoodForEdit(argMultimap.getAllValues(PREFIX_CONDITION)).ifPresent(editOrderDescriptor::setCondition);
 
         if (!editOrderDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

@@ -3,7 +3,7 @@ package seedu.address.logic.commands.request;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
@@ -47,11 +47,11 @@ public class EditCommand extends RequestCommand {
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_ADDRESS + "ADDRESS] "
         + "[" + PREFIX_DATE + "DATE] "
-        + "[" + PREFIX_FOOD + "FOOD]...\n"
+        + "[" + PREFIX_CONDITION + "FOOD]...\n"
         + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
-        + PREFIX_FOOD + "Roti Prata "
-        + PREFIX_FOOD + "Ice Milo";
+        + PREFIX_CONDITION + "Roti Prata "
+        + PREFIX_CONDITION + "Ice Milo";
 
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Request: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

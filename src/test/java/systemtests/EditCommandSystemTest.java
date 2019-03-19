@@ -26,7 +26,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MANAGER_USERNAM
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
@@ -115,7 +115,7 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
 
         /* Case: clear food -> rejected */
         index = INDEX_FIRST;
-        command = editCommand + " " + index.getOneBased() + " " + PREFIX_FOOD.getPrefix();
+        command = editCommand + " " + index.getOneBased() + " " + PREFIX_CONDITION.getPrefix();
         assertCommandFailure(command, Condition.MESSAGE_FOOD_CONSTRAINTS);
 
         /* ------------------ Performing edit operation while a filtered list is being shown ------------------------ */

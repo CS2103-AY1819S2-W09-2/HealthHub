@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -65,8 +65,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_ANGMOKIO = " " + PREFIX_ADDRESS + VALID_ADDRESS_ANGMOKIO;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-    public static final String FOOD_DESC_BURGER = " " + PREFIX_FOOD + VALID_FOOD_BURGER;
-    public static final String FOOD_DESC_RICE = " " + PREFIX_FOOD + VALID_FOOD_RICE;
+    public static final String FOOD_DESC_BURGER = " " + PREFIX_CONDITION + VALID_FOOD_BURGER;
+    public static final String FOOD_DESC_RICE = " " + PREFIX_CONDITION + VALID_FOOD_RICE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -74,7 +74,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "09/11/18";
-    public static final String INVALID_FOOD_DESC = " " + PREFIX_FOOD + "milo*"; // '*' not allowed in food
+    public static final String INVALID_FOOD_DESC = " " + PREFIX_CONDITION + "milo*"; // '*' not allowed in food
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

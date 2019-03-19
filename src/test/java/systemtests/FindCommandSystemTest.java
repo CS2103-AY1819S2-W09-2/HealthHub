@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MANAGER_PASSWOR
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANAGER_USERNAME_ALICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -152,7 +152,7 @@ public class FindCommandSystemTest extends RequestBookSystemTest {
 
         /* Case: find condition of request in request book -> 1 orders found */
         List<Condition> condition = new ArrayList<>(DANIEL.getCondition());
-        command = findCommand + " " + PREFIX_FOOD + condition.get(0).foodName;
+        command = findCommand + " " + PREFIX_CONDITION + condition.get(0).foodName;
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();

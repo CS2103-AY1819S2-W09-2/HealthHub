@@ -205,7 +205,7 @@ what is the most common item people have ordered from your stall!
 === Adding an request : `/request add` `[Since v1.1]`
 
 Allows you to adds a new request to the list of requests. +
-Format: `/request add f/FOOD n/NAME p/PHONE a/ADDRESS dt/DATETIME`
+Format: `/request add c/CONDITION n/NAME p/PHONE a/ADDRESS dt/DATETIME`
 
 There are also some things you need to take note of:
 ****

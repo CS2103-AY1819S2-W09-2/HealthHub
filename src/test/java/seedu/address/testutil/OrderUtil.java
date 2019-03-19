@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
@@ -36,7 +36,7 @@ public class OrderUtil {
         sb.append(PREFIX_ADDRESS + request.getAddress().value + " ");
         sb.append(PREFIX_DATE + request.getDate().toString() + " ");
         request.getCondition().stream().forEach(
-            s -> sb.append(PREFIX_FOOD + s.foodName + " ")
+            s -> sb.append(PREFIX_CONDITION + s.foodName + " ")
         );
         return sb.toString();
     }
@@ -53,9 +53,9 @@ public class OrderUtil {
         if (descriptor.getCondition().isPresent()) {
             Set<Condition> condition = descriptor.getCondition().get();
             if (condition.isEmpty()) {
-                sb.append(PREFIX_FOOD);
+                sb.append(PREFIX_CONDITION);
             } else {
-                condition.forEach(s -> sb.append(PREFIX_FOOD).append(s.foodName).append(" "));
+                condition.forEach(s -> sb.append(PREFIX_CONDITION).append(s.foodName).append(" "));
             }
         }
         return sb.toString();

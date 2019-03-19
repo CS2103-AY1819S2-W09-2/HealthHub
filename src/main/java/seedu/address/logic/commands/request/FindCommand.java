@@ -20,12 +20,14 @@ public class FindCommand extends RequestCommand {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Finds the request whose keywords contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: [n/NAME] [p/PHONE] [a/ADDRESS] [dt/DATETIME] [f/FOOD] [st/ORDER_STATUS]\n"
-            + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " n/John f/Ice Milo\n"
-            + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + " dt/01-10-2018 10:00:00 dt/03-10-2018 10:00:00";
+        + ": Finds the request whose keywords contain any of "
+        + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+        + "Parameters: [n/NAME] [p/PHONE] [a/ADDRESS] [dt/DATETIME] [c/CONDITION] " +
+        "[st/ORDER_STATUS]\n"
+        + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " n/John " +
+        "c/Physiotherapy\n"
+        + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
+        + " dt/01-10-2018 10:00:00 dt/03-10-2018 10:00:00";
 
     private final Predicate<Request> predicate;
 
@@ -38,13 +40,13 @@ public class FindCommand extends RequestCommand {
         requireNonNull(model);
         model.updateFilteredOrderList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()));
+            String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+            || (other instanceof FindCommand // instanceof handles nulls
+            && predicate.equals(((FindCommand) other).predicate)); // state check
     }
 }

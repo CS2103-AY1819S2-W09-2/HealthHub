@@ -3,7 +3,7 @@ package seedu.address.logic.parser.request;
 import static org.junit.Assert.assertEquals;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FOOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
@@ -25,7 +25,7 @@ public class RequestPredicateUtilTest {
         assertParseFailure(" p/", RequestPredicateUtil.MESSAGE_EMPTY_KEYWORD);
         assertParseFailure(" a/", RequestPredicateUtil.MESSAGE_EMPTY_KEYWORD);
         assertParseFailure(" dt/", RequestPredicateUtil.MESSAGE_EMPTY_KEYWORD);
-        assertParseFailure(" f/", RequestPredicateUtil.MESSAGE_EMPTY_KEYWORD);
+        assertParseFailure(" c/", RequestPredicateUtil.MESSAGE_EMPTY_KEYWORD);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class RequestPredicateUtilTest {
 
     private ArgumentMultimap tokenizeInput(String input) {
         return ArgumentTokenizer.tokenize(
-            input, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_FOOD, PREFIX_STATUS);
+            input, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_CONDITION, PREFIX_STATUS);
     }
 
     /**
