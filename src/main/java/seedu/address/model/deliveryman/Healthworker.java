@@ -10,7 +10,7 @@ import java.util.UUID;
 
 import seedu.address.model.TaggedObject;
 import seedu.address.model.common.Name;
-import seedu.address.model.deliveryman.exceptions.OrdersLimitExceededException;
+import seedu.address.model.deliveryman.exceptions.RequestLimitExceededException;
 import seedu.address.model.order.Order;
 
 /**
@@ -60,11 +60,11 @@ public class Healthworker extends TaggedObject {
 
     /**
      * Adds {@code request} to the set of orders for the healthworker.
-     * Throws {@code OrdersLimitExceededException} if the amount of orders assigned exceeds the limit for orders.
+     * Throws {@code RequestLimitExceededException} if the amount of orders assigned exceeds the limit for orders.
      */
-    public void addOrder(Order order) throws OrdersLimitExceededException {
+    public void addOrder(Order order) throws RequestLimitExceededException {
         if (orders.size() >= ORDERS_LIMIT) {
-            throw new OrdersLimitExceededException();
+            throw new RequestLimitExceededException();
         }
         orders.add(order);
     }

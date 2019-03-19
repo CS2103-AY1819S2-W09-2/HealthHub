@@ -33,8 +33,8 @@ public class XmlSerializableHealthworkerListTest {
 
     @Test
     public void toModelType_typicalDeliverymenFile_success() throws Exception {
-        XmlSerializableDeliverymenList dataFromFile = XmlUtil.getDataFromFile(TYPICAL_DELIVERYMEN_FILE,
-            XmlSerializableDeliverymenListWithRootElement.class);
+        XmlSerializableHealthworkerList dataFromFile = XmlUtil.getDataFromFile(TYPICAL_DELIVERYMEN_FILE,
+            XmlSerializableHealthworkerListWithRootElement.class);
         HealthworkerList healthworkerListFromFile = dataFromFile.toModelType();
         HealthworkerList typicalDeliverymenHealthworkerList = TypicalDeliverymen.getTypicalDeliverymenList();
         assertEquals(typicalDeliverymenHealthworkerList.getDeliverymenList().get(1),
@@ -47,18 +47,18 @@ public class XmlSerializableHealthworkerListTest {
 
     @Test
     public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        XmlSerializableDeliverymenList dataFromFile = XmlUtil.getDataFromFile(INVALID_PERSON_FILE,
-            XmlSerializableDeliverymenListWithRootElement.class);
+        XmlSerializableHealthworkerList dataFromFile = XmlUtil.getDataFromFile(INVALID_PERSON_FILE,
+            XmlSerializableHealthworkerListWithRootElement.class);
         thrown.expect(IllegalValueException.class);
         dataFromFile.toModelType();
     }
 
     @Test
     public void toModelType_duplicateDeliverymen_throwsIllegalValueException() throws Exception {
-        XmlSerializableDeliverymenList dataFromFile = XmlUtil.getDataFromFile(DUPLICATE_PERSON_FILE,
-            XmlSerializableDeliverymenListWithRootElement.class);
+        XmlSerializableHealthworkerList dataFromFile = XmlUtil.getDataFromFile(DUPLICATE_PERSON_FILE,
+            XmlSerializableHealthworkerListWithRootElement.class);
         thrown.expect(IllegalValueException.class);
-        thrown.expectMessage(XmlSerializableDeliverymenList.MESSAGE_DUPLICATE_DELIVERYMAN);
+        thrown.expectMessage(XmlSerializableHealthworkerList.MESSAGE_DUPLICATE_DELIVERYMAN);
         dataFromFile.toModelType();
     }
 
@@ -67,7 +67,7 @@ public class XmlSerializableHealthworkerListTest {
      * {@code XmlAdaptedDeliveryman} objects.
      */
     @XmlRootElement(name = "deliverymenlist")
-    private static class XmlSerializableDeliverymenListWithRootElement extends XmlSerializableDeliverymenList {}
+    private static class XmlSerializableHealthworkerListWithRootElement extends XmlSerializableHealthworkerList {}
 
 }
 

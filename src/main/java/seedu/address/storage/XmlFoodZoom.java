@@ -7,7 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.OrderBook;
 import seedu.address.model.ReadOnlyOrderBook;
 import seedu.address.model.deliveryman.HealthworkerList;
-import seedu.address.storage.deliveryman.XmlSerializableDeliverymenList;
+import seedu.address.storage.deliveryman.XmlSerializableHealthworkerList;
 
 /**
  * JAXB storage of FoodZoom information - namely an orderBook and a healthworkerList.
@@ -18,16 +18,16 @@ public class XmlFoodZoom {
     private XmlSerializableOrderBook orderBook;
 
     @XmlElement(required = true)
-    private XmlSerializableDeliverymenList deliverymenList;
+    private XmlSerializableHealthworkerList deliverymenList;
 
     public XmlFoodZoom() {
         orderBook = new XmlSerializableOrderBook();
-        deliverymenList = new XmlSerializableDeliverymenList();
+        deliverymenList = new XmlSerializableHealthworkerList();
     }
 
     public XmlFoodZoom(ReadOnlyOrderBook ordersSrc, HealthworkerList deliverymenSrc) {
         orderBook = new XmlSerializableOrderBook(ordersSrc);
-        deliverymenList = new XmlSerializableDeliverymenList(deliverymenSrc);
+        deliverymenList = new XmlSerializableHealthworkerList(deliverymenSrc);
     }
 
     public OrderBook getOrderBook() throws IllegalValueException {

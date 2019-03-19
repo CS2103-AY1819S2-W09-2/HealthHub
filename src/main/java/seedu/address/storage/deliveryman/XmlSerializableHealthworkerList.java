@@ -13,7 +13,7 @@ import seedu.address.model.deliveryman.HealthworkerList;
 /**
  * An Immutable HealthworkerList that is serializable to XML format
  */
-public class XmlSerializableDeliverymenList {
+public class XmlSerializableHealthworkerList {
 
     public static final String MESSAGE_DUPLICATE_DELIVERYMAN = "Deliverymen List contains duplicate deliverymen.";
 
@@ -21,17 +21,17 @@ public class XmlSerializableDeliverymenList {
     private List<XmlAdaptedDeliveryman> deliverymen;
 
     /**
-     * Creates an empty XmlSerializableDeliverymenList.
+     * Creates an empty XmlSerializableHealthworkerList.
      * Required for marshalling.
      */
-    public XmlSerializableDeliverymenList() {
+    public XmlSerializableHealthworkerList() {
         deliverymen = new ArrayList<>();
     }
 
     /**
      * Converts HealthworkerList to Serializable
      */
-    public XmlSerializableDeliverymenList(HealthworkerList src) {
+    public XmlSerializableHealthworkerList(HealthworkerList src) {
         this();
         deliverymen.addAll(src.getDeliverymenList().stream().map(XmlAdaptedDeliveryman::new)
             .collect(Collectors.toList()));
@@ -60,9 +60,9 @@ public class XmlSerializableDeliverymenList {
             return true;
         }
 
-        if (!(other instanceof XmlSerializableDeliverymenList)) {
+        if (!(other instanceof XmlSerializableHealthworkerList)) {
             return false;
         }
-        return deliverymen.equals(((XmlSerializableDeliverymenList) other).deliverymen);
+        return deliverymen.equals(((XmlSerializableHealthworkerList) other).deliverymen);
     }
 }

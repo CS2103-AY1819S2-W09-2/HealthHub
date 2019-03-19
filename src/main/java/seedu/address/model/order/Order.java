@@ -12,7 +12,7 @@ import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.deliveryman.exceptions.OrdersLimitExceededException;
+import seedu.address.model.deliveryman.exceptions.RequestLimitExceededException;
 
 /**
  * Represents an Order in the request book.
@@ -111,7 +111,7 @@ public class Order extends TaggedObject {
         return food;
     }
 
-    public void setHealthworker(Healthworker newHealthworker) throws OrdersLimitExceededException {
+    public void setHealthworker(Healthworker newHealthworker) throws RequestLimitExceededException {
         assert(!isAlreadyAssignedDeliveryman());
         healthworker = newHealthworker;
         updateStatusOngoing();

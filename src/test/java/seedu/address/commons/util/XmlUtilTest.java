@@ -23,7 +23,7 @@ import seedu.address.storage.XmlAdaptedOrder;
 import seedu.address.storage.XmlFoodZoom;
 import seedu.address.storage.XmlSerializableOrderBook;
 import seedu.address.storage.deliveryman.XmlAdaptedDeliveryman;
-import seedu.address.storage.deliveryman.XmlSerializableDeliverymenList;
+import seedu.address.storage.deliveryman.XmlSerializableHealthworkerList;
 import seedu.address.testutil.DeliverymanBuilder;
 import seedu.address.testutil.DeliverymenListBuilder;
 import seedu.address.testutil.OrderBookBuilder;
@@ -88,7 +88,7 @@ public class XmlUtilTest {
             XmlSerializableOrderBookWithRootElement.class).toModelType();
         assertEquals(9, dataFromFile.getOrderList().size());
         HealthworkerList deliverymenDataFromFile = XmlUtil.getDataFromFile(VALID_DELIVERYMEN_LIST_FILE,
-            XmlSerializableDeliverymenListWithRootElement.class).toModelType();
+            XmlSerializableHealthworkerListWithRootElement.class).toModelType();
         assertEquals(2, deliverymenDataFromFile.getDeliverymenList().size());
     }
 
@@ -195,7 +195,7 @@ public class XmlUtilTest {
      * {@code XmlAdaptedDeliveryman} objects.
      */
     @XmlRootElement(name = "deliverymenlist")
-    private static class XmlSerializableDeliverymenListWithRootElement extends XmlSerializableDeliverymenList {
+    private static class XmlSerializableHealthworkerListWithRootElement extends XmlSerializableHealthworkerList {
     }
 
     /**
