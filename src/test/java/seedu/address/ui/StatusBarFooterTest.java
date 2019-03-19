@@ -20,7 +20,7 @@ import org.junit.Test;
 import guitests.guihandles.StatusBarFooterHandle;
 import seedu.address.commons.events.model.HealthHubChangedEvent;
 import seedu.address.model.RequestBook;
-import seedu.address.model.deliveryman.HealthworkerList;
+import seedu.address.model.healthworker.HealthworkerList;
 
 public class StatusBarFooterTest extends GuiUnitTest {
 

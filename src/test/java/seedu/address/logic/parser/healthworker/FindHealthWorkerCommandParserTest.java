@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.healthworker.FindHealthWorkerCommandPar
 import org.junit.Test;
 
 import seedu.address.logic.commands.healthworker.HealthWorkerFindCommand;
-import seedu.address.model.deliveryman.HealthworkerNameContainsKeywordsPredicate;
+import seedu.address.model.healthworker.HealthworkerNameContainsKeywordsPredicate;
 
 public class FindHealthWorkerCommandParserTest {
 

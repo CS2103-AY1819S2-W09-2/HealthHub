@@ -1,4 +1,4 @@
-package seedu.address.storage.deliveryman;
+package seedu.address.storage.healthworker;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -15,7 +15,7 @@ import com.google.common.collect.Streams;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.XmlUtil;
-import seedu.address.model.deliveryman.HealthworkerList;
+import seedu.address.model.healthworker.HealthworkerList;
 import seedu.address.testutil.TypicalDeliverymen;
 
 public class XmlSerializableHealthworkerListTest {

@@ -16,8 +16,8 @@ import seedu.address.logic.commands.healthworker.HealthWorkerDeleteCommand;
 import seedu.address.logic.commands.healthworker.HealthWorkerFindCommand;
 import seedu.address.logic.commands.healthworker.HealthWorkerListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.deliveryman.HealthworkerNameContainsKeywordsPredicate;
+import seedu.address.model.healthworker.Healthworker;
+import seedu.address.model.healthworker.HealthworkerNameContainsKeywordsPredicate;
 import seedu.address.testutil.DeliverymanBuilder;
 import seedu.address.testutil.DeliverymanUtil;
 

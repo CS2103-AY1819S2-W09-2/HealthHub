@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.healthworker.AddHealthWorkerCommand;
-import seedu.address.model.deliveryman.Healthworker;
+import seedu.address.model.healthworker.Healthworker;
 
 /**
  * A utility class for Healthworker testing.

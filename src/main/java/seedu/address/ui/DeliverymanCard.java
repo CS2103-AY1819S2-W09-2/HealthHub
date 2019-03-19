@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.model.deliveryman.Healthworker;
+import seedu.address.model.healthworker.Healthworker;
 
 /**
  * An UI component that displays information of a {@code Request}.

@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import seedu.address.TestApp;
 import seedu.address.model.ReadOnlyRequestBook;
 import seedu.address.model.ReadOnlyUsersList;
-import seedu.address.model.deliveryman.HealthworkerList;
+import seedu.address.model.healthworker.HealthworkerList;
 
 /**
  * Contains helper methods that system tests require.

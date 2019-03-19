@@ -19,7 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.RequestBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.deliveryman.Healthworker;
+import seedu.address.model.healthworker.Healthworker;
 import seedu.address.model.order.Request;
 
 /**

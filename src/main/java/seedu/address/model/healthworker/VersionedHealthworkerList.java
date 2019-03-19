@@ -1,4 +1,4 @@
-package seedu.address.model.deliveryman;
+package seedu.address.model.healthworker;
 
 import java.util.ArrayList;
 import java.util.List;

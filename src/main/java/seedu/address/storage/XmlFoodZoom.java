@@ -6,8 +6,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyRequestBook;
 import seedu.address.model.RequestBook;
-import seedu.address.model.deliveryman.HealthworkerList;
-import seedu.address.storage.deliveryman.XmlSerializableHealthworkerList;
+import seedu.address.model.healthworker.HealthworkerList;
+import seedu.address.storage.healthworker.XmlSerializableHealthworkerList;
 
 /**
  * JAXB storage of FoodZoom information - namely an orderBook and a healthworkerList.

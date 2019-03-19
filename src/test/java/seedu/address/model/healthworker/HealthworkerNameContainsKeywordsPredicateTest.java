@@ -1,4 +1,4 @@
-package seedu.address.model.deliveryman;
+package seedu.address.model.healthworker;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

@@ -1,4 +1,4 @@
-package seedu.address.storage.deliveryman;
+package seedu.address.storage.healthworker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.deliveryman.HealthworkerList;
+import seedu.address.model.healthworker.Healthworker;
+import seedu.address.model.healthworker.HealthworkerList;
 
 /**
  * An Immutable HealthworkerList that is serializable to XML format

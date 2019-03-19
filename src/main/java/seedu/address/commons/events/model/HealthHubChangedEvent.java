@@ -2,7 +2,7 @@ package seedu.address.commons.events.model;
 
 import seedu.address.commons.events.BaseEvent;
 import seedu.address.model.ReadOnlyRequestBook;
-import seedu.address.model.deliveryman.HealthworkerList;
+import seedu.address.model.healthworker.HealthworkerList;
 
 /**
  * Indicates that some part of the app has changed.

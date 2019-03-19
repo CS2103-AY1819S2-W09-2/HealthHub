@@ -1,4 +1,4 @@
-package seedu.address.model.deliveryman;
+package seedu.address.model.healthworker;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -10,7 +10,7 @@ import java.util.UUID;
 
 import seedu.address.model.TaggedObject;
 import seedu.address.model.common.Name;
-import seedu.address.model.deliveryman.exceptions.RequestLimitExceededException;
+import seedu.address.model.healthworker.exceptions.RequestLimitExceededException;
 import seedu.address.model.order.Request;
 
 /**

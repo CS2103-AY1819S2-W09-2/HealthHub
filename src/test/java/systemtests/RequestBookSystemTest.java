@@ -36,7 +36,7 @@ import seedu.address.logic.commands.request.SelectCommand;
 import seedu.address.model.Model;
 import seedu.address.model.RequestBook;
 import seedu.address.model.UsersList;
-import seedu.address.model.deliveryman.HealthworkerList;
+import seedu.address.model.healthworker.HealthworkerList;
 import seedu.address.testutil.TypicalDeliverymen;
 import seedu.address.testutil.TypicalOrders;
 import seedu.address.testutil.user.TypicalUsers;

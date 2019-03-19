@@ -11,8 +11,8 @@ import seedu.address.model.TaggedObject;
 import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
-import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.deliveryman.exceptions.RequestLimitExceededException;
+import seedu.address.model.healthworker.Healthworker;
+import seedu.address.model.healthworker.exceptions.RequestLimitExceededException;
 
 /**
  * Represents an Request in the request book.

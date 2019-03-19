@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.deliveryman.HealthworkerList;
+import seedu.address.model.healthworker.Healthworker;
+import seedu.address.model.healthworker.HealthworkerList;
 
 /**
  * A utility class to help with building HealthworkerList objects.

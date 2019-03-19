@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.deliveryman.HealthworkerList;
+import seedu.address.model.healthworker.Healthworker;
+import seedu.address.model.healthworker.HealthworkerList;
 
 /**
  * A utility class containing a list of {@code Deliverymen} objects to be used in tests.

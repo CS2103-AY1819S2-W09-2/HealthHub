@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
-import seedu.address.model.deliveryman.Healthworker;
+import seedu.address.model.healthworker.Healthworker;
 import seedu.address.model.order.Request;
 import seedu.address.ui.UiPart;
 

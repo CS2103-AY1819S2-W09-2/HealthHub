@@ -1,4 +1,4 @@
-package seedu.address.storage.deliveryman;
+package seedu.address.storage.healthworker;
 
 import static seedu.address.model.TaggedObject.MESSAGE_INVALID_ID;
 
@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlIDREF;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.common.Name;
-import seedu.address.model.deliveryman.Healthworker;
+import seedu.address.model.healthworker.Healthworker;
 import seedu.address.model.order.Request;
 import seedu.address.storage.XmlAdaptedRequest;
 

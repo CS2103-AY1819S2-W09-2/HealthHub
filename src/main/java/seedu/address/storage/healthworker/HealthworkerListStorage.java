@@ -1,11 +1,11 @@
-package seedu.address.storage.deliveryman;
+package seedu.address.storage.healthworker;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.deliveryman.HealthworkerList;
+import seedu.address.model.healthworker.HealthworkerList;
 
 /**
  * Represents the Storage interface for HealthworkerList

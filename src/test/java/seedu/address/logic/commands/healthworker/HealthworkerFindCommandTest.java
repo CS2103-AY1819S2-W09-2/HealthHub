@@ -19,7 +19,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.deliveryman.HealthworkerNameContainsKeywordsPredicate;
+import seedu.address.model.healthworker.HealthworkerNameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code HealthworkerFindCommandTest}.

@@ -1,8 +1,8 @@
-package seedu.address.storage.deliveryman;
+package seedu.address.storage.healthworker;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.storage.deliveryman.XmlAdaptedHealthworker.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.storage.healthworker.XmlAdaptedHealthworker.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.TypicalDeliverymen.RAJUL;
 
 import org.junit.Test;

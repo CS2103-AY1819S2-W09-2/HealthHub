@@ -15,7 +15,7 @@ import seedu.address.commons.events.ui.BackToHomeEvent;
 import seedu.address.commons.events.ui.HealthWorkerPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.JumpToHealthWorkerListRequestEvent;
 import seedu.address.commons.events.ui.RequestPanelSelectionChangedEvent;
-import seedu.address.model.deliveryman.Healthworker;
+import seedu.address.model.healthworker.Healthworker;
 
 /**
  * Panel containing the list of orders.

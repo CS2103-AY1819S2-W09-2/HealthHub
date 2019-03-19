@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.healthworker.AddHealthWorkerCommand;
 import seedu.address.model.common.Name;
-import seedu.address.model.deliveryman.Healthworker;
+import seedu.address.model.healthworker.Healthworker;
 import seedu.address.testutil.DeliverymanBuilder;
 
 public class AddHealthWorkerCommandParserTest {

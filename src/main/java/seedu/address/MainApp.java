@@ -27,7 +27,7 @@ import seedu.address.model.ReadOnlyUsersList;
 import seedu.address.model.RequestBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.UsersList;
-import seedu.address.model.deliveryman.HealthworkerList;
+import seedu.address.model.healthworker.HealthworkerList;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.FoodZoomStorage;
 import seedu.address.storage.JsonUserPrefsStorage;

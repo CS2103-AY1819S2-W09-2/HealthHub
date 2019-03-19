@@ -15,8 +15,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.deliveryman.exceptions.RequestLimitExceededException;
+import seedu.address.model.healthworker.Healthworker;
+import seedu.address.model.healthworker.exceptions.RequestLimitExceededException;
 import seedu.address.model.order.Request;
 
 /**

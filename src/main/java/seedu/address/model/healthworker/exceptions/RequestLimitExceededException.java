@@ -1,4 +1,4 @@
-package seedu.address.model.deliveryman.exceptions;
+package seedu.address.model.healthworker.exceptions;
 
 /**
  * Indicated that the operation exceeds the request limit in healthworker.

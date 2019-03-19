@@ -17,13 +17,13 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.model.RequestBook;
-import seedu.address.model.deliveryman.HealthworkerList;
+import seedu.address.model.healthworker.HealthworkerList;
 import seedu.address.storage.XmlAdaptedCondition;
 import seedu.address.storage.XmlAdaptedRequest;
 import seedu.address.storage.XmlFoodZoom;
 import seedu.address.storage.XmlSerializableRequestBook;
-import seedu.address.storage.deliveryman.XmlAdaptedHealthworker;
-import seedu.address.storage.deliveryman.XmlSerializableHealthworkerList;
+import seedu.address.storage.healthworker.XmlAdaptedHealthworker;
+import seedu.address.storage.healthworker.XmlSerializableHealthworkerList;
 import seedu.address.testutil.DeliverymanBuilder;
 import seedu.address.testutil.DeliverymenListBuilder;
 import seedu.address.testutil.OrderBookBuilder;

@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.model.RequestBook;
-import seedu.address.model.deliveryman.HealthworkerList;
+import seedu.address.model.healthworker.HealthworkerList;
 import seedu.address.model.order.Request;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.TestUtil;

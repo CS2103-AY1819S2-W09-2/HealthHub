@@ -3,8 +3,8 @@ package seedu.address.model;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.deliveryman.HealthworkerList;
+import seedu.address.model.healthworker.Healthworker;
+import seedu.address.model.healthworker.HealthworkerList;
 import seedu.address.model.order.Request;
 import seedu.address.model.user.User;
 
