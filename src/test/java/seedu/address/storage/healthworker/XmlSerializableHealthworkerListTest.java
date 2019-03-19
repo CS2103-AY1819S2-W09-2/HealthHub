@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.junit.Rule;
@@ -23,11 +24,11 @@ public class XmlSerializableHealthworkerListTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
         "XmlSerializableHealthworkerListTest");
     private static final Path TYPICAL_DELIVERYMEN_FILE =
-            TEST_DATA_FOLDER.resolve("typicalDeliverymenDeliverymenList.xml");
+        TEST_DATA_FOLDER.resolve("typicalHealthworkerList.xml");
     private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve(
-        "invalidDeliverymanDeliverymenList.xml");
+        "invalidHealthworkerList.xml");
     private static final Path DUPLICATE_PERSON_FILE =
-            TEST_DATA_FOLDER.resolve("duplicateDeliverymenDeliverymenList.xml");
+        TEST_DATA_FOLDER.resolve("duplicateHealthworker.xml");
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -68,7 +69,8 @@ public class XmlSerializableHealthworkerListTest {
      * {@code XmlAdaptedHealthworker} objects.
      */
     @XmlRootElement(name = "deliverymenlist")
-    private static class XmlSerializableHealthworkerListWithRootElement extends XmlSerializableHealthworkerList {}
+    private static class XmlSerializableHealthworkerListWithRootElement extends XmlSerializableHealthworkerList {
+    }
 
 }
 

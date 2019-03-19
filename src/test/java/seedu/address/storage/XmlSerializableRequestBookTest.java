@@ -22,10 +22,10 @@ import seedu.address.testutil.TypicalOrders;
 public class XmlSerializableRequestBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "XmlSerializableRequestBookTest");
-    private static final Path TYPICAL_ORDERS_FILE = TEST_DATA_FOLDER.resolve("typicalOrdersOrderBook.xml");
+    private static final Path TYPICAL_ORDERS_FILE = TEST_DATA_FOLDER.resolve("typicalRequestBook.xml");
     private static final Path INVALID_ORDER_FILE = TEST_DATA_FOLDER.resolve(
-        "invalidOrderOrderBook.xml");
-    private static final Path DUPLICATE_ORDER_FILE = TEST_DATA_FOLDER.resolve("duplicateOrderOrderBook.xml");
+        "invalidRequestBook.xml");
+    private static final Path DUPLICATE_ORDER_FILE = TEST_DATA_FOLDER.resolve("duplicateRequestBook.xml");
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
