@@ -12,7 +12,7 @@ import seedu.address.storage.healthworker.XmlSerializableHealthworkerList;
 /**
  * JAXB storage of FoodZoom information - namely an orderBook and a healthworkerList.
  */
-@XmlRootElement(name = "foodzoom")
+@XmlRootElement(name = "healthhub")
 public class XmlHealthHub {
     @XmlElement(required = true)
     private XmlSerializableRequestBook orderBook;

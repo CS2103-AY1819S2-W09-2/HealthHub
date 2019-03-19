@@ -94,7 +94,7 @@ public class RequestListPanelTest extends GuiUnitTest {
     private Path createXmlFileWithOrders(int orderCount) throws Exception {
         StringBuilder builder = new StringBuilder();
         builder.append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n");
-        builder.append("<foodzoom>\n");
+        builder.append("<healthhub>\n");
         builder.append("<orderbook>\n");
         for (int i = 0; i < orderCount; i++) {
             builder.append("<orders tag=\"" + UUID.randomUUID().toString() + "\">\n");
@@ -109,7 +109,7 @@ public class RequestListPanelTest extends GuiUnitTest {
         builder.append("</orderbook>\n");
         builder.append("<healthworkerList>\n");
         builder.append("</healthworkerList>\n");
-        builder.append("</foodzoom>\n");
+        builder.append("</healthhub>\n");
 
         Path manyOrdersFile = Paths.get(TEST_DATA_FOLDER + "manyOrders.xml");
         FileUtil.createFile(manyOrdersFile);
