@@ -13,13 +13,13 @@ import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.OrderAddressContainsKeywordPredicate;
-import seedu.address.model.order.OrderDatePredicate;
 import seedu.address.model.order.OrderFoodContainsKeywordPredicate;
+import seedu.address.model.order.Request;
+import seedu.address.model.order.RequestDatePredicate;
 import seedu.address.model.order.RequestNameContainsKeywordPredicate;
 import seedu.address.model.order.RequestPhoneContainsKeywordPredicate;
 import seedu.address.model.order.RequestStatus;
 import seedu.address.model.order.RequestStatusContainsKeywordPredicate;
-import seedu.address.model.order.Request;
 
 /**
  * Util to parse request's predicate
@@ -79,61 +79,62 @@ public class RequestPredicateUtil {
      */
     private void chainPredicate(Prefix prefix, List<String> keywords) throws ParseException {
         switch (prefix.toString()) {
-            case STRING_PREFIX_NAME:
-                String name = getLastValueFromList(keywords);
-                RequestNameContainsKeywordPredicate namePredicate = new RequestNameContainsKeywordPredicate(name);
+        case STRING_PREFIX_NAME:
+            String name = getLastValueFromList(keywords);
+            RequestNameContainsKeywordPredicate namePredicate = new RequestNameContainsKeywordPredicate(name);
 
-                setToPredicate(namePredicate);
+            setToPredicate(namePredicate);
 
-                break;
+            break;
 
-            case STRING_PREFIX_PHONE:
-                String phone = getLastValueFromList(keywords);
-                String[] phoneKeywords = trimAndSplitStringByWhiteSpaces(phone);
-                RequestPhoneContainsKeywordPredicate phonePredicate =
-                    new RequestPhoneContainsKeywordPredicate(Arrays.asList(phoneKeywords));
+        case STRING_PREFIX_PHONE:
+            String phone = getLastValueFromList(keywords);
+            String[] phoneKeywords = trimAndSplitStringByWhiteSpaces(phone);
+            RequestPhoneContainsKeywordPredicate phonePredicate =
+                new RequestPhoneContainsKeywordPredicate(Arrays.asList(phoneKeywords));
 
-                setToPredicate(phonePredicate);
+            setToPredicate(phonePredicate);
 
-                break;
+            break;
 
-            case STRING_PREFIX_ADDRESS:
-                String address = getLastValueFromList(keywords).trim();
-                OrderAddressContainsKeywordPredicate addressPredicate = new OrderAddressContainsKeywordPredicate(address);
+        case STRING_PREFIX_ADDRESS:
+            String address = getLastValueFromList(keywords).trim();
+            OrderAddressContainsKeywordPredicate addressPredicate = new OrderAddressContainsKeywordPredicate(address);
 
-                setToPredicate(addressPredicate);
+            setToPredicate(addressPredicate);
 
-                break;
+            break;
 
-            case STRING_PREFIX_DATE:
-                List<Date> date = new RequestDatePredicateUtil().parseDateKeywords(keywords);
-                OrderDatePredicate datePredicate = new OrderDatePredicate(date);
+        case STRING_PREFIX_DATE:
+            List<Date> date = new RequestDatePredicateUtil().parseDateKeywords(keywords);
+            RequestDatePredicate datePredicate = new RequestDatePredicate(date);
 
-                setToPredicate(datePredicate);
+            setToPredicate(datePredicate);
 
-                break;
+            break;
 
-            case STRING_PREFIX_FOOD:
-                String food = getLastValueFromList(keywords);
-                OrderFoodContainsKeywordPredicate foodPredicate = new OrderFoodContainsKeywordPredicate(food);
+        case STRING_PREFIX_FOOD:
+            String food = getLastValueFromList(keywords);
+            OrderFoodContainsKeywordPredicate foodPredicate = new OrderFoodContainsKeywordPredicate(food);
 
-                setToPredicate(foodPredicate);
+            setToPredicate(foodPredicate);
 
-                break;
+            break;
 
-            case STRING_PREFIX_STATUS:
-                String status = getLastValueFromList(keywords);
-                String[] statusKeywords = trimAndSplitStringByWhiteSpaces(status);
-                List<RequestStatus> requestStatuses =
-                    new RequestStatusPredicateUtil().parseOrderStatusKeywords(Arrays.asList(statusKeywords));
-                RequestStatusContainsKeywordPredicate statusPredicate = new RequestStatusContainsKeywordPredicate(requestStatuses);
+        case STRING_PREFIX_STATUS:
+            String status = getLastValueFromList(keywords);
+            String[] statusKeywords = trimAndSplitStringByWhiteSpaces(status);
+            List<RequestStatus> requestStatuses =
+                new RequestStatusPredicateUtil().parseOrderStatusKeywords(Arrays.asList(statusKeywords));
+            RequestStatusContainsKeywordPredicate statusPredicate = new RequestStatusContainsKeywordPredicate(
+                requestStatuses);
 
-                setToPredicate(statusPredicate);
+            setToPredicate(statusPredicate);
 
-                break;
+            break;
 
-            default:
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        default:
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
 

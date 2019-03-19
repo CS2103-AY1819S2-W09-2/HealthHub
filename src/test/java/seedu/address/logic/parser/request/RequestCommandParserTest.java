@@ -27,12 +27,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Request;
 import seedu.address.model.order.RequestNameContainsKeywordPredicate;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
-import seedu.address.testutil.RequestBuilder;
 import seedu.address.testutil.OrderUtil;
+import seedu.address.testutil.RequestBuilder;
 
 
 public class RequestCommandParserTest {
+
     private final RequestCommandParser parser = new RequestCommandParser();
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 

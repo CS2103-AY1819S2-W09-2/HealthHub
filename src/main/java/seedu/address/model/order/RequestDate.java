@@ -11,7 +11,7 @@ import java.util.Date;
  * Represents an Request's date in the request book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)} (String)}
  */
-public class OrderDate {
+public class RequestDate {
 
     public static final String MESSAGE_DATE_CONSTRAINTS =
             "Date should be in the format dd-MM-yyyy HH:mm:ss and it should be a valid date.";
@@ -21,11 +21,11 @@ public class OrderDate {
     private Date date = null;
 
     /**
-     * Constructs a {@code OrderDate}.
+     * Constructs a {@code RequestDate}.
      *
      * @param orderDate A valid Request Date.
      */
-    public OrderDate(String orderDate) {
+    public RequestDate(String orderDate) {
 
         requireNonNull(orderDate);
 
@@ -71,8 +71,8 @@ public class OrderDate {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof OrderDate // instanceof handles nulls
-                && date.equals(((OrderDate) other).date)); // state check
+                || (other instanceof RequestDate // instanceof handles nulls
+                && date.equals(((RequestDate) other).date)); // state check
     }
 
     @Override

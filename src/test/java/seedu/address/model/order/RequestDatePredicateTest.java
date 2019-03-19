@@ -32,17 +32,17 @@ public class RequestDatePredicateTest {
         List<Date> firstPredicateKeywordList = Collections.singletonList(dateOne);
         List<Date> secondPredicateKeywordList = Arrays.asList(dateOne, dateTwo);
 
-        OrderDatePredicate firstPredicate =
-                new OrderDatePredicate(firstPredicateKeywordList);
-        OrderDatePredicate secondPredicate =
-                new OrderDatePredicate(secondPredicateKeywordList);
+        RequestDatePredicate firstPredicate =
+                new RequestDatePredicate(firstPredicateKeywordList);
+        RequestDatePredicate secondPredicate =
+                new RequestDatePredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        OrderDatePredicate firstPredicateCopy =
-                new OrderDatePredicate(firstPredicateKeywordList);
+        RequestDatePredicate firstPredicateCopy =
+                new RequestDatePredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -70,7 +70,7 @@ public class RequestDatePredicateTest {
         List<Date> predicateKeywordList = Collections.singletonList(datePredicateKeyword);
 
         // Exact match
-        OrderDatePredicate predicate = new OrderDatePredicate(predicateKeywordList);
+        RequestDatePredicate predicate = new RequestDatePredicate(predicateKeywordList);
         assertTrue(predicate.test(new RequestBuilder().withDate("01-10-2018 10:00:00").build()));
     }
 
@@ -89,7 +89,7 @@ public class RequestDatePredicateTest {
         List<Date> predicateKeywordList = Collections.singletonList(datePredicateKeyword);
 
         // Different date, same time
-        OrderDatePredicate predicate = new OrderDatePredicate(predicateKeywordList);
+        RequestDatePredicate predicate = new RequestDatePredicate(predicateKeywordList);
         assertFalse(predicate.test(new RequestBuilder().withDate("03-10-2018 10:00:00").build()));
 
         // Same date, different time
@@ -113,7 +113,7 @@ public class RequestDatePredicateTest {
         List<Date> predicateKeywordList = Arrays.asList(lowerDateBoundary, upperDateBoundary);
 
         // Equals lower boundary
-        OrderDatePredicate predicate = new OrderDatePredicate(predicateKeywordList);
+        RequestDatePredicate predicate = new RequestDatePredicate(predicateKeywordList);
         assertTrue(predicate.test(new RequestBuilder().withDate("01-10-2018 10:00:00").build()));
 
         // Equals upper boundary
@@ -140,7 +140,7 @@ public class RequestDatePredicateTest {
         List<Date> predicateKeywordList = Arrays.asList(lowerDateBoundary, upperDateBoundary);
 
         // Below lower boundary
-        OrderDatePredicate predicate = new OrderDatePredicate(predicateKeywordList);
+        RequestDatePredicate predicate = new RequestDatePredicate(predicateKeywordList);
         assertFalse(predicate.test(new RequestBuilder().withDate("01-10-2018 09:00:59").build()));
 
         // Exceed upper boundary

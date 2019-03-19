@@ -16,7 +16,7 @@ import seedu.address.model.common.Password;
 import seedu.address.model.common.Phone;
 import seedu.address.model.common.Username;
 import seedu.address.model.order.Food;
-import seedu.address.model.order.OrderDate;
+import seedu.address.model.order.RequestDate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -104,13 +104,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code orderDate} is invalid.
      */
-    public static OrderDate parseDate(String orderDate) throws ParseException {
+    public static RequestDate parseDate(String orderDate) throws ParseException {
         requireNonNull(orderDate);
         String trimmedDate = orderDate.trim();
-        if (!OrderDate.isValidDate(trimmedDate)) {
-            throw new ParseException(OrderDate.MESSAGE_DATE_CONSTRAINTS);
+        if (!RequestDate.isValidDate(trimmedDate)) {
+            throw new ParseException(RequestDate.MESSAGE_DATE_CONSTRAINTS);
         }
-        return new OrderDate(trimmedDate);
+        return new RequestDate(trimmedDate);
     }
 
     /**

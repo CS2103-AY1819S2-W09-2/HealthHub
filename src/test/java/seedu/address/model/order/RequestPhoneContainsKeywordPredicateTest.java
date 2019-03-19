@@ -59,7 +59,8 @@ public class RequestPhoneContainsKeywordPredicateTest {
     @Test
     public void test_phoneDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        RequestPhoneContainsKeywordPredicate predicate = new RequestPhoneContainsKeywordPredicate(Collections.emptyList());
+        RequestPhoneContainsKeywordPredicate predicate = new RequestPhoneContainsKeywordPredicate(
+            Collections.emptyList());
         assertFalse(predicate.test(new RequestBuilder().withPhone("2345").build()));
 
         // Non-matching keyword

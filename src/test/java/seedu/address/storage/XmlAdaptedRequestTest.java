@@ -15,7 +15,7 @@ import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.order.Food;
-import seedu.address.model.order.OrderDate;
+import seedu.address.model.order.RequestDate;
 import seedu.address.testutil.Assert;
 
 public class XmlAdaptedRequestTest {
@@ -93,7 +93,7 @@ public class XmlAdaptedRequestTest {
     public void toModelType_invalidDate_throwsIllegalValueException() {
         XmlAdaptedOrder order = new XmlAdaptedOrder(VALID_NAME, VALID_PHONE, VALID_ADDRESS,
                 INVALID_DATE, VALID_STATUS, VALID_FOOD, null);
-        String expectedMessage = OrderDate.MESSAGE_DATE_CONSTRAINTS;
+        String expectedMessage = RequestDate.MESSAGE_DATE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 

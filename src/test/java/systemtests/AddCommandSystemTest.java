@@ -40,9 +40,9 @@ import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.order.Request;
-import seedu.address.model.order.OrderDate;
-import seedu.address.testutil.RequestBuilder;
+import seedu.address.model.order.RequestDate;
 import seedu.address.testutil.OrderUtil;
+import seedu.address.testutil.RequestBuilder;
 
 public class AddCommandSystemTest extends RequestBookSystemTest {
 
@@ -149,7 +149,7 @@ public class AddCommandSystemTest extends RequestBookSystemTest {
 
         /* Case: invalid date -> rejected */
         command = addCommand + NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY + INVALID_DATE_DESC + FOOD_DESC_BURGER;
-        assertCommandFailure(command, OrderDate.MESSAGE_DATE_CONSTRAINTS);
+        assertCommandFailure(command, RequestDate.MESSAGE_DATE_CONSTRAINTS);
 
     }
 

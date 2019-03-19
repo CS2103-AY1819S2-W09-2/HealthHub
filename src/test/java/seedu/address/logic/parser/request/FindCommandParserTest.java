@@ -14,8 +14,8 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.request.FindCommand;
 import seedu.address.model.order.OrderAddressContainsKeywordPredicate;
-import seedu.address.model.order.OrderDatePredicate;
 import seedu.address.model.order.OrderFoodContainsKeywordPredicate;
+import seedu.address.model.order.RequestDatePredicate;
 import seedu.address.model.order.RequestNameContainsKeywordPredicate;
 import seedu.address.model.order.RequestPhoneContainsKeywordPredicate;
 import seedu.address.model.order.RequestStatus;
@@ -65,7 +65,7 @@ public class FindCommandParserTest {
         }
 
         FindCommand expectedDateFindCommand =
-            new FindCommand(new OrderDatePredicate(Arrays.asList(date)));
+            new FindCommand(new RequestDatePredicate(Arrays.asList(date)));
         assertParseSuccess(parser, " dt/01-10-2018 10:00:00", expectedDateFindCommand);
     }
 

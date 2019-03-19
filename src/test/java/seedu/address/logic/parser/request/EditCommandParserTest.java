@@ -40,7 +40,7 @@ import seedu.address.model.common.Address;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.order.Food;
-import seedu.address.model.order.OrderDate;
+import seedu.address.model.order.RequestDate;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -83,7 +83,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_NAME_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_PHONE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_ADDRESS_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_DATE_DESC, OrderDate.MESSAGE_DATE_CONSTRAINTS); // invalid date
+        assertParseFailure(parser, "1" + INVALID_DATE_DESC, RequestDate.MESSAGE_DATE_CONSTRAINTS); // invalid date
         assertParseFailure(parser, "1" + INVALID_FOOD_DESC, Food.MESSAGE_FOOD_CONSTRAINTS); // invalid food
 
         // invalid phone followed by valid date

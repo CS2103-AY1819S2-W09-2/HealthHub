@@ -11,8 +11,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.deliveryman.Healthworker;
-import seedu.address.model.order.RequestStatus;
 import seedu.address.model.order.Request;
+import seedu.address.model.order.RequestStatus;
 
 /**
  * Mark an request as COMPLETED.

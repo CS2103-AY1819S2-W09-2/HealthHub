@@ -10,7 +10,7 @@ import seedu.address.model.common.Phone;
 import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Food;
 import seedu.address.model.order.Request;
-import seedu.address.model.order.OrderDate;
+import seedu.address.model.order.RequestDate;
 import seedu.address.model.order.RequestStatus;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -29,7 +29,7 @@ public class RequestBuilder {
     private Name name;
     private Phone phone;
     private Address address;
-    private OrderDate date;
+    private RequestDate date;
     private RequestStatus status;
     private Set<Food> food;
     private UUID id;
@@ -39,7 +39,7 @@ public class RequestBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         address = new Address(DEFAULT_ADDRESS);
-        date = new OrderDate(DEFAULT_DATE);
+        date = new RequestDate(DEFAULT_DATE);
         food = SampleDataUtil.getFoodSet(DEFAULT_FOOD);
         status = new RequestStatus(DEFAULT_STATUS);
         healthworker = null;
@@ -97,7 +97,7 @@ public class RequestBuilder {
      * Sets the {@code Date} of the {@code Request} that we are building.
      */
     public RequestBuilder withDate(String orderDate) {
-        this.date = new OrderDate(orderDate);
+        this.date = new RequestDate(orderDate);
         return this;
     }
 

@@ -11,19 +11,19 @@ import java.util.List;
 import org.junit.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.OrderDate;
+import seedu.address.model.order.RequestDate;
 
 public class RequestDatePredicateUtilTest {
     @Test
     public void test_invalidDateGiven_throwsParseException() throws ParseException {
         List<String> invalidDates = Collections.singletonList("first");
-        assertParseFailure(invalidDates, OrderDate.MESSAGE_DATE_CONSTRAINTS);
+        assertParseFailure(invalidDates, RequestDate.MESSAGE_DATE_CONSTRAINTS);
 
         invalidDates = Collections.singletonList("57-10-1908 00:00:00");
-        assertParseFailure(invalidDates, OrderDate.MESSAGE_DATE_CONSTRAINTS);
+        assertParseFailure(invalidDates, RequestDate.MESSAGE_DATE_CONSTRAINTS);
 
         invalidDates = Collections.singletonList("01-15-1908 00:00:00");
-        assertParseFailure(invalidDates, OrderDate.MESSAGE_DATE_CONSTRAINTS);
+        assertParseFailure(invalidDates, RequestDate.MESSAGE_DATE_CONSTRAINTS);
     }
 
     @Test

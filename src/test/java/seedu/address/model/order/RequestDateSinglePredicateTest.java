@@ -26,17 +26,17 @@ public class RequestDateSinglePredicateTest {
             assertFalse(true);
         }
 
-        OrderDateSinglePredicate firstPredicate =
-                new OrderDateSinglePredicate(firstPredicateKeyword);
-        OrderDateSinglePredicate secondPredicate =
-                new OrderDateSinglePredicate(secondPredicateKeyword);
+        RequestDateSinglePredicate firstPredicate =
+            new RequestDateSinglePredicate(firstPredicateKeyword);
+        RequestDateSinglePredicate secondPredicate =
+            new RequestDateSinglePredicate(secondPredicateKeyword);
 
         // Same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // Same values -> returns true
-        OrderDateSinglePredicate firstPredicateCopy =
-                new OrderDateSinglePredicate(firstPredicateKeyword);
+        RequestDateSinglePredicate firstPredicateCopy =
+            new RequestDateSinglePredicate(firstPredicateKeyword);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // Different types -> returns false
@@ -62,7 +62,7 @@ public class RequestDateSinglePredicateTest {
         }
 
         // Exact match
-        OrderDateSinglePredicate predicate = new OrderDateSinglePredicate(datePredicateKeyword);
+        RequestDateSinglePredicate predicate = new RequestDateSinglePredicate(datePredicateKeyword);
         assertTrue(predicate.test(new RequestBuilder().withDate("01-10-2018 10:00:00").build()));
     }
 
@@ -79,7 +79,7 @@ public class RequestDateSinglePredicateTest {
         }
 
         // Different date, same time
-        OrderDateSinglePredicate predicate = new OrderDateSinglePredicate(datePredicateKeyword);
+        RequestDateSinglePredicate predicate = new RequestDateSinglePredicate(datePredicateKeyword);
         assertFalse(predicate.test(new RequestBuilder().withDate("03-10-2018 10:00:00").build()));
 
         // Same date, different time

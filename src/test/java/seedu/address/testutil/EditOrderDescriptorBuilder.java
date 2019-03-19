@@ -10,7 +10,7 @@ import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.order.Food;
 import seedu.address.model.order.Request;
-import seedu.address.model.order.OrderDate;
+import seedu.address.model.order.RequestDate;
 
 /**
  * A utility class to help with building EditOrderDescriptor objects.
@@ -66,7 +66,7 @@ public class EditOrderDescriptorBuilder {
      * Sets the {@code Date} of the {@code EditOrderDescriptor} that we are building.
      */
     public EditOrderDescriptorBuilder withDate(String date) {
-        descriptor.setDate(new OrderDate(date));
+        descriptor.setDate(new RequestDate(date));
         return this;
     }
 

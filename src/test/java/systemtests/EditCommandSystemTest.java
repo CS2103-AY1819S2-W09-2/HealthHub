@@ -51,9 +51,9 @@ import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.order.Food;
 import seedu.address.model.order.Request;
-import seedu.address.model.order.OrderDate;
-import seedu.address.testutil.RequestBuilder;
+import seedu.address.model.order.RequestDate;
 import seedu.address.testutil.OrderUtil;
+import seedu.address.testutil.RequestBuilder;
 
 public class EditCommandSystemTest extends RequestBookSystemTest {
     @Test
@@ -64,7 +64,7 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
         /* Login */
         String loginCommand = LoginCommand.COMMAND_WORD + " ";
         String command = loginCommand + PREFIX_USERNAME + VALID_MANAGER_USERNAME_ALICE
-                + " " + PREFIX_PASSWORD + VALID_MANAGER_PASSWORD_ALICE;
+            + " " + PREFIX_PASSWORD + VALID_MANAGER_PASSWORD_ALICE;
         executeCommand(command);
         setUpOrderListPanel();
 
@@ -74,13 +74,13 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
          */
         Index index = INDEX_FIRST;
         command = " " + editCommand + "  " + index.getOneBased() + "  " + NAME_DESC_BOB + "  "
-                + PHONE_DESC_BOB + " " + DATE_DESC_BOB + "  " + ADDRESS_DESC_BOB + " " + FOOD_DESC_BURGER + " ";
+            + PHONE_DESC_BOB + " " + DATE_DESC_BOB + "  " + ADDRESS_DESC_BOB + " " + FOOD_DESC_BURGER + " ";
         Request editedRequest = new RequestBuilder(BOB).withFood(VALID_FOOD_BURGER).build();
         assertCommandSuccess(command, index, editedRequest);
 
         /* Case: edit a request with new values same as existing values -> edited */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB
-                + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
+            + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
         assertCommandSuccess(command, index, BOB);
 
         /* Case: edit a request with new values same as another request's values but with different name -> edited */
@@ -88,19 +88,19 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
         index = INDEX_SECOND;
         assertNotEquals(getModel().getFilteredOrderList().get(index.getZeroBased()), BOB);
         command = editCommand + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_BOB + DATE_DESC_BOB
-                + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
+            + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
         editedRequest = new RequestBuilder(BOB).withName(VALID_NAME_AMY).build();
         assertCommandSuccess(command, index, editedRequest);
 
         /* Case: edit a request with new values same as another request's values but with different phone -> edited */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + DATE_DESC_BOB
-                + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
+            + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
         editedRequest = new RequestBuilder(BOB).withPhone(VALID_PHONE_AMY).build();
         assertCommandSuccess(command, index, editedRequest);
 
         /* Case: edit a request with new values same as another request's values but with different date -> edited */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_AMY
-                + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
+            + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
         editedRequest = new RequestBuilder(BOB).withDate(VALID_DATE_AMY).build();
         assertCommandSuccess(command, index, editedRequest);
 
@@ -109,7 +109,7 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
          */
         index = INDEX_SECOND;
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + DATE_DESC_AMY
-                + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
+            + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
         editedRequest = new RequestBuilder(BOB).withPhone(VALID_PHONE_AMY).withDate(VALID_DATE_AMY).build();
         assertCommandSuccess(command, index, editedRequest);
 
@@ -135,7 +135,7 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
         showOrdersWithName(KEYWORD_NAME_MATCHING_MEIER);
         int invalidIndex = getModel().getOrderBook().getOrderList().size();
         assertCommandFailure(editCommand + " " + invalidIndex + NAME_DESC_BOB,
-                Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+            Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
 
         /* ------------------ Performing edit operation while a request card is selected --------------------- */
 
@@ -146,7 +146,7 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
         index = INDEX_FIRST;
         selectOrder(index);
         command = editCommand + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_AMY + DATE_DESC_AMY
-                + ADDRESS_DESC_AMY + FOOD_DESC_BURGER;
+            + ADDRESS_DESC_AMY + FOOD_DESC_BURGER;
         // this can be misleading: card selection actually remains unchanged but the
         // browser's url is updated to reflect the new request's name
         assertCommandSuccess(command, index, AMY, index);
@@ -155,44 +155,44 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
 
         /* Case: invalid index (0) -> rejected */
         assertCommandFailure(editCommand + " 0" + NAME_DESC_BOB,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (-1) -> rejected */
         assertCommandFailure(editCommand + " -1" + NAME_DESC_BOB,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (size + 1) -> rejected */
         invalidIndex = getModel().getFilteredOrderList().size() + 1;
         assertCommandFailure(editCommand + " " + invalidIndex + NAME_DESC_BOB,
-                Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+            Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
 
         /* Case: missing index -> rejected */
         assertCommandFailure(editCommand + NAME_DESC_BOB,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
 
         /* Case: missing all fields -> rejected */
         assertCommandFailure(editCommand + " " + INDEX_FIRST.getOneBased(),
-                EditCommand.MESSAGE_NOT_EDITED);
+            EditCommand.MESSAGE_NOT_EDITED);
 
         /* Case: invalid name -> rejected */
         assertCommandFailure(editCommand + " " + INDEX_FIRST.getOneBased() + INVALID_NAME_DESC,
-                Name.MESSAGE_NAME_CONSTRAINTS);
+            Name.MESSAGE_NAME_CONSTRAINTS);
 
         /* Case: invalid phone -> rejected */
         assertCommandFailure(editCommand + " " + INDEX_FIRST.getOneBased() + INVALID_PHONE_DESC,
-                Phone.MESSAGE_PHONE_CONSTRAINTS);
+            Phone.MESSAGE_PHONE_CONSTRAINTS);
 
         /* Case: invalid date -> rejected */
         assertCommandFailure(editCommand + " " + INDEX_FIRST.getOneBased() + INVALID_DATE_DESC,
-                OrderDate.MESSAGE_DATE_CONSTRAINTS);
+            RequestDate.MESSAGE_DATE_CONSTRAINTS);
 
         /* Case: invalid address -> rejected */
         assertCommandFailure(editCommand + " " + INDEX_FIRST.getOneBased() + INVALID_ADDRESS_DESC,
-                Address.MESSAGE_ADDRESS_CONSTRAINTS);
+            Address.MESSAGE_ADDRESS_CONSTRAINTS);
 
         /* Case: invalid food -> rejected */
         assertCommandFailure(editCommand + " " + INDEX_FIRST.getOneBased() + INVALID_FOOD_DESC,
-                Food.MESSAGE_FOOD_CONSTRAINTS);
+            Food.MESSAGE_FOOD_CONSTRAINTS);
 
         /* Case: edit a request with new values same as another request's values -> rejected */
         executeCommand(RequestCommand.COMMAND_WORD + " " + OrderUtil.getAddCommand(BOB));
@@ -200,18 +200,18 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
         index = INDEX_FIRST;
         assertFalse(getModel().getFilteredOrderList().get(index.getZeroBased()).equals(BOB));
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB
-                + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
+            + ADDRESS_DESC_BOB + FOOD_DESC_RICE;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_ORDER);
 
         /* Case: edit a request with new values same values but with different food -> rejected */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB
-                + ADDRESS_DESC_BOB + FOOD_DESC_BURGER;
+            + ADDRESS_DESC_BOB + FOOD_DESC_BURGER;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_ORDER);
 
         /* Case: edit a request with new values same values but with different address ->
         rejected */
         command = editCommand + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB
-                + ADDRESS_DESC_AMY + FOOD_DESC_RICE;
+            + ADDRESS_DESC_AMY + FOOD_DESC_RICE;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_ORDER);
     }
 
@@ -241,7 +241,7 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
         expectedModel.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
 
         assertCommandSuccess(command, expectedModel,
-                String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedRequest), expectedSelectedCardIndex);
+            String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedRequest), expectedSelectedCardIndex);
     }
 
     /**
@@ -289,7 +289,7 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
         assertEquals(new OrderBook(expectedModel.getOrderBook()).getOrderList().size(),
-                testApp.readStorageOrderBook().getOrderList().size());
+            testApp.readStorageOrderBook().getOrderList().size());
         assertListMatching(getOrderListPanel(), expectedModel.getFilteredOrderList());
     }
 

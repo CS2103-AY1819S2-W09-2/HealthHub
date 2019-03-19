@@ -7,10 +7,10 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Request}'s {@code Date} matches any of the keywords given.
  */
-public class OrderDateSinglePredicate implements Predicate<Request> {
+public class RequestDateSinglePredicate implements Predicate<Request> {
     private final Date keyword;
 
-    public OrderDateSinglePredicate(Date date) {
+    public RequestDateSinglePredicate(Date date) {
         keyword = date;
     }
 
@@ -22,7 +22,7 @@ public class OrderDateSinglePredicate implements Predicate<Request> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof OrderDateSinglePredicate // instanceof handles nulls
-                && keyword.equals(((OrderDateSinglePredicate) other).keyword)); // state check
+            || (other instanceof RequestDateSinglePredicate // instanceof handles nulls
+            && keyword.equals(((RequestDateSinglePredicate) other).keyword)); // state check
     }
 }

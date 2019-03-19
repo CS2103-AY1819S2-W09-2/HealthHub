@@ -26,9 +26,9 @@ import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Food;
-import seedu.address.model.order.OrderDate;
-import seedu.address.model.order.RequestStatus;
 import seedu.address.model.order.Request;
+import seedu.address.model.order.RequestDate;
+import seedu.address.model.order.RequestStatus;
 
 
 /**
@@ -83,7 +83,7 @@ public class EditCommand extends RequestCommand {
         Name updatedName = editOrderDescriptor.getName().orElse(requestToEdit.getName());
         Phone updatedPhone = editOrderDescriptor.getPhone().orElse(requestToEdit.getPhone());
         Address updatedAddress = editOrderDescriptor.getAddress().orElse(requestToEdit.getAddress());
-        OrderDate updatedDate = editOrderDescriptor.getDate().orElse(requestToEdit.getDate());
+        RequestDate updatedDate = editOrderDescriptor.getDate().orElse(requestToEdit.getDate());
         Set<Food> updatedFood = editOrderDescriptor.getFood().orElse(requestToEdit.getFood());
         RequestStatus requestStatus = requestToEdit.getRequestStatus();
         Healthworker healthworker = requestToEdit.getHealthworker();
@@ -151,7 +151,7 @@ public class EditCommand extends RequestCommand {
         private Name name;
         private Phone phone;
         private Address address;
-        private OrderDate orderDate;
+        private RequestDate requestDate;
         private Set<Food> food;
 
         public EditOrderDescriptor() {
@@ -165,7 +165,7 @@ public class EditCommand extends RequestCommand {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setAddress(toCopy.address);
-            setDate(toCopy.orderDate);
+            setDate(toCopy.requestDate);
             setFood(toCopy.food);
         }
 
@@ -173,7 +173,7 @@ public class EditCommand extends RequestCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, address, orderDate, food);
+            return CollectionUtil.isAnyNonNull(name, phone, address, requestDate, food);
         }
 
         public Optional<Name> getName() {
@@ -200,12 +200,12 @@ public class EditCommand extends RequestCommand {
             this.address = address;
         }
 
-        public Optional<OrderDate> getDate() {
-            return Optional.ofNullable(orderDate);
+        public Optional<RequestDate> getDate() {
+            return Optional.ofNullable(requestDate);
         }
 
-        public void setDate(OrderDate orderDate) {
-            this.orderDate = orderDate;
+        public void setDate(RequestDate requestDate) {
+            this.requestDate = requestDate;
         }
 
         /**

@@ -36,7 +36,7 @@ public class RequestCard extends UiPart<Region> {
     @FXML
     private Label foodList;
     @FXML
-    private Label orderDate;
+    private Label requestDate;
     @FXML
     private Label requestStatus;
 
@@ -50,7 +50,7 @@ public class RequestCard extends UiPart<Region> {
         foodList.setText(String.join(", ",
             request.getFood().stream().map(Food::toString).collect(Collectors.toSet())));
 
-        orderDate.setText(request.getDate().toString());
+        requestDate.setText(request.getDate().toString());
 
         requestStatus.setText(request.getRequestStatus().toString().substring(0, 1).toUpperCase()
             + request.getRequestStatus().toString().substring(1).toLowerCase());

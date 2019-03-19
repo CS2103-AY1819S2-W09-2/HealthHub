@@ -18,7 +18,8 @@ public class RequestStatusPredicateUtilTest {
 
     @Test
     public void test_multipleValidStringStatus_returnStatusList() throws ParseException {
-        List<RequestStatus> expectedRequestStatuses = Arrays.asList(new RequestStatus("PENDING"), new RequestStatus("ONGOING"));
+        List<RequestStatus> expectedRequestStatuses = Arrays.asList(new RequestStatus("PENDING"),
+            new RequestStatus("ONGOING"));
 
         List<String> stringStatuses = Arrays.asList("PENDING", "ONGOING");
         List<RequestStatus> statuses = new RequestStatusPredicateUtil().parseOrderStatusKeywords(stringStatuses);

@@ -8,7 +8,7 @@ import java.util.List;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import seedu.address.model.order.OrderDate;
+import seedu.address.model.order.RequestDate;
 
 /**
  * Parses of date keywords and returns a valid date list
@@ -52,7 +52,7 @@ public class RequestDatePredicateUtil {
                 sf.setLenient(false);
                 dates.add(sf.parse(stringDate));
             } catch (java.text.ParseException pE) {
-                throw new ParseException(OrderDate.MESSAGE_DATE_CONSTRAINTS);
+                throw new ParseException(RequestDate.MESSAGE_DATE_CONSTRAINTS);
             }
         }
 

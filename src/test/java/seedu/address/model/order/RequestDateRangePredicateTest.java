@@ -31,17 +31,17 @@ public class RequestDateRangePredicateTest {
         }
 
 
-        OrderDateRangePredicate firstPredicate =
-                new OrderDateRangePredicate(firstPredicateFirstKeyword, firstPredicateSecondKeyword);
-        OrderDateRangePredicate secondPredicate =
-                new OrderDateRangePredicate(secondPredicateFirstKeyword, secondPredicateSecondKeyword);
+        RequestDateRangePredicate firstPredicate =
+                new RequestDateRangePredicate(firstPredicateFirstKeyword, firstPredicateSecondKeyword);
+        RequestDateRangePredicate secondPredicate =
+                new RequestDateRangePredicate(secondPredicateFirstKeyword, secondPredicateSecondKeyword);
 
         // Same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // Same values -> returns true
-        OrderDateRangePredicate firstPredicateCopy =
-                new OrderDateRangePredicate(firstPredicateFirstKeyword, firstPredicateSecondKeyword);
+        RequestDateRangePredicate firstPredicateCopy =
+                new RequestDateRangePredicate(firstPredicateFirstKeyword, firstPredicateSecondKeyword);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // Different types -> returns false
@@ -69,7 +69,7 @@ public class RequestDateRangePredicateTest {
         }
 
         // Equals lower boundary
-        OrderDateRangePredicate predicate = new OrderDateRangePredicate(lowerDateBoundary, upperDateBoundary);
+        RequestDateRangePredicate predicate = new RequestDateRangePredicate(lowerDateBoundary, upperDateBoundary);
         assertTrue(predicate.test(new RequestBuilder().withDate("01-10-2018 10:00:00").build()));
 
         // Equals upper boundary
@@ -94,7 +94,7 @@ public class RequestDateRangePredicateTest {
         }
 
         // Below lower boundary
-        OrderDateRangePredicate predicate = new OrderDateRangePredicate(lowerDateBoundary, upperDateBoundary);
+        RequestDateRangePredicate predicate = new RequestDateRangePredicate(lowerDateBoundary, upperDateBoundary);
         assertFalse(predicate.test(new RequestBuilder().withDate("01-10-2018 09:00:59").build()));
 
         // Exceed upper boundary

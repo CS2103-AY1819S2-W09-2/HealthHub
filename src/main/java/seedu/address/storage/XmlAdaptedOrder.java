@@ -21,9 +21,9 @@ import seedu.address.model.common.Name;
 import seedu.address.model.common.Phone;
 import seedu.address.model.deliveryman.Healthworker;
 import seedu.address.model.order.Food;
-import seedu.address.model.order.OrderDate;
-import seedu.address.model.order.RequestStatus;
 import seedu.address.model.order.Request;
+import seedu.address.model.order.RequestDate;
+import seedu.address.model.order.RequestStatus;
 
 /**
  * JAXB-friendly version of the Request.
@@ -146,10 +146,10 @@ public class XmlAdaptedOrder {
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
-        if (!OrderDate.isValidDate(date)) {
-            throw new IllegalValueException(OrderDate.MESSAGE_DATE_CONSTRAINTS);
+        if (!RequestDate.isValidDate(date)) {
+            throw new IllegalValueException(RequestDate.MESSAGE_DATE_CONSTRAINTS);
         }
-        final OrderDate modelDate = new OrderDate(date);
+        final RequestDate modelDate = new RequestDate(date);
 
         if (foodStore.isEmpty()) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Food.class.getSimpleName()));

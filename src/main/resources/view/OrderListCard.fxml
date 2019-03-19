@@ -9,7 +9,8 @@
 
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:id="cardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:id="cardPane" maxHeight="-Infinity" maxWidth="-Infinity"
+          minHeight="-Infinity"
           minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0"
           xmlns="http://javafx.com/javafx/10.0.1">
     <columnConstraints>
@@ -38,6 +39,6 @@
         </ImageView>
         <Label fx:id="requestStatus" text="Pending" GridPane.columnSpan="5" GridPane.rowIndex="1"/>
         <Label fx:id="address" text="\$first" GridPane.columnSpan="2147483647" GridPane.rowIndex="2"/>
-        <Label fx:id="orderDate" text="\$first" GridPane.columnSpan="2147483647" GridPane.rowIndex="3"/>
+        <Label fx:id="requestDate" text="\$first" GridPane.columnSpan="2147483647" GridPane.rowIndex="3"/>
     </children>
 </GridPane>
