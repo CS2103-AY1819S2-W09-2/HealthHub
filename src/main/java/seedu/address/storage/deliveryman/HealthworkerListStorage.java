@@ -10,7 +10,7 @@ import seedu.address.model.deliveryman.HealthworkerList;
 /**
  * Represents the Storage interface for HealthworkerList
  */
-public interface DeliverymenListStorage {
+public interface HealthworkerListStorage {
     Path getDeliverymenListFilePath();
 
     /**
