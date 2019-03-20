@@ -98,7 +98,7 @@ public class EditCommand extends RequestCommand {
         List<Request> lastShownList = model.getFilteredOrderList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX);
         }
 
         Request requestToEdit = lastShownList.get(index.getZeroBased());
@@ -110,7 +110,7 @@ public class EditCommand extends RequestCommand {
         }
 
         if (editedRequest.isCompleted()) {
-            throw new CommandException(Messages.MESSAGE_COMPLETED_ORDER);
+            throw new CommandException(Messages.MESSAGE_COMPLETED_REQUEST);
         }
 
         if (editedRequest.isAlreadyAssignedDeliveryman()) {

@@ -1,7 +1,7 @@
 package systemtests;
 
 import static org.junit.Assert.assertFalse;
-import static seedu.address.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_REQUESTS_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANAGER_PASSWORD_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANAGER_USERNAME_ALICE;
@@ -228,7 +228,7 @@ public class FindCommandSystemTest extends RequestBookSystemTest {
 
     /**
      * Executes {@code command} and verifies that the command box displays an empty string, the result display
-     * box displays {@code Messages#MESSAGE_ORDERS_LISTED_OVERVIEW} with the number of people in the filtered list,
+     * box displays {@code Messages#MESSAGE_REQUESTS_LISTED_OVERVIEW} with the number of people in the filtered list,
      * and the model related components equal to {@code expectedModel}.
      * These verifications are done by
      * {@code RequestBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
@@ -239,7 +239,7 @@ public class FindCommandSystemTest extends RequestBookSystemTest {
      */
     private void assertCommandSuccess(String command, Model expectedModel) {
         String expectedResultMessage = String.format(
-            MESSAGE_ORDERS_LISTED_OVERVIEW, expectedModel.getFilteredOrderList().size());
+            MESSAGE_REQUESTS_LISTED_OVERVIEW, expectedModel.getFilteredOrderList().size());
 
         executeCommand(command);
         assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);

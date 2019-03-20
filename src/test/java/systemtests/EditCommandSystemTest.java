@@ -135,7 +135,7 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
         showOrdersWithName(KEYWORD_NAME_MATCHING_MEIER);
         int invalidIndex = getModel().getOrderBook().getRequestList().size();
         assertCommandFailure(editCommand + " " + invalidIndex + NAME_DESC_BOB,
-            Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+            Messages.MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX);
 
         /* ------------------ Performing edit operation while a request card is selected --------------------- */
 
@@ -164,7 +164,7 @@ public class EditCommandSystemTest extends RequestBookSystemTest {
         /* Case: invalid index (size + 1) -> rejected */
         invalidIndex = getModel().getFilteredOrderList().size() + 1;
         assertCommandFailure(editCommand + " " + invalidIndex + NAME_DESC_BOB,
-            Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+            Messages.MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX);
 
         /* Case: missing index -> rejected */
         assertCommandFailure(editCommand + NAME_DESC_BOB,

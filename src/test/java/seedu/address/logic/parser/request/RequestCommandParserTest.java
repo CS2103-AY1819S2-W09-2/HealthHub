@@ -2,7 +2,7 @@ package seedu.address.logic.parser.request;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ORDER_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_REQUEST_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
@@ -93,7 +93,7 @@ public class RequestCommandParserTest {
     @Test
     public void parse_unrecognisedInput_throwsParseException() throws Exception {
         thrown.expect(ParseException.class);
-        thrown.expectMessage(String.format(MESSAGE_INVALID_ORDER_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        thrown.expectMessage(String.format(MESSAGE_INVALID_REQUEST_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         parser.parse("");
         parser.parse("3");
     }

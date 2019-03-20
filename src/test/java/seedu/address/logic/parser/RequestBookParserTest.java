@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DELIVERYMAN_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ORDER_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_REQUEST_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import org.junit.Rule;
@@ -20,10 +20,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class RequestBookParserTest {
 
+    private final RequestBookParser parser = new RequestBookParser();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-
-    private final RequestBookParser parser = new RequestBookParser();
 
     @Test
     public void parseCommand_exit() throws Exception {
@@ -53,7 +52,7 @@ public class RequestBookParserTest {
     @Test
     public void parseCommand_order() throws Exception {
         thrown.expect(ParseException.class);
-        thrown.expectMessage(String.format(MESSAGE_INVALID_ORDER_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        thrown.expectMessage(String.format(MESSAGE_INVALID_REQUEST_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         parser.parseCommand(RequestCommand.COMMAND_WORD);
     }
 

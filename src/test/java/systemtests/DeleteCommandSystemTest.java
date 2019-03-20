@@ -1,6 +1,6 @@
 package systemtests;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANAGER_PASSWORD_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANAGER_USERNAME_ALICE;
@@ -83,7 +83,7 @@ public class DeleteCommandSystemTest extends RequestBookSystemTest {
         Index outOfBoundsIndex = Index.fromOneBased(
             getModel().getOrderBook().getRequestList().size() + 1);
         command = DELETE_COMMAND + " " + outOfBoundsIndex.getOneBased();
-        assertCommandFailure(command, MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        assertCommandFailure(command, MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX);
 
         /* Case: invalid arguments (alphabets) -> rejected */
         assertCommandFailure(DELETE_COMMAND + " abc", MESSAGE_INVALID_DELETE_COMMAND_FORMAT);

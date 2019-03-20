@@ -62,11 +62,11 @@ public class AssignCommand extends Command {
 
         for (Index i : orderIds) {
             if (i.getZeroBased() >= lastShownRequestList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX);
             }
             Request request = lastShownRequestList.get(i.getZeroBased());
             if (request.isCompleted()) {
-                throw new CommandException(Messages.MESSAGE_COMPLETED_ORDER);
+                throw new CommandException(Messages.MESSAGE_COMPLETED_REQUEST);
             }
 
             if (request.isAlreadyAssignedDeliveryman()) {
@@ -78,7 +78,7 @@ public class AssignCommand extends Command {
 
         Healthworker assignedHealthworker = new Healthworker(healthworkerToAssign);
         if (!assignedHealthworker.canAccommodate(ordersToAdd)) {
-            throw new CommandException(Messages.MESSAGE_ORDERS_LIMIT_EXCEEDED);
+            throw new CommandException(Messages.MESSAGE_REQUEST_LIMIT_EXCEEDED);
         }
 
         for (Request request : ordersToAdd) {
@@ -86,7 +86,7 @@ public class AssignCommand extends Command {
             try {
                 updatedRequest.setHealthworker(assignedHealthworker);
             } catch (RequestLimitExceededException e) {
-                throw new CommandException(Messages.MESSAGE_ORDERS_LIMIT_EXCEEDED);
+                throw new CommandException(Messages.MESSAGE_REQUEST_LIMIT_EXCEEDED);
             }
             model.updateOrder(request, updatedRequest);
         }

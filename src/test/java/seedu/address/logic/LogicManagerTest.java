@@ -1,7 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.Assert.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_REQUIRE_LOGIN;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANAGER_NAME_IDA;
@@ -57,7 +57,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "/request delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX);
         assertHistoryCorrect(deleteCommand, signUpCommand);
     }
 

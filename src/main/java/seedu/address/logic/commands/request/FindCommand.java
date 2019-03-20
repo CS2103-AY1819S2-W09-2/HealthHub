@@ -40,7 +40,7 @@ public class FindCommand extends RequestCommand {
         requireNonNull(model);
         model.updateFilteredOrderList(predicate);
         return new CommandResult(
-            String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()));
+            String.format(Messages.MESSAGE_REQUESTS_LISTED_OVERVIEW, model.getFilteredOrderList().size()));
     }
 
     @Override

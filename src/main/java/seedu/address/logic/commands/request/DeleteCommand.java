@@ -20,9 +20,9 @@ public class DeleteCommand extends RequestCommand {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = RequestCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Deletes the request identified by the index number used in the displayed request list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
+        + ": Deletes the request identified by the index number used in the displayed request list.\n"
+        + "Parameters: INDEX (must be a positive integer)\n"
+        + "Example: " + RequestCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted Request: %1$s";
 
@@ -38,7 +38,7 @@ public class DeleteCommand extends RequestCommand {
         List<Request> lastShownList = model.getFilteredOrderList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX);
         }
 
         Request requestToDelete = lastShownList.get(targetIndex.getZeroBased());
@@ -54,7 +54,7 @@ public class DeleteCommand extends RequestCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+            || (other instanceof DeleteCommand // instanceof handles nulls
+            && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
     }
 }

@@ -1,7 +1,7 @@
 package seedu.address.logic.parser.request;
 
 import static org.junit.Assert.assertFalse;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ORDER_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_REQUEST_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -28,9 +28,9 @@ public class FindCommandParserTest {
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ",
-            String.format(MESSAGE_INVALID_ORDER_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            String.format(MESSAGE_INVALID_REQUEST_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "find ",
-            String.format(MESSAGE_INVALID_ORDER_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            String.format(MESSAGE_INVALID_REQUEST_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -72,6 +72,6 @@ public class FindCommandParserTest {
     @Test
     public void parse_invalidArgs_throwParseException() {
         assertParseFailure(parser, "w/",
-            String.format(MESSAGE_INVALID_ORDER_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            String.format(MESSAGE_INVALID_REQUEST_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 }

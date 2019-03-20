@@ -1,6 +1,6 @@
 package seedu.address.logic.parser.request;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ORDER_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_REQUEST_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
@@ -41,7 +41,7 @@ public class FindCommandParser implements Parser<RequestCommand> {
         if (!arePrefixesPresent(
                 argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_CONDITION, PREFIX_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_ORDER_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_REQUEST_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         Predicate<Request> suppliedPredicates = new RequestPredicateUtil().parsePredicate(argMultimap);

@@ -32,7 +32,7 @@ public class AssignCommandTest {
     public ExpectedException thrown = ExpectedException.none();
 
     private Model model = new ModelManager(getTypicalOrderBook(), getTypicalUsersList(),
-            getTypicalDeliverymenList(), new UserPrefs());
+        getTypicalDeliverymenList(), new UserPrefs());
     private Request validRequest = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
     private Index validOrderIndex = Index.fromOneBased(model.getFilteredOrderList().size());
     private Index validDeliverymanIndex = Index.fromOneBased(model.getFilteredDeliverymenList().size());
@@ -70,7 +70,7 @@ public class AssignCommandTest {
         String expectedMessage = String.format(MESSAGE_SUCCESS, INDEX_FIRST.getOneBased(), assignedHealthworker);
 
         Model expectedModel = new ModelManager(model.getOrderBook(), model.getUsersList(),
-                model.getDeliverymenList(), new UserPrefs());
+            model.getDeliverymenList(), new UserPrefs());
         expectedModel.updateDeliveryman(healthworkerToAssign, assignedHealthworker);
         expectedModel.commitDeliverymenList();
         expectedModel.updateOrder(validRequest, toAssign);
@@ -88,7 +88,7 @@ public class AssignCommandTest {
         AssignCommand assignCommand = new AssignCommand(validDeliverymanIndex, orderIds);
 
         thrown.expect(CommandException.class);
-        thrown.expectMessage(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        thrown.expectMessage(Messages.MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX);
         assignCommand.execute(model, commandHistory);
     }
 
@@ -114,7 +114,7 @@ public class AssignCommandTest {
         AssignCommand assignCommand = new AssignCommand(validDeliverymanIndex, orderIds);
 
         thrown.expect(CommandException.class);
-        thrown.expectMessage(Messages.MESSAGE_ORDERS_LIMIT_EXCEEDED);
+        thrown.expectMessage(Messages.MESSAGE_REQUEST_LIMIT_EXCEEDED);
         assignCommand.execute(model, commandHistory);
     }
 

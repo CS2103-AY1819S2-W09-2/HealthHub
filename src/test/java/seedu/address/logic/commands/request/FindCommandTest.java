@@ -3,8 +3,8 @@ package seedu.address.logic.commands.request;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ORDER_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_REQUEST_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_REQUESTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
@@ -87,7 +87,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_singlePrefixSingleKeyword_oneOrderFound() throws ParseException {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_REQUESTS_LISTED_OVERVIEW, 1);
         Predicate<Request> predicate = preparePredicate(" n/alice");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
@@ -97,7 +97,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_singlePrefixSingleKeyword_multipleOrderFound() throws ParseException {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_REQUESTS_LISTED_OVERVIEW, 2);
         Predicate<Request> predicate = preparePredicate(" dt/01-10-2018 10:00:00");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
@@ -107,7 +107,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_singlePrefixMultipleKeywords_multipleOrdersFound() throws ParseException {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_REQUESTS_LISTED_OVERVIEW, 2);
         Predicate<Request> predicate = preparePredicate(" p/9435 9535");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
@@ -117,7 +117,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multiplePrefixSingleKeywords_oneOrderFound() throws ParseException {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_REQUESTS_LISTED_OVERVIEW, 1);
         Predicate<Request> predicate = preparePredicate(" p/94351253 c/Alzheimers");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
@@ -127,7 +127,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multiplePrefixSingleKeywords_zeroOrderFound() throws ParseException {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_REQUESTS_LISTED_OVERVIEW, 0);
         Predicate<Request> predicate = preparePredicate(" dt/01-10-2018 10:00:00 c/Physiotherapy");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
@@ -137,7 +137,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multiplePrefixMultipleKeywords_zeroOrderFound() throws ParseException {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_REQUESTS_LISTED_OVERVIEW, 0);
         Predicate<Request> predicate =
             preparePredicate(" c/Cancer a/Jurong");
         FindCommand command = new FindCommand(predicate);
@@ -148,7 +148,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_singleRepeatedPrefixSingleKeywordTakeLast_multipleOrdersFound() throws ParseException {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_REQUESTS_LISTED_OVERVIEW, 1);
         Predicate<Request> predicate = preparePredicate(" c/Dialysis c/Eldercare");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
@@ -158,7 +158,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_singleRepeatedPrefixSingleKeywordTakeRange_multipleOrdersFound() throws ParseException {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_REQUESTS_LISTED_OVERVIEW, 3);
         Predicate<Request> predicate = preparePredicate(" dt/02-10-2018 10:00:00 dt/03-10-2018 14:00:00");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
@@ -168,7 +168,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_allSupportedPrefixesSingleKeyword_oneOrderFound() throws ParseException {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_REQUESTS_LISTED_OVERVIEW, 1);
         Predicate<Request> predicate =
             preparePredicate(" n/alice p/94351253 a/Jurong West Ave 6 dt/01-10-2018 10:00:00 " +
                 "c/Alzheimers");
@@ -180,7 +180,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_allSupportedPrefixesSingleKeyword_zeroOrderFound() throws ParseException {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_REQUESTS_LISTED_OVERVIEW, 0);
         Predicate<Request> predicate =
             preparePredicate(" n/alice dt/01-10-2018 10:00:00 c/Chicken Pox p/1223214 a/Block 38");
         FindCommand command = new FindCommand(predicate);
@@ -197,7 +197,7 @@ public class FindCommandTest {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_CONDITION)
             || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_ORDER_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_REQUEST_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         return new RequestPredicateUtil().parsePredicate(argMultimap);

@@ -55,7 +55,7 @@ public class DoneCommandTest {
         Index last = Index.fromZeroBased(model.getFilteredOrderList().size());
         DoneCommand doneCommand = new DoneCommand(last);
 
-        String expectedMessage = Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX;
+        String expectedMessage = Messages.MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX;
         assertCommandFailure(doneCommand, model, commandHistory, expectedMessage);
     }
 

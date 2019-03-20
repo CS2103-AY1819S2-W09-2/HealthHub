@@ -37,7 +37,7 @@ public class LogoutCommandSystemTest extends RequestBookSystemTest {
 
     /**
      * Executes {@code command} and verifies that the command box displays an empty string, the result display
-     * box displays {@code Messages#MESSAGE_ORDERS_LISTED_OVERVIEW} with the number of people in the filtered list,
+     * box displays {@code Messages#MESSAGE_REQUESTS_LISTED_OVERVIEW} with the number of people in the filtered list,
      * and the model related components equal to {@code expectedModel}.
      * These verifications are done by
      * {@code RequestBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>

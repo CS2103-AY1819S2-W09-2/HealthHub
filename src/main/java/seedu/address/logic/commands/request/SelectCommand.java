@@ -41,7 +41,7 @@ public class SelectCommand extends RequestCommand {
         List<Request> filteredRequestList = model.getFilteredOrderList();
 
         if (targetIndex.getZeroBased() >= filteredRequestList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX);
         }
 
         EventsCenter.getInstance().post(new JumpToRequestListRequestEvent(targetIndex));

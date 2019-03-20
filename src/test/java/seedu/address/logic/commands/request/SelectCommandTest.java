@@ -51,7 +51,7 @@ public class SelectCommandTest {
     public void execute_invalidIndexUnfilteredList_failure() {
         Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredOrderList().size() + 1);
 
-        assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class SelectCommandTest {
         // ensures that outOfBoundIndex is still in bounds of request book list
         assertTrue(outOfBoundsIndex.getZeroBased() < model.getOrderBook().getRequestList().size());
 
-        assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX);
     }
 
     @Test

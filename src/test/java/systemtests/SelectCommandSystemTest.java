@@ -2,7 +2,7 @@ package systemtests;
 
 import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANAGER_PASSWORD_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANAGER_USERNAME_ALICE;
@@ -74,7 +74,7 @@ public class SelectCommandSystemTest extends RequestBookSystemTest {
 
         /* Case: invalid index (size + 1) -> rejected */
         int invalidIndex = getModel().getFilteredOrderList().size() + 1;
-        assertCommandFailure(selectCommand + " " + invalidIndex, MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        assertCommandFailure(selectCommand + " " + invalidIndex, MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX);
 
         /* Case: invalid arguments (alphabets) -> rejected */
         assertCommandFailure(selectCommand + " abc",
@@ -90,7 +90,7 @@ public class SelectCommandSystemTest extends RequestBookSystemTest {
         /* Case: select from empty request book -> rejected */
         deleteAllOrders();
         assertCommandFailure(selectCommand + " " + INDEX_FIRST.getOneBased(),
-                MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+            MESSAGE_INVALID_REQUEST_DISPLAYED_INDEX);
     }
 
     /**
