@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DELIVERYMAN;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HEALTHWORKER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REQUEST;
 
 import java.util.Set;
 
@@ -17,15 +17,15 @@ public class AssignCommandParser implements Parser<AssignCommand> {
     @Override
     public AssignCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DELIVERYMAN, PREFIX_ORDER);
+            ArgumentTokenizer.tokenize(args, PREFIX_HEALTHWORKER, PREFIX_REQUEST);
 
-        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_DELIVERYMAN, PREFIX_ORDER)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_HEALTHWORKER, PREFIX_REQUEST)
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
         }
 
-        Index deliverymanId = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_DELIVERYMAN).get());
-        Set<Index> orderIds = ParserUtil.parseIndexes(argMultimap.getAllValues(PREFIX_ORDER));
+        Index deliverymanId = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_HEALTHWORKER).get());
+        Set<Index> orderIds = ParserUtil.parseIndexes(argMultimap.getAllValues(PREFIX_REQUEST));
 
         return new AssignCommand(deliverymanId, orderIds);
     }

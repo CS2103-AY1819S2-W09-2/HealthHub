@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DELIVERYMAN;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HEALTHWORKER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REQUEST;
 
 import java.util.HashSet;
 import java.util.List;
@@ -29,12 +29,12 @@ public class AssignCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Assigned request %1$s successfully to healthworker %2$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign orders to healthworker. "
-            + "Parameters: "
-            + PREFIX_DELIVERYMAN + "DELIVERYMAN_ID "
-            + PREFIX_ORDER + "ORDER_ID \n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DELIVERYMAN + "1 "
-            + PREFIX_ORDER + "1 " + PREFIX_ORDER + "3";
+        + "Parameters: "
+        + PREFIX_HEALTHWORKER + "DELIVERYMAN_ID "
+        + PREFIX_REQUEST + "ORDER_ID \n"
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_HEALTHWORKER + "1 "
+        + PREFIX_REQUEST + "1 " + PREFIX_REQUEST + "3";
 
     private final Index deliverymanId;
     private final Set<Index> orderIds;
@@ -71,7 +71,7 @@ public class AssignCommand extends Command {
 
             if (request.isAlreadyAssignedDeliveryman()) {
                 throw new CommandException(String.format(Messages.MESSAGE_ORDER_ALREADY_ASSIGNED_TO_DELIVERYMAN,
-                        i.getOneBased(), request.getHealthworker()));
+                    i.getOneBased(), request.getHealthworker()));
             }
             ordersToAdd.add(request);
         }
@@ -108,8 +108,8 @@ public class AssignCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AssignCommand // instanceof handles nulls
-                && deliverymanId.equals(((AssignCommand) other).deliverymanId)
-                && orderIds.equals(((AssignCommand) other).orderIds));
+            || (other instanceof AssignCommand // instanceof handles nulls
+            && deliverymanId.equals(((AssignCommand) other).deliverymanId)
+            && orderIds.equals(((AssignCommand) other).orderIds));
     }
 }
