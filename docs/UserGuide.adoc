@@ -1,4 +1,4 @@
-= FoodZoom - User Guide
+= HealthHub - User Guide
 :site-section: UserGuide
 :toc:
 :toc-title:
@@ -12,552 +12,323 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/CS2103-AY1819S1-T16-3/main
+:repoURL: https://github.com/CS2103-AY1819S2-W09-2/main
 
-By: `T16-3`      Since: `Aug 2018`      Licence: `MIT`
+By: `Team W9-02 (HealthHub)`      Since: `Jan 2019`      Licence: `MIT`
 
 == Introduction
 
-FoodZoom is a condition delivery management platform targeted at condition business looking to streamline their delivery process. It is responsive and quick, allowing manager to plan their routes and dispatch requests to delivery man *using a Command Line Interface* (CLI) while having the benefits of a Graphical User Interface (GUI). The delivery man can also this application to view their delivery routes and increase their efficiency.
+HealthHub is a application that allows users to add, manage and close requests from
+patients for health services. AB4 provides a *Graphical User Interface* for administrative staff of health organization and hospitals to manage requests from all potential home stay patients, and is also *optimized for those who prefer to work with a Command Line Interface* (CLI). +
+
+Looking to improve and ease management of requests from customers and patients?
+Look no further, AB4 provides all the utility and functions you need to streamline your workflow. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+
+== Notation
+
+* Words that are highlighted with a grey background in monospaced font
+represent a `parameter` or `command` that is present or are to be used in the
+application.
+
+* All indices mentioned in this document are one-indexed, meaning that the
+first item in the list starts at 1.
+
+[NOTE]
+====
+Documentation displayed under the this section may be useful shortcuts on the
+ application alternative to the CLI.
+====
+
+****
+Descriptions wrapped in a grey background are helpful tips and tricks that
+may aid you when you use the application.
+****
 
 == Quick Start
 
 .  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `foodzoom.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your FoodZoom.
-.  Double-click the file to start the app. The GUI should appear in a few seconds (the below screen is after you signup/login).
-+
-image::Ui.png[width="790"]
-+
+.  Additional installation guides will be added further into the project.
+
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
-e.g. typing *`/help`* and pressing kbd:[Enter] will open the help window.
+e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* *`/signup n/John Doe u/johndoe pw/johndoepassword`*: Sign into the application
-* *`/request list`* : lists all requests
-* *`/request find n/david`* : finds the request david has ordered
-* *`/exit`* : exits the app
+* *`list`* : lists all requests
+* **`add`** `3 i/3 n/John Doe p/98765432 a/John street, block 123, #01-01` :
+adds a patient named `John Doe` to the application.
+* **`delete`** `4 n/4` : deletes the 4th request shown by the list command
+* *`exit`* : exits the application, saving any changes made to the parameters
+ in the application.
 
-.  Refer to <<Features>> for details of each command.
+.  Refer to <<Features>> for a detailed explanation of each command.
 
 [[Features]]
 == Features
 
-Before starting on the application, read through the below sections. They cover
-the format to be used for all the commands and the syntax that is to be followed.
+Note that the current application is a work in progress. The following description of the features and commands are prototypes and specific details and implementation may vary over the course of the project.
 
 ====
-*Command Format*
+*General Command Format*
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `/request add n/NAME`, `NAME` is a parameter which can be used as `/request add n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [p/PHONE]` can be used as `n/John Doe p/9112` or as `n/John Doe`.
-* Parameters can be in any request e.g. if the command specifies `n/NAME a/ADDRESS`, `a/ADDRESS n/NAME` is also acceptable.
+* Words in `<tags>` are the parameters to be supplied by the user e.g. in `add n/<name>`, `<name>` is a parameter which can be used as `add n/John Doe`.
+* Items in square brackets are optional e.g `n/<name> [c/<condition>]`
+can be used as `n/John Doe c/Claustrophobia` or as `n/John Doe`.
+* Items with `…`​ after them can be used multiple times including zero times e.g. `s/<specialisation>...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Parameters can be in any order e.g. if the command specifies `n/<name> p/<phone_number>`, `p/<phonenumber> n/<name>` is also acceptable.
 ====
 
-====
-*Fields restrictions*
-[width="100%",cols="20%,<80%"]
-|=======================================================================
+=== Viewing help : `help`
 
-|NAME | Can only be alphanumeric and spaces are allowed, it should not be blank and be 1 to 64 characters long
+Format: `help`
 
-|PHONE | Phone should only contain numbers, and it should be at least 3 digits long
+Lists all available commands, their parameters and their function.
 
-|ADDRESS | Can take any values, and it should not be blank. The last 6 characters should be a valid postal code
+=== Listing all requests/health workers/patients : `list`
 
-|FOOD | Should only contain alphanumeric characters and spaces, and it should not be blank
+Shows a list of all requests, health workers or patients based on the `<type>` parameters . +
 
-|DATETIME | Must conform to the format `dd-MM-YYYY h:m:s`, where _dd_ is date, _MM_ is month, _YYYY_ is year, _h_ is 24 hour of the day, _m_ is minutes and _s_ is seconds. e.g. `14-10-2018 23:30:00`
-
-|ORDER_STATUS | Only `PENDING`, `ONGOING` or `COMPLETED` are allowed
-
-|USERNAME | Can be alphanumeric and spaces are *NOT* allowed, it should not be blank and be 3 to 64 characters long.
-
-|PASSWORD | Can be alphanumeric, should be at least *6* characters long and spaces are *NOT* allowed. Not encrypted
-in current releases.
-
-|INDEX | Refers to the index number shown by the request / healthworker list command & it must be a positive integer 1, 2, 3, ... and no larger than 2147483647.
-
-|=======================================================================
-====
+Format: `list <type>`
 
 ====
-*Available Commands*
-[cols="s,a"]
-|=======================================================================
-
-| That don't require login
-|`/help`
-
-`/signup`
-
-`/login`
-
-`/logout`
-
-`/exit`
-
-`/history`
-
-|That require login
-| `/request add`
-
-`/request list`
-
-`/request edit`
-
-`/request find`
-
-`/request select`
-
-`/request delete`
-
-`/request clear`
-
-`/request done`
-
-`/healthworker add`
-
-`/healthworker list`
-
-`/healthworker find`
-
-`/healthworker select`
-
-`/healthworker delete`
-
-`/assign`
-
-`/home`
-
-|=======================================================================
+This command may be useful for users to identify existing personnel,
+patients or requests in the system before assigning and closing existing
+requests for specific health services.
 ====
 
-=== Viewing help : `/help` `[Since v1.1]`
+Example:
 
-Format: `/help`
+* `list 1` lists all requests stored in the system, and their corresponding details
+* `list 2` lists all health workers stored in the system, and the skills and
+certifications they possess
+* `list 3` lists all patients registered in the system, their NRIC and any
+medical statuses or past conditions.
 
-// tag::signup[]
-=== Sign up for system : `/signup` `[Since v1.1]`
+=== Adding a request/health worker/patient: `add`
 
-Sign up for a new manager account so that the manager can use the application. Once you sign up, you will be
-automatically logged into the application. Since the managers using the application is working for one stall, they will have access to that stall data and see the same home screen
+Before you can jump right into the core feature of our application, which is
+to streamline the process of adding requests from patients and to assign
+requests to experts in the medical field, it is essential to first ensure
+that the respective health staff and patients are registered in the system
+with all the key information.
 
-Format: `/signup n/NAME u/USERNAME pw/PASSWORD`
+Add a request, health worker or patient to the application based on the
+`<type>` parameter accepted, using the `add` command, to register new health
+staff, patients and requests. +
+
+Format: `add <type> <additional_parameters>...` +
+
+* *Adding a health worker*
+** Format: `add 1 n/<worker_name> i/<NRIC> n/<phone_number> s/<specialisation>...`
+** Command that registers a new Health Worker person to the current roster.
+** Health Workers comprises of personnel who are authorized to work in sectors in the
+healthcare industry in accordance to their `specialisation`.
+** Health Workers authorized for medical practice specific to their
+`specialisation` include doctors, nurses and community health workers that
+are officially certified by certain medical practices
+** To view all available specialisations in the application, type `add help`
+in the command line.
+
+* *Adding a patient*
+** Format: `add 3 n/<patient_name> i/<NRIC> n/<phone_number>`
+** Command that registers a new patient into the application.
+
+* *Adding a request*
+** Format: `add 2 n/<patient_name> c/<condition> d/<date> t/time`
+** Registers a new open request from `patient` of `<patient_name>` into the
+application.
+** Each request also states the `<condition>` that the patient is
+experiencing. Administrative staff can then inspect the conditions that are
+stated by the `patient` and assign the appropriate health worker to handle
+these requests in the `assign` command.
+** Format for the time is `HH:mm:ss`.
+** Format for the date is `dd-MM-yyyy`.
 
 Examples:
 
-* `/signup n/John Doe u/johndoe pw/johndoepassword`
+* `add 1 n/Dog Terr p/92837710 i/S98817471Z s/GENERAL_PRACTICE
+s/ORTHOPAEDIC`
+* `add 3 n/Pay Shun i/S9928747A p/89896672`
+* `add 2 n/Pay Shun c/Heart Attack t/14:00:00 d/05:05:2019`
 
-// end::signup[]
+=== Editing a request/health worker/patient : `edit`
 
-// tag::login[]
-=== Login to system : `/login` `[Since v1.1]`
+Sometimes, information on a request of health staff may be keyed in wrongly
+into the application. Fret not, for you can replace the wrong information
+with the correct ones using the `edit` command to modify existing personnel
+records or request descriptions in HealthHub.
 
-Login into the application so that the manager can use the application. Once you login, you can use the authenticated
- commands. Since the managers using the application is working for one stall, they will have access to that stall data and see the same home screen
+The `edit` may come in handy when there is a need update to a request's
+status, patient's condition or a health worker's skills, based on the
+`<type>` parameter accepted. +
 
-Format: `/login u/USERNAME pw/PASSWORD`
+Format: `edit <type> <index> <additional_parameters>...` +
 
-Examples:
+* *Editing a health worker*
+** `edit 1 <index> <additional_parameters>...`
 
-* `/login u/manager pw/password`
+* *Editing a request*
+** `edit 2 <index> <additional_parameters>...`
 
-// end::login[]
+* *Editing a patient*
+** `edit 3 <index> <additional_parameters>...`
 
-// tag::logout[]
-=== Logout from system : `/logout` `[Since v1.3]`
-
-Logout from the application.
-
-Format: `/logout`
-
-// end::logout[]
-
-// tag::home[]
-=== Return to Home Page : `/home` `[Since v1.3]`
-
-If any selection is done, allows you to return back to the home page with the dashboard +
-Format: `/home`
+Notes:
 
 ****
-* Renders a bar graph which shows the request history (limited to the latest 7 requests by date)
-* Shows a map - the map gives a reasonable *estimate* for the locations of the pending requests. It is
-designed to work offline and give you a rough gauge of where your requests are
-* This dashboard dynamically updates itself when the request list is changed
-****
-
-Once the command is executed, you will be greeted with a screen similar to below (statistics shown will vary based on
- the data you have):
-
-.Home page for application
-image::UiHome.png[width="400"]
-
-The screen consists of a map showing your pending requests and a statistics panel. The size of the
-placeholder is indicative of how many requests they are in a region. You can observe these
-components change when carrying out some of the other commands in the application! (try `/request find`)
-
-This feature allows you to keep track of how many requests you have on certain days and also take note of
-what is the most common item people have ordered from your stall!
-// end::home[]
-
-// tag::orderAdd[]
-=== Adding an request : `/request add` `[Since v1.1]`
-
-Allows you to adds a new request to the list of requests. +
-Format: `/request add c/CONDITION n/NAME p/PHONE a/ADDRESS dt/DATETIME`
-
-There are also some things you need to take note of:
-****
-* Able to add more than 1 condition items by specifying more condition tags. e.g. `f/Roti Prata f/Ice Milo`.
-* Address must be a valid address that exists in Singapore to be displayed on the map.
-* If the postal code is longer than 6 digits, much like any other field, only the *last 6 digits* will be taken into
-consideration for approximating the location
-* The manager is able to add dates from any time period as long as it is valid.
-* Two requests are considered the same if they have the same name, phone, and date time.
-****
-
-Examples of add request commands (note that the above parameters can be re-ordered):
-
-* `/request add f/Roti Prata n/John Smith p/12345678 a/block 123, Clementi Drive, #01-01 610123 dt/26-12-2018 10:10:54`
-* `/request add a/block 55 Computing Drive 117417 n/Harry f/Tissue Prata f/Nasi Briyani p/81889111 dt/14-12-2018 14:10:54`
-// end::orderAdd[]
-
-// tag::requestList[]
-=== Listing all requests : `/request list` `[Since v1.1]`
-
-Shows a list of all requests in chronological request +
-Format: `/request list`
-// end::requestList[]
-
-// tag::orderedit[]
-=== Editing an request : `/request edit` `[Since v1.2]`
-
-Edits an existing request in the list of requests. +
-Format: `/request edit INDEX [f/FOOD] [n/NAME] [p/PHONE] [a/ADDRESS] [dt/DATETIME]`
-
-****
-* Edits the request at the specified `INDEX`.
-* At least one of the optional fields must be provided.
+* Edits the corresponding request/health worker/patient at the specified `<index>`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
 * Existing values will be updated to the input values.
-* When a parameter is specified, e.g. `f/`, `n/`, empty fields are not allowed. Value must be specified.
-* Orders that are `Ongoing` or `Completed` cannot be edited.
+** Apart from `specialisations` in health workers and `condition` in
+patients, each field can only have a single value and multiple edit values
+for other fields will only cause the last one to be accepted.
+* When editing specialisations for health workers, the existing specialisations
+ of the person will be removed i.e adding of specialisation is not cumulative.
+* You can remove all the person's specialisation by typing `s/` without
+specifying any parameters after it.
 ****
 
 Examples:
 
-* `/request list` +
-`/request edit 1 p/91234567 n/Jonathan` +
-Edits the phone number and name of the 1st request to be `91234567` and `Jonathan` respectively.
-* `/request list` +
-`/request edit 2 f/Maggi Goreng f/Ice Milo` +
-Edits the condition of the 2nd request to be `Maggi Goreng, Ice Milo`.
-// end::orderedit[]
+* `edit 2 1 p/91234567 n/John Doe` +
+Edits the phone number and name of the 1st health worker to be `91234567` and `John Doe` respectively. +
+* `edit 3 2 n/Betsy Crower` +
+Edits the name of the 2nd patient to be `Betsy Crower`. +
 
-// tag::orderfind[]
-=== Finding requests : `/request find` `[Since v1.2]`
+=== Filtering request/health worker/patient by parameters: `filter`
 
-Find any request/s with any given request fields. +
-Format: `/request find [n/NAME] [p/PHONE] [a/ADDRESS] [f/FOOD] [dt/DATETIME] [st/ORDER_STATUS]` +
+When identifying and sieving health workers to assign to an open request, or
+to look for a particular patient details, it may be useful to filter out only
+ items in a list that match a particular constraint.
 
-****
-* All fields are optional. However, at least one field must be specified.
-* Empty value after any fields are not allowed. e.g. `n/`
-* The search is case insensitive. e.g `tom` will match `Tom`
-* Partial match is allowed for name, phone, condition and address. e.g. `alex` will match `alex lim` and `al` will match `alex lim`
-* When more than 1 fields are given, the find will do an `and` on all fields. e.g. `n/alex p/1234`, will be `n == 'alex' AND p == 1234`
-* When the same fields are given, it will take the last field, except for date search. For date search refer below. e.g. `n/alex n/tom`, Only `n/tom` is taken
-* Phone Find
-** Multiple phone search is allow when phone numbers are separated by spaces. e.g. `p/1234 9111` will match phones with `1234` and `9111`
-* Date Find
-** To find for requests from a specific date, use 1 date field. e.g `dt/01-10-2018 10:00:00` will return request/s on that
- date.
-** To find for requests with a date range, use 2 or more date fields. e.g. `dt/01-10-2018 10:00:00 dt/03-10-2018
-  10:00:00` will return request/s within the 2 dates. When more than 2 date fields are given, it will take the smallest and the biggest datetime
-****
+Using the `filter` command, you can sieve out requests/health workers/patients
+whose fields match the `keywords`that are specified in the `filter` command,
+allowing you to find the doctors who are experts in cardiology much quicker. +
 
-Examples:
+Format: `filter <type> <keyword> [<more_keywords>]...` +
 
-* `/request find n/john` +
-Returns `john` and `John Doe`
-* `/request find p/81231233 a/block 123, Clementi Drive, #01-01` +
-Returns requests with phone number of `81231233` and address of `block 123,
-Clementi Drive, #01-01`
-* `/request find dt/01-10-2018 10:00:00 dt/03-10-2018 10:00:00` +
-Returns for requests that are within the datetime `01-10-2018 10:00:00 and 03-10-2018 10:00:00`
-// end::orderfind[]
+* *Filter a health worker*
+** `filter 1 <keyword> [<more_keywords>]`
 
-=== Deleting an request : `/request delete` `[Since v1.1]`
+* *Filter a request*
+** `filter 2 <keyword> [<more_keywords>]`
 
-Deletes the specified request from the list of request. +
-Format: `/request delete INDEX`
+* *Filter a patient*
+** `filter 3 <keyword> [<more_keywords>]`
+
+`<more_keywords>` represents the fields and parameters that can be used to
+identify requests or personnel, using the same prefixes as in add, edit and
+delete commands. Some examples of keywords are shown below.
+
+Notes:
 
 ****
-* Deletes an request at the specified `INDEX`.
-* Orders that are `Ongoing` cannot be deleted.
+* The search is case insensitive for fields not including specialisation. e.g
+`hans` will match `Hans`
+** For specialisation fields, parameters are case sensitive, and only valid
+parameters will be accepted
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Search using partial words will return all results with fields containing
+that subword.
+** `filter 1 n/Tan` may return people with the surnames Tan or Tang
 ****
 
 Examples:
 
-* `/request list` +
-`/request delete 2` +
-Deletes the 2nd request in the list of requests.
-* `/request find n/tom` +
-`/request delete 1` +
-Deletes the 1st request in the results of the `find` command.
+* `filter 3 n/John` +
+Returns patients named `john` and `John Doe`
+* `filter 1 s/GENERAL_PRACTICE s/GYNAECOLOGY` +
+Returns all health workers whose field of expertise include general practice
+or gynaecology.
 
-=== Selecting an request : `/request select` `[Since v1.1]`
+=== Deleting a request/health worker/patient : `delete`
 
-Selects the specified request from the list of request. +
-Format: `/request select INDEX`
+Should there be any invalid or expired request, health worker or patient in
+the application, you may also remove them to prevent cluttering of
+unnecessary data by using the `delete` command to remove them from the
+application based on the`<type>` parameter accepted, according to the
+index of the respective `type`
+shown using the `list` command, or the index displayed on the GUI. +
 
-****
-* Select an request at the specified `INDEX`.
-* Renders a new view for the select request - use /home to return the original view
-****
+Format: `delete <type> <index>` +
 
-Examples:
+* *Delete a health worker*
+** `delete 1 <index>`
 
-* `/request list` +
-`/request select 2` +
-Selects the 2nd request in the list of requests.
-* `/request find n/david` +
-`/request select 1` +
-Selects the 1st request in the results of the `find` command.
+* *Delete a request*
+** `delete 2 <index>`
 
-=== Clearing all request entries : `/request clear` `[Since v1.1]`
+* *Delete a patient*
+** `delete 3 <index>`
 
-Clears all entries from the list of requests. +
-Format: `/request clear`
+Notes:
 
 ****
-* If there is an request already assigned to a healthworker, request list cannot be cleared.
-****
-
-// tag::deliverymanadd[]
-=== Adding a delivery man : `/healthworker add` `[Since v1.2]`
-
-Adds a delivery man to the list of delivery men +
-Format: `/healthworker add n/NAME`
-
-Examples:
-
-* `/healthworker add n/John Smith`
-// end::deliverymanadd[]
-
-// tag::deliverymanlist[]
-=== Listing all delivery men : `/healthworker list` `[Since v1.2]`
-
-Shows a list of all delivery men in chronological request +
-Format: `/healthworker list`
-// end::deliverymanlist[]
-
-=== Editing a delivery man : `/healthworker edit` `[Coming in v2.0]`
-
-Edits an existing delivery man in the list of delivery men. +
-Format: `/healthworker edit INDEX n/NAME`
-
-****
-* Edits the delivery man at the specified `INDEX`.
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When a parameter is specified, e.g. `n/`, empty fields are not allowed. A value must be specified.
+* Deletes the corresponding request/health worker/patient at the specified `<index>`.
+* The index refers to the index number shown in the displayed request/health
+worker/patient list using the `list` command, or displayed through the GUI.
+* The index *must be a positive integer* 1, 2, 3, ...
 ****
 
 Examples:
 
-* `/healthworker list` +
-`/healthworker edit 1 n/John Doe` +
-Edits the name of the 1st delivery man to be `John Doe`.
+* `delete 1 2` +
+Deletes the 2nd request in the application.
 
-// tag::deliverymanfind[]
-=== Finding delivery man by name : `/healthworker find` `[Since v1.2]`
+* `delete 3 1` +
+Deletes the 1st patient in the results of the `list` command.
 
-Find delivery men whose name contain in the given parameter. +
-Format: `/healthworker find n/NAME` +
+=== Assigning a health worker to an existing open request : `assign`
 
-****
-* The search is case insensitive. e.g `tom` will match `Tom`
-* When more than one name field is given, it will only consider the last name field. e.g. `n/alex n/tom`, only `n/tom` will be considered
-* Partial match is allowed e.g. `tom` will match `tommy`
-****
+After registering a new request using the `add 2` command, you may proceed to
+ assign an existing health worker in the system to handle the request,
+ allocating medical resources to it and closing the request. +
 
-Examples:
-
-* `/healthworker find n/John Smith` +
-Returns all delivery men with the names `John` e.g. `John Smith` and `John Doe`
-// end::deliverymanfind[]
-
-// tag::deliverymandelete[]
-=== Deleting a delivery man : `/healthworker delete` `[Since v1.2]`
-
-Deletes the specified delivery man from the list of delivery men +
-Format: `/healthworker delete INDEX`
+Format: `assign <request_index> <health_worker_index>`
 
 ****
-* Deletes a delivery man at the specified `INDEX`.
-* Deliveryman that already have requests assigned cannot be deleted.
+* Health worker that is assigned must be available at the current time stated by the request.
+* Health worker must have the necessary skillset and certifications that allow him to be able to take up the corresponding request.
 ****
 
 Examples:
 
-* `/healthworker list` +
-`/healthworker delete 2` +
-Deletes the 2nd delivery man in the list of delivery men.
-* `/healthworker find n/tom` +
-`/healthworker delete 1` +
-Deletes the 1st delivery man in the results of the `find` command.
-// end::deliverymandelete[]
+* `assign 1 2` +
+Assigns the health worker at the second index to the first request in the
+request list.
 
-// tag::deliverymanselect[]
-=== Selecting a healthworker : `/healthworker select` `[Since v1.4]`
+=== Listing entered commands : `history`
 
-Selects the specified healthworker from the list of deliverymen. +
-Format: `/healthworker select INDEX`
+In the case where you have been using the application for a while now, and
+wish to track and see the past commands that you have entered into the
+application, or where you have taken over the application from another
+person, you can do so using the `history` command. +
 
-****
-* Select an healthworker at the specified `INDEX`.
-* Renders a new view for the selected healthworker - use /home to return the original view
-****
+Using the `history` command, you can view the previous commands entered in
+the application in chronological order, allowing you to identify the order in
+ which commands are keyed in previously.
 
-Examples:
-
-* `/healthworker list` +
-`/healthworker select 2` +
-Selects the 2nd healthworker in the list of deliverymen.
-* `/healthworker find n/david` +
-`/healthworker select 1` +
-Selects the 1st healthworker in the results of the `find` command.
-// end::deliverymanselect[]
-
-=== Clearing all delivery men entries : `/healthworker clear` `[Coming in v2.0]`
-
-Clears all entries from the list of delivery men. +
-Format: `/healthworker clear`
-
-// tag::assignfeature[]
-=== Assign requests to a delivery man : `/assign` `[Since v1.3]`
-
-Assign multiple requests to a delivery man +
-Format: `/assign d/DELIVERYMAN_INDEX o/ORDER_INDEX`
-
-****
-* Assigns requests at the specific `ORDER_INDEX` to the delivery man at the `DELIVERYMAN_INDEX`
-* There must be at least 1 request and 1 delivery man.
-* Add more than 1 requests by specifying more tags. e.g. `o/1 o/2 o/3`.
-* Orders that are `Ongoing` or `Completed` cannot be reassigned.
-* No more than 5 can be assigned to a healthworker at one time.
-****
-
-Examples:
-
-* `/request list` +
-`/healthworker list` +
-`/assign d/2 o/1 o/2` +
-Assigns request number 1 and 2 to delivery man number 2.
-
-Before the command is executed, the request status is `Pending` and the delivery man is available:
-
-.Before `/assign` command is executed
-image::assign-before.png[width="750"]
-
-After the command is executed, the request status changes to `Ongoing` and the delivery man has 2 assigned requests:
-
-.After `/assign` command is executed successfully
-image::assign-after.png[width="750"]
-
-// end::assignfeature[]
-
-// tag::orderdone[]
-=== Mark an request as completed : `/request done` `[Since v1.4]`
-
-Mark an request as completed.
-Format: `/request done ORDER_INDEX`
-
-****
-* Mark ORDER_INDEX as completed.
-* The index refers to the index number shown in the requests list.
-* The index *must be a positive integer* 1, 2, 3, ... and must be within the number of displayed requests.
-* There must be only 1 request index.
-* Only `ongoing` requests can be marked as completed.
-****
-
-Examples:
-
-* `/request list` +
-`/healthworker list` +
-`/assign d/2 o/1` +
-`/request done 1`
-Mark request number 1 as completed.
-
-After you mark an request done:
-
-.Order status changed to Completed after the request is marked as done
-image::orderdone.png[width="350"]
-
-// end::orderdone[]
-
-=== Listing entered commands : `/history` `[Since v1.1]`
-
-Lists all the commands that you have entered in reverse chronological request. +
-Format: `/history`
+Format: `history`
 
 [NOTE]
 ====
 Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and next input respectively in the command box.
 ====
 
-=== Exiting the program : `/exit` `[Since v1.1]`
+=== Exiting the program : `exit`
 
-Exits the program. +
-Format: `/exit`
+Once you are done using the application, you can exit the application by
+entering the `exit` command, hereby saving any information at the current
+point in time before shutting down. +
 
-// tag::routecreatefeature[]
-=== Creating a new route: `/route create` `[Deprecated since v1.2.1]`
-
-Creates a route with a set of requests +
-Format: `/route create o/ORDER_ID`
-
-****
-* All fields need to have at least a value. e.g. `o/` is not allowed.
-* Able to add more than 1 requests by specifying more tags. e.g. `o/1 o/2 o/3`.
-****
-
-Examples:
-
-* `/route create o/1 o/3`
-// end::routecreatefeature[]
+Format: `exit`
 
 === Saving the data
 
-FoodZoom data are saved in the hard disk automatically after any command that changes the data. +
-There is no need to save manually.
+All application data are saved in the hard disk automatically after exiting
+the application, removing the need to save manually. +
 
-=== Viewing help : `/help` `(Deliveryman Command)` `[Coming in v2.0]`
-
-Format: `/help`
-
-=== Login to system : `/login` `(Deliveryman Command)` `[Coming in v2.0]`
-
-Format: `/login u/USERNAME pw/PASSWORD`
-
-Examples:
-
-* `/login u/healthworker pw/password`
-
-=== Logout from system : `/logout` `(Deliveryman Command)` `[Coming in v2.0]`
-
-Format: `/logout`
-
-=== Listing assigned requests : `/request list` `(Deliveryman Command)` `[Coming in v2.0]`
-
-List details of assigned request/s +
-Format: `/request list`
-
-=== Exiting the program : `/exit` `(Deliveryman Command)` `[Coming in v2.0]`
-
-Exits the program. +
-Format: `/exit`
+Changes to the data in the application are also saved that any command that
+modifies application parameters, making sure that minimal data is lost should
+ any unforeseen circumstances happen.
 
 == FAQ
 
@@ -566,50 +337,11 @@ Format: `/exit`
 
 == Command Summary
 
-* *Sign Up* : `/signup n/NAME u/USERNAME pw/PASSWORD` +
-e.g. `/signup n/John Doe u/johndoe pw/johndoepassword`
-* *Login* : `/login u/USERNAME pw/PASSWORD` +
-e.g. `/login u/manager pw/password`
-* *Logout* : `/logout`
-* *Return to Home* : `/home`
-* *Add request* : `/request add f/FOOD n/NAME p/PHONE a/ADDRESS dt/DATETIME` +
-e.g. `/request add f/Roti Prata n/James Ho p/22224444 a/block 123, Clementi Rd, 1234665 dt/14-12-2018 10:18:00`
-* *Listing requests* : `/request list`
-* *Edit request* : `/request edit INDEX [f/FOOD] [n/NAME] [p/PHONE] [a/ADDRESS] [dt/DATETIME]` +
-e.g. `/request edit 2 n/James Lee`
-* *Find request* : `/request find [n/NAME] [p/PHONE] [a/ADDRESS] [f/FOOD] [dt/DATETIME] [st/ORDER_STATUS]` +
-e.g. `/request find n/James Jake`
-* *Delete request* : `/request delete INDEX` +
-e.g. `/request delete 3`
-* *Select request* : `/request select INDEX` +
-e.g. `/request select 3`
-* *Clear request* : `/request clear`
-* *Add delivery man* : `/healthworker add n/NAME` +
-e.g. `/healthworker add n/James Ho`
-* *Listing delivery men* : `/healthworker list`
-* *Edit delivery man* (Coming in v2.0) : `/healthworker edit INDEX n/NAME` +
-e.g. `/healthworker edit 2 n/James Lee`
-* *Find delivery man* : `/healthworker find n/NAME` +
-e.g. `/healthworker find n/James Jake`
-* *Delete delivery man* : `/healthworker delete INDEX` +
-e.g. `/healthworker delete 3`
-* *Select delivery man* : `/healthworker select INDEX` +
-e.g. `/healthworker select 1`
-* *Clear delivery men* (Coming in v2.0) : `/healthworker clear`
-* *Assign requests to a delivery man* : `/assign d/DELIVERYMAN_INDEX o/ORDER_INDEX` +
-e.g. `/assign d/1 o/1 o/3`
-* *Mark an request as completed* : `/request done ORDER_INDEX` +
-e.g. `/request done 1`
-* *Help* : `/help`
-* *History* : `/history`
-* *Exit the program* : `/exit`
-* *Create a route* [DEPRECATED] : `/route create o/ORDER_INDEX` +
-e.g. `/route create o/1 o/3`
-
-* *Login (Deliveryman)* (Coming in v2.0) : `/login u/USERNAME pw/PASSWORD` +
-e.g. `/login u/healthworker pw/password`
-* *Logout (Deliveryman)* (Coming in v2.0) : `/logout`
-* *View delivery route (Deliveryman)* (Coming in v2.0) : `/route list`
-* *View assigned requests (Deliveryman)* (Coming in v2.0) : `/request list`
-* *Help (Deliveryman)* (Coming in v2.0) : `/help`
-* *Exit the program (Deliveryman)* (Coming in v2.0) : `/exit`
+* *Help* : `help`
+* *List* : `list <type>`
+* *Add* : `add <type> <additional_parameters>...`
+* *Edit* : `edit <type> <index> <additional_parameters>...`
+* *Filter* : `filter <type> <keyword> [<more_keywords>]...`
+* *Delete* : `delete <type> <index>`
+* *Assign* : `assign <patient_index> <health_worker_index>`
+* *History* : `history`
