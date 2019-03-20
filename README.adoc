@@ -1,10 +1,8 @@
-= FoodZoom
-ifdef::env-github,env-browser[:relfileprefix: docs/]
+= HealthHub
 
-https://travis-ci.org/CS2103-AY1819S1-T16-3/main[image:https://travis-ci.org/CS2103-AY1819S1-T16-3/main.svg?branch=master[Build Status]]
-https://ci.appveyor.com/project/juxd/main/branch/master[image:https://ci.appveyor.com/api/projects/status/bv2mp10bqjo93700/branch/master?svg=true[Build status]]
-https://coveralls.io/github/CS2103-AY1819S1-T16-3/main?branch=master[image:https://coveralls.io/repos/github/CS2103-AY1819S1-T16-3/main/badge.svg?branch=master[Coverage Status]]
-https://gitter.im/se-edu/Lobby[image:https://badges.gitter.im/se-edu/Lobby.svg[Gitter chat]]
+https://travis-ci.com/CS2103-AY1819S2-W09-2/main[image:https://travis-ci.com/CS2103-AY1819S2-W09-2/main.svg?branch=master[Build Status]]
+https://coveralls.io/github/CS2103-AY1819S2-W09-2?branch=master[image:https://coveralls.io/repos/github/main/badge.svg?branch=master[Coverage Status]]
+image:https://api.codacy.com/project/badge/Grade/59b2e00f57cf432eab91667b827851b9[link="https://app.codacy.com/app/CS2103-AY1819S2-W09-2/main?utm_source=github.com&utm_medium=referral&utm_content=CS2103-AY1819S2-W09-2/main&utm_campaign=Badge_Grade_Dashboard"]
 
 ifdef::env-github[]
 image::docs/images/Ui.png[width="600"]
@@ -14,23 +12,46 @@ ifndef::env-github[]
 image::images/Ui.png[width="600"]
 endif::[]
 
-Welcome to FoodZoom! FoodZoom is a desktop condition delivery management application designed for condition businesses to streamline their delivery process. FoodZoom is responsive and quick, allowing managers to plan routes for request delivery and dispatch them to delivery men using a Command Line Interface (CLI). The delivery men can also use this application to view their delivery routes and increase their efficiency.
+== Why HealthHub?
 
-Make your condition delivery system more seamless today with FoodZoom!
+“Based on trends, if we project into 2050, even with immigration, the population pyramid will be inverted ...
+We are going to be growing old faster than any society in the world.”
+                                                                            -Lee Hsien Loong, Prime Minister of Singapore
+
+With the number of elderly slated to reach 900,000 by 2030, it is no surprise that the resources to meet the healthcare
+demands of the nation are being stretched thin. Even today, it is getting harder and harder to have healthcare professionals
+come down to our homes to tend to the elderly, on top of their already burgeoning workload in their workplaces.
+
+Luckily, we now have HealthHub
+
+HealthHub is the first centralized healthcare platform on the market which allows for healthcare professionals (in the
+form of doctors and nurses) and qualified individuals from the community to tend to the needs of elderly at their own
+homes. With a dedicated core administrative team, HealthHub intends to match skilled individuals to their respective
+jobs efficiently and effectively.
+
+== Target Group
+
+HealthHub is looking at 2 large groups of target users.
+
+* The 1st group comprises qualified individuals with necessary skills, be it basic healthcare skills like administering
+IV drip, to higher-level skills like handling dialysis machinery.
+* The 2nd group comprises
+
+** The elderly needing help at home and
+
+** Guardians of the elderly requiring additional healthcare at home
 
 == Site Map
 
-* <<UserGuide#, User Guide>>
-* <<DeveloperGuide#, Developer Guide>>
-* <<AboutUs#, About Us>>
-* <<ContactUs#, Contact Us>>
+* https://github.com/CS2103-AY1819S2-W09-2/main/blob/master/docs/UserGuide.adoc[User Guide]
+* https://github.com/CS2103-AY1819S2-W09-2/main/blob/master/docs/DeveloperGuide.adoc[Developer Guide]
+* http://github.com/CS2103-AY1819S2-W09-2/main/blob/master/docs/AboutUs.adoc[About Us]
+* https://github.com/CS2103-AY1819S2-W09-2/main/blob/master/docs/ContactUs.adoc[Contact Us]
 
 == Acknowledgements
 
-* Some parts of this sample application were inspired by the excellent http://code.makery.ch/library/javafx-8-tutorial/[Java FX tutorial] by
-_Marco Jakob_.
-* Libraries used: https://github.com/TestFX/TestFX[TextFX], https://bitbucket.org/controlsfx/controlsfx/[ControlsFX], https://github.com/FasterXML/jackson[Jackson], https://github.com/google/guava[Guava], https://github.com/junit-team/junit5[JUnit5]
-* AddressBook-Level4 project is created by SE-EDU initiative at https://github.com/se-edu/
-* Icons used in this application are made by Freepik from https://www.flaticon.com
+* Original Source Code created by SE-EDU initiative: https://github.com/se-edu/[Original Source Code]
+
+* Libraries used: https://github.com/TestFX/TestFX[TextFX], https://github.com/FasterXML/jackson[Jackson], https://github.com/google/guava[Guava], https://github.com/junit-team/junit5[JUnit5]
 
 == Licence : link:LICENSE[MIT]

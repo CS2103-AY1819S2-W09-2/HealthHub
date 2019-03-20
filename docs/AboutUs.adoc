@@ -4,48 +4,53 @@
 :imagesDir: images
 :stylesDir: stylesheets
 
-FoodZoom was developed by Team https://github.com/CS2103-AY1819S1-T16-3[T16-3] team. +
+HealthHub is developed with love and compassion by the https://github.com/CS2103-AY1819S2-W09-2[W9-02] team. +
 
 We are a team based in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore].
 
 == Project Team
 
-=== Rahul
-image::rrtheonlyone.png[width="150", align="left"]
-{empty}[https://github.com/rrtheonlyone[github]] [<<rrtheonlyone#, portfolio>>]
+=== Rohan Dev
+image::brohandev.png[width="150", align="left"]
+{empty}[https://github.com/brohandev[github page]]
 
-Roles: Integration, code quality
-
-'''
-
-=== Julius Sander
-image::juxd.png[width="150", align="left"]
-{empty}[https://github.com/juxd[github]] [<<juxd#, portfolio>>]
-
-Roles: Code quality and testing +
+Role: Software Developer +
+Responsibilities: Modifying the commands (Add/Edit/Delete/Find) for the Patient class.
 
 '''
 
-=== Monika Manuela Hengki
-image::monmanuela.png[width="150", align="left"]
-{empty}[http://github.com/monmanuela[github]] [<<monmanuela#, portfolio>>]
+=== Choong Wey Yeh
+image::lookuz.png[width="150", align="left"]
+{empty}[http://github.com/Lookuz[github page]]
 
-Roles: Team lead, UI +
-
-'''
-
-=== Koh Chi Hao
-image::kohchihao.png[width="150", align="left"]
-{empty}[https://github.com/kohchihao[github]] [<<kohchihao#, portfolio>>]
-
-Roles: Scheduling and tracking deliverables and deadlines +
+Role: Software Developer +
+Responsibilities: Modifying the commands (Add/Edit/Delete/Find) for the HealthWorker Class.
 
 '''
 
-=== Tan Jin Ying
-image::jinyingtan.png[width="150", align="left"]
-{empty}[https://github.com/jinyingtan[github]] [<<jinyingtan#, portfolio>>]
+=== David Livingston
+image::daviddl9.png[width="150", align="left"]
+{empty}[https://github.com/daviddl9[github page]]
 
-Role: Documentation, UI +
+Role: Software Developer +
+Responsibilities: Modifying the commands (Add/Edit/Delete/Find) for the different type of requests.
+
+'''
+
+=== Jin Jing
+image::jing1324.png[width="150", align="left"]
+{empty}[https://github.com/jing1324[github page]]
+
+Role: Software Developer +
+Responsibilities: Managing the storage related classes and its associated dependencies.
+
+'''
+
+=== Tay Hui Chun
+image::huichun66.png[width="150", align="left"]
+{empty}[http://github.com/huichun66[github page]]
+
+Role: User Interface Developer +
+Responsibilities: Responsible for the UI of the main app and its different interactions.
 
 '''
